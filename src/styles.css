@@ -1,0 +1,3276 @@
+/* App frame */
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial;
+  background: #0a0f1a;
+}
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #e6edf7;
+  background: linear-gradient(180deg, #0c1320 0%, #0a0f1a 100%);
+}
+.safe {
+  height: 24px;
+}
+
+/* Header */
+.header {
+  padding: 10px 20px 16px;
+}
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+}
+
+/* Main card */
+.main {
+  padding: 0 16px;
+}
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.row-sep {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.row-icon {
+  color: #7bd3ea;
+  display: flex;
+  align-items: center;
+}
+.row-label {
+  flex: 1;
+  font-size: 15px;
+  color: rgba(230, 237, 247, 0.95);
+  font-weight: 500;
+}
+.row-chevron {
+  color: #95a3b8;
+}
+.ico {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.logout {
+}
+.logout-icon {
+  color: #ff7070;
+}
+.logout-label {
+  color: #ff7070;
+}
+
+/* Tab bar */
+.tabbar {
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.tabwrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 18px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+.tab {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b7c2d1;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.tab:hover {
+  color: #e8eef7;
+}
+.tab-active {
+  color: white;
+}
+.tab-active .ico {
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+.tab-active {
+  background: radial-gradient(
+    120px 50px at center,
+    rgba(48, 210, 255, 0.15),
+    transparent 60%
+  );
+  border-radius: 18px;
+}
+
+/* Home Screen styles */
+.home-header .logo {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.home-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.swave-circle {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #dbe7f7;
+}
+
+.swave-circle.glow {
+  box-shadow: 0 0 50px rgba(72, 155, 255, 0.35),
+    0 0 100px rgba(72, 155, 255, 0.2);
+}
+
+.input-block {
+  text-align: center;
+  color: #cfd9ea;
+}
+
+.input-btn {
+  margin-top: 10px;
+  padding: 14px 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #e6edf7;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.input-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.subtext {
+  color: #cfd9ea; /* bluish text color */
+  font-size: 17px;
+  margin-top: 8px;
+  width: 55%; /* fixed width inside circle to force wrapping */
+  max-width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: normal;
+  display: block;
+}
+
+.input-btn {
+  border: 1.5px solid #cfd9ea; /* same color as button text */
+  color: #cfd9ea; /* bluish text color */
+  background: transparent;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+}
+
+.input-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+```
+/* Force the subtext to wrap inside the big circle */
+.swave-circle {
+  padding: 0 12px; /* tiny inset so text never touches edge */
+  display: grid;
+  place-items: center; /* keeps both lines centered */
+  text-align: center;
+}
+
+.swave-circle h2 {
+  margin: 0 0 10px;
+}
+
+.swave-circle .subtext {
+  width: 200px; /* hard cap: ~2 lines in your circle */
+  max-width: 75%;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere; /* break if a long chunk appears */
+  word-break: break-word;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ===== Code Entry screen ===== */
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 14px 8px;
+}
+/* OLD boxed back button — disabled on purpose
+.back-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfd9ea;
+}
+*/
+
+.code-title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.code-screen {
+  padding: 2px 16px 20px;
+}
+.code-top {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 18px;
+}
+.code-boxes {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 4px;   
+}
+
+.code-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 24px rgba(78, 138, 255, 0.22) inset,
+    0 2px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 650;
+  color: #e8eef7;
+}
+.code-box.filled {
+  border-color: rgba(118, 166, 255, 0.6);
+  box-shadow: 0 0 28px rgba(78, 138, 255, 0.28) inset,
+    0 0 24px rgba(78, 138, 255, 0.18);
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 8px auto 0;
+  max-width: 420px;
+}
+.key {
+  height: 70px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #e6edf7;
+  font-size: 26px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.key:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.key-hash {
+  position: relative;
+  flex-direction: column;
+  gap: 2px;
+}
+.key-hash .hash-top {
+  font-size: 22px;
+  line-height: 1;
+}
+.key-hash .hash-sub {
+  font-size: 12px;
+  color: #cfd9ea;
+  opacity: 0.9;
+}
+
+/* backspace key highlight */
+.key-back {
+  color: #cfd9ea;
+  border-color: rgba(118, 166, 255, 0.35);
+}
+/* ===== Code Entry screen ===== */
+.code-entry-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 60vh;
+  padding: 16px 16px 28px;
+}
+
+.title {
+  color: #e8eef7;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 8px 0 14px;
+}
+
+.code-boxes {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.code-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 24px rgba(78, 138, 255, 0.22) inset,
+    0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Uniform keypad --- */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 80px); /* 3 columns, fixed size */
+  gap: 16px;
+  justify-content: center;
+}
+
+.key-btn {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.key-btn--back {
+  font-size: 22px;
+}
+
+.key-btn--hash {
+  font-size: 28px;
+}
+
+
+  /* “new look”: no inner shading, bluish border */
+  background: transparent;
+  border: 2px solid #6ca0ff;          /* bluish border */
+  color: #e6edf7;
+  font-size: 26px;
+  font-weight: 650;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s ease;
+  box-shadow: none;                   /* remove any inner/outer glow */
+}
+
+.key-btn:hover { background: rgba(108,160,255,.10); }
+
+/* Two-line styling for the hash/commercial key */
+.key-btn--hash { flex-direction: column; line-height: 1.1; }
+.key-btn--hash .hash-top { font-size: 22px; }
+.key-btn--hash .hash-sub { font-size: 12px; color: #cfd9ea; opacity: .95; }
+
+/* (Optional) slightly smaller icon/text on back key */
+.key-btn--back { font-size: 22px; }
+
+
+  /* “new look”: no inner shading, bluish border */
+  background: transparent;
+  border: 2px solid #6ca0ff; /* bluish border */
+  color: #e6edf7;
+  font-size: 26px;
+  font-weight: 650;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+  box-shadow: none; /* remove any inner/outer glow */
+}
+
+.key-btn:hover {
+  background: rgba(108, 160, 255, 0.1);
+}
+
+/* Two-line styling for the hash/commercial key */
+.key-btn--hash {
+  flex-direction: column;
+  line-height: 1.1;
+}
+.key-btn--hash .hash-top {
+  font-size: 22px;
+}
+.key-btn--hash .hash-sub {
+  font-size: 12px;
+  color: #cfd9ea;
+  opacity: 0.95;
+}
+
+/* (Optional) slightly smaller icon/text on back key */
+.key-btn--back {
+  font-size: 22px;
+}
+.code-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.code-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.code-box {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #a2b5d8;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+}
+/* ==== POLISH / FIXES (append at end) ==== */
+
+/* Code boxes: show 'filled' state */
+.code-boxes { display:flex; gap:14px; justify-content:center; }
+.code-box {
+  width: 56px; height: 56px; border-radius: 12px;
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 0 24px rgba(78,138,255,.22) inset, 0 2px 10px rgba(0,0,0,.4);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 20px; font-weight: 650; color: #e8eef7;
+}
+.code-box.filled {
+  border-color: rgba(118,166,255,.6);
+  box-shadow: 0 0 28px rgba(78,138,255,.28) inset, 0 0 24px rgba(78,138,255,.18);
+}
+
+/* Uniform keypad grid with fixed buttons (80x80 target) */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-items: center;
+  margin: 8px auto 0;
+  max-width: 420px;
+}
+.key-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  border: 1.5px solid #3a3a3b;   
+  background: transparent;
+  color: #e6edf7;
+  font-size: 26px;
+  font-weight: 650;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  transition: background .15s ease, transform .06s ease;
+  cursor: pointer;
+}
+.key-btn:hover {
+  background: rgba(207,217,234,0.08); /* subtle hover like Home btn */
+}
+
+
+.key-btn--back { font-size: 22px; color: #cfd9ea; }
+.key-btn--hash { flex-direction: column; line-height: 1.1; }
+.key-btn--hash .hash-top { font-size: 22px; }
+.key-btn--hash .hash-sub { font-size: 12px; color: #cfd9ea; opacity: .95; }
+
+/* Alt link under keypad */
+.alt-btn {
+  margin-top: 14px;
+  border: 1.5px solid #3a3a3b;   /* same subtle border */
+  background: transparent;
+  color: #e6edf7;                 /* same text color */
+  border-radius: 999px;           /* pill shape */
+  padding: 10px 18px;
+  font-size: 0.95rem;             /* same size as .input-btn */
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.alt-btn:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+
+/* Username screen */
+.username-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+}
+.username-instructions {
+  max-width: 520px;
+  text-align: center;
+  color: #cfd9ea;
+  line-height: 1.4;
+  margin: 0 0 6px;
+}
+.username-field { width: min(460px, 100%); }
+.username-label {
+  display:block; margin: 0 0 6px;
+  color: #cfd9ea; font-size: 13px; letter-spacing: .2px;
+}
+.username-input {
+  width: 100%; height: 44px; padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: #e6edf7; outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.username-input:focus {
+  border-color: rgba(108,160,255,.7);
+  box-shadow: 0 8px 24px rgba(108,160,255,.22);
+  background: linear-gradient(180deg, rgba(108,160,255,.12), rgba(255,255,255,.04));
+}
+.username-input--error {
+  border-color: rgba(255,92,108,.8);
+  box-shadow: 0 8px 20px rgba(255,92,108,.2);
+}
+.username-error { margin-top: 6px; color: #ff5c6c; font-size: 12px; }
+
+.username-link-btn {
+  min-width: 120px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+
+  border: 1.5px solid #cfd9ea;  /* bluish border */
+  background: transparent;
+  color: #cfd9ea;               /* text matches instruction */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+
+.username-link-btn:hover {
+  background: rgba(207, 217, 234, 0.08); /* subtle bluish hover */
+}
+
+.username-link-btn:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+/* ===== Login screen ===== */
+.login-main{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+  padding: 28px 16px 96px;
+  /* subtle multi-stop background glow (CSS-only) */
+  background:
+    radial-gradient(600px 400px at 50% -10%, rgba(141,184,245,.14), transparent 60%),
+    radial-gradient(500px 380px at 85% 25%, rgba(177,126,255,.10), transparent 65%),
+    radial-gradient(520px 420px at 20% 60%, rgba(255,179,122,.08), transparent 65%);
+}
+
+.login-brand{
+  margin: 8px 0 8px;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 800;
+  font-size: 44px;
+  line-height: 53px;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.login-cards{
+  width: min(358px, 100%);
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.login-card{
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding: 24px 26px;
+  border-radius: 50px;                 /* big pill corners */
+  background: #1C2027;                 /* Figma dark card */
+  border: 1px solid rgba(255,255,255,.06);
+  color: #e6edf7;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 8px 24px rgba(0,0,0,.35);
+  cursor:pointer;
+  transition: background .15s ease, transform .06s ease;
+}
+.login-card:hover{ background:#232834; }
+.login-card:active{ transform: translateY(1px); }
+
+.login-card-text{ text-align:left; }
+.login-card-title{
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #fff;
+}
+.login-card-sub{
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #BAC5E6;                       /* Figma muted */
+  max-width: 225px;
+}
+
+/* prompt + outline CTA */
+.login-prompt{
+  margin: 18px 0 0;
+  color: #e6edf7;
+  opacity: .9;
+  text-align:center;
+  max-width: 210px;
+}
+
+.login-cta{
+  width: min(358px, 100%);
+  height: 40px;
+  margin-top: 8px;
+  border: 2px solid #39425D;           /* Figma outline */
+  border-radius: 78px;
+  background: transparent;
+  color: #D2DDFF;                       /* Figma label */
+  font: 400 16px/21px "SF Pro", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition: background .15s ease, transform .06s ease;
+}
+.login-cta:hover{ background: rgba(57,66,93,.22); }
+.login-cta:active{ transform: translateY(1px); }
+
+/* Login card chevron size & alignment */
+.login-chevron {
+  /* size of the “>” glyph */
+  font-size: 28px;         /* try 26–32px */
+  line-height: 1;
+  font-weight: 500;        /* makes the glyph look crisper */
+  color: #fafbfc;          /* same color you already use */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: auto;         /* remove the old circular container sizing */
+  height: auto;
+  border: none;            /* ensures no leftover circle */
+  padding: 0 2px 0 10px;   /* tiny nudge away from text */
+}
+
+/* ===== Registration ===== */
+.reg-main{ padding: 16px; }
+.reg-card{ padding: 18px; }
+.reg-title{
+  margin: 0 0 8px;
+  font-size: 20px; font-weight: 700; color: #e6edf7;
+}
+
+/* Shared field styling (reuses your visual language) */
+.field{ margin: 12px 0; }
+.field-label{ display:block; margin: 0 0 6px; color:#cfd9ea; font-size:13px; letter-spacing:.2px; }
+.field-row{ display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+
+.input{
+  width: 100%; height: 44px; padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: #e6edf7; outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.input:focus{
+  border-color: rgba(108,160,255,.7);
+  box-shadow: 0 8px 24px rgba(108,160,255,.22);
+  background: linear-gradient(180deg, rgba(108,160,255,.12), rgba(255,255,255,.04));
+}
+.input-error{
+  border-color: rgba(255,92,108,.8);
+  box-shadow: 0 8px 20px rgba(255,92,108,.2);
+}
+.error{ margin-top:6px; color:#ff5c6c; font-size:12px; }
+
+/* subtle outline button (Send code, etc.) */
+.btn-outline{
+  min-width: 110px; height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1.5px solid #3a3a3b;   /* your subtle border */
+  background: transparent;
+  color: #e6edf7; font-weight: 600; cursor: pointer;
+  transition: background .15s ease;
+}
+.btn-outline:disabled{ opacity:.55; cursor: not-allowed; }
+.btn-outline:hover{ background: rgba(255,255,255,.06); }
+
+/* Primary submit (matches your subtle outline look) */
+.btn-primary-outline{
+  min-width: 160px; height: 46px; padding: 0 20px;
+  border-radius: 999px;
+  border: 1.5px solid #3a3a3b;   /* subtle */
+  background: transparent; color: #e6edf7; font-weight: 700;
+  cursor:pointer; transition: background .15s ease;
+}
+.btn-primary-outline:disabled{ opacity:.55; cursor: not-allowed; }
+.btn-primary-outline:hover{ background: rgba(255,255,255,.06); }
+
+.reg-actions{ margin-top: 10px; display:flex; justify-content:center; }
+
+/* OTP capture: visually hidden input, pretty boxes */
+.otp-capture{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+.code-boxes{ justify-content:center; margin-top: 6px; }
+.code-box{ width: 48px; height: 48px; border-radius: 10px; font-size: 18px; }
+.ok-dot{ color:#28c281; margin-top:6px; display:inline-block; font-size:14px; }
+.otp-status{ margin-top:6px; text-align:center; }
+
+/* Password strength meter */
+.pw-meter{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:6px;
+  margin: 8px 0 4px;
+}
+.pw-meter > span{
+  height: 6px; border-radius: 4px;
+  background: rgba(255,255,255,.12);
+}
+.pw-meter[data-score="1"] > span:nth-child(-n+1){ background:#ff8e8e; }
+.pw-meter[data-score="2"] > span:nth-child(-n+2){ background:#ffd27a; }
+.pw-meter[data-score="3"] > span:nth-child(-n+3){ background:#9ad58b; }
+.pw-meter[data-score="4"] > span:nth-child(-n+4){ background:#28c281; }
+
+/* make mismatch a bit clearer */
+.input-error { border-color: rgba(255,92,108,.8); }
+
+.top-actions { display:flex; align-items:center; padding:8px 12px 4px; }
+
+.chevron-btn {
+  appearance:none; border:none !important; background:none !important;
+  padding:6px 8px; color:#BAC5E6; display:flex; align-items:center; cursor:pointer;
+}
+.chevron-btn:focus-visible { outline:2px solid rgba(186,197,230,.4); outline-offset:2px; }
+
+.chevron-icon { font-size:28px; line-height:1; font-weight:700; }
+.chevron-left .chevron-icon { transform: scaleX(-1); }
+
+/* Keep the back chevron pinned to the left on CodeEntryScreen */
+.code-screen > .top-actions {
+  align-self: flex-start;   /* override parent's align-items:center */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 12px 4px;    /* keep your padding */
+}
+
+/* (optional) tiny nudge from the edge */
+.code-screen .chevron-btn { margin-left: 2px; }
+
+/* keep the top bar left-aligned on the code screen */
+.code-screen > .top-actions {
+  align-self: flex-start;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 12px 4px;
+}
+
+/* SVG chevron thickness & size */
+.chevron-btn { color: #BAC5E6; padding: 6px 8px; border: none; background: none; }
+.chevron-svg { width: 22px; height: 22px; }
+.chevron-svg path { stroke-width: 1.5; } /* thinner line; try 1.3–1.8 */
+
+/* Nudge back chevron closer to the left edge on these screens */
+.code-screen > .top-actions,
+.reg-main > .top-actions,
+.username-screen > .top-actions {
+  margin-left: -16px;   /* cancels the container's left padding */
+  padding-left: 4px;    /* tiny breathing room from the edge */
+}
+/* Pin the chevron to the left on the Username screen */
+.username-screen > .top-actions {
+  align-self: flex-start;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 12px 4px;
+  margin-left: -16px;   /* nudge into the screen's left padding */
+  padding-left: 4px;    /* small breathing room from the edge */
+}
+
+/* Borderless chevron button (same family as Login chevrons) */
+.chevron-btn {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 6px 8px;
+  color: #BAC5E6;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.chevron-btn:focus-visible {
+  outline: 2px solid rgba(186,197,230,.4);
+  outline-offset: 2px;
+}
+
+/* SVG chevron size & stroke (thin) */
+.chevron-svg { width: 22px; height: 22px; }
+.chevron-svg path { stroke-width: 1.5; }  /* tweak 1.3–1.8 to taste */
+
+/* Live password requirements list */
+.pw-reqs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* two columns on wide phones */
+  gap: 6px 14px;
+  margin: 10px 0 4px;
+}
+@media (max-width: 360px){
+  .pw-reqs{ grid-template-columns: 1fr; } /* stack on very small screens */
+}
+
+.req{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #9fb0c7;                 /* muted */
+  transition: color .12s ease, opacity .12s ease;
+}
+.req .req-check{
+  width: 16px; height: 16px;
+  color: #9fb0c7;
+  opacity: .35;                   /* faint when unmet */
+  transition: color .12s ease, opacity .12s ease, transform .12s ease;
+}
+
+/* Met state: turn green and brighten */
+.req.met{
+  color: #e6edf7;                 /* brighten the text slightly */
+}
+.req.met .req-check{
+  color: #28c281;                 /* green check */
+  opacity: 1;
+  transform: scale(1.05);         /* tiny pop when it turns on */
+}
+/* a little extra space under the password checklist */
+.pw-reqs { margin-bottom: 16px; }  /* try 10–16px to taste */
+
+/* Composite phone input styling */
+.input-prefix {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 42px; /* room for the +1 prefix */
+}
+
+/* gray +1 */
+.input-prefix .prefix {
+  position: absolute;
+  left: 12px;
+  color: #9fb0c7;
+  opacity: 0.85;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+/* inner input should look seamless with the outer .input */
+.input-prefix .prefix-input {
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: inherit;
+  font: inherit;
+  padding: 0;                 /* outer .input provides padding */
+  caret-color: #e6edf7;       /* nice caret on dark bg */
+}
+/* Step label chip */
+/* Subtitle under Create account */
+.reg-subtitle{
+  margin: 4px 0 14px;
+  color: #9fb0c7;          /* softer blue (matches your muted text) */
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* Keep the back chevron pinned left on these screens (nudge into edge) */
+.reg-main > .top-actions{
+  align-self:flex-start; width:100%;
+  display:flex; justify-content:flex-start;
+  padding:8px 12px 4px;
+  margin-left:-16px; padding-left:4px;
+}
+
+/* Composite phone input with gray +1 prefix (seamless inner input) */
+.input-prefix{ position:relative; display:flex; align-items:center; padding-left:42px; }
+.input-prefix .prefix{
+  position:absolute; left:12px;
+  color:#9fb0c7; opacity:.85; pointer-events:none; font-size:14px;
+}
+.input-prefix .prefix-input{
+  width:100%; height:100%; background:transparent !important;
+  border:none !important; outline:none !important; box-shadow:none !important;
+  color:inherit; font:inherit; padding:0; caret-color:#e6edf7;
+}
+
+/* SVG chevron */
+.chevron-btn{ appearance:none; border:none; background:none; padding:6px 8px; color:#BAC5E6; display:flex; align-items:center; cursor:pointer; }
+.chevron-btn:focus-visible{ outline:2px solid rgba(186,197,230,.4); outline-offset:2px; }
+.chevron-svg{ width:22px; height:22px; }
+.chevron-svg path{ stroke-width:1.5; }
+
+/* Keep the registration card within a comfortable width */
+.reg-card{
+  width: 100%;
+  max-width: 440px;    /* tweak 420–480 to taste */
+  margin: 0 auto;
+}
+
+/* Make fields fully respect the card width */
+.field, .field-row, .input, .input-prefix{
+  width: 100%;
+  box-sizing: border-box;
+}
+.input{ display:block; }           /* ensure it behaves like a block element */
+
+/* (Phone field already inherits .input styles via .input-prefix wrapper) */
+
+/* === Center a phone-sized frame on desktop, full-bleed on phones === */
+:root {
+  --phone-w: 430px;   /* match your Figma width */
+  --phone-h: 860px;   /* comfortable height target (tweak if you like) */
+}
+
+/* Desktop & tablets: show a centered "phone" */
+@media (min-width: 481px) {
+  html, body, #root { height: 100%; }
+  #root { display: grid; place-items: center; }
+  body { background: #0a0f1a; } /* your app bg outside the phone */
+
+  .screen {
+    width: var(--phone-w);
+    height: min(100vh - 48px, var(--phone-h));  /* keep it visible without making your window a square */
+    min-height: 640px;
+    border-radius: 28px;           /* bump to 52px if you want a rounder "device" */
+    overflow: auto;                /* internal scroll if content exceeds frame */
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  }
+}
+
+/* Real phones: use the whole screen */
+@media (max-width: 480px) {
+  .screen {
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: auto;
+  }
+}
+
+/* Make sure common content blocks respect the frame width */
+.main, .reg-main, .code-screen, .username-screen, .home-main, .card, .reg-card {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* (You already have padding on .main/.reg-main; this keeps cards from ever overflowing) */
+
+/* tighter spacing + white subtitle on Step 1 */
+.reg-title { margin: 0 0 4px; }     /* was larger; reduces gap */
+.reg-subtitle{
+  margin: 0 0 10px;                 /* a little less space */
+  color: #e6edf7;                   /* white like the title */
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* vertically center +1 and use the same font metrics as the input */
+.input-prefix .prefix{
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  font: inherit;          /* match size/line-height of the input */
+  line-height: 1;         /* prevent extra vertical offset */
+  color: #9fb0c7;
+  opacity: .85;
+}
+/* shrink vertical rhythm only on Step 2 so everything fits */
+.reg-step2 .reg-title        { margin: 0 0 8px; }      /* "Final steps" title */
+.reg-step2 .field            { margin-bottom: 12px; }  /* tighten field gaps */
+.reg-step2 .pw-reqs          { margin: 8px 0 8px; gap: 4px 12px; }
+.reg-step2 .req              { font-size: 12px; }
+.reg-step2 .pw-meter         { margin-top: 6px; }      /* if you kept the meter */
+.reg-step2 .reg-actions      { margin-top: 8px; }
+
+ /* make absolutely sure the card never overflows the phone frame */
+.reg-card{ width:100%; max-width:440px; margin:0 auto; box-sizing:border-box; }
+.field, .field-row, .input, .input-prefix{ width:100%; box-sizing:border-box; }
+
+/* Bigger gap under "Step 1" subtitle only on step 1 */
+.reg-step1 .reg-subtitle {
+  margin-bottom: 20px;   /* try 16–24px to taste */
+}
+/* a touch more space after the title now that the subtitle is gone */
+.reg-title { margin: 0 0 12px; }
+
+/* Send code: a bit lower and ~2/3 width, centered */
+.btn-otp{
+  width: 66%;
+  display: block;
+  margin: 14px auto 0;   /* drop it down a little */
+}
+@media (max-width: 360px){
+  .btn-otp{ width: 100%; }  /* full width on very small phones */
+}
+
+/* Extra gap after Username so "Password" clearly pairs with its box */
+.reg-step2 .field--username { margin-bottom: 35px; }  /* try 16–24px */
+/* Ensure fields are block-level and spacing applies */
+.field { display:block; }
+
+/* Extra gap ONLY on Step 2 after Username so "Password" pairs with its box */
+.reg-step2 .field.field--username {
+  margin-bottom: 24px !important;  /* increase if you want more space */
+}
+
+/* (Optional) tiny cushion above Password label if needed */
+.reg-step2 .field.field--password {
+  margin-top: 4px !important;
+}
+
+/* Keep login card spacing tight and consistent with registration */
+.signin-card .reg-actions { margin-top: 8px; }
+
+/* Text-link button style */
+.link-btn {
+  background: none; border: 0; padding: 8px 0;
+  color: #9fb0c7; cursor: pointer; font: inherit; text-align: left;
+}
+.link-btn.small { font-size: 12.5px; opacity: .95; }
+.link-btn:hover { color: #e6edf7; }
+
+
+/* Form titles inside cards (since we hide the app-level header here) */
+.form-card { padding: 16px; }
+.form-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 4px 0 8px;
+  color: #e6edf7;
+}
+.form-subtle {
+  color: #9fb0c7;
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+
+/* Textarea & inputs share .input styling already; just enlarge textarea nicely */
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.45;
+}
+
+/* Tiny helper line under fields */
+.help-text {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #9fb0c7;
+}
+
+/* Character counter */
+.char-remaining {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #9fb0c7;
+  text-align: right;
+}
+
+/* File input */
+.file-input {
+  display: block;
+  width: 100%;
+  color: #cfd9ea;
+}
+.file-name {
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: #cfd9ea;
+  opacity: .9;
+}
+
+/* Checkbox row */
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 8px 2px 4px;
+  font-size: 13px;
+  color: #cfd9ea;
+}
+.checkbox-row input[type="checkbox"] {
+  margin-top: 3px;
+}
+
+/* Disabled submit look (if you need it stronger) */
+.btn-primary-outline[disabled],
+.btn-primary-outline[aria-disabled="true"] {
+  opacity: .5;
+  cursor: not-allowed;
+}
+/* Make the phone frame a positioned container so overlay stays inside it */
+.screen { position: relative; }
+
+/* Overlay */
+.overlay{
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+
+.overlay-card{
+  width: 86%; max-width: 360px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(15, 20, 32, .95);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+  text-align: center;
+}
+
+.overlay-msg{
+  color: #cfd9ea;
+  font-size: 14.5px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+/* ---------- Username Linking ---------- */
+.linking-card { padding: 16px; }
+.linking-title {
+  margin: 2px 0 8px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #e6edf7;
+}
+.linking-card .intro p {
+  margin: 8px 0 0;
+  color: #cfd9ea;
+  line-height: 1.45;
+}
+.linking-card .intro .muted { color: #9fb0c7; }
+
+/* Big hollow CTA */
+.btn-hollow.big {
+  width: 100%;
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 999px;
+  border: 1.5px solid #3a3a3b;           /* subtle like your other buttons */
+  background: transparent;
+  color: #e6edf7;
+  font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+  justify-content: center;
+}
+.btn-hollow.big:hover { background: rgba(255,255,255,0.06); }
+.btn-hollow.big.btn-on {
+  border-color: #6ca0ff;
+  box-shadow: 0 0 0 3px rgba(108,160,255,0.16) inset;
+}
+
+/* little icon in button */
+.btn-ico { display: inline-flex; }
+.btn-ico .ico { width: 18px; height: 18px; }
+
+/* OR divider */
+.or-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 10px;
+}
+.or-line {
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+}
+.or-text {
+  color: #9fb0c7;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* Toggle row */
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 2px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-top: 6px;
+}
+.toggle-label { color: #e6edf7; }
+
+/* iOS-like switch */
+.switch {
+  position: relative; width: 46px; height: 28px;
+  display: inline-block;
+}
+.switch input { display: none; }
+.switch .slider {
+  position: absolute; inset: 0;
+  background: #3b4150;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  transition: all .2s ease;
+}
+.switch .slider::after {
+  content: "";
+  position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #e6edf7;
+  transition: transform .2s ease;
+}
+.switch input:checked + .slider {
+  background: #3f6cff;
+  border-color: #3f6cff;
+}
+.switch input:checked + .slider::after {
+  transform: translateX(18px);
+}
+
+/* Reuse your top chevron placement */
+.top-actions { padding: 8px 8px 6px 8px; }
+
+/* ===== iOS-26 Glass: refinements ===== */
+
+/* Stronger pressed feel */
+.glass-btn:active {
+  transform: translateY(1px) scale(.997);
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,.35),
+    0 6px 18px rgba(0,0,0,.45);
+}
+
+/* Primary tinted (bluish) glass button */
+.glass-btn--tint {
+  color: #eaf1ff;
+  border-color: rgba(118, 160, 255, .55);
+  background:
+    linear-gradient(180deg, rgba(140,180,255,.22), rgba(60,120,255,.10)) border-box,
+    linear-gradient(180deg, rgba(80,130,255,.18), rgba(0,0,0,.22)) padding-box;
+}
+.glass-btn--tint::before{
+  background: linear-gradient(180deg, rgba(180,210,255,.55), transparent 42%);
+}
+.glass-btn--tint:hover{
+  box-shadow:
+    inset 0 0 0 0.5px rgba(200,220,255,.35),
+    0 12px 30px rgba(30,60,140,.55);
+}
+
+/* Destructive (red) glass variant */
+.glass-btn--danger {
+  color: #ffecee;
+  border-color: rgba(255,115,130,.55);
+  background:
+    linear-gradient(180deg, rgba(255,160,170,.24), rgba(255,80,100,.10)) border-box,
+    linear-gradient(180deg, rgba(255,120,135,.16), rgba(0,0,0,.22)) padding-box;
+}
+.glass-btn--danger::before{
+  background: linear-gradient(180deg, rgba(255,210,220,.55), transparent 42%);
+}
+
+/* Icon-only chevron (thin stroke) */
+.chevron-svg { width: 24px; height: 24px; stroke-width: 1.7; }
+
+/* No-backdrop-filter fallback (older/locked-down browsers) */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-btn, .glass-btn--hollow, .card.glass, .tabwrap, .input.glass, .input-prefix.glass {
+    background: rgba(35, 40, 55, 0.88); /* opaque fallback */
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 20px rgba(0,0,0,0.45);
+  }
+}
+
+/* Reduce transparency preference */
+@media (prefers-reduced-transparency: reduce){
+  .glass-btn, .glass-btn--hollow, .glass-btn--tint, .glass-btn--danger,
+  .card.glass, .tabwrap, .input.glass, .input-prefix.glass{
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    background: rgba(35, 40, 55, 0.92);
+  }
+}
+.login-card.glass:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.55);
+}
+
+/* ================= iOS-glass look ================= */
+:root{
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-stroke: rgba(255,255,255,0.22);
+  --glass-inner: rgba(255,255,255,0.08);
+  --glass-highlight: rgba(255,255,255,0.55);
+  --glass-shadow: rgba(0,10,30,0.65);
+  --glass-blue: #6ca0ff;
+}
+
+.card.glass,
+.card.glassy,
+.glass-surface{
+  background: var(--glass-bg);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 18px;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 10px 30px var(--glass-shadow);
+}
+
+/* ===== Force the glass look on Login cards & make it obvious ===== */
+
+/* Neutralize any old styles on the legacy login-card */
+.login-card { 
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Make glass more visible on dark backgrounds */
+.card.glass {
+  background: rgba(255,255,255,0.09);           /* slightly brighter */
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 18px;
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 18px 40px rgba(0,0,0,0.55);
+}
+
+/* Give the page a richer background so the blur has something to blur */
+.screen {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(120,160,255,.22), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, rgba(255,120,180,.12), transparent 60%),
+    linear-gradient(180deg, #0f1421, #0e1420 60%, #0b0f19);
+}
+
+/* (Optional) slight lift on hover for the login cards */
+.login-card.glass:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.6);
+}
+
+/* Ensure glass buttons pop a bit more */
+.glass-btn { 
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,255,255,0.28),
+    0 10px 26px rgba(0,0,0,0.5);
+}
+/* --- Fix legacy white CTA on Login screen --- */
+
+/* Nuke old .login-cta styling if it still exists */
+.login-cta {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+/* If there’s a generic button rule under .login-main, overrule it for glass */
+.login-main .glass-btn {
+  background: transparent !important;           /* hollow glass */
+  border: 1.5px solid #3a3a3b !important;
+  color: #e6edf7 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 10px 26px rgba(0,0,0,0.5) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+}
+
+/* Keep pressed/hover feeling consistent */
+.login-main .glass-btn:hover {
+  background: rgba(255,255,255,0.05) !important;
+}
+.login-main .glass-btn:active {
+  transform: translateY(1px) scale(.997);
+}
+
+/* =========================================================
+   Swave universal glass button upgrade (iOS-26 inspired)
+   ========================================================= */
+
+/* Base glass button — shared across app */
+.glass-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 18px;
+  font-weight: 600;
+  color: #e6edf7;
+  border: 1px solid rgba(255,255,255,0.22);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06)) border-box,
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.18)) padding-box;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,255,255,0.25),
+    0 8px 22px rgba(0,0,0,0.45);
+  transition: transform .08s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.glass-btn::before {
+  content:"";
+  position:absolute; inset:0; border-radius:inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.45), transparent 38%);
+  mix-blend-mode: screen; pointer-events:none; opacity:.8;
+}
+
+.glass-btn:hover {
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,255,255,0.3),
+    0 12px 30px rgba(0,0,0,0.55);
+}
+.glass-btn:active {
+  transform: translateY(1px);
+}
+
+/* Hollow variant */
+.glass-btn--hollow {
+  background: transparent;
+  border: 1.5px solid #3a3a3b;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+}
+.glass-btn--hollow:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Bluish tinted primary (for actions like "Create Account") */
+.glass-btn--tint {
+  color: #eaf1ff;
+  border-color: rgba(118, 160, 255, .55);
+  background:
+    linear-gradient(180deg, rgba(140,180,255,.22), rgba(60,120,255,.10)) border-box,
+    linear-gradient(180deg, rgba(80,130,255,.18), rgba(0,0,0,.22)) padding-box;
+}
+.glass-btn--tint::before {
+  background: linear-gradient(180deg, rgba(180,210,255,.55), transparent 42%);
+}
+
+/* Larger CTA button style — for "Enter Swave Code" */
+.glass-btn.big {
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 1.1rem;
+  border-radius: 999px;
+  margin-top: 10px;
+}
+
+/* Disabled look */
+.glass-btn:disabled,
+.glass-btn[aria-disabled="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* iOS-26 refined glass button — flatter, cleaner, subtle rim */
+.glass-btn.big {
+  width: auto;
+  min-width: 180px;
+  padding: 14px 26px;
+  font-size: 1rem;
+  border-radius: 14px; /* gentle modern corners */
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)) border-box,
+    linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.20)) padding-box;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,255,255,0.18),
+    0 8px 22px rgba(0,0,0,0.45);
+  transition: all .15s ease;
+}
+
+/* iOS-26 bevel refinement — top + left light only, no bottom/right edge */
+.glass-btn.big {
+  width: auto;
+  min-width: 180px;
+  padding: 14px 26px;
+  font-size: 1rem;
+  border-radius: 14px;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  /* bevel: top & left highlights only */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),  /* thin top light */
+    inset 1px 0 0 rgba(255,255,255,0.14),  /* faint left light */
+    0 8px 22px rgba(0,0,0,0.45);           /* soft drop for lift */
+}
+
+/* Remove any old overlays that caused glare */
+.glass-btn.big::before,
+.glass-btn.big::after {
+  content: none !important;
+}
+
+/* Subtle hover lift — keeps same bevel */
+.glass-btn.big:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.26),
+    inset 1px 0 0 rgba(255,255,255,0.16),
+    0 12px 26px rgba(0,0,0,0.55);
+}
+.glass-btn.big:active {
+  transform: translateY(1px);
+}
+/* ---- iOS26 laminated glass button: edge-only light, super clean ---- */
+.glass-btn.big {
+  width: auto;
+  min-width: 180px;
+  padding: 14px 26px;
+  font-size: 1rem;
+  border-radius: 14px;               /* modern, not a pill */
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+
+  /* flat glass surface (blur still applied for consistency) */
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  /* remove any older overlays */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);   /* soft lift only */
+}
+.glass-btn.big::before,
+.glass-btn.big::after { content: none !important; }
+
+/* ultra-thin beveled edges (top + left only) */
+.glass-btn.big > .edge-top,
+.glass-btn.big > .edge-left { position:absolute; pointer-events:none; }
+
+/* 1px top highlight */
+.glass-btn.big > .edge-top {
+  left: 0; top: 0; width: 100%; height: 1px;
+  background: rgba(255,255,255,0.18);
+}
+
+/* 1px left highlight (slightly dimmer than top) */
+.glass-btn.big > .edge-left {
+  left: 0; top: 0; width: 1px; height: 100%;
+  background: rgba(255,255,255,0.12);
+}
+
+/* tiny corner glints for that “translucent rim” feel */
+.glass-btn.big > .corner-glint {
+  position:absolute; width: 12px; height: 12px; pointer-events:none;
+  filter: blur(.2px); opacity: .45; mix-blend-mode: screen;
+  background: radial-gradient(circle, rgba(255,255,255,.22), transparent 65%);
+  border-radius: 50%;
+}
+.glass-btn.big > .corner-glint.tl { left: 6px; top: 6px; }
+.glass-btn.big > .corner-glint.tr { right: 6px; top: 6px; opacity:.20; } /* very faint on right like iOS tiles */
+
+/* hover/press keep the edges crisp without adding big sheen */
+.glass-btn.big:hover  { box-shadow: 0 12px 26px rgba(0,0,0,0.55); }
+.glass-btn.big:active { transform: translateY(1px); }
+
+/* ============== iOS-26 keypad (circular glass keys) ============== */
+.keypad {
+  --key-size: 74px;               /* adjust for your layout */
+  display: grid;
+  grid-template-columns: repeat(3, var(--key-size));
+  grid-auto-rows: var(--key-size);
+  justify-content: center;
+  gap: 14px;
+  margin: 18px 0 6px;
+}
+
+.keypad-btn {
+  width: var(--key-size);
+  height: var(--key-size);
+  border-radius: 50%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f3f5f8;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: .5px;
+
+  /* laminated glass surface on solid bg */
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
+  transition: transform .08s ease, box-shadow .15s ease;
+}
+
+/* edge-only bevel: 1px lights top/left + anchor at bottom */
+.keypad-btn::before {
+  content:"";
+  position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),  /* top light */
+    inset 1px 0 0 rgba(255,255,255,0.14),  /* left light */
+    inset 0 -1px 0 rgba(0,0,0,0.24);       /* bottom anchor (very subtle) */
+}
+
+/* thin inner ring for translucent rim feel */
+.keypad-btn::after {
+  content:"";
+  position:absolute; inset:2px; border-radius:50%; pointer-events:none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
+  opacity:.9; mix-blend-mode: screen;
+}
+
+.keypad-btn:active { transform: translateY(1px); }
+
+/* secondary line (ABC, DEF, etc.) */
+.keypad-sub {
+  position: absolute;
+  bottom: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: .7;
+  letter-spacing: .6px;
+}
+
+/* Backspace key styling to match */
+.keypad-btn--action {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Make 0 centered in the last row */
+.keypad .keypad-zero {
+  grid-column: 2 / 3;  /* puts 0 in the middle bottom */
+}
+
+/* Smaller layout option (e.g., narrow screens) */
+@media (max-width: 360px) {
+  .keypad { --key-size: 64px; gap: 12px; }
+  .keypad-sub { bottom: 8px; }
+}
+/* ==== iOS-26 keypad: asymmetric "missing rim" (top-right & bottom-left) ==== */
+
+/* base (keep yours if already present, this just tweaks a few values) */
+.keypad { --key-size: 74px; display:grid; grid-template-columns:repeat(3,var(--key-size));
+  grid-auto-rows:var(--key-size); justify-content:center; gap:14px; margin:18px 0 6px; }
+
+.keypad-btn {
+  width: var(--key-size);
+  height: var(--key-size);
+  border-radius: 50%;
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #f3f5f8; font-size: 26px; font-weight: 700; letter-spacing: .5px;
+
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
+  transition: transform .08s ease, box-shadow .15s ease;
+}
+
+/* remove any previous full-ring overlays so only the arcs render */
+.keypad-btn::before,
+.keypad-btn::after { content: none !important; }
+
+/* light arc (top-left quadrant) — skips top-right */
+.keypad-btn .rim-light,
+.keypad-btn .rim-dark { position:absolute; inset:0; border-radius:50%; pointer-events:none; }
+
+/* We create a 1px ring and "mask" most of it, leaving only the arc we want. */
+.keypad-btn .rim-light {
+  /* 1px radial ring */
+  background:
+    radial-gradient(circle closest-side, transparent calc(100% - 1px),
+                    rgba(255,255,255,0.40) calc(100% - 1px),
+                    transparent 100%);
+  /* Show only ~90° arc from ~140°→230° (top-left), hide top-right */
+  -webkit-mask: conic-gradient(from 140deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
+          mask: conic-gradient(from 140deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
+}
+
+/* dark anchor arc (bottom-right quadrant) — skips bottom-left */
+.keypad-btn .rim-dark {
+  background:
+    radial-gradient(circle closest-side, transparent calc(100% - 1px),
+                    rgba(0,0,0,0.20) calc(100% - 1px),
+                    transparent 100%);
+  /* ~90° arc from ~320°→50° (wraps through 0°) = bottom-right */
+  -webkit-mask: conic-gradient(from 320deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
+          mask: conic-gradient(from 320deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
+}
+
+/* small inner rim for translucent feel (very subtle) */
+.keypad-btn .rim-inner {
+  position:absolute; inset:1px; border-radius:50%; pointer-events:none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  mix-blend-mode: screen; opacity:.9;
+}
+
+.keypad-btn:active { transform: translateY(1px); }
+
+/* ABC/DEF labels */
+.keypad-sub { position:absolute; bottom:10px; font-size:11px; font-weight:600; opacity:.7; letter-spacing:.6px; }
+
+.keypad-btn--action { font-size:20px; font-weight:600; }
+
+.keypad .keypad-zero { grid-column: 2 / 3; }
+
+/* smaller phones */
+@media (max-width: 360px) {
+  .keypad { --key-size: 64px; gap: 12px; }
+  .keypad-sub { bottom: 8px; }
+}
+/* ==== round code slots to match circular keypad ==== */
+.code-boxes {
+  display:flex; gap:14px; justify-content:center; margin: 8px 0 16px;
+}
+.code-box {
+  width: 48px; height: 48px; border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 20px; font-weight:700; color:#e6edf7;
+
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  /* top-left bevel only, like the keys */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),   /* top light */
+    inset 1px 0 0 rgba(255,255,255,0.12);   /* left light */
+}
+/* when filled, you can make the number brighter (optional) */
+.code-box.filled { color: #ffffff; }
+
+/* ==== iOS-26 keypad rim with feathered ends (override) ==== */
+
+/* Light arc: top-left quadrant with soft fade at both ends */
+.keypad-btn .rim-light{
+  position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  /* draw the arc with fades on both ends */
+  background:
+    conic-gradient(
+      from 150deg,
+      rgba(255,255,255,0) 0deg,                /* fully transparent start */
+      rgba(255,255,255,0.05) 30deg,            /* fade-in */
+      rgba(255,255,255,0.20) 40deg,            /* full strength */
+      rgba(255,255,255,0.20) 90deg,            /* full strength */
+      rgba(255,255,255,0.05) 10deg,           /* fade-out */
+      rgba(255,255,255,0) 120deg               /* fully transparent end */
+    );
+  /* clip to a thin ring near the edge */
+  -webkit-mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% -1px));
+          mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% - 1px));
+  mix-blend-mode: screen;
+}
+
+/* Dark anchor arc: bottom-right quadrant with feathered ends */
+.keypad-btn .rim-dark{
+  position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  background:
+    conic-gradient(
+      from 330deg,
+      rgba(0,0,0,0) 0deg,                      /* transparent start */
+      rgba(0,0,0,0.05) 10deg,                  /* fade-in */
+      rgba(0,0,0,0.22) 40deg,                  /* full strength */
+      rgba(0,0,0,0.22) 90deg,                  /* full strength */
+      rgba(0,0,0,0.05) 110deg,                 /* fade-out */
+      rgba(0,0,0,0) 120deg                     /* transparent end */
+    );
+  -webkit-mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% - 2px));
+          mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% - 2px));
+  /* optional: slightly deepen the dark arc on very bright backgrounds */
+  /* mix-blend-mode: multiply; */
+}
+
+/* Keep the subtle inner translucent ring */
+.keypad-btn .rim-inner{
+  position:absolute; inset:0px; border-radius:50%; pointer-events:none;
+  box-shadow: inset 0 0 0 0px rgba(255,255,255,0.08);
+  mix-blend-mode: screen; opacity:.9;
+}
+
+/* ==== Round code boxes with same feathered rim + darker fill ==== */
+.code-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 12px 0 18px;
+}
+
+.code-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e6edf7;
+  /* darker inner fill to stand out from keypad */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+/* Light arc */
+.code-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 150deg,
+      rgba(255,255,255,0) 0deg,
+      rgba(255,255,255,0.05) 30deg,
+      rgba(255,255,255,0.20) 40deg,
+      rgba(255,255,255,0.20) 90deg,
+      rgba(255,255,255,0.05) 110deg,
+      rgba(255,255,255,0) 120deg
+    );
+  -webkit-mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% - 1px));
+          mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% - 1px));
+  mix-blend-mode: screen;
+}
+
+/* Dark anchor arc */
+.code-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 330deg,
+      rgba(0,0,0,0) 0deg,
+      rgba(0,0,0,0.05) 10deg,
+      rgba(0,0,0,0.22) 40deg,
+      rgba(0,0,0,0.22) 90deg,
+      rgba(0,0,0,0.05) 110deg,
+      rgba(0,0,0,0) 120deg
+    );
+  -webkit-mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% - 2px));
+          mask: radial-gradient(circle closest-side,
+                  transparent calc(100% - 2px), #000 calc(100% - 2px));
+  mix-blend-mode: multiply;
+}
+
+/* When filled: brighter interior to show entry */
+.code-box.filled {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255,255,255,0.12);
+  color: #ffffff;
+}
+/* ===== Rectangular glass tile button + feathered top/left edges ===== */
+
+/* Base rectangular tile (modern radius, flat glass) */
+.glass-btn.tile {
+  border-radius: 14px;                  /* iOS 26 corners */
+  padding: 12px 18px;
+  font-size: 0.98rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Kill any global specular overlays for this tile so it stays clean/flat */
+.glass-btn.tile::before,
+.glass-btn.tile::after { content: none !important; }
+
+/* Edge-only highlight with feathered ends (top + left) */
+.edge-feather::before {
+  content: "";
+  position: absolute;
+  inset: 0;               /* we’ll position via background */
+  pointer-events: none;
+  border-radius: inherit;
+  background-repeat: no-repeat;
+  /* Two gradients: 1) top (left→right), 2) left (top→bottom) */
+  background-image:
+    /* TOP edge: fades in from ~8%, full across the middle, fades out near ~92% */
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.18) 28%,
+      rgba(255,255,255,0.18) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* LEFT edge: fades in from ~8%, full through center, fades out near ~92% */
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.14) 28%,
+      rgba(255,255,255,0.14) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    );
+  /* Sizes: top is 100% wide x 1px tall; left is 1px wide x 100% tall */
+  background-size: 100% 1px, 1px 100%;
+  background-position: top left, top left;
+}
+
+/* Optional: hover depth without changing the rim */
+.glass-btn.tile:hover {
+  box-shadow: 0 12px 26px rgba(0,0,0,0.55);
+}
+.glass-btn.tile:active { transform: translateY(1px); }
+
+/* If you want this style to be “hollow”: keep the subtle outline and transparent center */
+.glass-btn.tile.glass-btn--hollow {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #3a3a3b;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 10px 24px rgba(0,0,0,0.45);
+}
+/* --- Fix font weight and wrapping for text-based buttons (like 'Enter Username Instead of Code') --- */
+.glass-btn.tile {
+  font-weight: 500;          /* normalize text weight */
+  line-height: 1.25;
+  white-space: nowrap;       /* keep on one line */
+  padding: 12px 24px;        /* slightly wider so long labels fit */
+}
+
+/* if it still wraps on smaller phones, allow gentle shrink instead of wrapping */
+@media (max-width: 360px) {
+  .glass-btn.tile {
+    font-size: 0.92rem;
+    white-space: normal;     /* allow wrapping on very narrow screens only */
+    text-align: center;
+  }
+}
+
+/* Add a subtle bottom-left glint to rectangular tile buttons */
+.edge-feather::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-repeat: no-repeat;
+
+  /* 1) TOP feathered line  2) LEFT feathered line  3) SHORT BOTTOM-LEFT glint */
+  background-image:
+    /* top */
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.18) 28%,
+      rgba(255,255,255,0.18) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* left */
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.14) 28%,
+      rgba(255,255,255,0.14) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* bottom-left SHORT glint (feathered) */
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0.24) 0%,
+      rgba(255,255,255,0.14) 60%,
+      rgba(255,255,255,0) 100%
+    );
+
+  /* sizes: top = full width x 1px; left = 1px x full height; bottom-left = ~16px x 1px */
+  background-size: 100% 1px, 1px 100%, 16px 1px;
+
+  /* positions: top-left, top-left, bottom-left */
+  background-position: top left, top left, bottom left;
+}
+/* Force the edge feather lines to apply on tile buttons */
+.glass-btn.tile.edge-feather::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-repeat: no-repeat;
+
+  /* TOP, LEFT, and SHORT BOTTOM-LEFT glint */
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.18) 28%,
+      rgba(255,255,255,0.18) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.14) 28%,
+      rgba(255,255,255,0.14) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* bottom-left SHORT glint (you can tune these alphas) */
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0.26) 0%,
+      rgba(255,255,255,0.16) 60%,
+      rgba(255,255,255,0.00) 100%
+    ) !important;
+
+  /* Make sure all three layers have sizes/positions */
+  background-size: 100% 1.5px, 1.5px 100%, 24px 1.5px !important;
+  background-position: top left, top left, bottom left !important;
+  opacity: 1 !important;
+  z-index: 0;
+}
+
+/* Safety: kill any other ::before overlay that might be covering your lines */
+.glass-btn.tile::before { content: none !important; }
+
+/* === Alt CTA (Enter Username Instead of Code) — forced tile + feathered edges === */
+#alt-to-username {
+  white-space: nowrap;       /* keeps text on one line */
+  display: inline-flex;      /* lets it expand naturally with text */
+  justify-content: center;
+  align-items: center;
+  padding: 12px 28px;        /* gives a bit more horizontal breathing room */
+  min-width: max-content;    /* expands just enough to fit text */
+  max-width: 90%;            /* avoids hitting screen edges on mobile */
+}
+
+  /* laminated glass base */
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+}
+
+/* edge feather (top + left) + short bottom-left glint */
+#alt-to-username::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-repeat: no-repeat;
+
+  /* TOP, LEFT, BOTTOM-LEFT glint (3 layers) */
+  background-image:
+    /* top */
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.18) 28%,
+      rgba(255,255,255,0.18) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* left */
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.14) 28%,
+      rgba(255,255,255,0.14) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* bottom-left short glint — enhanced visibility */
+linear-gradient(
+  to right,
+  rgba(255,255,255,0.65) 0%,    /* much brighter start */
+  rgba(255,255,255,0.30) 55%,   /* smoother fade */
+  rgba(255,255,255,0.00) 100%
+);
+
+  /* sizes: top full width x 1.5px; left 1.5px full height; bottom-left 24px x 1.5px */
+  background-size: 100% 1.5px, 1.5px 100%, 28px px;
+  background-position: top left, top left, bottom left;
+}
+
+/* optional hover */
+#alt-to-username:hover { box-shadow: 0 12px 26px rgba(0,0,0,0.55); }
+#alt-to-username:active { transform: translateY(1px); }
+
+filter: blur(0.5px);
+opacity: 0.95;
+
+/* tiny font fallback for very narrow phones */
+@media (max-width: 360px) {
+  #alt-to-username { font-size: 0.92rem; white-space: normal; text-align: center; }
+}
+
+/* ---------- Rectangular glass tile + feathered edges (reusable) ---------- */
+.glass-btn.tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;                  /* iOS 26 corners */
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  /* sane text defaults (no bold, one line) */
+  font-weight: 500;
+}
+
+/* keep any old global ::before/::after overlays from interfering */
+.glass-btn.tile::before,
+.glass-btn.tile::after { content: none !important; }
+
+/* one-line helper (so long labels don’t wrap) */
+.btn-one-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 12px 28px;
+  min-width: max-content;
+  max-width: 90%;
+  line-height: 1.25;
+  font-size: 0.98rem;
+}
+
+/* feathered top + left edges, plus short bottom-left glint */
+.glass-btn.tile.edge-feather::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-repeat: no-repeat;
+
+  /* TOP, LEFT, and BOTTOM-LEFT glint (3 layers) */
+  background-image:
+    /* top */
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.18) 28%,
+      rgba(255,255,255,0.18) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* left */
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.06) 8%,
+      rgba(255,255,255,0.14) 28%,
+      rgba(255,255,255,0.14) 72%,
+      rgba(255,255,255,0.06) 92%,
+      rgba(255,255,255,0) 100%
+    ),
+    /* bottom-left SHORT glint — matches your tuned keypad look */
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0.65) 0%,   /* brighter start */
+      rgba(255,255,255,0.30) 55%,  /* smooth fade */
+      rgba(255,255,255,0.00) 100%
+    );
+
+  /* thickness/length: last layer is the short bottom-left glint */
+  background-size: 100% 1.5px, 1.5px 100%, 28px 2px;
+  background-position: top left, top left, bottom left;
+
+  /* slight bloom so the glint reads like “under glass” */
+  filter: blur(0.5px);
+  opacity: 0.95;
+}
+
+/* optional size variants */
+.btn-sm { padding: 10px 18px; font-size: 0.94rem; border-radius: 12px; }
+.btn-md { padding: 12px 24px; }
+.btn-lg { padding: 14px 28px; }
+
+/* === Link button (restore original height/shape while keeping glass rim) === */
+.btn-link-size {
+  padding: 16px 38px;         /* taller & wider */
+  border-radius: 16px;        /* slightly rounder corners */
+  font-size: 1.05rem;         /* same readable size */
+  min-width: 140px;
+}
+
+/* ===== Contacts ===== */
+.contacts-main { padding: 16px 14px 90px; } /* bottom space for tab bar */
+.contacts-search { display:flex; justify-content:center; margin: 6px 0 14px; }
+.contacts-input { width: 100%; max-width: 520px; padding: 12px 14px; font-size: 0.98rem; }
+
+.contacts-list { display: flex; flex-direction: column; gap: 12px; }
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+}
+
+.contact-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-weight: 700; letter-spacing: .2px; color: #e9eef9;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  position: relative; overflow: hidden;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 6px 16px rgba(0,0,0,0.45);
+}
+
+/* tiny presence dot */
+.presence {
+  position: absolute; right: -2px; bottom: -2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(15,20,33,0.9); /* rim against glass bg */
+}
+.presence.online { background: #52e07a; }
+.presence.away   { background: #f5c15b; }
+.presence.dnd    { background: #ff6b7d; }
+
+.contact-meta { min-width: 0; }
+.contact-name { font-weight: 600; color: #e6edf7; line-height: 1.2; }
+.contact-sub  { color: #aeb7c9; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.contact-actions { display: flex; gap: 8px; }
+@media (max-width: 420px) {
+  .contact-row { grid-template-columns: 48px 1fr; grid-auto-rows: auto; }
+  .contact-actions { grid-column: 1 / -1; justify-content: flex-end; }
+}
+
+/* ===== Connections ===== */
+.connections-main { padding: 16px 14px 90px; }
+
+.connections-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 14px;
+}
+.connections-input { width: 100%; padding: 12px 14px; font-size: 0.98rem; }
+
+.sort-wrap {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 12px;
+}
+.sort-btn {
+  border: none;
+  background: transparent;
+  color: #cfd6e6;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.sort-btn.active {
+  background: rgba(255,255,255,0.08);
+  color: #eaf1ff;
+}
+
+/* list */
+.connections-list { display: flex; flex-direction: column; gap: 12px; }
+
+.connection-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+  padding: 12px;
+  text-align: left;
+}
+.connection-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+}
+
+.connection-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-weight: 700; letter-spacing: .2px; color: #e9eef9;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  position: relative; overflow: hidden;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 6px 16px rgba(0,0,0,0.45);
+}
+
+.connection-meta { min-width: 0; display:flex; flex-direction: column; gap: 4px; }
+.connection-top  { display:flex; align-items: baseline; justify-content: space-between; gap:10px; }
+.connection-name { font-weight: 600; color: #e6edf7; line-height: 1.2; }
+.connection-time { color: #aeb7c9; font-size: 0.9rem; white-space: nowrap; }
+.connection-sub  { color: #aeb7c9; font-size: 0.94rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 420px) {
+  .connections-toolbar { grid-template-columns: 1fr; }
+}
+
+/* ===== Connections — top-right toggle ===== */
+.connections-topbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 6px 2px 8px;
+}
+
+.sort-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 14px;
+  align-items: center;
+}
+.toggle-option {
+  border: 0;
+  background: transparent;
+  color: #cfd6e6;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.toggle-option.active {
+  background: rgba(255,255,255,0.10);
+  color: #eaf1ff;
+}
+
+/* ===== Connections — list tweaks for two-line timestamp ===== */
+.connection-top { align-items: flex-start; }
+.connection-time {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 66px;
+}
+.connection-time .date { color: #cfd6e6; font-size: 0.86rem; line-height: 1; }
+.connection-time .time { color: #aeb7c9; font-size: 0.82rem; line-height: 1; }
+
+/* ===== Bottom search bar (sticky above tab bar) ===== */
+.connections-main { padding: 8px 14px 120px; } /* extra bottom space for sticky search + tab bar */
+
+.connections-list.with-bottom-search { padding-bottom: 8px; }
+
+.connections-search-bottom {
+  position: sticky;
+  bottom: 10px;              /* sits above your tab bar; adjust if your tab bar height differs */
+  display: flex;
+  justify-content: center;
+  padding: 80px 0 0;
+  backdrop-filter: blur(6px); /* gentle separation when scrolling */
+  -webkit-backdrop-filter: blur(6px);
+}
+.connections-search-bottom .connections-input {
+  width: 100%;
+  max-width: 520px;
+  padding: 12px 14px;
+}
+
+/* small screens */
+@media (max-width: 420px) {
+  .connections-time { min-width: 56px; }
+  .connections-main { padding-bottom: 126px; }
+}
+
+.connections-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 2px 8px;
+}
+
+.connections-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-icon {
+  color: #e6edf7;
+  opacity: 0.95;
+}
+
+.screen-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.2px;
+  color: #e6edf7;
+}
+
+
+/* Header area: title on first line, toggle below, right-aligned */
+.connections-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 4px 10px;
+  background: rgba(15,17,24,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.connections-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 2px;
+}
+
+.title-icon {
+  color: #e6edf7;
+  opacity: 0.95;
+}
+
+.screen-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.24rem;
+  letter-spacing: 0.2px;
+  color: #e6edf7;
+}
+
+/* second line: toggle pushed to the right */
+.connections-sortrow {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 4px;
+}
+
+/* toggle styling (reuse your existing; included here for completeness) */
+.sort-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 14px;
+  align-items: center;
+}
+.toggle-option {
+  border: 0;
+  background: transparent;
+  color: #cfd6e6;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  cursor: pointer;
+}
+.toggle-option.active {
+  background: rgba(255,255,255,0.10);
+  color: #eaf1ff;
+}
+
+/* ===== Header left align ===== */
+.connections-topbar {
+  align-items: flex-start;         /* header area uses column layout; keep left */
+}
+.connections-title {
+  justify-content: flex-start;     /* force icon + title to left */
+}
+.screen-title {
+  text-align: left;                /* override any global h1 centering */
+}
+
+/* ===== Sort toggle ~50% smaller ===== */
+.sort-toggle {
+  gap: 3px;
+  padding: 4px;                    /* was 6px */
+  border-radius: 12px;             /* slightly tighter */
+  transform: scale(0.88);          /* subtle overall shrink */
+  transform-origin: right center;  /* shrink anchored to the right */
+}
+.toggle-option {
+  padding: 5px 10px;               /* was 8px 12px */
+  font-size: 0.9rem;               /* smaller text */
+  border-radius: 9px;
+}
+
+/* ===== Bottom search: FIXED above tab bar (does not scroll) ===== */
+:root { --tabbar-height: 88px; }   /* adjust if your tab bar height differs */
+
+.connections-main {
+  padding-bottom: calc(var(--tabbar-height) + 72px); /* room so list doesn't hide behind fixed search */
+}
+
+/* ——— Glass header bar behind Connections + Sort toggle ——— */
+.connections-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 1px 14px;
+
+  /* subtle glass bar background */
+  background: rgba(40, 44, 54, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+
+  align-items: flex-start;
+  border-radius: 0 0 12px 12px; /* soft bottom edge */
+}
+
+.connections-title { display:flex; align-items:center; gap:8px; padding-left:2px; }
+.title-icon { color:#e6edf7; opacity:.95; }
+.screen-title { margin:0; font-weight:700; font-size:1.24rem; letter-spacing:.2px; color:#e6edf7; }
+.connections-sortrow { display:flex; justify-content:flex-end; width:100%; padding-right:4px; }
+.sort-toggle { display:inline-flex; gap:3px; padding:4px; border-radius:12px; align-items:center; }
+.toggle-option { padding:5px 10px; font-size:.9rem; border-radius:9px; border:0; background:transparent; color:#cfd6e6; font-weight:600; cursor:pointer; }
+.toggle-option.active { background:rgba(255,255,255,.10); color:#eaf1ff; }
+
+
+/* ——— Bottom search: blurred glass, centered, never under scrollbar ——— */
+/* Uses --sbw (scrollbar width) set by the small useEffect */
+:root { --tabbar-height: 88px; --sbw: 0px; }
+
+.connections-search-fixed {
+  position: fixed;
+  left: 0;
+  bottom: var(--tabbar-height);
+  z-index: 20;
+
+  display: flex;
+  justify-content: flex-start;   /* ← align left instead of center */
+  padding: 10px 16px;            /* match left padding of cards */
+  padding-right: calc(16px + var(--sbw)); /* keep it off scrollbar */
+  background: transparent;
+
+  pointer-events: none;          /* outer ignores clicks; inner re-enables */
+  box-sizing: border-box;
+}
+
+
+/* Centered glass box; ~75% width, capped */
+.search-clip {
+  position: relative;
+  width: clamp(240px, 75vw, 520px);
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;           /* clip the blur to rounded rect */
+  pointer-events: auto;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+}
+
+/* The blur is on a clipped pseudo-element → no bleed */
+.search-clip::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  clip-path: inset(0 round 14px);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  pointer-events: none;
+}
+
+/* Plain input (no blur) */
+.connections-input-plain {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.98rem;
+  color: #e6edf7;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Give the list room so items don't sit under the fixed search */
+.connections-main {
+  padding-bottom: calc(var(--tabbar-height) + 72px);
+  overflow-x: hidden;
+}
+
+/* Put the blur BEHIND the input text */
+.search-clip { position: relative; }
+.search-clip::before { z-index: 0; }
+.search-clip > * { position: relative; z-index: 1; }  /* input, etc. */
+
+/* Ensure text + caret + placeholder are readable */
+.connections-input-plain {
+  color: #e6edf7;
+  caret-color: #e6edf7;
+}
+.connections-input-plain::placeholder {
+  color: #cfd6e6;   /* softer than main text */
+  opacity: 0.8;
+}
+
+/* === Fix message composer scrollbar bleed === */
+.conversation-input-bar {
+  position: fixed;
+  bottom: var(--tabbar-height);
+  left: 0;
+  width: calc(100% - var(--sbw, 0px)); /* subtract scrollbar width */
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 14px 10px;
+  z-index: 30;
+}
+
+/* Input field inside the bar */
+.conversation-input-bar input {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  color: #e6edf7;
+  padding: 10px 12px;
+  font-size: 15px;
+  caret-color: #e6edf7;
+}
+
+/* Send button */
+.conversation-input-bar button {
+  background: transparent;
+  border: none;
+  color: #e6edf7;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.conversation-input-bar button:hover {
+  transform: scale(1.08);
+}
+
+:root{
+  /* If not already defined elsewhere */
+  --tabbar-height: 88px;
+  --sbw: 0px; /* set at runtime by useEffect */
+}
+
+/* Full-width fixed wrapper, reserves space for the scrollbar on the right */
+.composer-fixed{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: var(--tabbar-height);
+  z-index: 25;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 8px 0;
+  padding-right: var(--sbw);      /* ← key: keep away from scrollbar */
+  pointer-events: none;           /* wrapper ignores clicks; inner re-enables */
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Centered glass “card” for the input + send */
+.composer-card{
+  width: clamp(280px, 95vw, 720px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+
+  pointer-events: auto; /* re-enable interactions */
+}
+
+/* Input inside composer */
+.composer-input{
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e6edf7;
+  font-size: 1rem;
+  padding: 10px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  caret-color: #e6edf7;
+}
+.composer-input::placeholder{
+  color: #cfd6e6;
+  opacity: .85;
+}
+
+/* Ensure the scroll area leaves room below for the fixed composer */
+.conversation-screen{
+  padding-bottom: calc(var(--tabbar-height) + 86px);
+}
+
+:root{
+  /* already in your file, okay to keep: */
+  --tabbar-height: 88px;
+  --sbw: 0px;              /* set at runtime by our small useEffect */
+  /* constants for this screen */
+  --conv-header: 84px;     /* visual height of your sticky header */
+  --composer-h: 64px;      /* visual height of the composer card */
+}
+
+/* Whole conversation screen: lock to viewport, no page scrolling here */
+.conversation-screen{
+  position: relative;
+  height: calc(100vh - var(--tabbar-height));
+  overflow: hidden;                   /* ← prevents a second page scrollbar */
+}
+
+/* Glass header bar (you already have similar on Connections) */
+.conv-topbar{
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  height: var(--conv-header);
+
+  background: rgba(20, 24, 32, 0.55);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  border-radius: 0 0 12px 12px;
+}
+
+.conv-header-center{ display:grid; justify-items:center; align-items:center; gap:6px; }
+.conv-title-btn{ background:none; border:0; color:#e6edf7; font-weight:700; font-size:1.05rem; cursor:pointer; }
+.conv-header-actions{ display:flex; align-items:center; gap:8px; }
+
+/* Only the list scrolls */
+.conv-scroll{
+  position: absolute;
+  top: var(--conv-header);
+  left: 0;
+  right: 0;
+  bottom: calc(var(--composer-h) + 12px);  /* space for composer */
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+/* Fixed composer (no right-edge bleed, sits above tab bar) */
+.composer-fixed{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: var(--tabbar-height);
+  z-index: 25;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 8px 0;
+  padding-right: var(--sbw);            /* ← keep away from scrollbar */
+  pointer-events: none;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* Centered glass card that holds input + send */
+.composer-card{
+  width: clamp(280px, 95vw, 720px);
+  min-height: var(--composer-h);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+
+  pointer-events: auto; /* interactions enabled inside */
+}
+
+/* Input styling */
+.composer-input{
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e6edf7;
+  font-size: 1rem;
+  padding: 10px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  caret-color: #e6edf7;
+}
+.composer-input::placeholder{ color:#cfd6e6; opacity:.85; }
+
+/* --- Conversation composer: no right-edge overlap + slimmer height --- */
+
+/* 1) Give a tiny safety margin beyond the scrollbar width */
+.composer-fixed{
+  /* was: padding-right: var(--sbw); */
+  padding-right: calc(var(--sbw) + 22px);  /* extra 6px so the blur never kisses the scrollbar */
+}
+
+/* 2) Make the composer shorter (match search bar vibe) */
+:root{
+  --composer-h: 52px;  /* was ~64px; adjust to taste (48–56 works well) */
+}
+
+/* tighten the card */
+.composer-card{
+  min-height: var(--composer-h);
+  padding: 6px;             /* was 8px */
+  gap: 2px;                 /* was 8px */
+  border-radius: 1px;      /* a hair sharper like the search bar */
+}
+
+/* slimmer input */
+.composer-input{
+  padding:1px 8px;        /* was 10px 12px */
+  font-size: 0.98rem;
+}
+
+/* smaller send button padding */
+.composer-card .glass-btn{
+  padding: 1px 6px;        /* was ~8px 12px via btn-sm */
+}
+
+/* --- Fine-tune composer position: left indent + downward offset --- */
+
+/* Move it slightly inward from the left and lower from the bottom */
+.composer-fixed {
+  left: 16px;                                   /* indent from left edge */
+  right: 0;
+  bottom: calc(var(--tabbar-height) - 14px);    /* move down; increase to -2px or 0px if too low */
+  width: auto;                                 /* prevent stretching to full width */
+  justify-content: flex-start;                 /* keep its card aligned to left */
+}
+
+/* Keep the composer card itself narrower if desired */
+.composer-card {
+  width: clamp(250px, 92vw, 720px);  /* adjust 94vw → 92vw for more right margin */
+}
+
+/* --- ConfirmSheet width + appearance adjustments --- */
+.confirm-sheet {
+  width: min(400px, 88vw);        /* narrower, fits mobile better */
+  border-radius: 18px;
+  padding: 18px 16px;
+  display: grid;
+  gap: 14px;
+}
+
+/* Tweak button layout inside the sheet for balance */
+.confirm-sheet button {
+  min-width: 0;
+  flex: 1;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* --- Vertical layout for ConfirmSheet buttons --- */
+.confirm-actions-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.confirm-actions-vertical .glass-btn {
+  width: 100%;
+  text-align: center;
+  font-size: 0.98rem;
+  padding: 10px 0;
+  border-radius: 12px;
+}
+
+/* Cancel button slightly dimmer / separated */
+.confirm-actions-vertical .cancel-btn {
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* Add side breathing room for the confirm card */
+.confirm-sheet {
+  margin-right: calc(var(--sbw, 12px) + 16px); /* offset scrollbar width + buffer */
+}
+
+/* --- Floating icon buttons (chevron + trash) --- */
+.icon-btn {
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: #e8eef8;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.icon-btn:hover {
+  opacity: 0.75;
+}
+
+.icon-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.8;
+}
+
+/* ----- Connection Detail ----- */
+.connection-detail { position: relative; min-height: 100vh; padding-bottom: calc(var(--tabbar-height) + 16px); }
+
+/* Reuse your glass topbar from other screens */
+.conn-header-center{ display:grid; justify-items:center; align-items:center; gap:8px; }
+.conn-username{ color:#e6edf7; font-weight:700; font-size:1.1rem; letter-spacing:.2px; }
+
+.conn-body{
+  padding: 16px;
+  display: grid;
+  gap: 18px;
+}
+
+/* Pills (Messages / Save) */
+.glass-btn.pill{ border-radius: 999px; padding: 10px 16px; }
+.glass-btn.pill.primary{
+  background: linear-gradient(180deg, rgba(108,160,255,0.9), rgba(70,120,255,0.85));
+  border: 1px solid rgba(255,255,255,0.18);
+  color:#eaf2ff; font-weight:700;
+}
+.glass-btn.pill.hollow{
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  color:#e6edf7; font-weight:600;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+/* Notes area */
+.conn-section{ display:grid; gap:8px; }
+.conn-label{ color:#e6edf7; font-weight:600; }
+.conn-notes{
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.16);
+  color:#e6edf7;
+  outline: none;
+  box-sizing: border-box;
+}
+.conn-actions{ display:flex; justify-content:flex-end; }
+
+/* Danger outline button */
+.btn-danger-outline{
+  display:block; width:100%;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: transparent;
+  color: #ff5b6a;
+  font-weight: 700;
+  border: 1.6px solid rgba(255,90,90,0.85);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+}
+.btn-danger-outline:hover{ background: rgba(255,90,90,0.08); }
+.btn-danger-outline:active{ transform: translateY(1px); }
+.btn-danger-outline:disabled{ opacity:.6; pointer-events:none; }
+
+/* ===== Connection Detail layout & spacing ===== */
+
+.conn-topbar{
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;   /* keeps center perfectly centered */
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  height: 96px;                          /* a bit taller for avatar */
+  background: rgba(20,24,32,0.55);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  border-radius: 0 0 12px 12px;
+}
+.conn-header-center{ display:grid; justify-items:center; align-items:center; gap:8px; }
+.conn-username{ color:#e6edf7; font-weight:700; font-size:1.1rem; letter-spacing:.2px; }
+
+.connection-detail .conn-body{
+  padding: 12px 16px 16px;
+  display: grid;
+  gap: 18px;
+  margin-top: 6px; /* ensures no overlap with header */
+}
+
+/* Messages pill ~75% width */
+.conn-msg-btn{
+  width: clamp(220px, 75vw, 420px);
+  margin: 4px auto 10px; /* centered under avatar/name */
+}
+
+/* Notes block spacing tweaks */
+.conn-section{ display:grid; gap:8px; }
+.conn-label{ color:#e6edf7; font-weight:600; }
+.conn-notes{
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.16);
+  color:#e6edf7;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Small tile button style (matches your Login button feel) */
+.btn-sm{ padding: 6px 12px; border-radius: 12px; font-weight:600; }
+
+/* Red glass button */
+.glass-btn--danger{
+  color:#ffe7ea;
+  border:1px solid rgba(255, 95, 95, 0.6);
+  background:
+    linear-gradient(180deg, rgba(255,120,120,0.22), rgba(255,120,120,0.06)) border-box,
+    linear-gradient(180deg, rgba(255,80,80,0.12), rgba(0,0,0,0.22)) padding-box;
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,180,180,0.28),
+    0 10px 22px rgba(0,0,0,0.45);
+}
+.glass-btn--danger:hover{ box-shadow: inset 0 0 0 0.5px rgba(255,180,180,0.35), 0 12px 26px rgba(0,0,0,0.55); }
+.glass-btn--danger:active{ transform: translateY(1px); }
+
+/* Optional: full-width danger button like your mock */
+.conn-danger-btn{
+  width: clamp(220px, 92vw, 520px);
+  margin: 6px auto 0;
+  border-radius: 999px; /* keep that pill outline */
+}
+/* ========== Connection Detail fixes ========== */
+
+/* 1) Make the danger button true red "glass" */
+.glass-btn.tile.glass-btn--danger {
+  color: #ffe8eb;
+  border: 1px solid rgba(255, 95, 95, 0.65);
+  background:
+    linear-gradient(180deg, rgba(255,130,130,0.22), rgba(255,130,130,0.06)) border-box,
+    linear-gradient(180deg, rgba(255,70,70,0.14), rgba(0,0,0,0.24)) padding-box;
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,170,170,0.30),
+    0 10px 22px rgba(0,0,0,0.45);
+}
+.glass-btn.tile.glass-btn--danger:hover {
+  box-shadow:
+    inset 0 0 0 0.5px rgba(255,170,170,0.38),
+    0 12px 26px rgba(0,0,0,0.55);
+}
+.glass-btn.tile.glass-btn--danger:active { transform: translateY(1px); }
+.conn-danger-btn { width: clamp(220px, 92vw, 220px); margin: 8px auto 0; border-radius: 999px; }
+
+/* 2) Raise the back chevron and 3) perfect centering of avatar+name */
+.conn-topbar{
+  height: 84px;                 /* was 96px */
+  padding: 0px 0px 8px;        /* less top padding -> chevron sits higher */
+  grid-template-columns: 44px 1fr 44px;  /* symmetric columns so center stays centered */
+}
+.conn-topbar .top-actions { display:flex; align-items:flex-start; justify-content:center; width:44px; }
+
+/* 4) Add breathing room below the username before the Messages pill */
+.conn-header-center { gap: px; }
+.conn-username { margin-top: 2px; }
+.conn-msg-btn { margin-top: 70px; width: clamp(220px, 60vw, 420px); }
+
+/* 5) No page scroll; fit everything comfortably on one screen */
+.connection-detail{
+  height: calc(100vh - var(--tabbar-height));
+  overflow: hidden;             /* remove page scrollbar on this screen */
+  display: grid;
+  grid-template-rows: auto 1fr; /* header + body */
+}
+.connection-detail .conn-body{
+  overflow: hidden;             /* body itself doesn't scroll */
+  display: grid;
+  align-content: start;         /* pack elements to top */
+  gap: 16px;
+  padding: 12px 16px 10px;
+}
+
+/* Keep the notes area reasonable so it doesn't force tall pages */
+.conn-notes{
+  max-height: 160px;            /* ~4–5 lines visible, prevents huge pages */
+  resize: vertical;             /* allow manual expand if needed */
+}
+
+/* Save button = small tile (less bevel) */
+.btn-sm { padding: 6px 12px; border-radius: 12px; font-weight: 600; }
