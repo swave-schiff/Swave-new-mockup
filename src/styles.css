@@ -427,7 +427,6 @@ body {
   justify-content: center;
   transition: background .15s ease;
   box-shadow: none;                   /* remove any inner/outer glow */
-}
 
 .key-btn:hover { background: rgba(108,160,255,.10); }
 
@@ -503,24 +502,35 @@ body {
   color: white;
   background: rgba(0, 0, 0, 0.3);
 }
+
 /* ==== POLISH / FIXES (append at end) ==== */
 
-/* Code boxes: show 'filled' state */
-.code-boxes { display:flex; gap:14px; justify-content:center; }
+/* Code boxes (4-digit code UI) */
+.code-boxes {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
 .code-box {
-  width: 56px; height: 56px; border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
   background: rgba(0,0,0,.55);
   border: 1px solid rgba(255,255,255,.12);
   box-shadow: 0 0 24px rgba(78,138,255,.22) inset, 0 2px 10px rgba(0,0,0,.4);
-  display:flex; align-items:center; justify-content:center;
-  font-size: 20px; font-weight: 650; color: #e8eef7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 650;
+  color: #e8eef7;
 }
 .code-box.filled {
   border-color: rgba(118,166,255,.6);
   box-shadow: 0 0 28px rgba(78,138,255,.28) inset, 0 0 24px rgba(78,138,255,.18);
 }
 
-/* Uniform keypad grid with fixed buttons (80x80 target) */
+/* Keypad (uniform 3xN grid) */
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -533,7 +543,7 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 14px;
-  border: 1.5px solid #3a3a3b;   
+  border: 2px solid #6ca0ff;     /* bluish border */
   background: transparent;
   color: #e6edf7;
   font-size: 26px;
@@ -541,702 +551,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
   transition: background .15s ease, transform .06s ease;
+  box-shadow: none;
   cursor: pointer;
 }
-.key-btn:hover {
-  background: rgba(207,217,234,0.08); /* subtle hover like Home btn */
-}
+.key-btn:hover { background: rgba(108,160,255,.10); }
+.key-btn:active { transform: translateY(1px); }
 
-
-.key-btn--back { font-size: 22px; color: #cfd9ea; }
+/* Two-line hash/commercial key */
 .key-btn--hash { flex-direction: column; line-height: 1.1; }
 .key-btn--hash .hash-top { font-size: 22px; }
 .key-btn--hash .hash-sub { font-size: 12px; color: #cfd9ea; opacity: .95; }
 
-/* Alt link under keypad */
-.alt-btn {
-  margin-top: 14px;
-  border: 1.5px solid #3a3a3b;   /* same subtle border */
-  background: transparent;
-  color: #e6edf7;                 /* same text color */
-  border-radius: 999px;           /* pill shape */
-  padding: 10px 18px;
-  font-size: 0.95rem;             /* same size as .input-btn */
-  font-weight: 500;
-  cursor: pointer;
-  transition: background .15s ease, color .15s ease;
-}
-.alt-btn:hover {
-  background: rgba(255,255,255,0.06);
-}
-
-
-/* Username screen */
-.username-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  padding: 16px;
-}
-.username-instructions {
-  max-width: 520px;
-  text-align: center;
-  color: #cfd9ea;
-  line-height: 1.4;
-  margin: 0 0 6px;
-}
-.username-field { width: min(460px, 100%); }
-.username-label {
-  display:block; margin: 0 0 6px;
-  color: #cfd9ea; font-size: 13px; letter-spacing: .2px;
-}
-.username-input {
-  width: 100%; height: 44px; padding: 0 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
-  color: #e6edf7; outline: none;
-  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
-}
-.username-input:focus {
-  border-color: rgba(108,160,255,.7);
-  box-shadow: 0 8px 24px rgba(108,160,255,.22);
-  background: linear-gradient(180deg, rgba(108,160,255,.12), rgba(255,255,255,.04));
-}
-.username-input--error {
-  border-color: rgba(255,92,108,.8);
-  box-shadow: 0 8px 20px rgba(255,92,108,.2);
-}
-.username-error { margin-top: 6px; color: #ff5c6c; font-size: 12px; }
-
-.username-link-btn {
-  min-width: 120px;
-  min-height: 44px;
-  padding: 0 18px;
-  border-radius: 999px;
-
-  border: 1.5px solid #cfd9ea;  /* bluish border */
-  background: transparent;
-  color: #cfd9ea;               /* text matches instruction */
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .15s ease, color .15s ease;
-}
-
-.username-link-btn:hover {
-  background: rgba(207, 217, 234, 0.08); /* subtle bluish hover */
-}
-
-.username-link-btn:disabled {
-  opacity: .55;
-  cursor: not-allowed;
-}
-/* ===== Login screen ===== */
-.login-main{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:16px;
-  padding: 28px 16px 96px;
-  /* subtle multi-stop background glow (CSS-only) */
-  background:
-    radial-gradient(600px 400px at 50% -10%, rgba(141,184,245,.14), transparent 60%),
-    radial-gradient(500px 380px at 85% 25%, rgba(177,126,255,.10), transparent 65%),
-    radial-gradient(520px 420px at 20% 60%, rgba(255,179,122,.08), transparent 65%);
-}
-
-.login-brand{
-  margin: 8px 0 8px;
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
-  font-weight: 800;
-  font-size: 44px;
-  line-height: 53px;
-  letter-spacing: -0.03em;
-  color: #fff;
-}
-
-.login-cards{
-  width: min(358px, 100%);
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
-
-.login-card{
-  width: 100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  padding: 24px 26px;
-  border-radius: 50px;                 /* big pill corners */
-  background: #1C2027;                 /* Figma dark card */
-  border: 1px solid rgba(255,255,255,.06);
-  color: #e6edf7;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 8px 24px rgba(0,0,0,.35);
-  cursor:pointer;
-  transition: background .15s ease, transform .06s ease;
-}
-.login-card:hover{ background:#232834; }
-.login-card:active{ transform: translateY(1px); }
-
-.login-card-text{ text-align:left; }
-.login-card-title{
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #fff;
-}
-.login-card-sub{
-  margin-top: 6px;
-  font-size: 13px;
-  line-height: 1.35;
-  color: #BAC5E6;                       /* Figma muted */
-  max-width: 225px;
-}
-
-/* prompt + outline CTA */
-.login-prompt{
-  margin: 18px 0 0;
-  color: #e6edf7;
-  opacity: .9;
-  text-align:center;
-  max-width: 210px;
-}
-
-.login-cta{
-  width: min(358px, 100%);
-  height: 40px;
-  margin-top: 8px;
-  border: 2px solid #39425D;           /* Figma outline */
-  border-radius: 78px;
-  background: transparent;
-  color: #D2DDFF;                       /* Figma label */
-  font: 400 16px/21px "SF Pro", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer;
-  transition: background .15s ease, transform .06s ease;
-}
-.login-cta:hover{ background: rgba(57,66,93,.22); }
-.login-cta:active{ transform: translateY(1px); }
-
-/* Login card chevron size & alignment */
-.login-chevron {
-  /* size of the “>” glyph */
-  font-size: 28px;         /* try 26–32px */
-  line-height: 1;
-  font-weight: 500;        /* makes the glyph look crisper */
-  color: #fafbfc;          /* same color you already use */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: auto;         /* remove the old circular container sizing */
-  height: auto;
-  border: none;            /* ensures no leftover circle */
-  padding: 0 2px 0 10px;   /* tiny nudge away from text */
-}
-
-/* ===== Registration ===== */
-.reg-main{ padding: 16px; }
-.reg-card{ padding: 18px; }
-.reg-title{
-  margin: 0 0 8px;
-  font-size: 20px; font-weight: 700; color: #e6edf7;
-}
-
-/* Shared field styling (reuses your visual language) */
-.field{ margin: 12px 0; }
-.field-label{ display:block; margin: 0 0 6px; color:#cfd9ea; font-size:13px; letter-spacing:.2px; }
-.field-row{ display: grid; grid-template-columns: 1fr auto; gap: 8px; }
-
-.input{
-  width: 100%; height: 44px; padding: 0 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
-  color: #e6edf7; outline: none;
-  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
-}
-.input:focus{
-  border-color: rgba(108,160,255,.7);
-  box-shadow: 0 8px 24px rgba(108,160,255,.22);
-  background: linear-gradient(180deg, rgba(108,160,255,.12), rgba(255,255,255,.04));
-}
-.input-error{
-  border-color: rgba(255,92,108,.8);
-  box-shadow: 0 8px 20px rgba(255,92,108,.2);
-}
-.error{ margin-top:6px; color:#ff5c6c; font-size:12px; }
-
-/* subtle outline button (Send code, etc.) */
-.btn-outline{
-  min-width: 110px; height: 44px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1.5px solid #3a3a3b;   /* your subtle border */
-  background: transparent;
-  color: #e6edf7; font-weight: 600; cursor: pointer;
-  transition: background .15s ease;
-}
-.btn-outline:disabled{ opacity:.55; cursor: not-allowed; }
-.btn-outline:hover{ background: rgba(255,255,255,.06); }
-
-/* Primary submit (matches your subtle outline look) */
-.btn-primary-outline{
-  min-width: 160px; height: 46px; padding: 0 20px;
-  border-radius: 999px;
-  border: 1.5px solid #3a3a3b;   /* subtle */
-  background: transparent; color: #e6edf7; font-weight: 700;
-  cursor:pointer; transition: background .15s ease;
-}
-.btn-primary-outline:disabled{ opacity:.55; cursor: not-allowed; }
-.btn-primary-outline:hover{ background: rgba(255,255,255,.06); }
-
-.reg-actions{ margin-top: 10px; display:flex; justify-content:center; }
-
-/* OTP capture: visually hidden input, pretty boxes */
-.otp-capture{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
-}
-.code-boxes{ justify-content:center; margin-top: 6px; }
-.code-box{ width: 48px; height: 48px; border-radius: 10px; font-size: 18px; }
-.ok-dot{ color:#28c281; margin-top:6px; display:inline-block; font-size:14px; }
-.otp-status{ margin-top:6px; text-align:center; }
-
-/* Password strength meter */
-.pw-meter{
-  display:grid; grid-template-columns: repeat(4, 1fr); gap:6px;
-  margin: 8px 0 4px;
-}
-.pw-meter > span{
-  height: 6px; border-radius: 4px;
-  background: rgba(255,255,255,.12);
-}
-.pw-meter[data-score="1"] > span:nth-child(-n+1){ background:#ff8e8e; }
-.pw-meter[data-score="2"] > span:nth-child(-n+2){ background:#ffd27a; }
-.pw-meter[data-score="3"] > span:nth-child(-n+3){ background:#9ad58b; }
-.pw-meter[data-score="4"] > span:nth-child(-n+4){ background:#28c281; }
-
-/* make mismatch a bit clearer */
-.input-error { border-color: rgba(255,92,108,.8); }
-
-.top-actions { display:flex; align-items:center; padding:8px 12px 4px; }
-
-.chevron-btn {
-  appearance:none; border:none !important; background:none !important;
-  padding:6px 8px; color:#BAC5E6; display:flex; align-items:center; cursor:pointer;
-}
-.chevron-btn:focus-visible { outline:2px solid rgba(186,197,230,.4); outline-offset:2px; }
-
-.chevron-icon { font-size:28px; line-height:1; font-weight:700; }
-.chevron-left .chevron-icon { transform: scaleX(-1); }
-
-/* Keep the back chevron pinned to the left on CodeEntryScreen */
-.code-screen > .top-actions {
-  align-self: flex-start;   /* override parent's align-items:center */
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  padding: 8px 12px 4px;    /* keep your padding */
-}
-
-/* (optional) tiny nudge from the edge */
-.code-screen .chevron-btn { margin-left: 2px; }
-
-/* keep the top bar left-aligned on the code screen */
-.code-screen > .top-actions {
-  align-self: flex-start;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  padding: 8px 12px 4px;
-}
-
-/* SVG chevron thickness & size */
-.chevron-btn { color: #BAC5E6; padding: 6px 8px; border: none; background: none; }
-.chevron-svg { width: 22px; height: 22px; }
-.chevron-svg path { stroke-width: 1.5; } /* thinner line; try 1.3–1.8 */
-
-/* Nudge back chevron closer to the left edge on these screens */
-.code-screen > .top-actions,
-.reg-main > .top-actions,
-.username-screen > .top-actions {
-  margin-left: -16px;   /* cancels the container's left padding */
-  padding-left: 4px;    /* tiny breathing room from the edge */
-}
-/* Pin the chevron to the left on the Username screen */
-.username-screen > .top-actions {
-  align-self: flex-start;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  padding: 8px 12px 4px;
-  margin-left: -16px;   /* nudge into the screen's left padding */
-  padding-left: 4px;    /* small breathing room from the edge */
-}
-
-/* Borderless chevron button (same family as Login chevrons) */
-.chevron-btn {
-  appearance: none;
-  border: none;
-  background: none;
-  padding: 6px 8px;
-  color: #BAC5E6;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-.chevron-btn:focus-visible {
-  outline: 2px solid rgba(186,197,230,.4);
-  outline-offset: 2px;
-}
-
-/* SVG chevron size & stroke (thin) */
-.chevron-svg { width: 22px; height: 22px; }
-.chevron-svg path { stroke-width: 1.5; }  /* tweak 1.3–1.8 to taste */
-
-/* Live password requirements list */
-.pw-reqs{
-  display: grid;
-  grid-template-columns: 1fr 1fr;  /* two columns on wide phones */
-  gap: 6px 14px;
-  margin: 10px 0 4px;
-}
-@media (max-width: 360px){
-  .pw-reqs{ grid-template-columns: 1fr; } /* stack on very small screens */
-}
-
-.req{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-  color: #9fb0c7;                 /* muted */
-  transition: color .12s ease, opacity .12s ease;
-}
-.req .req-check{
-  width: 16px; height: 16px;
-  color: #9fb0c7;
-  opacity: .35;                   /* faint when unmet */
-  transition: color .12s ease, opacity .12s ease, transform .12s ease;
-}
-
-/* Met state: turn green and brighten */
-.req.met{
-  color: #e6edf7;                 /* brighten the text slightly */
-}
-.req.met .req-check{
-  color: #28c281;                 /* green check */
-  opacity: 1;
-  transform: scale(1.05);         /* tiny pop when it turns on */
-}
-/* a little extra space under the password checklist */
-.pw-reqs { margin-bottom: 16px; }  /* try 10–16px to taste */
-
-/* Composite phone input styling */
-.input-prefix {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 42px; /* room for the +1 prefix */
-}
-
-/* gray +1 */
-.input-prefix .prefix {
-  position: absolute;
-  left: 12px;
-  color: #9fb0c7;
-  opacity: 0.85;
-  pointer-events: none;
-  font-size: 14px;
-}
-
-/* inner input should look seamless with the outer .input */
-.input-prefix .prefix-input {
-  width: 100%;
-  height: 100%;
-  background: transparent !important;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  color: inherit;
-  font: inherit;
-  padding: 0;                 /* outer .input provides padding */
-  caret-color: #e6edf7;       /* nice caret on dark bg */
-}
-/* Step label chip */
-/* Subtitle under Create account */
-.reg-subtitle{
-  margin: 4px 0 14px;
-  color: #9fb0c7;          /* softer blue (matches your muted text) */
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: .2px;
-}
-
-/* Keep the back chevron pinned left on these screens (nudge into edge) */
-.reg-main > .top-actions{
-  align-self:flex-start; width:100%;
-  display:flex; justify-content:flex-start;
-  padding:8px 12px 4px;
-  margin-left:-16px; padding-left:4px;
-}
-
-/* Composite phone input with gray +1 prefix (seamless inner input) */
-.input-prefix{ position:relative; display:flex; align-items:center; padding-left:42px; }
-.input-prefix .prefix{
-  position:absolute; left:12px;
-  color:#9fb0c7; opacity:.85; pointer-events:none; font-size:14px;
-}
-.input-prefix .prefix-input{
-  width:100%; height:100%; background:transparent !important;
-  border:none !important; outline:none !important; box-shadow:none !important;
-  color:inherit; font:inherit; padding:0; caret-color:#e6edf7;
-}
-
-/* SVG chevron */
-.chevron-btn{ appearance:none; border:none; background:none; padding:6px 8px; color:#BAC5E6; display:flex; align-items:center; cursor:pointer; }
-.chevron-btn:focus-visible{ outline:2px solid rgba(186,197,230,.4); outline-offset:2px; }
-.chevron-svg{ width:22px; height:22px; }
-.chevron-svg path{ stroke-width:1.5; }
-
-/* Keep the registration card within a comfortable width */
-.reg-card{
-  width: 100%;
-  max-width: 440px;    /* tweak 420–480 to taste */
-  margin: 0 auto;
-}
-
-/* Make fields fully respect the card width */
-.field, .field-row, .input, .input-prefix{
-  width: 100%;
-  box-sizing: border-box;
-}
-.input{ display:block; }           /* ensure it behaves like a block element */
-
-/* (Phone field already inherits .input styles via .input-prefix wrapper) */
-
-/* === Center a phone-sized frame on desktop, full-bleed on phones === */
-:root {
-  --phone-w: 430px;   /* match your Figma width */
-  --phone-h: 860px;   /* comfortable height target (tweak if you like) */
-}
-
-/* Desktop & tablets: show a centered "phone" */
-@media (min-width: 481px) {
-  html, body, #root { height: 100%; }
-  #root { display: grid; place-items: center; }
-  body { background: #0a0f1a; } /* your app bg outside the phone */
-
-  .screen {
-    width: var(--phone-w);
-    height: min(100vh - 48px, var(--phone-h));  /* keep it visible without making your window a square */
-    min-height: 640px;
-    border-radius: 28px;           /* bump to 52px if you want a rounder "device" */
-    overflow: auto;                /* internal scroll if content exceeds frame */
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
-  }
-}
-
-/* Real phones: use the whole screen */
-@media (max-width: 480px) {
-  .screen {
-    width: 100%;
-    height: 100dvh;
-    min-height: 100dvh;
-    border-radius: 0;
-    box-shadow: none;
-    overflow: auto;
-  }
-}
-
-/* Make sure common content blocks respect the frame width */
-.main, .reg-main, .code-screen, .username-screen, .home-main, .card, .reg-card {
-  box-sizing: border-box;
-  max-width: 100%;
-}
-
-/* (You already have padding on .main/.reg-main; this keeps cards from ever overflowing) */
-
-/* tighter spacing + white subtitle on Step 1 */
-.reg-title { margin: 0 0 4px; }     /* was larger; reduces gap */
-.reg-subtitle{
-  margin: 0 0 10px;                 /* a little less space */
-  color: #e6edf7;                   /* white like the title */
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: .2px;
-}
-
-/* vertically center +1 and use the same font metrics as the input */
-.input-prefix .prefix{
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  font: inherit;          /* match size/line-height of the input */
-  line-height: 1;         /* prevent extra vertical offset */
-  color: #9fb0c7;
-  opacity: .85;
-}
-/* shrink vertical rhythm only on Step 2 so everything fits */
-.reg-step2 .reg-title        { margin: 0 0 8px; }      /* "Final steps" title */
-.reg-step2 .field            { margin-bottom: 12px; }  /* tighten field gaps */
-.reg-step2 .pw-reqs          { margin: 8px 0 8px; gap: 4px 12px; }
-.reg-step2 .req              { font-size: 12px; }
-.reg-step2 .pw-meter         { margin-top: 6px; }      /* if you kept the meter */
-.reg-step2 .reg-actions      { margin-top: 8px; }
-
- /* make absolutely sure the card never overflows the phone frame */
-.reg-card{ width:100%; max-width:440px; margin:0 auto; box-sizing:border-box; }
-.field, .field-row, .input, .input-prefix{ width:100%; box-sizing:border-box; }
-
-/* Bigger gap under "Step 1" subtitle only on step 1 */
-.reg-step1 .reg-subtitle {
-  margin-bottom: 20px;   /* try 16–24px to taste */
-}
-/* a touch more space after the title now that the subtitle is gone */
-.reg-title { margin: 0 0 12px; }
-
-/* Send code: a bit lower and ~2/3 width, centered */
-.btn-otp{
-  width: 66%;
-  display: block;
-  margin: 14px auto 0;   /* drop it down a little */
-}
-@media (max-width: 360px){
-  .btn-otp{ width: 100%; }  /* full width on very small phones */
-}
-
-/* Extra gap after Username so "Password" clearly pairs with its box */
-.reg-step2 .field--username { margin-bottom: 35px; }  /* try 16–24px */
-/* Ensure fields are block-level and spacing applies */
-.field { display:block; }
-
-/* Extra gap ONLY on Step 2 after Username so "Password" pairs with its box */
-.reg-step2 .field.field--username {
-  margin-bottom: 24px !important;  /* increase if you want more space */
-}
-
-/* (Optional) tiny cushion above Password label if needed */
-.reg-step2 .field.field--password {
-  margin-top: 4px !important;
-}
-
-/* Keep login card spacing tight and consistent with registration */
-.signin-card .reg-actions { margin-top: 8px; }
-
-/* Text-link button style */
-.link-btn {
-  background: none; border: 0; padding: 8px 0;
-  color: #9fb0c7; cursor: pointer; font: inherit; text-align: left;
-}
-.link-btn.small { font-size: 12.5px; opacity: .95; }
-.link-btn:hover { color: #e6edf7; }
-
-
-/* Form titles inside cards (since we hide the app-level header here) */
-.form-card { padding: 16px; }
-.form-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 4px 0 8px;
-  color: #e6edf7;
-}
-.form-subtle {
-  color: #9fb0c7;
-  font-size: 13px;
-  margin: 0 0 12px;
-}
-
-/* Textarea & inputs share .input styling already; just enlarge textarea nicely */
-.textarea {
-  resize: vertical;
-  min-height: 120px;
-  line-height: 1.45;
-}
-
-/* Tiny helper line under fields */
-.help-text {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #9fb0c7;
-}
-
-/* Character counter */
-.char-remaining {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #9fb0c7;
-  text-align: right;
-}
-
-/* File input */
-.file-input {
-  display: block;
-  width: 100%;
-  color: #cfd9ea;
-}
-.file-name {
-  margin-top: 6px;
-  font-size: 12.5px;
-  color: #cfd9ea;
-  opacity: .9;
-}
-
-/* Checkbox row */
-.checkbox-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 8px 2px 4px;
-  font-size: 13px;
-  color: #cfd9ea;
-}
-.checkbox-row input[type="checkbox"] {
-  margin-top: 3px;
-}
+/* Slightly smaller for back key if desired */
+.key-btn--back { font-size: 22px; }
 
-/* Disabled submit look (if you need it stronger) */
-.btn-primary-outline[disabled],
-.btn-primary-outline[aria-disabled="true"] {
-  opacity: .5;
-  cursor: not-allowed;
+/* Smaller layout on very narrow screens */
+@media (max-width: 360px) {
+  .key-btn { width: 64px; height: 64px; }
 }
-/* Make the phone frame a positioned container so overlay stays inside it */
-.screen { position: relative; }
 
-/* Overlay */
-.overlay{
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,.55);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 1000;
-}
-
-.overlay-card{
-  width: 86%; max-width: 360px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(15, 20, 32, .95);
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 12px 40px rgba(0,0,0,.45);
-  text-align: center;
-}
-
-.overlay-msg{
-  color: #cfd9ea;
-  font-size: 14.5px;
-  line-height: 1.4;
-  margin-bottom: 12px;
-}
 /* ---------- Username Linking ---------- */
 .linking-card { padding: 16px; }
 .linking-title {

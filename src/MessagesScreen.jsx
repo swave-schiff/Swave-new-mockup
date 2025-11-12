@@ -88,7 +88,7 @@ export default function MessagesScreen({ onOpenThread = () => {} }) {
   }, [q, sortBy]);
 
   return (
-    <main className="connections-main">
+    <main className="connections-main main-with-tabbar">
       {/* Header + right-aligned toggle (reuses same classes/styles) */}
       <div className="connections-topbar">
         <div className="connections-title">

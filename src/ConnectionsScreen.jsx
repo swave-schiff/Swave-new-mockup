@@ -81,7 +81,7 @@ export default function ConnectionsScreen({
   const open = onOpenConnection ?? onOpenConversation;
 
   return (
-    <main className="connections-main">
+    <main className="connections-main main-with-tabbar">
       {/* Header (left) + toggle below, right-aligned) */}
       <div className="connections-topbar">
         <div className="connections-title">
