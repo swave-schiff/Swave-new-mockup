@@ -283,7 +283,7 @@ body {
 .code-boxes {
   display: flex;
   gap: 14px;
-  margin-bottom: 4px;   
+  margin-bottom: 4px;
 }
 
 .code-box {
@@ -414,44 +414,54 @@ body {
   font-size: 28px;
 }
 
+/* “new look”: no inner shading, bluish border */
+background: transparent;
+border: 2px solid #6ca0ff; /* bluish border */
+color: #e6edf7;
+font-size: 26px;
+font-weight: 650;
 
-  /* “new look”: no inner shading, bluish border */
-  background: transparent;
-  border: 2px solid #6ca0ff;          /* bluish border */
-  color: #e6edf7;
-  font-size: 26px;
-  font-weight: 650;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background 0.15s ease;
+box-shadow: none; /* remove any inner/outer glow */
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .15s ease;
-  box-shadow: none;                   /* remove any inner/outer glow */
-
-.key-btn:hover { background: rgba(108,160,255,.10); }
+.key-btn:hover {
+  background: rgba(108, 160, 255, 0.1);
+}
 
 /* Two-line styling for the hash/commercial key */
-.key-btn--hash { flex-direction: column; line-height: 1.1; }
-.key-btn--hash .hash-top { font-size: 22px; }
-.key-btn--hash .hash-sub { font-size: 12px; color: #cfd9ea; opacity: .95; }
+.key-btn--hash {
+  flex-direction: column;
+  line-height: 1.1;
+}
+.key-btn--hash .hash-top {
+  font-size: 22px;
+}
+.key-btn--hash .hash-sub {
+  font-size: 12px;
+  color: #cfd9ea;
+  opacity: 0.95;
+}
 
 /* (Optional) slightly smaller icon/text on back key */
-.key-btn--back { font-size: 22px; }
-
-
-  /* “new look”: no inner shading, bluish border */
-  background: transparent;
-  border: 2px solid #6ca0ff; /* bluish border */
-  color: #e6edf7;
-  font-size: 26px;
-  font-weight: 650;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s ease;
-  box-shadow: none; /* remove any inner/outer glow */
+.key-btn--back {
+  font-size: 22px;
 }
+
+/* “new look”: no inner shading, bluish border */
+background: transparent;
+border: 2px solid #6ca0ff; /* bluish border */
+color: #e6edf7;
+font-size: 26px;
+font-weight: 650;
+
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background 0.15s ease;
+box-shadow: none; /* remove any inner/outer glow */
 
 .key-btn:hover {
   background: rgba(108, 160, 255, 0.1);
@@ -515,9 +525,10 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 12px;
-  background: rgba(0,0,0,.55);
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 0 24px rgba(78,138,255,.22) inset, 0 2px 10px rgba(0,0,0,.4);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 24px rgba(78, 138, 255, 0.22) inset,
+    0 2px 10px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -526,11 +537,14 @@ body {
   color: #e8eef7;
 }
 .code-box.filled {
-  border-color: rgba(118,166,255,.6);
-  box-shadow: 0 0 28px rgba(78,138,255,.28) inset, 0 0 24px rgba(78,138,255,.18);
+  border-color: rgba(118, 166, 255, 0.6);
+  box-shadow: 0 0 28px rgba(78, 138, 255, 0.28) inset,
+    0 0 24px rgba(78, 138, 255, 0.18);
 }
 
-/* Keypad (uniform 3xN grid) */
+/* =========================
+   KEYPAD (uniform 3×N grid)
+   ========================= */
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -539,11 +553,12 @@ body {
   margin: 8px auto 0;
   max-width: 420px;
 }
+
 .key-btn {
   width: 70px;
   height: 70px;
   border-radius: 14px;
-  border: 2px solid #6ca0ff;     /* bluish border */
+  border: 2px solid #6ca0ff; /* bluish border */
   background: transparent;
   color: #e6edf7;
   font-size: 26px;
@@ -551,28 +566,50 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background .15s ease, transform .06s ease;
+  transition: background 0.15s ease, transform 0.06s ease;
   box-shadow: none;
   cursor: pointer;
 }
-.key-btn:hover { background: rgba(108,160,255,.10); }
-.key-btn:active { transform: translateY(1px); }
+
+.key-btn:hover {
+  background: rgba(108, 160, 255, 0.1);
+}
+
+.key-btn:active {
+  transform: translateY(1px);
+}
 
 /* Two-line hash/commercial key */
-.key-btn--hash { flex-direction: column; line-height: 1.1; }
-.key-btn--hash .hash-top { font-size: 22px; }
-.key-btn--hash .hash-sub { font-size: 12px; color: #cfd9ea; opacity: .95; }
+.key-btn--hash {
+  flex-direction: column;
+  line-height: 1.1;
+}
+.key-btn--hash .hash-top {
+  font-size: 22px;
+}
+.key-btn--hash .hash-sub {
+  font-size: 12px;
+  color: #cfd9ea;
+  opacity: 0.95;
+}
 
 /* Slightly smaller for back key if desired */
-.key-btn--back { font-size: 22px; }
+.key-btn--back {
+  font-size: 22px;
+}
 
 /* Smaller layout on very narrow screens */
 @media (max-width: 360px) {
-  .key-btn { width: 64px; height: 64px; }
+  .key-btn {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 /* ---------- Username Linking ---------- */
-.linking-card { padding: 16px; }
+.linking-card {
+  padding: 16px;
+}
 .linking-title {
   margin: 2px 0 8px;
   font-size: 18px;
@@ -584,7 +621,9 @@ body {
   color: #cfd9ea;
   line-height: 1.45;
 }
-.linking-card .intro .muted { color: #9fb0c7; }
+.linking-card .intro .muted {
+  color: #9fb0c7;
+}
 
 /* Big hollow CTA */
 .btn-hollow.big {
@@ -592,22 +631,31 @@ body {
   margin-top: 14px;
   padding: 16px 18px;
   border-radius: 999px;
-  border: 1.5px solid #3a3a3b;           /* subtle like your other buttons */
+  border: 1.5px solid #3a3a3b; /* subtle like your other buttons */
   background: transparent;
   color: #e6edf7;
   font-weight: 600;
-  display: flex; align-items: center; gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   justify-content: center;
 }
-.btn-hollow.big:hover { background: rgba(255,255,255,0.06); }
+.btn-hollow.big:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
 .btn-hollow.big.btn-on {
   border-color: #6ca0ff;
-  box-shadow: 0 0 0 3px rgba(108,160,255,0.16) inset;
+  box-shadow: 0 0 0 3px rgba(108, 160, 255, 0.16) inset;
 }
 
 /* little icon in button */
-.btn-ico { display: inline-flex; }
-.btn-ico .ico { width: 18px; height: 18px; }
+.btn-ico {
+  display: inline-flex;
+}
+.btn-ico .ico {
+  width: 18px;
+  height: 18px;
+}
 
 /* OR divider */
 .or-wrap {
@@ -619,44 +667,57 @@ body {
 }
 .or-line {
   height: 1px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
 }
 .or-text {
   color: #9fb0c7;
   font-size: 12.5px;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
 }
 
 /* Toggle row */
 .toggle-row {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 2px;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   margin-top: 6px;
 }
-.toggle-label { color: #e6edf7; }
+.toggle-label {
+  color: #e6edf7;
+}
 
 /* iOS-like switch */
 .switch {
-  position: relative; width: 46px; height: 28px;
+  position: relative;
+  width: 46px;
+  height: 28px;
   display: inline-block;
 }
-.switch input { display: none; }
+.switch input {
+  display: none;
+}
 .switch .slider {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background: #3b4150;
-  border: 1px solid rgba(255,255,255,0.16);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 .switch .slider::after {
   content: "";
-  position: absolute; top: 3px; left: 3px;
-  width: 22px; height: 22px; border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
   background: #e6edf7;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 .switch input:checked + .slider {
   background: #3f6cff;
@@ -667,133 +728,174 @@ body {
 }
 
 /* Reuse your top chevron placement */
-.top-actions { padding: 8px 8px 6px 8px; }
+.top-actions {
+  padding: 8px 8px 6px 8px;
+}
 
 /* ===== iOS-26 Glass: refinements ===== */
 
 /* Stronger pressed feel */
 .glass-btn:active {
-  transform: translateY(1px) scale(.997);
-  box-shadow:
-    inset 0 2px 6px rgba(0,0,0,.35),
-    0 6px 18px rgba(0,0,0,.45);
+  transform: translateY(1px) scale(0.997);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35),
+    0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
 /* Primary tinted (bluish) glass button */
 .glass-btn--tint {
   color: #eaf1ff;
-  border-color: rgba(118, 160, 255, .55);
-  background:
-    linear-gradient(180deg, rgba(140,180,255,.22), rgba(60,120,255,.10)) border-box,
-    linear-gradient(180deg, rgba(80,130,255,.18), rgba(0,0,0,.22)) padding-box;
+  border-color: rgba(118, 160, 255, 0.55);
+  background: linear-gradient(
+        180deg,
+        rgba(140, 180, 255, 0.22),
+        rgba(60, 120, 255, 0.1)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(80, 130, 255, 0.18), rgba(0, 0, 0, 0.22))
+      padding-box;
 }
-.glass-btn--tint::before{
-  background: linear-gradient(180deg, rgba(180,210,255,.55), transparent 42%);
+.glass-btn--tint::before {
+  background: linear-gradient(
+    180deg,
+    rgba(180, 210, 255, 0.55),
+    transparent 42%
+  );
 }
-.glass-btn--tint:hover{
-  box-shadow:
-    inset 0 0 0 0.5px rgba(200,220,255,.35),
-    0 12px 30px rgba(30,60,140,.55);
+.glass-btn--tint:hover {
+  box-shadow: inset 0 0 0 0.5px rgba(200, 220, 255, 0.35),
+    0 12px 30px rgba(30, 60, 140, 0.55);
 }
 
 /* Destructive (red) glass variant */
 .glass-btn--danger {
   color: #ffecee;
-  border-color: rgba(255,115,130,.55);
-  background:
-    linear-gradient(180deg, rgba(255,160,170,.24), rgba(255,80,100,.10)) border-box,
-    linear-gradient(180deg, rgba(255,120,135,.16), rgba(0,0,0,.22)) padding-box;
+  border-color: rgba(255, 115, 130, 0.55);
+  background: linear-gradient(
+        180deg,
+        rgba(255, 160, 170, 0.24),
+        rgba(255, 80, 100, 0.1)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(255, 120, 135, 0.16), rgba(0, 0, 0, 0.22))
+      padding-box;
 }
-.glass-btn--danger::before{
-  background: linear-gradient(180deg, rgba(255,210,220,.55), transparent 42%);
+.glass-btn--danger::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 210, 220, 0.55),
+    transparent 42%
+  );
 }
 
 /* Icon-only chevron (thin stroke) */
-.chevron-svg { width: 24px; height: 24px; stroke-width: 1.7; }
+.chevron-svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.7;
+}
 
 /* No-backdrop-filter fallback (older/locked-down browsers) */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass-btn, .glass-btn--hollow, .card.glass, .tabwrap, .input.glass, .input-prefix.glass {
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .glass-btn,
+  .glass-btn--hollow,
+  .card.glass,
+  .tabwrap,
+  .input.glass,
+  .input-prefix.glass {
     background: rgba(35, 40, 55, 0.88); /* opaque fallback */
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 20px rgba(0,0,0,0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 8px 20px rgba(0, 0, 0, 0.45);
   }
 }
 
 /* Reduce transparency preference */
-@media (prefers-reduced-transparency: reduce){
-  .glass-btn, .glass-btn--hollow, .glass-btn--tint, .glass-btn--danger,
-  .card.glass, .tabwrap, .input.glass, .input-prefix.glass{
-    backdrop-filter: none; -webkit-backdrop-filter: none;
+@media (prefers-reduced-transparency: reduce) {
+  .glass-btn,
+  .glass-btn--hollow,
+  .glass-btn--tint,
+  .glass-btn--danger,
+  .card.glass,
+  .tabwrap,
+  .input.glass,
+  .input-prefix.glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     background: rgba(35, 40, 55, 0.92);
   }
 }
 .login-card.glass:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(0,0,0,0.55);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.55);
 }
 
 /* ================= iOS-glass look ================= */
-:root{
-  --glass-bg: rgba(255,255,255,0.06);
-  --glass-stroke: rgba(255,255,255,0.22);
-  --glass-inner: rgba(255,255,255,0.08);
-  --glass-highlight: rgba(255,255,255,0.55);
-  --glass-shadow: rgba(0,10,30,0.65);
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-stroke: rgba(255, 255, 255, 0.22);
+  --glass-inner: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.55);
+  --glass-shadow: rgba(0, 10, 30, 0.65);
   --glass-blue: #6ca0ff;
 }
 
 .card.glass,
 .card.glassy,
-.glass-surface{
+.glass-surface {
   background: var(--glass-bg);
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 18px;
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.18),
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18),
     0 10px 30px var(--glass-shadow);
 }
 
 /* ===== Force the glass look on Login cards & make it obvious ===== */
 
 /* Neutralize any old styles on the legacy login-card */
-.login-card { 
+.login-card {
   background: transparent !important;
   border: none !important;
 }
 
 /* Make glass more visible on dark backgrounds */
 .card.glass {
-  background: rgba(255,255,255,0.09);           /* slightly brighter */
-  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255, 255, 255, 0.09); /* slightly brighter */
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 18px;
   backdrop-filter: blur(22px) saturate(160%);
   -webkit-backdrop-filter: blur(22px) saturate(160%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.22),
-    0 18px 40px rgba(0,0,0,0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 18px 40px rgba(0, 0, 0, 0.55);
 }
 
 /* Give the page a richer background so the blur has something to blur */
 .screen {
-  background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(120,160,255,.22), transparent 60%),
-    radial-gradient(900px 500px at 90% 0%, rgba(255,120,180,.12), transparent 60%),
+  background: radial-gradient(
+      1200px 600px at 50% -10%,
+      rgba(120, 160, 255, 0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 90% 0%,
+      rgba(255, 120, 180, 0.12),
+      transparent 60%
+    ),
     linear-gradient(180deg, #0f1421, #0e1420 60%, #0b0f19);
 }
 
 /* (Optional) slight lift on hover for the login cards */
 .login-card.glass:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 34px rgba(0,0,0,0.6);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6);
 }
 
 /* Ensure glass buttons pop a bit more */
-.glass-btn { 
-  box-shadow:
-    inset 0 0 0 0.5px rgba(255,255,255,0.28),
-    0 10px 26px rgba(0,0,0,0.5);
+.glass-btn {
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.28),
+    0 10px 26px rgba(0, 0, 0, 0.5);
 }
 /* --- Fix legacy white CTA on Login screen --- */
 
@@ -808,22 +910,21 @@ body {
 
 /* If there’s a generic button rule under .login-main, overrule it for glass */
 .login-main .glass-btn {
-  background: transparent !important;           /* hollow glass */
+  background: transparent !important; /* hollow glass */
   border: 1.5px solid #3a3a3b !important;
   color: #e6edf7 !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.10),
-    0 10px 26px rgba(0,0,0,0.5) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 10px 26px rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(16px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
 }
 
 /* Keep pressed/hover feeling consistent */
 .login-main .glass-btn:hover {
-  background: rgba(255,255,255,0.05) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 .login-main .glass-btn:active {
-  transform: translateY(1px) scale(.997);
+  transform: translateY(1px) scale(0.997);
 }
 
 /* =========================================================
@@ -841,29 +942,40 @@ body {
   border-radius: 18px;
   font-weight: 600;
   color: #e6edf7;
-  border: 1px solid rgba(255,255,255,0.22);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06)) border-box,
-    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.18)) padding-box;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.06)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.18))
+      padding-box;
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
-  box-shadow:
-    inset 0 0 0 0.5px rgba(255,255,255,0.25),
-    0 8px 22px rgba(0,0,0,0.45);
-  transition: transform .08s ease, box-shadow .18s ease, background .18s ease;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.25),
+    0 8px 22px rgba(0, 0, 0, 0.45);
+  transition: transform 0.08s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .glass-btn::before {
-  content:"";
-  position:absolute; inset:0; border-radius:inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,0.45), transparent 38%);
-  mix-blend-mode: screen; pointer-events:none; opacity:.8;
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45),
+    transparent 38%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0.8;
 }
 
 .glass-btn:hover {
-  box-shadow:
-    inset 0 0 0 0.5px rgba(255,255,255,0.3),
-    0 12px 30px rgba(0,0,0,0.55);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.3),
+    0 12px 30px rgba(0, 0, 0, 0.55);
 }
 .glass-btn:active {
   transform: translateY(1px);
@@ -873,22 +985,31 @@ body {
 .glass-btn--hollow {
   background: transparent;
   border: 1.5px solid #3a3a3b;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .glass-btn--hollow:hover {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Bluish tinted primary (for actions like "Create Account") */
 .glass-btn--tint {
   color: #eaf1ff;
-  border-color: rgba(118, 160, 255, .55);
-  background:
-    linear-gradient(180deg, rgba(140,180,255,.22), rgba(60,120,255,.10)) border-box,
-    linear-gradient(180deg, rgba(80,130,255,.18), rgba(0,0,0,.22)) padding-box;
+  border-color: rgba(118, 160, 255, 0.55);
+  background: linear-gradient(
+        180deg,
+        rgba(140, 180, 255, 0.22),
+        rgba(60, 120, 255, 0.1)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(80, 130, 255, 0.18), rgba(0, 0, 0, 0.22))
+      padding-box;
 }
 .glass-btn--tint::before {
-  background: linear-gradient(180deg, rgba(180,210,255,.55), transparent 42%);
+  background: linear-gradient(
+    180deg,
+    rgba(180, 210, 255, 0.55),
+    transparent 42%
+  );
 }
 
 /* Larger CTA button style — for "Enter Swave Code" */
@@ -919,14 +1040,17 @@ body {
   overflow: hidden;
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)) border-box,
-    linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.20)) padding-box;
-  border: 1px solid rgba(255,255,255,0.14);
-  box-shadow:
-    inset 0 0 0 0.5px rgba(255,255,255,0.18),
-    0 8px 22px rgba(0,0,0,0.45);
-  transition: all .15s ease;
+  background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.03)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)) padding-box;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.18),
+    0 8px 22px rgba(0, 0, 0, 0.45);
+  transition: all 0.15s ease;
 }
 
 /* iOS-26 bevel refinement — top + left light only, no bottom/right edge */
@@ -942,14 +1066,13 @@ body {
 
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   /* bevel: top & left highlights only */
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.22),  /* thin top light */
-    inset 1px 0 0 rgba(255,255,255,0.14),  /* faint left light */
-    0 8px 22px rgba(0,0,0,0.45);           /* soft drop for lift */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    /* thin top light */ inset 1px 0 0 rgba(255, 255, 255, 0.14),
+    /* faint left light */ 0 8px 22px rgba(0, 0, 0, 0.45); /* soft drop for lift */
 }
 
 /* Remove any old overlays that caused glare */
@@ -960,10 +1083,8 @@ body {
 
 /* Subtle hover lift — keeps same bevel */
 .glass-btn.big:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.26),
-    inset 1px 0 0 rgba(255,255,255,0.16),
-    0 12px 26px rgba(0,0,0,0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 1px 0 0 rgba(255, 255, 255, 0.16), 0 12px 26px rgba(0, 0, 0, 0.55);
 }
 .glass-btn.big:active {
   transform: translateY(1px);
@@ -974,56 +1095,87 @@ body {
   min-width: 180px;
   padding: 14px 26px;
   font-size: 1rem;
-  border-radius: 14px;               /* modern, not a pill */
+  border-radius: 14px; /* modern, not a pill */
   margin-top: 12px;
   position: relative;
   overflow: hidden;
 
   /* flat glass surface (blur still applied for consistency) */
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   /* remove any older overlays */
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);   /* soft lift only */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45); /* soft lift only */
 }
 .glass-btn.big::before,
-.glass-btn.big::after { content: none !important; }
+.glass-btn.big::after {
+  content: none !important;
+}
 
 /* ultra-thin beveled edges (top + left only) */
 .glass-btn.big > .edge-top,
-.glass-btn.big > .edge-left { position:absolute; pointer-events:none; }
+.glass-btn.big > .edge-left {
+  position: absolute;
+  pointer-events: none;
+}
 
 /* 1px top highlight */
 .glass-btn.big > .edge-top {
-  left: 0; top: 0; width: 100%; height: 1px;
-  background: rgba(255,255,255,0.18);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 /* 1px left highlight (slightly dimmer than top) */
 .glass-btn.big > .edge-left {
-  left: 0; top: 0; width: 1px; height: 100%;
-  background: rgba(255,255,255,0.12);
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* tiny corner glints for that “translucent rim” feel */
 .glass-btn.big > .corner-glint {
-  position:absolute; width: 12px; height: 12px; pointer-events:none;
-  filter: blur(.2px); opacity: .45; mix-blend-mode: screen;
-  background: radial-gradient(circle, rgba(255,255,255,.22), transparent 65%);
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  filter: blur(0.2px);
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.22),
+    transparent 65%
+  );
   border-radius: 50%;
 }
-.glass-btn.big > .corner-glint.tl { left: 6px; top: 6px; }
-.glass-btn.big > .corner-glint.tr { right: 6px; top: 6px; opacity:.20; } /* very faint on right like iOS tiles */
+.glass-btn.big > .corner-glint.tl {
+  left: 6px;
+  top: 6px;
+}
+.glass-btn.big > .corner-glint.tr {
+  right: 6px;
+  top: 6px;
+  opacity: 0.2;
+} /* very faint on right like iOS tiles */
 
 /* hover/press keep the edges crisp without adding big sheen */
-.glass-btn.big:hover  { box-shadow: 0 12px 26px rgba(0,0,0,0.55); }
-.glass-btn.big:active { transform: translateY(1px); }
+.glass-btn.big:hover {
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+}
+.glass-btn.big:active {
+  transform: translateY(1px);
+}
 
 /* ============== iOS-26 keypad (circular glass keys) ============== */
 .keypad {
-  --key-size: 74px;               /* adjust for your layout */
+  --key-size: 74px; /* adjust for your layout */
   display: grid;
   grid-template-columns: repeat(3, var(--key-size));
   grid-auto-rows: var(--key-size);
@@ -1043,36 +1195,44 @@ body {
   color: #f3f5f8;
   font-size: 26px;
   font-weight: 700;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 
   /* laminated glass surface on solid bg */
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
-  transition: transform .08s ease, box-shadow .15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+  transition: transform 0.08s ease, box-shadow 0.15s ease;
 }
 
 /* edge-only bevel: 1px lights top/left + anchor at bottom */
 .keypad-btn::before {
-  content:"";
-  position:absolute; inset:0; border-radius:50%; pointer-events:none;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.22),  /* top light */
-    inset 1px 0 0 rgba(255,255,255,0.14),  /* left light */
-    inset 0 -1px 0 rgba(0,0,0,0.24);       /* bottom anchor (very subtle) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    /* top light */ inset 1px 0 0 rgba(255, 255, 255, 0.14),
+    /* left light */ inset 0 -1px 0 rgba(0, 0, 0, 0.24); /* bottom anchor (very subtle) */
 }
 
 /* thin inner ring for translucent rim feel */
 .keypad-btn::after {
-  content:"";
-  position:absolute; inset:2px; border-radius:50%; pointer-events:none;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
-  opacity:.9; mix-blend-mode: screen;
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  opacity: 0.9;
+  mix-blend-mode: screen;
 }
 
-.keypad-btn:active { transform: translateY(1px); }
+.keypad-btn:active {
+  transform: translateY(1px);
+}
 
 /* secondary line (ABC, DEF, etc.) */
 .keypad-sub {
@@ -1080,8 +1240,8 @@ body {
   bottom: 10px;
   font-size: 11px;
   font-weight: 600;
-  opacity: .7;
-  letter-spacing: .6px;
+  opacity: 0.7;
+  letter-spacing: 0.6px;
 }
 
 /* Backspace key styling to match */
@@ -1092,160 +1252,261 @@ body {
 
 /* Make 0 centered in the last row */
 .keypad .keypad-zero {
-  grid-column: 2 / 3;  /* puts 0 in the middle bottom */
+  grid-column: 2 / 3; /* puts 0 in the middle bottom */
 }
 
 /* Smaller layout option (e.g., narrow screens) */
 @media (max-width: 360px) {
-  .keypad { --key-size: 64px; gap: 12px; }
-  .keypad-sub { bottom: 8px; }
+  .keypad {
+    --key-size: 64px;
+    gap: 12px;
+  }
+  .keypad-sub {
+    bottom: 8px;
+  }
 }
 /* ==== iOS-26 keypad: asymmetric "missing rim" (top-right & bottom-left) ==== */
 
 /* base (keep yours if already present, this just tweaks a few values) */
-.keypad { --key-size: 74px; display:grid; grid-template-columns:repeat(3,var(--key-size));
-  grid-auto-rows:var(--key-size); justify-content:center; gap:14px; margin:18px 0 6px; }
+.keypad {
+  --key-size: 74px;
+  display: grid;
+  grid-template-columns: repeat(3, var(--key-size));
+  grid-auto-rows: var(--key-size);
+  justify-content: center;
+  gap: 14px;
+  margin: 18px 0 6px;
+}
 
 .keypad-btn {
   width: var(--key-size);
   height: var(--key-size);
   border-radius: 50%;
   position: relative;
-  display: inline-flex; align-items: center; justify-content: center;
-  color: #f3f5f8; font-size: 26px; font-weight: 700; letter-spacing: .5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f3f5f8;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
-  transition: transform .08s ease, box-shadow .15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+  transition: transform 0.08s ease, box-shadow 0.15s ease;
 }
 
 /* remove any previous full-ring overlays so only the arcs render */
 .keypad-btn::before,
-.keypad-btn::after { content: none !important; }
+.keypad-btn::after {
+  content: none !important;
+}
 
 /* light arc (top-left quadrant) — skips top-right */
 .keypad-btn .rim-light,
-.keypad-btn .rim-dark { position:absolute; inset:0; border-radius:50%; pointer-events:none; }
+.keypad-btn .rim-dark {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
 
 /* We create a 1px ring and "mask" most of it, leaving only the arc we want. */
 .keypad-btn .rim-light {
   /* 1px radial ring */
-  background:
-    radial-gradient(circle closest-side, transparent calc(100% - 1px),
-                    rgba(255,255,255,0.40) calc(100% - 1px),
-                    transparent 100%);
+  background: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 1px),
+    rgba(255, 255, 255, 0.4) calc(100% - 1px),
+    transparent 100%
+  );
   /* Show only ~90° arc from ~140°→230° (top-left), hide top-right */
-  -webkit-mask: conic-gradient(from 140deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
-          mask: conic-gradient(from 140deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
+  -webkit-mask: conic-gradient(
+    from 140deg,
+    transparent 0 50deg,
+    #000 50deg 140deg,
+    transparent 140deg 360deg
+  );
+  mask: conic-gradient(
+    from 140deg,
+    transparent 0 50deg,
+    #000 50deg 140deg,
+    transparent 140deg 360deg
+  );
 }
 
 /* dark anchor arc (bottom-right quadrant) — skips bottom-left */
 .keypad-btn .rim-dark {
-  background:
-    radial-gradient(circle closest-side, transparent calc(100% - 1px),
-                    rgba(0,0,0,0.20) calc(100% - 1px),
-                    transparent 100%);
+  background: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 1px),
+    rgba(0, 0, 0, 0.2) calc(100% - 1px),
+    transparent 100%
+  );
   /* ~90° arc from ~320°→50° (wraps through 0°) = bottom-right */
-  -webkit-mask: conic-gradient(from 320deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
-          mask: conic-gradient(from 320deg, transparent 0 50deg, #000 50deg 140deg, transparent 140deg 360deg);
+  -webkit-mask: conic-gradient(
+    from 320deg,
+    transparent 0 50deg,
+    #000 50deg 140deg,
+    transparent 140deg 360deg
+  );
+  mask: conic-gradient(
+    from 320deg,
+    transparent 0 50deg,
+    #000 50deg 140deg,
+    transparent 140deg 360deg
+  );
 }
 
 /* small inner rim for translucent feel (very subtle) */
 .keypad-btn .rim-inner {
-  position:absolute; inset:1px; border-radius:50%; pointer-events:none;
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  pointer-events: none;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  mix-blend-mode: screen; opacity:.9;
+  mix-blend-mode: screen;
+  opacity: 0.9;
 }
 
-.keypad-btn:active { transform: translateY(1px); }
+.keypad-btn:active {
+  transform: translateY(1px);
+}
 
 /* ABC/DEF labels */
-.keypad-sub { position:absolute; bottom:10px; font-size:11px; font-weight:600; opacity:.7; letter-spacing:.6px; }
+.keypad-sub {
+  position: absolute;
+  bottom: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.7;
+  letter-spacing: 0.6px;
+}
 
-.keypad-btn--action { font-size:20px; font-weight:600; }
+.keypad-btn--action {
+  font-size: 20px;
+  font-weight: 600;
+}
 
-.keypad .keypad-zero { grid-column: 2 / 3; }
+.keypad .keypad-zero {
+  grid-column: 2 / 3;
+}
 
 /* smaller phones */
 @media (max-width: 360px) {
-  .keypad { --key-size: 64px; gap: 12px; }
-  .keypad-sub { bottom: 8px; }
+  .keypad {
+    --key-size: 64px;
+    gap: 12px;
+  }
+  .keypad-sub {
+    bottom: 8px;
+  }
 }
 /* ==== round code slots to match circular keypad ==== */
 .code-boxes {
-  display:flex; gap:14px; justify-content:center; margin: 8px 0 16px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 8px 0 16px;
 }
 .code-box {
-  width: 48px; height: 48px; border-radius: 50%;
-  display:flex; align-items:center; justify-content:center;
-  font-size: 20px; font-weight:700; color:#e6edf7;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e6edf7;
 
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   /* top-left bevel only, like the keys */
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.10),   /* top light */
-    inset 1px 0 0 rgba(255,255,255,0.12);   /* left light */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    /* top light */ inset 1px 0 0 rgba(255, 255, 255, 0.12); /* left light */
 }
 /* when filled, you can make the number brighter (optional) */
-.code-box.filled { color: #ffffff; }
+.code-box.filled {
+  color: #ffffff;
+}
 
 /* ==== iOS-26 keypad rim with feathered ends (override) ==== */
 
 /* Light arc: top-left quadrant with soft fade at both ends */
-.keypad-btn .rim-light{
-  position:absolute; inset:0; border-radius:50%; pointer-events:none;
+.keypad-btn .rim-light {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
   /* draw the arc with fades on both ends */
-  background:
-    conic-gradient(
-      from 150deg,
-      rgba(255,255,255,0) 0deg,                /* fully transparent start */
-      rgba(255,255,255,0.05) 30deg,            /* fade-in */
-      rgba(255,255,255,0.20) 40deg,            /* full strength */
-      rgba(255,255,255,0.20) 90deg,            /* full strength */
-      rgba(255,255,255,0.05) 10deg,           /* fade-out */
-      rgba(255,255,255,0) 120deg               /* fully transparent end */
-    );
+  background: conic-gradient(
+    from 150deg,
+    rgba(255, 255, 255, 0) 0deg,
+    /* fully transparent start */ rgba(255, 255, 255, 0.05) 30deg,
+    /* fade-in */ rgba(255, 255, 255, 0.2) 40deg,
+    /* full strength */ rgba(255, 255, 255, 0.2) 90deg,
+    /* full strength */ rgba(255, 255, 255, 0.05) 10deg,
+    /* fade-out */ rgba(255, 255, 255, 0) 120deg /* fully transparent end */
+  );
   /* clip to a thin ring near the edge */
-  -webkit-mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% -1px));
-          mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% - 1px));
+  -webkit-mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% -1px)
+  );
+  mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 1px)
+  );
   mix-blend-mode: screen;
 }
 
 /* Dark anchor arc: bottom-right quadrant with feathered ends */
-.keypad-btn .rim-dark{
-  position:absolute; inset:0; border-radius:50%; pointer-events:none;
-  background:
-    conic-gradient(
-      from 330deg,
-      rgba(0,0,0,0) 0deg,                      /* transparent start */
-      rgba(0,0,0,0.05) 10deg,                  /* fade-in */
-      rgba(0,0,0,0.22) 40deg,                  /* full strength */
-      rgba(0,0,0,0.22) 90deg,                  /* full strength */
-      rgba(0,0,0,0.05) 110deg,                 /* fade-out */
-      rgba(0,0,0,0) 120deg                     /* transparent end */
-    );
-  -webkit-mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% - 2px));
-          mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% - 2px));
+.keypad-btn .rim-dark {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 330deg,
+    rgba(0, 0, 0, 0) 0deg,
+    /* transparent start */ rgba(0, 0, 0, 0.05) 10deg,
+    /* fade-in */ rgba(0, 0, 0, 0.22) 40deg,
+    /* full strength */ rgba(0, 0, 0, 0.22) 90deg,
+    /* full strength */ rgba(0, 0, 0, 0.05) 110deg,
+    /* fade-out */ rgba(0, 0, 0, 0) 120deg /* transparent end */
+  );
+  -webkit-mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 2px)
+  );
+  mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 2px)
+  );
   /* optional: slightly deepen the dark arc on very bright backgrounds */
   /* mix-blend-mode: multiply; */
 }
 
 /* Keep the subtle inner translucent ring */
-.keypad-btn .rim-inner{
-  position:absolute; inset:0px; border-radius:50%; pointer-events:none;
-  box-shadow: inset 0 0 0 0px rgba(255,255,255,0.08);
-  mix-blend-mode: screen; opacity:.9;
+.keypad-btn .rim-inner {
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 0px rgba(255, 255, 255, 0.08);
+  mix-blend-mode: screen;
+  opacity: 0.9;
 }
 
 /* ==== Round code boxes with same feathered rim + darker fill ==== */
@@ -1271,7 +1532,7 @@ body {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
 }
 
@@ -1282,20 +1543,25 @@ body {
   inset: 0;
   border-radius: 50%;
   pointer-events: none;
-  background:
-    conic-gradient(
-      from 150deg,
-      rgba(255,255,255,0) 0deg,
-      rgba(255,255,255,0.05) 30deg,
-      rgba(255,255,255,0.20) 40deg,
-      rgba(255,255,255,0.20) 90deg,
-      rgba(255,255,255,0.05) 110deg,
-      rgba(255,255,255,0) 120deg
-    );
-  -webkit-mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% - 1px));
-          mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% - 1px));
+  background: conic-gradient(
+    from 150deg,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0.05) 30deg,
+    rgba(255, 255, 255, 0.2) 40deg,
+    rgba(255, 255, 255, 0.2) 90deg,
+    rgba(255, 255, 255, 0.05) 110deg,
+    rgba(255, 255, 255, 0) 120deg
+  );
+  -webkit-mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 1px)
+  );
+  mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 1px)
+  );
   mix-blend-mode: screen;
 }
 
@@ -1306,79 +1572,85 @@ body {
   inset: 0;
   border-radius: 50%;
   pointer-events: none;
-  background:
-    conic-gradient(
-      from 330deg,
-      rgba(0,0,0,0) 0deg,
-      rgba(0,0,0,0.05) 10deg,
-      rgba(0,0,0,0.22) 40deg,
-      rgba(0,0,0,0.22) 90deg,
-      rgba(0,0,0,0.05) 110deg,
-      rgba(0,0,0,0) 120deg
-    );
-  -webkit-mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% - 2px));
-          mask: radial-gradient(circle closest-side,
-                  transparent calc(100% - 2px), #000 calc(100% - 2px));
+  background: conic-gradient(
+    from 330deg,
+    rgba(0, 0, 0, 0) 0deg,
+    rgba(0, 0, 0, 0.05) 10deg,
+    rgba(0, 0, 0, 0.22) 40deg,
+    rgba(0, 0, 0, 0.22) 90deg,
+    rgba(0, 0, 0, 0.05) 110deg,
+    rgba(0, 0, 0, 0) 120deg
+  );
+  -webkit-mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 2px)
+  );
+  mask: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 2px),
+    #000 calc(100% - 2px)
+  );
   mix-blend-mode: multiply;
 }
 
 /* When filled: brighter interior to show entry */
 .code-box.filled {
   background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255,255,255,0.12);
+  border-color: rgba(255, 255, 255, 0.12);
   color: #ffffff;
 }
 /* ===== Rectangular glass tile button + feathered top/left edges ===== */
 
 /* Base rectangular tile (modern radius, flat glass) */
 .glass-btn.tile {
-  border-radius: 14px;                  /* iOS 26 corners */
+  border-radius: 14px; /* iOS 26 corners */
   padding: 12px 18px;
   font-size: 0.98rem;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
   position: relative;
   overflow: hidden;
 }
 
 /* Kill any global specular overlays for this tile so it stays clean/flat */
 .glass-btn.tile::before,
-.glass-btn.tile::after { content: none !important; }
+.glass-btn.tile::after {
+  content: none !important;
+}
 
 /* Edge-only highlight with feathered ends (top + left) */
 .edge-feather::before {
   content: "";
   position: absolute;
-  inset: 0;               /* we’ll position via background */
+  inset: 0; /* we’ll position via background */
   pointer-events: none;
   border-radius: inherit;
   background-repeat: no-repeat;
   /* Two gradients: 1) top (left→right), 2) left (top→bottom) */
   background-image:
-    /* TOP edge: fades in from ~8%, full across the middle, fades out near ~92% */
-    linear-gradient(
+    /* TOP edge: fades in from ~8%, full across the middle, fades out near ~92% */ linear-gradient(
       to right,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.18) 28%,
-      rgba(255,255,255,0.18) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.06) 8%,
+      rgba(255, 255, 255, 0.18) 28%,
+      rgba(255, 255, 255, 0.18) 72%,
+      rgba(255, 255, 255, 0.06) 92%,
+      rgba(255, 255, 255, 0) 100%
     ),
     /* LEFT edge: fades in from ~8%, full through center, fades out near ~92% */
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.14) 28%,
-      rgba(255,255,255,0.14) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
-    );
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.06) 8%,
+        rgba(255, 255, 255, 0.14) 28%,
+        rgba(255, 255, 255, 0.14) 72%,
+        rgba(255, 255, 255, 0.06) 92%,
+        rgba(255, 255, 255, 0) 100%
+      );
   /* Sizes: top is 100% wide x 1px tall; left is 1px wide x 100% tall */
   background-size: 100% 1px, 1px 100%;
   background-position: top left, top left;
@@ -1386,31 +1658,32 @@ body {
 
 /* Optional: hover depth without changing the rim */
 .glass-btn.tile:hover {
-  box-shadow: 0 12px 26px rgba(0,0,0,0.55);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
 }
-.glass-btn.tile:active { transform: translateY(1px); }
+.glass-btn.tile:active {
+  transform: translateY(1px);
+}
 
 /* If you want this style to be “hollow”: keep the subtle outline and transparent center */
 .glass-btn.tile.glass-btn--hollow {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid #3a3a3b;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.10),
-    0 10px 24px rgba(0,0,0,0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 10px 24px rgba(0, 0, 0, 0.45);
 }
 /* --- Fix font weight and wrapping for text-based buttons (like 'Enter Username Instead of Code') --- */
 .glass-btn.tile {
-  font-weight: 500;          /* normalize text weight */
+  font-weight: 500; /* normalize text weight */
   line-height: 1.25;
-  white-space: nowrap;       /* keep on one line */
-  padding: 12px 24px;        /* slightly wider so long labels fit */
+  white-space: nowrap; /* keep on one line */
+  padding: 12px 24px; /* slightly wider so long labels fit */
 }
 
 /* if it still wraps on smaller phones, allow gentle shrink instead of wrapping */
 @media (max-width: 360px) {
   .glass-btn.tile {
     font-size: 0.92rem;
-    white-space: normal;     /* allow wrapping on very narrow screens only */
+    white-space: normal; /* allow wrapping on very narrow screens only */
     text-align: center;
   }
 }
@@ -1426,33 +1699,32 @@ body {
 
   /* 1) TOP feathered line  2) LEFT feathered line  3) SHORT BOTTOM-LEFT glint */
   background-image:
-    /* top */
-    linear-gradient(
+    /* top */ linear-gradient(
       to right,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.18) 28%,
-      rgba(255,255,255,0.18) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.06) 8%,
+      rgba(255, 255, 255, 0.18) 28%,
+      rgba(255, 255, 255, 0.18) 72%,
+      rgba(255, 255, 255, 0.06) 92%,
+      rgba(255, 255, 255, 0) 100%
     ),
     /* left */
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.14) 28%,
-      rgba(255,255,255,0.14) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
-    ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.06) 8%,
+        rgba(255, 255, 255, 0.14) 28%,
+        rgba(255, 255, 255, 0.14) 72%,
+        rgba(255, 255, 255, 0.06) 92%,
+        rgba(255, 255, 255, 0) 100%
+      ),
     /* bottom-left SHORT glint (feathered) */
-    linear-gradient(
-      to right,
-      rgba(255,255,255,0.24) 0%,
-      rgba(255,255,255,0.14) 60%,
-      rgba(255,255,255,0) 100%
-    );
+      linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.24) 0%,
+        rgba(255, 255, 255, 0.14) 60%,
+        rgba(255, 255, 255, 0) 100%
+      );
 
   /* sizes: top = full width x 1px; left = 1px x full height; bottom-left = ~16px x 1px */
   background-size: 100% 1px, 1px 100%, 16px 1px;
@@ -1470,32 +1742,31 @@ body {
   background-repeat: no-repeat;
 
   /* TOP, LEFT, and SHORT BOTTOM-LEFT glint */
-  background-image:
-    linear-gradient(
+  background-image: linear-gradient(
       to right,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.18) 28%,
-      rgba(255,255,255,0.18) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.06) 8%,
+      rgba(255, 255, 255, 0.18) 28%,
+      rgba(255, 255, 255, 0.18) 72%,
+      rgba(255, 255, 255, 0.06) 92%,
+      rgba(255, 255, 255, 0) 100%
     ),
     linear-gradient(
       to bottom,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.14) 28%,
-      rgba(255,255,255,0.14) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.06) 8%,
+      rgba(255, 255, 255, 0.14) 28%,
+      rgba(255, 255, 255, 0.14) 72%,
+      rgba(255, 255, 255, 0.06) 92%,
+      rgba(255, 255, 255, 0) 100%
     ),
     /* bottom-left SHORT glint (you can tune these alphas) */
-    linear-gradient(
-      to right,
-      rgba(255,255,255,0.26) 0%,
-      rgba(255,255,255,0.16) 60%,
-      rgba(255,255,255,0.00) 100%
-    ) !important;
+      linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.26) 0%,
+        rgba(255, 255, 255, 0.16) 60%,
+        rgba(255, 255, 255, 0) 100%
+      ) !important;
 
   /* Make sure all three layers have sizes/positions */
   background-size: 100% 1.5px, 1.5px 100%, 24px 1.5px !important;
@@ -1505,26 +1776,27 @@ body {
 }
 
 /* Safety: kill any other ::before overlay that might be covering your lines */
-.glass-btn.tile::before { content: none !important; }
+.glass-btn.tile::before {
+  content: none !important;
+}
 
 /* === Alt CTA (Enter Username Instead of Code) — forced tile + feathered edges === */
 #alt-to-username {
-  white-space: nowrap;       /* keeps text on one line */
-  display: inline-flex;      /* lets it expand naturally with text */
+  white-space: nowrap; /* keeps text on one line */
+  display: inline-flex; /* lets it expand naturally with text */
   justify-content: center;
   align-items: center;
-  padding: 12px 28px;        /* gives a bit more horizontal breathing room */
-  min-width: max-content;    /* expands just enough to fit text */
-  max-width: 90%;            /* avoids hitting screen edges on mobile */
+  padding: 12px 28px; /* gives a bit more horizontal breathing room */
+  min-width: max-content; /* expands just enough to fit text */
+  max-width: 90%; /* avoids hitting screen edges on mobile */
 }
 
-  /* laminated glass base */
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  backdrop-filter: blur(16px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-}
+/* laminated glass base */
+background: rgba(255, 255, 255, 0.06) !important;
+border: 1px solid rgba(255, 255, 255, 0.1) !important;
+backdrop-filter: blur(16px) saturate(160%) !important;
+-webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
 
 /* edge feather (top + left) + short bottom-left glint */
 #alt-to-username::before {
@@ -1537,33 +1809,32 @@ body {
 
   /* TOP, LEFT, BOTTOM-LEFT glint (3 layers) */
   background-image:
-    /* top */
-    linear-gradient(
+    /* top */ linear-gradient(
       to right,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.18) 28%,
-      rgba(255,255,255,0.18) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.06) 8%,
+      rgba(255, 255, 255, 0.18) 28%,
+      rgba(255, 255, 255, 0.18) 72%,
+      rgba(255, 255, 255, 0.06) 92%,
+      rgba(255, 255, 255, 0) 100%
     ),
     /* left */
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.14) 28%,
-      rgba(255,255,255,0.14) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
-    ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.06) 8%,
+        rgba(255, 255, 255, 0.14) 28%,
+        rgba(255, 255, 255, 0.14) 72%,
+        rgba(255, 255, 255, 0.06) 92%,
+        rgba(255, 255, 255, 0) 100%
+      ),
     /* bottom-left short glint — enhanced visibility */
-linear-gradient(
-  to right,
-  rgba(255,255,255,0.65) 0%,    /* much brighter start */
-  rgba(255,255,255,0.30) 55%,   /* smoother fade */
-  rgba(255,255,255,0.00) 100%
-);
+      linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.65) 0%,
+        /* much brighter start */ rgba(255, 255, 255, 0.3) 55%,
+        /* smoother fade */ rgba(255, 255, 255, 0) 100%
+      );
 
   /* sizes: top full width x 1.5px; left 1.5px full height; bottom-left 24px x 1.5px */
   background-size: 100% 1.5px, 1.5px 100%, 28px px;
@@ -1571,34 +1842,44 @@ linear-gradient(
 }
 
 /* optional hover */
-#alt-to-username:hover { box-shadow: 0 12px 26px rgba(0,0,0,0.55); }
-#alt-to-username:active { transform: translateY(1px); }
+#alt-to-username:hover {
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+}
+#alt-to-username:active {
+  transform: translateY(1px);
+}
 
 filter: blur(0.5px);
 opacity: 0.95;
 
 /* tiny font fallback for very narrow phones */
 @media (max-width: 360px) {
-  #alt-to-username { font-size: 0.92rem; white-space: normal; text-align: center; }
+  #alt-to-username {
+    font-size: 0.92rem;
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 /* ---------- Rectangular glass tile + feathered edges (reusable) ---------- */
 .glass-btn.tile {
   position: relative;
   overflow: hidden;
-  border-radius: 14px;                  /* iOS 26 corners */
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px; /* iOS 26 corners */
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
   /* sane text defaults (no bold, one line) */
   font-weight: 500;
 }
 
 /* keep any old global ::before/::after overlays from interfering */
 .glass-btn.tile::before,
-.glass-btn.tile::after { content: none !important; }
+.glass-btn.tile::after {
+  content: none !important;
+}
 
 /* one-line helper (so long labels don’t wrap) */
 .btn-one-line {
@@ -1624,33 +1905,32 @@ opacity: 0.95;
 
   /* TOP, LEFT, and BOTTOM-LEFT glint (3 layers) */
   background-image:
-    /* top */
-    linear-gradient(
+    /* top */ linear-gradient(
       to right,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.18) 28%,
-      rgba(255,255,255,0.18) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.06) 8%,
+      rgba(255, 255, 255, 0.18) 28%,
+      rgba(255, 255, 255, 0.18) 72%,
+      rgba(255, 255, 255, 0.06) 92%,
+      rgba(255, 255, 255, 0) 100%
     ),
     /* left */
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.06) 8%,
-      rgba(255,255,255,0.14) 28%,
-      rgba(255,255,255,0.14) 72%,
-      rgba(255,255,255,0.06) 92%,
-      rgba(255,255,255,0) 100%
-    ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.06) 8%,
+        rgba(255, 255, 255, 0.14) 28%,
+        rgba(255, 255, 255, 0.14) 72%,
+        rgba(255, 255, 255, 0.06) 92%,
+        rgba(255, 255, 255, 0) 100%
+      ),
     /* bottom-left SHORT glint — matches your tuned keypad look */
-    linear-gradient(
-      to right,
-      rgba(255,255,255,0.65) 0%,   /* brighter start */
-      rgba(255,255,255,0.30) 55%,  /* smooth fade */
-      rgba(255,255,255,0.00) 100%
-    );
+      linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.65) 0%,
+        /* brighter start */ rgba(255, 255, 255, 0.3) 55%,
+        /* smooth fade */ rgba(255, 255, 255, 0) 100%
+      );
 
   /* thickness/length: last layer is the short bottom-left glint */
   background-size: 100% 1.5px, 1.5px 100%, 28px 2px;
@@ -1662,24 +1942,47 @@ opacity: 0.95;
 }
 
 /* optional size variants */
-.btn-sm { padding: 10px 18px; font-size: 0.94rem; border-radius: 12px; }
-.btn-md { padding: 12px 24px; }
-.btn-lg { padding: 14px 28px; }
+.btn-sm {
+  padding: 10px 18px;
+  font-size: 0.94rem;
+  border-radius: 12px;
+}
+.btn-md {
+  padding: 12px 24px;
+}
+.btn-lg {
+  padding: 14px 28px;
+}
 
 /* === Link button (restore original height/shape while keeping glass rim) === */
 .btn-link-size {
-  padding: 16px 38px;         /* taller & wider */
-  border-radius: 16px;        /* slightly rounder corners */
-  font-size: 1.05rem;         /* same readable size */
+  padding: 16px 38px; /* taller & wider */
+  border-radius: 16px; /* slightly rounder corners */
+  font-size: 1.05rem; /* same readable size */
   min-width: 140px;
 }
 
 /* ===== Contacts ===== */
-.contacts-main { padding: 16px 14px 90px; } /* bottom space for tab bar */
-.contacts-search { display:flex; justify-content:center; margin: 6px 0 14px; }
-.contacts-input { width: 100%; max-width: 520px; padding: 12px 14px; font-size: 0.98rem; }
+.contacts-main {
+  padding: 16px 14px 90px;
+} /* bottom space for tab bar */
+.contacts-search {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 14px;
+}
+.contacts-input {
+  width: 100%;
+  max-width: 520px;
+  padding: 12px 14px;
+  font-size: 0.98rem;
+}
 
-.contacts-list { display: flex; flex-direction: column; gap: 12px; }
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 .contact-row {
   display: grid;
@@ -1690,39 +1993,79 @@ opacity: 0.95;
 }
 
 .contact-avatar {
-  width: 56px; height: 56px; border-radius: 50%;
-  display: grid; place-items: center;
-  font-weight: 700; letter-spacing: .2px; color: #e9eef9;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  position: relative; overflow: hidden;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #e9eef9;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 6px 16px rgba(0,0,0,0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
 /* tiny presence dot */
 .presence {
-  position: absolute; right: -2px; bottom: -2px;
-  width: 16px; height: 16px; border-radius: 50%;
-  border: 2px solid rgba(15,20,33,0.9); /* rim against glass bg */
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(15, 20, 33, 0.9); /* rim against glass bg */
 }
-.presence.online { background: #52e07a; }
-.presence.away   { background: #f5c15b; }
-.presence.dnd    { background: #ff6b7d; }
+.presence.online {
+  background: #52e07a;
+}
+.presence.away {
+  background: #f5c15b;
+}
+.presence.dnd {
+  background: #ff6b7d;
+}
 
-.contact-meta { min-width: 0; }
-.contact-name { font-weight: 600; color: #e6edf7; line-height: 1.2; }
-.contact-sub  { color: #aeb7c9; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.contact-meta {
+  min-width: 0;
+}
+.contact-name {
+  font-weight: 600;
+  color: #e6edf7;
+  line-height: 1.2;
+}
+.contact-sub {
+  color: #aeb7c9;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-.contact-actions { display: flex; gap: 8px; }
+.contact-actions {
+  display: flex;
+  gap: 8px;
+}
 @media (max-width: 420px) {
-  .contact-row { grid-template-columns: 48px 1fr; grid-auto-rows: auto; }
-  .contact-actions { grid-column: 1 / -1; justify-content: flex-end; }
+  .contact-row {
+    grid-template-columns: 48px 1fr;
+    grid-auto-rows: auto;
+  }
+  .contact-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
 }
 
 /* ===== Connections ===== */
-.connections-main { padding: 16px 14px 90px; }
+.connections-main {
+  padding: 16px 14px 90px;
+}
 
 .connections-toolbar {
   display: grid;
@@ -1731,7 +2074,11 @@ opacity: 0.95;
   gap: 10px;
   margin: 6px 0 14px;
 }
-.connections-input { width: 100%; padding: 12px 14px; font-size: 0.98rem; }
+.connections-input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.98rem;
+}
 
 .sort-wrap {
   display: inline-flex;
@@ -1748,12 +2095,16 @@ opacity: 0.95;
   font-weight: 600;
 }
 .sort-btn.active {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #eaf1ff;
 }
 
 /* list */
-.connections-list { display: flex; flex-direction: column; gap: 12px; }
+.connections-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 .connection-row {
   width: 100%;
@@ -1765,29 +2116,62 @@ opacity: 0.95;
 }
 .connection-row:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
 }
 
 .connection-avatar {
-  width: 56px; height: 56px; border-radius: 50%;
-  display: grid; place-items: center;
-  font-weight: 700; letter-spacing: .2px; color: #e9eef9;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  position: relative; overflow: hidden;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #e9eef9;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 6px 16px rgba(0,0,0,0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
-.connection-meta { min-width: 0; display:flex; flex-direction: column; gap: 4px; }
-.connection-top  { display:flex; align-items: baseline; justify-content: space-between; gap:10px; }
-.connection-name { font-weight: 600; color: #e6edf7; line-height: 1.2; }
-.connection-time { color: #aeb7c9; font-size: 0.9rem; white-space: nowrap; }
-.connection-sub  { color: #aeb7c9; font-size: 0.94rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.connection-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.connection-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.connection-name {
+  font-weight: 600;
+  color: #e6edf7;
+  line-height: 1.2;
+}
+.connection-time {
+  color: #aeb7c9;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.connection-sub {
+  color: #aeb7c9;
+  font-size: 0.94rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 @media (max-width: 420px) {
-  .connections-toolbar { grid-template-columns: 1fr; }
+  .connections-toolbar {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== Connections — top-right toggle ===== */
@@ -1811,15 +2195,17 @@ opacity: 0.95;
   padding: 8px 12px;
   border-radius: 10px;
   font-weight: 600;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
 }
 .toggle-option.active {
-  background: rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.1);
   color: #eaf1ff;
 }
 
 /* ===== Connections — list tweaks for two-line timestamp ===== */
-.connection-top { align-items: flex-start; }
+.connection-top {
+  align-items: flex-start;
+}
 .connection-time {
   text-align: right;
   display: flex;
@@ -1827,17 +2213,29 @@ opacity: 0.95;
   gap: 2px;
   min-width: 66px;
 }
-.connection-time .date { color: #cfd6e6; font-size: 0.86rem; line-height: 1; }
-.connection-time .time { color: #aeb7c9; font-size: 0.82rem; line-height: 1; }
+.connection-time .date {
+  color: #cfd6e6;
+  font-size: 0.86rem;
+  line-height: 1;
+}
+.connection-time .time {
+  color: #aeb7c9;
+  font-size: 0.82rem;
+  line-height: 1;
+}
 
 /* ===== Bottom search bar (sticky above tab bar) ===== */
-.connections-main { padding: 8px 14px 120px; } /* extra bottom space for sticky search + tab bar */
+.connections-main {
+  padding: 8px 14px 120px;
+} /* extra bottom space for sticky search + tab bar */
 
-.connections-list.with-bottom-search { padding-bottom: 8px; }
+.connections-list.with-bottom-search {
+  padding-bottom: 8px;
+}
 
 .connections-search-bottom {
   position: sticky;
-  bottom: 10px;              /* sits above your tab bar; adjust if your tab bar height differs */
+  bottom: 10px; /* sits above your tab bar; adjust if your tab bar height differs */
   display: flex;
   justify-content: center;
   padding: 80px 0 0;
@@ -1852,8 +2250,12 @@ opacity: 0.95;
 
 /* small screens */
 @media (max-width: 420px) {
-  .connections-time { min-width: 56px; }
-  .connections-main { padding-bottom: 126px; }
+  .connections-time {
+    min-width: 56px;
+  }
+  .connections-main {
+    padding-bottom: 126px;
+  }
 }
 
 .connections-topbar {
@@ -1882,7 +2284,6 @@ opacity: 0.95;
   color: #e6edf7;
 }
 
-
 /* Header area: title on first line, toggle below, right-aligned */
 .connections-topbar {
   position: sticky;
@@ -1892,7 +2293,7 @@ opacity: 0.95;
   flex-direction: column;
   gap: 6px;
   padding: 12px 4px 10px;
-  background: rgba(15,17,24,0.7);
+  background: rgba(15, 17, 24, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -1940,44 +2341,48 @@ opacity: 0.95;
   padding: 8px 12px;
   border-radius: 10px;
   font-weight: 600;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   cursor: pointer;
 }
 .toggle-option.active {
-  background: rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.1);
   color: #eaf1ff;
 }
 
 /* ===== Header left align ===== */
 .connections-topbar {
-  align-items: flex-start;         /* header area uses column layout; keep left */
+  align-items: flex-start; /* header area uses column layout; keep left */
 }
 .connections-title {
-  justify-content: flex-start;     /* force icon + title to left */
+  justify-content: flex-start; /* force icon + title to left */
 }
 .screen-title {
-  text-align: left;                /* override any global h1 centering */
+  text-align: left; /* override any global h1 centering */
 }
 
 /* ===== Sort toggle ~50% smaller ===== */
 .sort-toggle {
   gap: 3px;
-  padding: 4px;                    /* was 6px */
-  border-radius: 12px;             /* slightly tighter */
-  transform: scale(0.88);          /* subtle overall shrink */
-  transform-origin: right center;  /* shrink anchored to the right */
+  padding: 4px; /* was 6px */
+  border-radius: 12px; /* slightly tighter */
+  transform: scale(0.88); /* subtle overall shrink */
+  transform-origin: right center; /* shrink anchored to the right */
 }
 .toggle-option {
-  padding: 5px 10px;               /* was 8px 12px */
-  font-size: 0.9rem;               /* smaller text */
+  padding: 5px 10px; /* was 8px 12px */
+  font-size: 0.9rem; /* smaller text */
   border-radius: 9px;
 }
 
 /* ===== Bottom search: FIXED above tab bar (does not scroll) ===== */
-:root { --tabbar-height: 88px; }   /* adjust if your tab bar height differs */
+:root {
+  --tabbar-height: 88px;
+} /* adjust if your tab bar height differs */
 
 .connections-main {
-  padding-bottom: calc(var(--tabbar-height) + 72px); /* room so list doesn't hide behind fixed search */
+  padding-bottom: calc(
+    var(--tabbar-height) + 72px
+  ); /* room so list doesn't hide behind fixed search */
 }
 
 /* ——— Glass header bar behind Connections + Sort toggle ——— */
@@ -2003,18 +2408,57 @@ opacity: 0.95;
   border-radius: 0 0 12px 12px; /* soft bottom edge */
 }
 
-.connections-title { display:flex; align-items:center; gap:8px; padding-left:2px; }
-.title-icon { color:#e6edf7; opacity:.95; }
-.screen-title { margin:0; font-weight:700; font-size:1.24rem; letter-spacing:.2px; color:#e6edf7; }
-.connections-sortrow { display:flex; justify-content:flex-end; width:100%; padding-right:4px; }
-.sort-toggle { display:inline-flex; gap:3px; padding:4px; border-radius:12px; align-items:center; }
-.toggle-option { padding:5px 10px; font-size:.9rem; border-radius:9px; border:0; background:transparent; color:#cfd6e6; font-weight:600; cursor:pointer; }
-.toggle-option.active { background:rgba(255,255,255,.10); color:#eaf1ff; }
-
+.connections-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 2px;
+}
+.title-icon {
+  color: #e6edf7;
+  opacity: 0.95;
+}
+.screen-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.24rem;
+  letter-spacing: 0.2px;
+  color: #e6edf7;
+}
+.connections-sortrow {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 4px;
+}
+.sort-toggle {
+  display: inline-flex;
+  gap: 3px;
+  padding: 4px;
+  border-radius: 12px;
+  align-items: center;
+}
+.toggle-option {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 9px;
+  border: 0;
+  background: transparent;
+  color: #cfd6e6;
+  font-weight: 600;
+  cursor: pointer;
+}
+.toggle-option.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #eaf1ff;
+}
 
 /* ——— Bottom search: blurred glass, centered, never under scrollbar ——— */
 /* Uses --sbw (scrollbar width) set by the small useEffect */
-:root { --tabbar-height: 88px; --sbw: 0px; }
+:root {
+  --tabbar-height: 88px;
+  --sbw: 0px;
+}
 
 .connections-search-fixed {
   position: fixed;
@@ -2023,15 +2467,14 @@ opacity: 0.95;
   z-index: 20;
 
   display: flex;
-  justify-content: flex-start;   /* ← align left instead of center */
-  padding: 10px 16px;            /* match left padding of cards */
+  justify-content: flex-start; /* ← align left instead of center */
+  padding: 10px 16px; /* match left padding of cards */
   padding-right: calc(16px + var(--sbw)); /* keep it off scrollbar */
   background: transparent;
 
-  pointer-events: none;          /* outer ignores clicks; inner re-enables */
+  pointer-events: none; /* outer ignores clicks; inner re-enables */
   box-sizing: border-box;
 }
-
 
 /* Centered glass box; ~75% width, capped */
 .search-clip {
@@ -2039,18 +2482,19 @@ opacity: 0.95;
   width: clamp(240px, 75vw, 520px);
   margin: 0 auto;
   border-radius: 14px;
-  overflow: hidden;           /* clip the blur to rounded rect */
+  overflow: hidden; /* clip the blur to rounded rect */
   pointer-events: auto;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
 }
 
 /* The blur is on a clipped pseudo-element → no bleed */
 .search-clip::before {
   content: "";
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   border-radius: inherit;
   clip-path: inset(0 round 14px);
   backdrop-filter: blur(12px) saturate(160%);
@@ -2078,9 +2522,16 @@ opacity: 0.95;
 }
 
 /* Put the blur BEHIND the input text */
-.search-clip { position: relative; }
-.search-clip::before { z-index: 0; }
-.search-clip > * { position: relative; z-index: 1; }  /* input, etc. */
+.search-clip {
+  position: relative;
+}
+.search-clip::before {
+  z-index: 0;
+}
+.search-clip > * {
+  position: relative;
+  z-index: 1;
+} /* input, etc. */
 
 /* Ensure text + caret + placeholder are readable */
 .connections-input-plain {
@@ -2088,7 +2539,7 @@ opacity: 0.95;
   caret-color: #e6edf7;
 }
 .connections-input-plain::placeholder {
-  color: #cfd6e6;   /* softer than main text */
+  color: #cfd6e6; /* softer than main text */
   opacity: 0.8;
 }
 
@@ -2104,10 +2555,10 @@ opacity: 0.95;
   align-items: center;
   gap: 8px;
 
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 8px 14px 10px;
   z-index: 30;
 }
@@ -2115,8 +2566,8 @@ opacity: 0.95;
 /* Input field inside the bar */
 .conversation-input-bar input {
   flex: 1;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   color: #e6edf7;
   padding: 10px 12px;
@@ -2137,14 +2588,14 @@ opacity: 0.95;
   transform: scale(1.08);
 }
 
-:root{
+:root {
   /* If not already defined elsewhere */
   --tabbar-height: 88px;
   --sbw: 0px; /* set at runtime by useEffect */
 }
 
 /* Full-width fixed wrapper, reserves space for the scrollbar on the right */
-.composer-fixed{
+.composer-fixed {
   position: fixed;
   left: 0;
   right: 0;
@@ -2155,14 +2606,14 @@ opacity: 0.95;
   justify-content: center;
 
   padding: 8px 0;
-  padding-right: var(--sbw);      /* ← key: keep away from scrollbar */
-  pointer-events: none;           /* wrapper ignores clicks; inner re-enables */
+  padding-right: var(--sbw); /* ← key: keep away from scrollbar */
+  pointer-events: none; /* wrapper ignores clicks; inner re-enables */
   box-sizing: border-box;
   background: transparent;
 }
 
 /* Centered glass “card” for the input + send */
-.composer-card{
+.composer-card {
   width: clamp(280px, 95vw, 720px);
   display: grid;
   grid-template-columns: 1fr auto;
@@ -2171,17 +2622,17 @@ opacity: 0.95;
   padding: 8px;
   border-radius: 16px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
 
   pointer-events: auto; /* re-enable interactions */
 }
 
 /* Input inside composer */
-.composer-input{
+.composer-input {
   background: transparent;
   border: none;
   outline: none;
@@ -2192,34 +2643,34 @@ opacity: 0.95;
   box-sizing: border-box;
   caret-color: #e6edf7;
 }
-.composer-input::placeholder{
+.composer-input::placeholder {
   color: #cfd6e6;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 /* Ensure the scroll area leaves room below for the fixed composer */
-.conversation-screen{
+.conversation-screen {
   padding-bottom: calc(var(--tabbar-height) + 86px);
 }
 
-:root{
+:root {
   /* already in your file, okay to keep: */
   --tabbar-height: 88px;
-  --sbw: 0px;              /* set at runtime by our small useEffect */
+  --sbw: 0px; /* set at runtime by our small useEffect */
   /* constants for this screen */
-  --conv-header: 84px;     /* visual height of your sticky header */
-  --composer-h: 64px;      /* visual height of the composer card */
+  --conv-header: 84px; /* visual height of your sticky header */
+  --composer-h: 64px; /* visual height of the composer card */
 }
 
 /* Whole conversation screen: lock to viewport, no page scrolling here */
-.conversation-screen{
+.conversation-screen {
   position: relative;
   height: calc(100vh - var(--tabbar-height));
-  overflow: hidden;                   /* ← prevents a second page scrollbar */
+  overflow: hidden; /* ← prevents a second page scrollbar */
 }
 
 /* Glass header bar (you already have similar on Connections) */
-.conv-topbar{
+.conv-topbar {
   position: sticky;
   top: 0;
   z-index: 15;
@@ -2231,30 +2682,46 @@ opacity: 0.95;
   height: var(--conv-header);
 
   background: rgba(20, 24, 32, 0.55);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
   border-radius: 0 0 12px 12px;
 }
 
-.conv-header-center{ display:grid; justify-items:center; align-items:center; gap:6px; }
-.conv-title-btn{ background:none; border:0; color:#e6edf7; font-weight:700; font-size:1.05rem; cursor:pointer; }
-.conv-header-actions{ display:flex; align-items:center; gap:8px; }
+.conv-header-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 6px;
+}
+.conv-title-btn {
+  background: none;
+  border: 0;
+  color: #e6edf7;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+.conv-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 /* Only the list scrolls */
-.conv-scroll{
+.conv-scroll {
   position: absolute;
   top: var(--conv-header);
   left: 0;
   right: 0;
-  bottom: calc(var(--composer-h) + 12px);  /* space for composer */
+  bottom: calc(var(--composer-h) + 12px); /* space for composer */
   overflow-y: auto;
   padding: 6px 0;
 }
 
 /* Fixed composer (no right-edge bleed, sits above tab bar) */
-.composer-fixed{
+.composer-fixed {
   position: fixed;
   left: 0;
   right: 0;
@@ -2265,14 +2732,14 @@ opacity: 0.95;
   justify-content: center;
 
   padding: 8px 0;
-  padding-right: var(--sbw);            /* ← keep away from scrollbar */
+  padding-right: var(--sbw); /* ← keep away from scrollbar */
   pointer-events: none;
   background: transparent;
   box-sizing: border-box;
 }
 
 /* Centered glass card that holds input + send */
-.composer-card{
+.composer-card {
   width: clamp(280px, 95vw, 720px);
   min-height: var(--composer-h);
   display: grid;
@@ -2282,17 +2749,17 @@ opacity: 0.95;
   padding: 8px;
   border-radius: 16px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
 
   pointer-events: auto; /* interactions enabled inside */
 }
 
 /* Input styling */
-.composer-input{
+.composer-input {
   background: transparent;
   border: none;
   outline: none;
@@ -2303,59 +2770,70 @@ opacity: 0.95;
   box-sizing: border-box;
   caret-color: #e6edf7;
 }
-.composer-input::placeholder{ color:#cfd6e6; opacity:.85; }
+.composer-input::placeholder {
+  color: #cfd6e6;
+  opacity: 0.85;
+}
 
 /* --- Conversation composer: no right-edge overlap + slimmer height --- */
 
 /* 1) Give a tiny safety margin beyond the scrollbar width */
-.composer-fixed{
+.composer-fixed {
   /* was: padding-right: var(--sbw); */
-  padding-right: calc(var(--sbw) + 22px);  /* extra 6px so the blur never kisses the scrollbar */
+  padding-right: calc(
+    var(--sbw) + 22px
+  ); /* extra 6px so the blur never kisses the scrollbar */
 }
 
 /* 2) Make the composer shorter (match search bar vibe) */
-:root{
-  --composer-h: 52px;  /* was ~64px; adjust to taste (48–56 works well) */
+:root {
+  --composer-h: 52px; /* was ~64px; adjust to taste (48–56 works well) */
 }
 
 /* tighten the card */
-.composer-card{
+.composer-card {
   min-height: var(--composer-h);
-  padding: 6px;             /* was 8px */
-  gap: 2px;                 /* was 8px */
-  border-radius: 1px;      /* a hair sharper like the search bar */
+  padding: 6px; /* was 8px */
+  gap: 2px; /* was 8px */
+  border-radius: 1px; /* a hair sharper like the search bar */
 }
 
 /* slimmer input */
-.composer-input{
-  padding:1px 8px;        /* was 10px 12px */
+.composer-input {
+  padding: 1px 8px; /* was 10px 12px */
   font-size: 0.98rem;
 }
 
 /* smaller send button padding */
-.composer-card .glass-btn{
-  padding: 1px 6px;        /* was ~8px 12px via btn-sm */
+.composer-card .glass-btn {
+  padding: 1px 6px; /* was ~8px 12px via btn-sm */
 }
 
 /* --- Fine-tune composer position: left indent + downward offset --- */
 
 /* Move it slightly inward from the left and lower from the bottom */
 .composer-fixed {
-  left: 16px;                                   /* indent from left edge */
+  left: 16px; /* indent from left edge */
   right: 0;
-  bottom: calc(var(--tabbar-height) - 14px);    /* move down; increase to -2px or 0px if too low */
-  width: auto;                                 /* prevent stretching to full width */
-  justify-content: flex-start;                 /* keep its card aligned to left */
+  bottom: calc(
+    var(--tabbar-height) - 14px
+  ); /* move down; increase to -2px or 0px if too low */
+  width: auto; /* prevent stretching to full width */
+  justify-content: flex-start; /* keep its card aligned to left */
 }
 
 /* Keep the composer card itself narrower if desired */
 .composer-card {
-  width: clamp(250px, 92vw, 720px);  /* adjust 94vw → 92vw for more right margin */
+  width: clamp(
+    250px,
+    92vw,
+    720px
+  ); /* adjust 94vw → 92vw for more right margin */
 }
 
 /* --- ConfirmSheet width + appearance adjustments --- */
 .confirm-sheet {
-  width: min(400px, 88vw);        /* narrower, fits mobile better */
+  width: min(400px, 88vw); /* narrower, fits mobile better */
   border-radius: 18px;
   padding: 18px 16px;
   display: grid;
@@ -2395,7 +2873,9 @@ opacity: 0.95;
 
 /* Add side breathing room for the confirm card */
 .confirm-sheet {
-  margin-right: calc(var(--sbw, 12px) + 16px); /* offset scrollbar width + buffer */
+  margin-right: calc(
+    var(--sbw, 12px) + 16px
+  ); /* offset scrollbar width + buffer */
 }
 
 /* --- Floating icon buttons (chevron + trash) --- */
@@ -2423,85 +2903,135 @@ opacity: 0.95;
 }
 
 /* ----- Connection Detail ----- */
-.connection-detail { position: relative; min-height: 100vh; padding-bottom: calc(var(--tabbar-height) + 16px); }
+.connection-detail {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: calc(var(--tabbar-height) + 16px);
+}
 
 /* Reuse your glass topbar from other screens */
-.conn-header-center{ display:grid; justify-items:center; align-items:center; gap:8px; }
-.conn-username{ color:#e6edf7; font-weight:700; font-size:1.1rem; letter-spacing:.2px; }
+.conn-header-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 8px;
+}
+.conn-username {
+  color: #e6edf7;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.2px;
+}
 
-.conn-body{
+.conn-body {
   padding: 16px;
   display: grid;
   gap: 18px;
 }
 
 /* Pills (Messages / Save) */
-.glass-btn.pill{ border-radius: 999px; padding: 10px 16px; }
-.glass-btn.pill.primary{
-  background: linear-gradient(180deg, rgba(108,160,255,0.9), rgba(70,120,255,0.85));
-  border: 1px solid rgba(255,255,255,0.18);
-  color:#eaf2ff; font-weight:700;
+.glass-btn.pill {
+  border-radius: 999px;
+  padding: 10px 16px;
 }
-.glass-btn.pill.hollow{
+.glass-btn.pill.primary {
+  background: linear-gradient(
+    180deg,
+    rgba(108, 160, 255, 0.9),
+    rgba(70, 120, 255, 0.85)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #eaf2ff;
+  font-weight: 700;
+}
+.glass-btn.pill.hollow {
   background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.18);
-  color:#e6edf7; font-weight:600;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  color: #e6edf7;
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Notes area */
-.conn-section{ display:grid; gap:8px; }
-.conn-label{ color:#e6edf7; font-weight:600; }
-.conn-notes{
+.conn-section {
+  display: grid;
+  gap: 8px;
+}
+.conn-label {
+  color: #e6edf7;
+  font-weight: 600;
+}
+.conn-notes {
   width: 100%;
   padding: 12px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.16);
-  color:#e6edf7;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e6edf7;
   outline: none;
   box-sizing: border-box;
 }
-.conn-actions{ display:flex; justify-content:flex-end; }
+.conn-actions {
+  display: flex;
+  justify-content: flex-end;
+}
 
 /* Danger outline button */
-.btn-danger-outline{
-  display:block; width:100%;
+.btn-danger-outline {
+  display: block;
+  width: 100%;
   padding: 12px 16px;
   border-radius: 999px;
   background: transparent;
   color: #ff5b6a;
   font-weight: 700;
-  border: 1.6px solid rgba(255,90,90,0.85);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+  border: 1.6px solid rgba(255, 90, 90, 0.85);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.btn-danger-outline:hover{ background: rgba(255,90,90,0.08); }
-.btn-danger-outline:active{ transform: translateY(1px); }
-.btn-danger-outline:disabled{ opacity:.6; pointer-events:none; }
+.btn-danger-outline:hover {
+  background: rgba(255, 90, 90, 0.08);
+}
+.btn-danger-outline:active {
+  transform: translateY(1px);
+}
+.btn-danger-outline:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
 
 /* ===== Connection Detail layout & spacing ===== */
 
-.conn-topbar{
+.conn-topbar {
   position: sticky;
   top: 0;
   z-index: 15;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;   /* keeps center perfectly centered */
+  grid-template-columns: 1fr auto 1fr; /* keeps center perfectly centered */
   align-items: center;
   gap: 10px;
   padding: 8px 10px;
-  height: 96px;                          /* a bit taller for avatar */
-  background: rgba(20,24,32,0.55);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  height: 96px; /* a bit taller for avatar */
+  background: rgba(20, 24, 32, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
   border-radius: 0 0 12px 12px;
 }
-.conn-header-center{ display:grid; justify-items:center; align-items:center; gap:8px; }
-.conn-username{ color:#e6edf7; font-weight:700; font-size:1.1rem; letter-spacing:.2px; }
+.conn-header-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 8px;
+}
+.conn-username {
+  color: #e6edf7;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.2px;
+}
 
-.connection-detail .conn-body{
+.connection-detail .conn-body {
   padding: 12px 16px 16px;
   display: grid;
   gap: 18px;
@@ -2509,44 +3039,63 @@ opacity: 0.95;
 }
 
 /* Messages pill ~75% width */
-.conn-msg-btn{
+.conn-msg-btn {
   width: clamp(220px, 75vw, 420px);
   margin: 4px auto 10px; /* centered under avatar/name */
 }
 
 /* Notes block spacing tweaks */
-.conn-section{ display:grid; gap:8px; }
-.conn-label{ color:#e6edf7; font-weight:600; }
-.conn-notes{
+.conn-section {
+  display: grid;
+  gap: 8px;
+}
+.conn-label {
+  color: #e6edf7;
+  font-weight: 600;
+}
+.conn-notes {
   width: 100%;
   padding: 12px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.16);
-  color:#e6edf7;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e6edf7;
   outline: none;
   box-sizing: border-box;
 }
 
 /* Small tile button style (matches your Login button feel) */
-.btn-sm{ padding: 6px 12px; border-radius: 12px; font-weight:600; }
+.btn-sm {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+}
 
 /* Red glass button */
-.glass-btn--danger{
-  color:#ffe7ea;
-  border:1px solid rgba(255, 95, 95, 0.6);
-  background:
-    linear-gradient(180deg, rgba(255,120,120,0.22), rgba(255,120,120,0.06)) border-box,
-    linear-gradient(180deg, rgba(255,80,80,0.12), rgba(0,0,0,0.22)) padding-box;
-  box-shadow:
-    inset 0 0 0 0.5px rgba(255,180,180,0.28),
-    0 10px 22px rgba(0,0,0,0.45);
+.glass-btn--danger {
+  color: #ffe7ea;
+  border: 1px solid rgba(255, 95, 95, 0.6);
+  background: linear-gradient(
+        180deg,
+        rgba(255, 120, 120, 0.22),
+        rgba(255, 120, 120, 0.06)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(255, 80, 80, 0.12), rgba(0, 0, 0, 0.22))
+      padding-box;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 180, 180, 0.28),
+    0 10px 22px rgba(0, 0, 0, 0.45);
 }
-.glass-btn--danger:hover{ box-shadow: inset 0 0 0 0.5px rgba(255,180,180,0.35), 0 12px 26px rgba(0,0,0,0.55); }
-.glass-btn--danger:active{ transform: translateY(1px); }
+.glass-btn--danger:hover {
+  box-shadow: inset 0 0 0 0.5px rgba(255, 180, 180, 0.35),
+    0 12px 26px rgba(0, 0, 0, 0.55);
+}
+.glass-btn--danger:active {
+  transform: translateY(1px);
+}
 
 /* Optional: full-width danger button like your mock */
-.conn-danger-btn{
+.conn-danger-btn {
   width: clamp(220px, 92vw, 520px);
   margin: 6px auto 0;
   border-radius: 999px; /* keep that pill outline */
@@ -2557,54 +3106,79 @@ opacity: 0.95;
 .glass-btn.tile.glass-btn--danger {
   color: #ffe8eb;
   border: 1px solid rgba(255, 95, 95, 0.65);
-  background:
-    linear-gradient(180deg, rgba(255,130,130,0.22), rgba(255,130,130,0.06)) border-box,
-    linear-gradient(180deg, rgba(255,70,70,0.14), rgba(0,0,0,0.24)) padding-box;
-  box-shadow:
-    inset 0 0 0 0.5px rgba(255,170,170,0.30),
-    0 10px 22px rgba(0,0,0,0.45);
+  background: linear-gradient(
+        180deg,
+        rgba(255, 130, 130, 0.22),
+        rgba(255, 130, 130, 0.06)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(255, 70, 70, 0.14), rgba(0, 0, 0, 0.24))
+      padding-box;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 170, 170, 0.3),
+    0 10px 22px rgba(0, 0, 0, 0.45);
 }
 .glass-btn.tile.glass-btn--danger:hover {
-  box-shadow:
-    inset 0 0 0 0.5px rgba(255,170,170,0.38),
-    0 12px 26px rgba(0,0,0,0.55);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 170, 170, 0.38),
+    0 12px 26px rgba(0, 0, 0, 0.55);
 }
-.glass-btn.tile.glass-btn--danger:active { transform: translateY(1px); }
-.conn-danger-btn { width: clamp(220px, 92vw, 220px); margin: 8px auto 0; border-radius: 999px; }
+.glass-btn.tile.glass-btn--danger:active {
+  transform: translateY(1px);
+}
+.conn-danger-btn {
+  width: clamp(220px, 92vw, 220px);
+  margin: 8px auto 0;
+  border-radius: 999px;
+}
 
 /* 2) Raise the back chevron and 3) perfect centering of avatar+name */
-.conn-topbar{
-  height: 84px;                 /* was 96px */
-  padding: 0px 0px 8px;        /* less top padding -> chevron sits higher */
-  grid-template-columns: 44px 1fr 44px;  /* symmetric columns so center stays centered */
+.conn-topbar {
+  height: 84px; /* was 96px */
+  padding: 0px 0px 8px; /* less top padding -> chevron sits higher */
+  grid-template-columns: 44px 1fr 44px; /* symmetric columns so center stays centered */
 }
-.conn-topbar .top-actions { display:flex; align-items:flex-start; justify-content:center; width:44px; }
+.conn-topbar .top-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 44px;
+}
 
 /* 4) Add breathing room below the username before the Messages pill */
-.conn-header-center { gap: px; }
-.conn-username { margin-top: 2px; }
-.conn-msg-btn { margin-top: 70px; width: clamp(220px, 60vw, 420px); }
+.conn-header-center {
+  gap: px;
+}
+.conn-username {
+  margin-top: 2px;
+}
+.conn-msg-btn {
+  margin-top: 70px;
+  width: clamp(220px, 60vw, 420px);
+}
 
 /* 5) No page scroll; fit everything comfortably on one screen */
-.connection-detail{
+.connection-detail {
   height: calc(100vh - var(--tabbar-height));
-  overflow: hidden;             /* remove page scrollbar on this screen */
+  overflow: hidden; /* remove page scrollbar on this screen */
   display: grid;
   grid-template-rows: auto 1fr; /* header + body */
 }
-.connection-detail .conn-body{
-  overflow: hidden;             /* body itself doesn't scroll */
+.connection-detail .conn-body {
+  overflow: hidden; /* body itself doesn't scroll */
   display: grid;
-  align-content: start;         /* pack elements to top */
+  align-content: start; /* pack elements to top */
   gap: 16px;
   padding: 12px 16px 10px;
 }
 
 /* Keep the notes area reasonable so it doesn't force tall pages */
-.conn-notes{
-  max-height: 160px;            /* ~4–5 lines visible, prevents huge pages */
-  resize: vertical;             /* allow manual expand if needed */
+.conn-notes {
+  max-height: 160px; /* ~4–5 lines visible, prevents huge pages */
+  resize: vertical; /* allow manual expand if needed */
 }
 
 /* Save button = small tile (less bevel) */
-.btn-sm { padding: 6px 12px; border-radius: 12px; font-weight: 600; }
+.btn-sm {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+}
