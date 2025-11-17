@@ -296,7 +296,7 @@
      - Works with either <BottomNav/> or <TabBar/>
      - Hide on auth/setup pages via React logic
      ========================================================= */
-  .tabbar { margin-top: auto; position: sticky; bottom: 0; left: 0; right: 0; z-index: 10; }
+  .tabbar { margin-top: auto; position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; }
   .tabwrap {
     display: grid; grid-template-columns: repeat(4, 1fr);
     margin: 18px 16px; border-radius: 18px;
