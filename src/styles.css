@@ -172,7 +172,19 @@
   .swave-circle.glow { box-shadow: 0 0 50px rgba(72,155,255,.35), 0 0 100px rgba(72,155,255,.2); }
   .swave-circle h2 { margin: 0 0 10px; }
   .subtext { color: var(--swave-soft); font-size: 17px; line-height: 1.35; width: 200px; max-width: 75%; margin: 8px auto 0; text-align: center; white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
-  
+
+  /* =========================================================
+     5b) ACCOUNT & MENU LISTS
+     ========================================================= */
+  .row { width: 100%; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+  .row:hover { background: rgba(255,255,255,0.04); }
+  .row-sep { border-bottom: 1px solid var(--glass-border); }
+  .row-icon { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; min-height: 36px; color: var(--swave-soft); border: none; background: none; box-shadow: none; padding: 0; }
+  .row-icon .ico { width: 22px; height: 22px; }
+  .row-label { flex: 1; font-size: 15px; font-weight: 600; color: rgba(230,237,247,0.95); }
+  .row-chevron { color: var(--swave-muted); display: inline-flex; }
+  .row.logout .row-label, .row.logout .row-icon { color: var(--swave-danger); }
+
   /* =========================================================
      6) CONNECTIONS & MESSAGES LISTS
      (Shared visual language for both screens)
