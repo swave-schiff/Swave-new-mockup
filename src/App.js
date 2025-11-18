@@ -86,6 +86,7 @@ export default function App() {
 
       {activeTab === "account" && (
         <AccountPreferencesScreen
+          onBack={() => setActiveTab("home")}
           onOpenHelp={() => setActiveTab("feedbackHub")}
           onOpenLinking={() => setActiveTab("linking")}
         />
@@ -267,7 +268,11 @@ function HomeScreen({ onEnterCode }) {
   );
 }
 
-function AccountPreferencesScreen({ onOpenHelp, onOpenLinking = () => {} }) {
+function AccountPreferencesScreen({
+  onOpenHelp,
+  onOpenLinking = () => {},
+  onBack = () => {},
+}) {
   const items = [
     { icon: <IconUser />, label: "My Account & Profile" },
     {
@@ -279,6 +284,19 @@ function AccountPreferencesScreen({ onOpenHelp, onOpenLinking = () => {} }) {
   ];
   return (
     <main className="main">
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
       <div className="card">
         {items.map((item, idx) => (
           <button
