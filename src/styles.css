@@ -221,6 +221,7 @@
   }
 
   .row.row-sep,
+  .row + .row,
   .account-row + .account-row {
     border-top: 1px solid var(--glass-border);
   }
@@ -233,7 +234,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    color: var(--swave-soft);
+    color: var(--swave-accent-2);
     background: none;
     border: none;
     box-shadow: none;
