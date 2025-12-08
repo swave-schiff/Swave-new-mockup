@@ -7,7 +7,7 @@ export default function AccountPreferencesScreen({
   onOpenLinking = () => {},
 }) {
   return (
-    <main className="account-main">
+    <main className="account-main main-with-tabbar">
       <h1 className="screen-title" style={{ margin: "8px 0 12px 8px" }}>
         Account Preferences
       </h1>

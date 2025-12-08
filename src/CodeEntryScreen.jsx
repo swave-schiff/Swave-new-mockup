@@ -41,153 +41,106 @@ export default function CodeEntryScreen({
   const onClear = () => setDigits([]);
 
   return (
-    <div className="code-screen">
-      {/* back chevron */}
-      {backHandler && (
-        <div className="top-actions">
-          <button
-            className="chevron-btn"
-            onClick={backHandler}
-            aria-label="Back"
-          >
-            <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M15 6L9 12L15 18"
+    <div className="screen">
+      <div className="safe" />
+      <main className="code-screen main-with-tabbar">
+        {/* back chevron */}
+        {backHandler && (
+          <div className="top-actions">
+            <button
+              className="chevron-btn"
+              onClick={backHandler}
+              aria-label="Back"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              />
+                className="chevron-svg"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+          </div>
+        )}
+
+        <div className="code-slots">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className={`slot ${digits[i] ? "filled" : ""}`}>
+              {digits[i] || ""}
+            </div>
+          ))}
+        </div>
+
+        {/* keypad */}
+        <div className="keypad">
+          <button className="key-btn" onClick={() => onDigit(1)}>
+            1
+          </button>
+          <button className="key-btn" onClick={() => onDigit(2)}>
+            2
+          </button>
+          <button className="key-btn" onClick={() => onDigit(3)}>
+            3
+          </button>
+          <button className="key-btn" onClick={() => onDigit(4)}>
+            4
+          </button>
+          <button className="key-btn" onClick={() => onDigit(5)}>
+            5
+          </button>
+          <button className="key-btn" onClick={() => onDigit(6)}>
+            6
+          </button>
+          <button className="key-btn" onClick={() => onDigit(7)}>
+            7
+          </button>
+          <button className="key-btn" onClick={() => onDigit(8)}>
+            8
+          </button>
+          <button className="key-btn" onClick={() => onDigit(9)}>
+            9
+          </button>
+          <button className="key-btn" onClick={onClear} aria-label="Clear">
+            #
+          </button>
+          <button className="key-btn" onClick={() => onDigit(0)} aria-label="0">
+            0
+          </button>
+          <button className="key-btn delete-key" onClick={onBackspace} aria-label="Delete">
+            <svg
+              className="delete-icon"
+              width="28"
+              height="20"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              stroke="currentColor"
+              fill="none"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M10 6L4 12l6 6h9a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-9zM13 9l-3 3 3 3m4-3H10" />
             </svg>
           </button>
         </div>
-      )}
-
-      {/* round code slots */}
-      <div className="code-boxes">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className={`code-box ${digits[i] ? "filled" : ""}`}>
-            {digits[i] || ""}
-          </div>
-        ))}
-      </div>
-
-      {/* keypad */}
-      <div className="keypad">
-        {/* Row 1 */}
-        <button className="keypad-btn" onClick={() => onDigit(1)}>
-          1
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-        <button className="keypad-btn" onClick={() => onDigit(2)}>
-          2 <span className="keypad-sub">ABC</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-        <button className="keypad-btn" onClick={() => onDigit(3)}>
-          3 <span className="keypad-sub">DEF</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-
-        {/* Row 2 */}
-        <button className="keypad-btn" onClick={() => onDigit(4)}>
-          4 <span className="keypad-sub">GHI</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-        <button className="keypad-btn" onClick={() => onDigit(5)}>
-          5 <span className="keypad-sub">JKL</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-        <button className="keypad-btn" onClick={() => onDigit(6)}>
-          6 <span className="keypad-sub">MNO</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-
-        {/* Row 3 */}
-        <button className="keypad-btn" onClick={() => onDigit(7)}>
-          7 <span className="keypad-sub">PQRS</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-        <button className="keypad-btn" onClick={() => onDigit(8)}>
-          8 <span className="keypad-sub">TUV</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-        <button className="keypad-btn" onClick={() => onDigit(9)}>
-          9 <span className="keypad-sub">WXYZ</span>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-
-        {/* Row 4: Clear (#), 0, Backspace */}
-        <button
-          className="keypad-btn keypad-btn--action"
-          onClick={onClear}
-          aria-label="Clear"
-        >
-          #
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
 
         <button
-          className="keypad-btn keypad-zero"
-          onClick={() => onDigit(0)}
-          aria-label="0"
+          id="alt-to-username"
+          className="glass-btn tile glass-btn--hollow alt-entry-btn"
+          onClick={onSwitchToUsername}
         >
-          0
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
+          Enter Username Instead of Code
         </button>
+      </main>
 
-        <button
-          className="keypad-btn keypad-btn--action"
-          onClick={onBackspace}
-          aria-label="Delete"
-        >
-          <svg
-            width="28"
-            height="20"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            stroke="currentColor"
-            fill="none"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M10 6L4 12l6 6h9a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-9zM13 9l-3 3 3 3m4-3H10" />
-          </svg>
-          <span className="rim-light" />
-          <span className="rim-dark" />
-          <span className="rim-inner" />
-        </button>
-      </div>
-
-      <button
-        id="alt-to-username"
-        className="glass-btn tile glass-btn--hollow"
-        onClick={onSwitchToUsername}
-      >
-        Enter Username Instead of Code
-      </button>
+      <nav className="tabbar"></nav>
     </div>
   );
 }

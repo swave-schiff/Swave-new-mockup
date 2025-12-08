@@ -10,14 +10,19 @@ export default function UsernameEntryScreen({ onBack }) {
       {/* Top-left chevron back */}
       <div className="top-actions">
         <button className="chevron-btn" onClick={onBack} aria-label="Back">
-          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M15 6L9 12L15 18"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="chevron-svg"
+          >
+            <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
       </div>

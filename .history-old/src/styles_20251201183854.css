@@ -1,0 +1,847 @@
+/* =========================================================
+   SWAVE — styles.css (fully cleaned & organized)
+   Drop-in replacement
+   ---------------------------------------------------------
+   Conventions
+   - Adjustable lines are marked with  ➜ ADJUST:
+   - Sections are ordered top→down by cascade importance
+   - No stray braces; validated syntax
+   ========================================================= */
+
+/* =========================================================
+   0) CSS CUSTOM PROPERTIES (THEME)
+   ========================================================= */
+:root {
+  /* Core palette */
+  --swave-bg: #0b0f18;
+  --swave-text: #e6edf7;
+  --swave-muted: #b7c2d1;
+  --swave-soft: #cfd9ea;
+  --swave-accent: #3a64ff; /* ➜ ADJUST: primary accent */
+  --swave-accent-2: #6ca0ff; /* ➜ ADJUST: lighter accent */
+  --swave-danger: #ff5f6d; /* ➜ ADJUST: danger color */
+
+  /* Glass + borders */
+  --glass-fill-top: rgba(255, 255, 255, 0.2);
+  --glass-fill-bot: rgba(255, 255, 255, 0.06);
+  --glass-surface: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-strong: rgba(255, 255, 255, 0.22);
+
+  /* Shadows */
+  --shadow-1: 0 8px 22px rgba(0, 0, 0, 0.45);
+  --shadow-2: 0 12px 30px rgba(0, 0, 0, 0.55);
+
+  /* Layout helpers */
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-18: 18px;
+  --radius-22: 22px;
+  --sbw: 0px; /* set via JS for fixed search */
+}
+
+/* =========================================================
+     1) BASE / RESET
+     ========================================================= */
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: radial-gradient(
+    1200px 1200px at 50% -10%,
+    #121826 0%,
+    #0b0f18 55%,
+    #0b0f18 100%
+  );
+  color: var(--swave-text);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+
+/* Utility */
+.hidden {
+  display: none !important;
+}
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.center {
+  display: grid;
+  place-items: center;
+}
+
+/* Icons */
+.ico {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Ensure content never hides under bottom nav */
+.main-with-tabbar {
+  padding-bottom: 76px; /* ➜ ADJUST: tabbar reserve */
+}
+
+/* =========================================================
+     2) CARDS / GLASS SURFACES
+     ========================================================= */
+.card {
+  border-radius: var(--radius-18);
+  overflow: hidden;
+}
+.card.glass {
+  position: relative;
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-1);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+
+/* =========================================================
+     3) GLASS BUTTONS (UNIFIED)
+     ========================================================= */
+.glass-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px; /* ➜ ADJUST: button padding */
+  border-radius: var(--radius-18);
+  font-weight: 600;
+  color: var(--swave-text);
+  border: 1px solid var(--glass-border-strong);
+  background: linear-gradient(
+        180deg,
+        var(--glass-fill-top),
+        var(--glass-fill-bot)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.18))
+      padding-box;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.25), var(--shadow-1);
+  transition: transform 0.08s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.glass-btn:hover {
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.3), var(--shadow-2);
+}
+.glass-btn:active {
+  transform: translateY(1px);
+}
+.glass-btn:disabled,
+.glass-btn[aria-disabled="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.glass-btn--hollow {
+  background: transparent;
+  border: 1.5px solid #3a3a3b;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.glass-btn--tint {
+  color: #eaf1ff;
+  border-color: rgba(118, 160, 255, 0.55);
+  background: linear-gradient(
+        180deg,
+        rgba(140, 180, 255, 0.22),
+        rgba(60, 120, 255, 0.1)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(80, 130, 255, 0.18), rgba(0, 0, 0, 0.22))
+      padding-box;
+}
+.glass-btn--danger {
+  color: #ffecee;
+  border: 1px solid rgba(255, 95, 95, 0.65);
+  background: linear-gradient(
+        180deg,
+        rgba(255, 130, 130, 0.22),
+        rgba(255, 130, 130, 0.06)
+      )
+      border-box,
+    linear-gradient(180deg, rgba(255, 70, 70, 0.14), rgba(0, 0, 0, 0.24))
+      padding-box;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 170, 170, 0.3), var(--shadow-1);
+}
+.glass-btn.big {
+  min-width: 180px;
+  padding: 14px 26px;
+  font-size: 1rem;
+  border-radius: 14px;
+  margin-top: 12px;
+}
+
+/* Optional “edge & glint” decoration (kept lightweight) */
+.edge-top,
+.edge-left,
+.corner-glint {
+  position: absolute;
+  pointer-events: none;
+}
+.edge-top {
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+}
+.edge-left {
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+}
+.corner-glint.tl {
+  top: 8px;
+  left: 8px;
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), transparent);
+}
+.corner-glint.tr {
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45));
+}
+
+/* No-backdrop-filter fallback */
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .glass-btn,
+  .glass-btn--hollow,
+  .card.glass,
+  .tabwrap,
+  .input.glass,
+  .input-prefix.glass {
+    background: rgba(35, 40, 55, 0.88);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 8px 20px rgba(0, 0, 0, 0.45);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Reduce transparency preference */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-btn,
+  .glass-btn--hollow,
+  .glass-btn--tint,
+  .glass-btn--danger,
+  .card.glass,
+  .tabwrap,
+  .input.glass,
+  .input-prefix.glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(35, 40, 55, 0.92);
+  }
+}
+
+/* =========================================================
+     4) GLOBAL LAYOUT WRAPPERS
+     ========================================================= */
+main {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* =========================================================
+     5) LOGIN / HOME SCREENS
+     ========================================================= */
+.login-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 40px;
+}
+.login-brand {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin: 8px 0 2px;
+}
+.login-cards {
+  display: grid;
+  gap: 14px;
+  width: min(520px, 92%);
+}
+.login-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+}
+.login-card .login-card-text {
+  display: grid;
+  gap: 6px;
+  text-align: left;
+}
+.login-card-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.login-card-sub {
+  color: var(--swave-soft);
+  font-size: 14px;
+}
+.login-chevron {
+  font-size: 28px;
+  opacity: 0.9;
+}
+
+/* Modern auth (phone-first) */
+.auth-page {
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 32px 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.auth-logo {
+  width: 100%;
+  text-align: center;
+}
+.auth-shell {
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  text-align: left;
+}
+.auth-card {
+  width: 100%;
+  padding: 22px 20px 20px;
+  border-radius: var(--radius-22);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.09),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-1);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+.auth-copy {
+  display: grid;
+  gap: 10px;
+}
+.auth-subtext {
+  display: grid;
+  gap: 12px;
+  color: var(--swave-soft);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 4px 0 2px;
+}
+.auth-subtext p {
+  margin: 0;
+}
+.auth-bullets {
+  padding-left: 20px;
+  margin: 0;
+}
+.auth-bullets li {
+  margin: 0 0 6px;
+  padding-left: 2px;
+}
+.auth-bullets li::marker {
+  font-size: 1.2em;
+}
+.auth-privacy {
+  font-weight: 700;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.auth-form {
+  width: 100%;
+  display: grid;
+  gap: 16px;
+  margin-top: 6px;
+}
+.auth-field {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+.auth-field-label {
+  color: var(--swave-soft);
+  font-size: 13px;
+  letter-spacing: 0.2px;
+}
+.phone-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 14px;
+  border-radius: var(--radius-18);
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--shadow-1);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+.phone-prefix {
+  color: var(--swave-soft);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.phone-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--swave-text);
+  font-size: 18px;
+  letter-spacing: 0.25px;
+  outline: none;
+  caret-color: var(--swave-accent-2);
+}
+.phone-input::placeholder {
+  color: var(--swave-muted);
+}
+.auth-continue {
+  align-self: flex-start;
+  min-width: 140px;
+}
+.auth-legal {
+  margin: 6px 2px 0;
+  color: var(--swave-muted);
+  font-size: 11px;
+}
+.microtext {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 4px;
+}
+
+/* Circular Swave hero (if used) */
+.swave-circle {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--swave-soft);
+  padding: 0 12px;
+}
+.swave-circle.glow {
+  box-shadow: 0 0 50px rgba(72, 155, 255, 0.35),
+    0 0 100px rgba(72, 155, 255, 0.2);
+}
+.swave-circle h2 {
+  margin: 0 0 10px;
+}
+.subtext {
+  color: var(--swave-soft);
+  font-size: 17px;
+  line-height: 1.35;
+  width: 200px;
+  max-width: 75%;
+  margin: 8px auto 0;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+     6) CONNECTIONS & MESSAGES LISTS
+     (Shared visual language for both screens)
+     ========================================================= */
+.connections-main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Topbar */
+.connections-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.connections-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.screen-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Sort toggle */
+.connections-sortrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.sort-toggle {
+  display: inline-flex;
+  border-radius: var(--radius-18);
+  overflow: hidden;
+}
+.sort-toggle.card.glass {
+  padding: 4px;
+}
+.toggle-option {
+  border: 0;
+  background: transparent;
+  color: var(--swave-soft);
+  padding: 8px 12px;
+  border-radius: var(--radius-18);
+}
+.toggle-option.active,
+.toggle-option[aria-selected="true"] {
+  color: var(--swave-text);
+  background: radial-gradient(
+    120px 50px at center,
+    rgba(48, 210, 255, 0.15),
+    transparent 60%
+  );
+}
+
+/* Lists */
+.connections-list {
+  display: grid;
+  gap: 10px;
+}
+.connections-list.with-bottom-search {
+  padding-bottom: calc(64px + var(--sbw));
+}
+
+.connection-row {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  padding: 12px;
+  text-align: left;
+  color: inherit;
+  border: 0;
+  background: transparent;
+}
+.connection-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #eaf1ff;
+  background: linear-gradient(
+    180deg,
+    rgba(80, 130, 255, 0.28),
+    rgba(0, 0, 0, 0.28)
+  );
+  border: 1px solid var(--glass-border);
+}
+.connection-meta {
+  display: grid;
+  gap: 6px;
+}
+.connection-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.connection-name {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.connection-time {
+  display: grid;
+  gap: 2px;
+  text-align: right;
+  font-size: 12px;
+  color: var(--swave-muted);
+}
+.connection-sub {
+  color: var(--swave-soft);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Fixed bottom search for lists */
+.connections-search-fixed {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: max(12px, var(--sbw));
+  background: linear-gradient(
+    180deg,
+    rgba(11, 15, 24, 0),
+    rgba(11, 15, 24, 0.95)
+  );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.search-clip {
+  width: min(640px, 100%);
+  margin: 0 auto;
+  padding: 8px 12px;
+}
+.connections-input-plain {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--swave-text);
+  outline: none;
+}
+.connections-input-plain::placeholder {
+  color: var(--swave-muted);
+}
+
+/* =========================================================
+     7) CONVERSATION VIEW BASICS (placeholder styles)
+     ========================================================= */
+.convo {
+  display: grid;
+  gap: 10px;
+}
+.bubble {
+  max-width: 80%;
+  padding: 10px 12px;
+  border-radius: 16px;
+}
+.bubble.me {
+  margin-left: auto;
+  background: rgba(80, 130, 255, 0.22);
+  border: 1px solid var(--glass-border);
+}
+.bubble.them {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+}
+
+/* =========================================================
+     8) KEYPAD / OTP (CodeEntry, etc.)
+     ========================================================= */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-items: center;
+  margin: 8px auto 0;
+  max-width: 420px;
+}
+.key-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--radius-14);
+  border: 2px solid var(--swave-accent-2);
+  background: transparent;
+  color: var(--swave-text);
+  font-size: 26px;
+  font-weight: 650;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.06s ease;
+  box-shadow: none;
+  cursor: pointer;
+}
+.key-btn:hover {
+  background: rgba(108, 160, 255, 0.1);
+}
+.key-btn:active {
+  transform: translateY(1px);
+}
+.key-btn--hash {
+  flex-direction: column;
+  line-height: 1.1;
+}
+.key-btn--hash .hash-top {
+  font-size: 22px;
+}
+.key-btn--hash .hash-sub {
+  font-size: 12px;
+  color: var(--swave-soft);
+  opacity: 0.95;
+}
+.key-btn--back {
+  font-size: 22px;
+}
+@media (max-width: 360px) {
+  .key-btn {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* =========================================================
+     9) GLOBAL BOTTOM TAB BAR (Router Nav)
+     - Works with either <BottomNav/> or <TabBar/>
+     - Hide on auth/setup pages via React logic
+     ========================================================= */
+.tabbar {
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+.tabwrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 18px 16px;
+  border-radius: 18px;
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+.tab {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--swave-muted);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.tab:hover {
+  color: #e8eef7;
+}
+.tab-active {
+  color: #fff;
+  border-radius: 18px;
+  background: radial-gradient(
+    120px 50px at center,
+    rgba(48, 210, 255, 0.15),
+    transparent 60%
+  );
+}
+.tab-active .ico {
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+
+/* Legacy .bottom-nav support (simple pill) */
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 12px;
+}
+.bottom-nav .bottom-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 42px;
+  margin: 0 6px;
+  border-radius: 12px;
+  color: var(--swave-soft);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+}
+.bottom-nav .bottom-nav-link:hover {
+  color: var(--swave-text);
+}
+
+/* =========================================================
+     10) ACCESSIBILITY HINTS
+     ========================================================= */
+:focus-visible {
+  outline: 2px solid var(--swave-accent);
+  outline-offset: 2px;
+}
+[role="tab"][aria-selected="true"],
+button[aria-pressed="true"] {
+  position: relative;
+}
+
+/* =========================================================
+     11) RESPONSIVE TWEAKS
+     ========================================================= */
+@media (max-width: 480px) {
+  .login-cards {
+    width: 100%;
+  }
+  .connection-row {
+    grid-template-columns: 44px 1fr;
+  }
+  .connection-avatar {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 920px) {
+  main {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

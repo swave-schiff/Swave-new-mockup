@@ -1,0 +1,12 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 500,
+
+  "workbench.localHistory.enabled": true,
+  "workbench.localHistory.maxFileSize": 5024000,
+  "workbench.localHistory.mergeWindow": 1,
+
+  "local-history.saveDelay": 0
+}

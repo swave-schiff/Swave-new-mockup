@@ -5,14 +5,18 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "ajv": "^7.2.4",
+    "lucide-react": "0.546.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "^5.0.0",
-    "lucide-react": "0.546.0"
+    "react-scripts": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "loader-utils": "3.2.1",
     "typescript": "5.7.2"
   },
