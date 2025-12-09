@@ -25,45 +25,48 @@ export default function AccountPreferencesScreen({
   ];
 
   return (
-    <main className="main-with-tabbar account-main">
-      <div className="top-actions">
-        <button className="chevron-btn" onClick={onBack} aria-label="Back">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="chevron-svg"
-          >
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-        </button>
-      </div>
+    <div className="screen">
+      <div className="safe" />
+      <main className="settings-main main-with-tabbar">
+        <div className="top-actions">
+          <button className="chevron-btn" onClick={onBack} aria-label="Back">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="chevron-svg"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+        </div>
 
-      <div className="account-card">
-        {rows.map(({ key, label, icon, onClick }) => (
-          <div
-            key={key}
-            className="list-row"
-            onClick={onClick}
-            role={onClick ? "button" : undefined}
-          >
-            <div className="row-left">
-              {icon}
-              <span>{label}</span>
-            </div>
-            <div className="row-right">
-              <span className="chevron-forward">></span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </main>
+        <div className="card glass account-card">
+          {rows.map(({ key, label, icon, onClick }) => (
+            <button
+              key={key}
+              className="settings-row"
+              onClick={onClick}
+              type="button"
+            >
+              <div className="row-left">
+                {icon}
+                <span>{label}</span>
+              </div>
+              <div className="row-right">
+                <IconChevronRight className="chevron-forward" />
+              </div>
+            </button>
+          ))}
+        </div>
+      </main>
+    </div>
   );
 }
 
@@ -147,6 +150,25 @@ function IconLogout() {
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
       <polyline points="16 17 21 12 16 7" />
       <line x1="21" y1="12" x2="9" y2="12" />
+    </svg>
+  );
+}
+
+function IconChevronRight(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={`ico chevron-forward ${props.className || ""}`}
+      aria-hidden="true"
+    >
+      <path
+        d="M9 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
