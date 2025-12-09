@@ -197,7 +197,10 @@ export default function App() {
       {/* Bottom nav */}
       {activeTab !== "login" &&
         activeTab !== "register" &&
-        activeTab !== "signin" && (
+        activeTab !== "signin" &&
+        activeTab !== "validate" &&
+        activeTab !== "code" &&
+        activeTab !== "username" && (
           <nav className="tabbar">
             <div className="tabwrap">
               <Tab
