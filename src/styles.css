@@ -308,6 +308,12 @@ main {
   margin: 0 auto;
   padding: 0 16px;
 }
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 90px; /* prevents content from colliding with nav bar */
+}
 .header {
   padding-left: 16px;
   padding-right: 16px;
@@ -906,15 +912,17 @@ main {
      - Hide on auth/setup pages via React logic
      ========================================================= */
 .tabbar {
-  margin-top: auto;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
-  z-index: 10;
-}
-nav.tabbar {
-  margin-top: auto;
+  width: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--glass-surface);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-top: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-1);
+  z-index: 20;
 }
 .tabwrap {
   display: grid;
