@@ -710,7 +710,7 @@ main {
 }
 .settings-divider {
   width: 100%;
-  height: 4px; /* a little thicker so it survives the blur */
+  height: 13px; /* a little thicker so it survives the blur */
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.12),
