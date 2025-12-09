@@ -919,6 +919,8 @@ main {
   padding-bottom: env(safe-area-inset-bottom);
   z-index: 20;
 }
+
+}
 .tabwrap {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

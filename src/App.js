@@ -317,24 +317,24 @@ function FeedbackHubScreen({ onBack, onOpenFeedback, onOpenSupport }) {
           </svg>
         </button>
       </div>
-      <div className="card">
-        <button className="row row-sep" onClick={onOpenFeedback}>
-          <span className="row-icon">
+
+      <div className="card glass account-card settings-card">
+        <button type="button" className="settings-row" onClick={onOpenFeedback}>
+          <span className="settings-icon">
             <IconMessage />
           </span>
-          <span className="row-label">Feedback & Suggestions</span>
-          <span className="row-chevron">
-            <IconChevron />
-          </span>
+          <span className="settings-label">Feedback & Suggestions</span>
+          <span className="settings-chevron">›</span>
         </button>
-        <button className="row" onClick={onOpenSupport}>
-          <span className="row-icon">
+
+        <div className="settings-divider" />
+
+        <button type="button" className="settings-row" onClick={onOpenSupport}>
+          <span className="settings-icon">
             <IconHelp />
           </span>
-          <span className="row-label">Report an Issue</span>
-          <span className="row-chevron">
-            <IconChevron />
-          </span>
+          <span className="settings-label">Report an Issue</span>
+          <span className="settings-chevron">›</span>
         </button>
       </div>
     </main>
