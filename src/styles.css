@@ -667,6 +667,29 @@ main {
   padding-bottom: calc(64px + var(--sbw));
 }
 
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--glass-surface);
+  border-radius: var(--radius-14);
+  backdrop-filter: blur(16px) saturate(160%);
+  margin-bottom: 12px;
+}
+.list-row + .list-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.row-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chevron-forward {
+  font-size: 22px;
+  opacity: 0.6;
+}
+
 .connection-row {
   display: grid;
   grid-template-columns: 48px 1fr;

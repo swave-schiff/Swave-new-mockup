@@ -9,6 +9,7 @@ import MessagesScreen from "./MessagesScreen";
 import ConversationScreen from "./ConversationScreen";
 import ConnectionDetailScreen from "./ConnectionDetailScreen";
 import ValidatePhoneScreen from "./ValidatePhoneScreen";
+import AccountPreferencesScreen from "./AccountPreferencesScreen";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
@@ -21,6 +22,21 @@ export default function App() {
   const [currentConnection, setCurrentConnection] = useState(null);
   const [currentThreadId, setCurrentThreadId] = useState(null);
   const [selectedConnection, setSelectedConnection] = useState(null);
+  const [lastAuthedTab, setLastAuthedTab] = useState("home");
+
+  React.useEffect(() => {
+    const onboardingTabs = new Set([
+      "login",
+      "register",
+      "signin",
+      "validate",
+      "code",
+      "username",
+    ]);
+    if (!onboardingTabs.has(activeTab) && activeTab !== "account") {
+      setLastAuthedTab(activeTab);
+    }
+  }, [activeTab]);
 
   return (
     <div className="screen">
@@ -87,6 +103,7 @@ export default function App() {
 
       {activeTab === "account" && (
         <AccountPreferencesScreen
+          onBack={() => setActiveTab(lastAuthedTab)}
           onOpenHelp={() => setActiveTab("feedbackHub")}
           onOpenLinking={() => setActiveTab("linking")}
         />
@@ -265,43 +282,6 @@ function HomeScreen({ onEnterCode }) {
           onClick={onEnterCode}
         >
           Enter Swave Code or Username
-        </button>
-      </div>
-    </main>
-  );
-}
-
-function AccountPreferencesScreen({ onOpenHelp, onOpenLinking = () => {} }) {
-  const items = [
-    { icon: <IconUser />, label: "My Account & Profile" },
-    {
-      icon: <IconLink />,
-      label: "Enable username Linking",
-      onClick: onOpenLinking,
-    },
-    { icon: <IconHelp />, label: "Feedback & Support", onClick: onOpenHelp },
-  ];
-  return (
-    <main className="main">
-      <div className="card">
-        {items.map((item, idx) => (
-          <button
-            key={item.label}
-            className={`row ${idx < items.length - 1 ? "row-sep" : ""}`}
-            onClick={item.onClick}
-          >
-            <span className="row-icon">{item.icon}</span>
-            <span className="row-label">{item.label}</span>
-            <span className="row-chevron">
-              <IconChevron />
-            </span>
-          </button>
-        ))}
-        <button className="row logout">
-          <span className="row-icon logout-icon">
-            <IconLogout />
-          </span>
-          <span className="row-label logout-label">Log out</span>
         </button>
       </div>
     </main>

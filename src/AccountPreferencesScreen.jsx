@@ -3,38 +3,152 @@ import React from "react";
 import "./styles.css";
 
 export default function AccountPreferencesScreen({
+  onBack = () => {},
   onOpenHelp = () => {},
   onOpenLinking = () => {},
 }) {
+  const rows = [
+    { key: "profile", label: "My Account & Profile", icon: <IconUser /> },
+    {
+      key: "linking",
+      label: "Enable Username Linking",
+      icon: <IconChain />,
+      onClick: onOpenLinking,
+    },
+    {
+      key: "feedback",
+      label: "Feedback & Support",
+      icon: <IconHelp />,
+      onClick: onOpenHelp,
+    },
+    { key: "logout", label: "Log Out", icon: <IconLogout /> },
+  ];
+
   return (
-    <main className="account-main main-with-tabbar">
-      <h1 className="screen-title" style={{ margin: "8px 0 12px 8px" }}>
-        Account Preferences
-      </h1>
-
-      <div className="account-list">
-        <button
-          className="account-row card glass"
-          onClick={onOpenLinking}
-          aria-label="Enable Username Linking"
-        >
-          <div className="account-row-title">Enable username Linking</div>
-          <div className="account-row-sub">
-            Temporarily allow others to connect to you by typing your username.
-          </div>
-        </button>
-
-        <button
-          className="account-row card glass"
-          onClick={onOpenHelp}
-          aria-label="Feedback & Support"
-        >
-          <div className="account-row-title">Feedback & Support</div>
-          <div className="account-row-sub">
-            Send feedback or report an issue.
-          </div>
+    <main className="main main-with-tabbar account-main">
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="chevron-svg"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
         </button>
       </div>
+
+      <h1 className="screen-title">Account Preferences</h1>
+
+      <div className="connections-list">
+        {rows.map(({ key, label, icon, onClick }) => (
+          <div
+            key={key}
+            className="list-row"
+            onClick={onClick}
+            role={onClick ? "button" : undefined}
+          >
+            <div className="row-left">
+              {icon}
+              <span>{label}</span>
+            </div>
+            <div className="row-right">
+              <span className="chevron-forward">›</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </main>
+  );
+}
+
+function IconUser() {
+  return (
+    <svg viewBox="0 0 24 24" className="ico">
+      <circle
+        cx="12"
+        cy="8"
+        r="4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M4 20a8 8 0 0116 0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+function IconChain() {
+  return (
+    <svg viewBox="0 0 24 24" className="ico">
+      <path
+        d="M10 13l-1.5 1.5a4 4 0 01-5.7 0 4 4 0 010-5.7L6.3 5.6a4 4 0 015.7 0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M14 11l1.5-1.5a4 4 0 015.7 0 4 4 0 010 5.7l-3.5 3.5a4 4 0 01-5.7 0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+function IconHelp() {
+  return (
+    <svg viewBox="0 0 24 24" className="ico">
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M9.5 9a2.5 2.5 0 014.6 1.1c0 1.8-2.1 2.1-2.1 3.4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="17" r="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconLogout() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="ico"
+    >
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+      <polyline points="16 17 21 12 16 7" />
+      <line x1="21" y1="12" x2="9" y2="12" />
+    </svg>
   );
 }
