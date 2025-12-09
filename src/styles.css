@@ -686,8 +686,24 @@ main {
   gap: 12px;
 }
 .chevron-forward {
-  font-size: 22px;
-  opacity: 0.6;
+  font-size: 26px;
+  opacity: 0.65;
+}
+
+.account-card {
+  background: var(--glass-surface);
+  border-radius: var(--radius-18);
+  padding: 0;
+  backdrop-filter: blur(16px) saturate(160%);
+  margin-top: 24px;
+  overflow: hidden;
+}
+.account-card .list-row {
+  margin: 0;
+  border-radius: 0;
+}
+.account-card .list-row + .list-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .connection-row {

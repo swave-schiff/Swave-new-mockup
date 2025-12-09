@@ -25,7 +25,7 @@ export default function AccountPreferencesScreen({
   ];
 
   return (
-    <main className="main main-with-tabbar account-main">
+    <main className="main-with-tabbar account-main">
       <div className="top-actions">
         <button className="chevron-btn" onClick={onBack} aria-label="Back">
           <svg
@@ -45,9 +45,7 @@ export default function AccountPreferencesScreen({
         </button>
       </div>
 
-      <h1 className="screen-title">Account Preferences</h1>
-
-      <div className="connections-list">
+      <div className="account-card">
         {rows.map(({ key, label, icon, onClick }) => (
           <div
             key={key}
@@ -60,7 +58,7 @@ export default function AccountPreferencesScreen({
               <span>{label}</span>
             </div>
             <div className="row-right">
-              <span className="chevron-forward">›</span>
+              <span className="chevron-forward">></span>
             </div>
           </div>
         ))}
