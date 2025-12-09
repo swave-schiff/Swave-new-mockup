@@ -708,9 +708,14 @@ main {
   color: inherit;
   text-align: left;
 }
-.settings-row + .settings-row {
-  border-top: 1px solid rgba(255, 255, 255, 0.08); /* light top edge */
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); /* darker lower line */
+.settings-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 0, 0, 0.25)
+  );
 }
 
 .connection-row {

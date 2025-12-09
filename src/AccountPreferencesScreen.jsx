@@ -21,7 +21,7 @@ export default function AccountPreferencesScreen({
       icon: <IconHelp />,
       onClick: onOpenHelp,
     },
-    { key: "logout", label: "Log Out", icon: <IconLogout /> },
+    { key: "logout", label: "Log Out", icon: <IconLogout />, className: "logout-row" },
   ];
 
   return (
@@ -47,22 +47,20 @@ export default function AccountPreferencesScreen({
           </button>
         </div>
 
-        <div className="card glass account-card">
-          {rows.map(({ key, label, icon, onClick }) => (
-            <button
-              key={key}
-              className="settings-row"
-              onClick={onClick}
-              type="button"
-            >
-              <div className="row-left">
-                {icon}
-                <span>{label}</span>
-              </div>
-              <div className="row-right">
-                <IconChevronRight className="chevron-forward" />
-              </div>
-            </button>
+        <div className="card glass account-card settings-card">
+          {rows.map(({ key, label, icon, onClick, className }, idx) => (
+            <React.Fragment key={key}>
+              <button
+                type="button"
+                className={`settings-row ${className || ""}`.trim()}
+                onClick={onClick}
+              >
+                <span className="settings-icon">{icon}</span>
+                <span className="settings-label">{label}</span>
+                <span className="settings-chevron">›</span>
+              </button>
+              {idx < rows.length - 1 && <div className="settings-divider" />}
+            </React.Fragment>
           ))}
         </div>
       </main>
@@ -150,25 +148,6 @@ function IconLogout() {
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
       <polyline points="16 17 21 12 16 7" />
       <line x1="21" y1="12" x2="9" y2="12" />
-    </svg>
-  );
-}
-
-function IconChevronRight(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={`ico chevron-forward ${props.className || ""}`}
-      aria-hidden="true"
-    >
-      <path
-        d="M9 6l6 6-6 6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
     </svg>
   );
 }
