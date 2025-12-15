@@ -55,9 +55,13 @@ export default function AccountPreferencesScreen({
                 className={`settings-row ${className || ""}`.trim()}
                 onClick={onClick}
               >
-                <span className="settings-icon">{icon}</span>
-                <span className="settings-label">{label}</span>
-                <span className="settings-chevron">›</span>
+                <span className="settings-left">
+                  <span className="settings-icon">{icon}</span>
+                  <span className="settings-label">{label}</span>
+                </span>
+                <span className="settings-chevron">
+                  <IconChevron />
+                </span>
               </button>
               {idx < rows.length - 1 && <div className="settings-divider" />}
             </React.Fragment>
@@ -148,6 +152,19 @@ function IconLogout() {
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
       <polyline points="16 17 21 12 16 7" />
       <line x1="21" y1="12" x2="9" y2="12" />
+    </svg>
+  );
+}
+
+function IconChevron() {
+  return (
+    <svg viewBox="0 0 24 24" className="ico">
+      <path
+        d="M9 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
     </svg>
   );
 }

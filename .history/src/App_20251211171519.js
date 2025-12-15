@@ -14,6 +14,7 @@ import FeedbackHome from "./FeedbackHome";
 import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
 
+
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
   const [showUsername, setShowUsername] = useState(false);
@@ -51,7 +52,7 @@ export default function App() {
       activeTab === "signin" ||
       activeTab === "register" ||
       activeTab === "account" ||
-      activeTab === "FeedbackHome" ||
+      activeTab === "feedbackHome" ||
       activeTab === "feedbackForm" ||
       activeTab === "supportForm" ||
       activeTab === "linking" ||
@@ -107,7 +108,7 @@ export default function App() {
       {activeTab === "account" && (
         <AccountPreferencesScreen
           onBack={() => setActiveTab(lastAuthedTab)}
-          onOpenHelp={() => setActiveTab("FeedbackHome")}
+          onOpenHelp={() => setActiveTab("feedbackHome")}
           onOpenLinking={() => setActiveTab("linking")}
         />
       )}
@@ -174,10 +175,8 @@ export default function App() {
         />
       )}
 
-      {activeTab === "FeedbackHome" && (
-        <FeedbackHome
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
+      {activeTab === "feedbackHome" && (
+        <feedbackHomeScreen
           onBack={() => setActiveTab("account")}
           onOpenFeedback={() => setActiveTab("feedbackForm")}
           onOpenSupport={() => setActiveTab("supportForm")}
@@ -185,10 +184,8 @@ export default function App() {
       )}
 
       {activeTab === "feedbackForm" && (
-        <FeedbackForm
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          onBack={() => setActiveTab("FeedbackHome")}
+        <FeedbackFormScreen
+          onBack={() => setActiveTab("feedbackHub")}
           onSubmit={(payload) => {
             // TODO: send feedback payload
           }}
@@ -197,10 +194,8 @@ export default function App() {
       )}
 
       {activeTab === "supportForm" && (
-        <SupportForm
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          onBack={() => setActiveTab("FeedbackHome")}
+        <SupportFormScreen
+          onBack={() => setActiveTab("feedbackHub")}
           onSubmit={(payload) => {
             // TODO: send support ticket payload
           }}
@@ -305,6 +300,259 @@ function Placeholder({ label }) {
           <span className="row-label">{label} screen coming soon…</span>
         </div>
       </div>
+    </main>
+  );
+}
+
+/* ------------------- Feedback & Support Hub ------------------- */
+function FeedbackHubScreen({ onBack, onOpenFeedback, onOpenSupport }) {
+  return (
+    <main className="main">
+      {/* Back button */}
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Two-option card (same style as AccountPreferencesScreen) */}
+      <div className="card glass settings-card account-card">
+        {/* Feedback row */}
+        <button className="settings-row" onClick={onOpenFeedback}>
+          <span className="settings-left">
+            <span className="settings-icon">
+              <IconMessage />
+            </span>
+            <span className="settings-label">Feedback & Suggestions</span>
+          </span>
+
+          <span className="settings-chevron">
+            <IconChevron />
+          </span>
+        </button>
+
+        {/* Divider */}
+        <div className="settings-divider" />
+
+        {/* Report Issue row */}
+        <button className="settings-row" onClick={onOpenSupport}>
+          <span className="settings-left">
+            <span className="settings-icon">
+              <IconHelp />
+            </span>
+            <span className="settings-label">Report an Issue</span>
+          </span>
+
+          <span className="settings-chevron">
+            <IconChevron />
+          </span>
+        </button>
+      </div>
+    </main>
+  );
+}
+
+
+/* ------------------- Reusable Thank You Modal ------------------- */
+function ThankYouModal({ message, onClose }) {
+  return (
+    <div className="overlay">
+      <div className="overlay-card">
+        <div className="overlay-msg">{message}</div>
+        <button className="btn-primary-outline" onClick={onClose}>
+          Close
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------- Feedback Form (email optional) ------------------- */
+function FeedbackFormScreen({
+  onBack,
+  onSubmit = () => {},
+  onCloseAfterSubmit,
+}) {
+  const [text, setText] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [showThanks, setShowThanks] = React.useState(false);
+
+  const canSubmit = text.trim().length > 0; // email optional
+
+  return (
+    <main className="main">
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <h2 className="screen-title">Feedback & Suggestions</h2>
+
+      <label className="field">
+        <span className="field-label">Your feedback</span>
+        <textarea
+          className="input textarea"
+          rows={6}
+          maxLength={1000}
+          placeholder="Tell us what you like and what we can improve�"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <div className="char-remaining">
+          {1000 - text.length} characters remaining
+        </div>
+      </label>
+
+      <label className="field">
+        <span className="field-label">Email (optional)</span>
+        <input
+          className="input"
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div className="help-text">
+          Enter email if it is okay for us to write you back.
+        </div>
+      </label>
+
+      <div className="reg-actions">
+        <button
+          className="btn-primary-outline"
+          disabled={text.trim().length === 0}
+          onClick={() => {
+            if (!text.trim()) return;
+            onSubmit({ text, email: email.trim() || null });
+            setShowThanks(true);
+          }}
+        >
+          Submit
+        </button>
+      </div>
+
+      {showThanks && (
+        <ThankYouModal
+          message="Thank you. We try our best to respond within 1 business day."
+          onClose={() => {
+            setShowThanks(false);
+            onCloseAfterSubmit?.();
+          }}
+        />
+      )}
+    </main>
+  );
+}
+
+/* ------------------- Support Form (email required) ------------------- */
+function SupportFormScreen({
+  onBack,
+  onSubmit = () => {},
+  onCloseAfterSubmit,
+}) {
+  const ISSUE_MAX = 1000;
+  const [email, setEmail] = React.useState("");
+  const [subject, setSubject] = React.useState("");
+  const [body, setBody] = React.useState("");
+  const [file, setFile] = React.useState(null);
+  const [consent, setConsent] = React.useState(false);
+  const [showThanks, setShowThanks] = React.useState(false);
+  const [currentThread, setCurrentThread] = useState(null); // { id, name } or null
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const bodyLen = body.length;
+  const remain = Math.max(0, ISSUE_MAX - bodyLen);
+
+  const canSubmit =
+    emailValid && subject.trim().length > 0 && bodyLen > 0 && consent;
+
+  return (
+    <main className="main">
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <h2 className="screen-title">Feedback & Suggestions</h2>
+
+      <label className="field">
+        <span className="field-label">Your feedback</span>
+        <textarea
+          className="input textarea"
+          rows={6}
+          maxLength={1000}
+          placeholder="Tell us what you like and what we can improve�"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <div className="char-remaining">
+          {1000 - text.length} characters remaining
+        </div>
+      </label>
+
+      <label className="field">
+        <span className="field-label">Email (optional)</span>
+        <input
+          className="input"
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div className="help-text">
+          Enter email if it is okay for us to write you back.
+        </div>
+      </label>
+
+      <div className="reg-actions">
+        <button
+          className="btn-primary-outline"
+          disabled={text.trim().length === 0}
+          onClick={() => {
+            if (!text.trim()) return;
+            onSubmit({ text, email: email.trim() || null });
+            setShowThanks(true);
+          }}
+        >
+          Submit
+        </button>
+      </div>
+
+      {showThanks && (
+        <ThankYouModal
+          message="Thank you. We try our best to respond within 1 business day."
+          onClose={() => {
+            setShowThanks(false);
+            onCloseAfterSubmit?.();
+          }}
+        />
+      )}
     </main>
   );
 }
@@ -614,3 +862,5 @@ function IconAlarm() {
     </svg>
   );
 }
+
+

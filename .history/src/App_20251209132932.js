@@ -10,9 +10,6 @@ import ConversationScreen from "./ConversationScreen";
 import ConnectionDetailScreen from "./ConnectionDetailScreen";
 import ValidatePhoneScreen from "./ValidatePhoneScreen";
 import AccountPreferencesScreen from "./AccountPreferencesScreen";
-import FeedbackHome from "./FeedbackHome";
-import FeedbackForm from "./FeedbackForm";
-import SupportForm from "./SupportForm";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
@@ -51,7 +48,7 @@ export default function App() {
       activeTab === "signin" ||
       activeTab === "register" ||
       activeTab === "account" ||
-      activeTab === "FeedbackHome" ||
+      activeTab === "feedbackHub" ||
       activeTab === "feedbackForm" ||
       activeTab === "supportForm" ||
       activeTab === "linking" ||
@@ -107,7 +104,7 @@ export default function App() {
       {activeTab === "account" && (
         <AccountPreferencesScreen
           onBack={() => setActiveTab(lastAuthedTab)}
-          onOpenHelp={() => setActiveTab("FeedbackHome")}
+          onOpenHelp={() => setActiveTab("feedbackHub")}
           onOpenLinking={() => setActiveTab("linking")}
         />
       )}
@@ -174,10 +171,8 @@ export default function App() {
         />
       )}
 
-      {activeTab === "FeedbackHome" && (
-        <FeedbackHome
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
+      {activeTab === "feedbackHub" && (
+        <FeedbackHubScreen
           onBack={() => setActiveTab("account")}
           onOpenFeedback={() => setActiveTab("feedbackForm")}
           onOpenSupport={() => setActiveTab("supportForm")}
@@ -185,10 +180,8 @@ export default function App() {
       )}
 
       {activeTab === "feedbackForm" && (
-        <FeedbackForm
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          onBack={() => setActiveTab("FeedbackHome")}
+        <FeedbackFormScreen
+          onBack={() => setActiveTab("feedbackHub")}
           onSubmit={(payload) => {
             // TODO: send feedback payload
           }}
@@ -197,10 +190,8 @@ export default function App() {
       )}
 
       {activeTab === "supportForm" && (
-        <SupportForm
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          onBack={() => setActiveTab("FeedbackHome")}
+        <SupportFormScreen
+          onBack={() => setActiveTab("feedbackHub")}
           onSubmit={(payload) => {
             // TODO: send support ticket payload
           }}
@@ -305,6 +296,298 @@ function Placeholder({ label }) {
           <span className="row-label">{label} screen coming soon…</span>
         </div>
       </div>
+    </main>
+  );
+}
+
+
+/* ------------------- Feedback & Support Hub ------------------- */
+function FeedbackHubScreen({ onBack, onOpenFeedback, onOpenSupport }) {
+  return (
+    <main className="main">
+      {/* Back button */}
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Two-option card (same style as AccountPreferencesScreen) */}
+      <div className="card glass settings-card account-card">
+        {/* Feedback row */}
+        <button className="settings-row" onClick={onOpenFeedback}>
+          <span className="settings-left">
+            <span className="settings-icon">
+              <IconMessage />
+            </span>
+            <span className="settings-label">Feedback & Suggestions</span>
+          </span>
+
+          <span className="settings-chevron">
+            <IconChevron />
+          </span>
+        </button>
+
+        {/* Divider */}
+        <div className="settings-divider" />
+
+        {/* Report Issue row */}
+        <button className="settings-row" onClick={onOpenSupport}>
+          <span className="settings-left">
+            <span className="settings-icon">
+              <IconHelp />
+            </span>
+            <span className="settings-label">Report an Issue</span>
+          </span>
+
+          <span className="settings-chevron">
+            <IconChevron />
+          </span>
+        </button>
+      </div>
+    </main>
+  );
+}
+
+
+/* ------------------- Reusable Thank You Modal ------------------- */
+function ThankYouModal({ message, onClose }) {
+  return (
+    <div className="overlay">
+      <div className="overlay-card">
+        <div className="overlay-msg">{message}</div>
+        <button className="btn-primary-outline" onClick={onClose}>
+          Close
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------- Feedback Form (email optional) ------------------- */
+function FeedbackFormScreen({
+  onBack,
+  onSubmit = () => {},
+  onCloseAfterSubmit,
+}) {
+  const [text, setText] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [showThanks, setShowThanks] = React.useState(false);
+
+  const canSubmit = text.trim().length > 0; // email optional
+
+  return (
+    <main className="main">
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div className="card form-card">
+        <div className="form-title">Feedback & Suggestions</div>
+
+        <label className="field">
+          <span className="field-label">Your feedback</span>
+          <textarea
+            className="input textarea"
+            rows={5}
+            placeholder="Tell us what you like and what we can improve…"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+        </label>
+
+        <label className="field">
+          <span className="field-label">Email (optional)</span>
+          <input
+            className="input"
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div className="help-text">
+            Enter email if it is okay for us to write you back.
+          </div>
+        </label>
+
+        <div className="reg-actions">
+          <button
+            className="btn-primary-outline"
+            onClick={() => {
+              if (!canSubmit) return;
+              onSubmit({ text, email: email.trim() || null });
+              setShowThanks(true);
+            }}
+            disabled={!canSubmit}
+            aria-disabled={!canSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+
+      {showThanks && (
+        <ThankYouModal
+          message="Thank you. We try our best to respond within 1 business day."
+          onClose={() => {
+            setShowThanks(false);
+            onCloseAfterSubmit?.();
+          }}
+        />
+      )}
+    </main>
+  );
+}
+
+/* ------------------- Support Form (email required) ------------------- */
+function SupportFormScreen({
+  onBack,
+  onSubmit = () => {},
+  onCloseAfterSubmit,
+}) {
+  const ISSUE_MAX = 1000;
+  const [email, setEmail] = React.useState("");
+  const [subject, setSubject] = React.useState("");
+  const [body, setBody] = React.useState("");
+  const [file, setFile] = React.useState(null);
+  const [consent, setConsent] = React.useState(false);
+  const [showThanks, setShowThanks] = React.useState(false);
+  const [currentThread, setCurrentThread] = useState(null); // { id, name } or null
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const bodyLen = body.length;
+  const remain = Math.max(0, ISSUE_MAX - bodyLen);
+
+  const canSubmit =
+    emailValid && subject.trim().length > 0 && bodyLen > 0 && consent;
+
+  return (
+    <main className="main">
+      <div className="top-actions">
+        <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div className="card form-card">
+        <div className="form-title">Report an Issue</div>
+        <p className="form-subtle">
+          We appreciate you letting us know about anything that’s not working as
+          it should.
+        </p>
+
+        <label className="field">
+          <span className="field-label">Email</span>
+          <input
+            className={`input ${email && !emailValid ? "input-error" : ""}`}
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {email && !emailValid && (
+            <div className="error">Enter a valid email.</div>
+          )}
+        </label>
+
+        <label className="field">
+          <span className="field-label">Subject</span>
+          <input
+            className="input"
+            placeholder="Brief summary"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+          />
+        </label>
+
+        <label className="field">
+          <span className="field-label">Please describe the issue</span>
+          <textarea
+            className="input textarea"
+            rows={6}
+            maxLength={ISSUE_MAX}
+            placeholder="What happened? Steps to reproduce, what you expected, and what you saw."
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
+          <div className="char-remaining">{remain} characters remaining</div>
+        </label>
+
+        <label className="field">
+          <span className="field-label">Screenshot (optional)</span>
+          <input
+            className="file-input"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setFile(e.target.files?.[0] || null)}
+          />
+          {file && <div className="file-name">{file.name}</div>}
+        </label>
+
+        <label className="checkbox-row">
+          <input
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+          />
+          <span>
+            I agree to allow helpful information about phone make/model and
+            other details including app version to be submitted with this
+            ticket.
+          </span>
+        </label>
+
+        <div className="reg-actions">
+          <button
+            className="btn-primary-outline"
+            onClick={() => {
+              if (!canSubmit) return;
+              onSubmit({ email, subject, body, file, consent });
+              setShowThanks(true);
+            }}
+            disabled={!canSubmit}
+            aria-disabled={!canSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+
+      {showThanks && (
+        <ThankYouModal
+          message="Thank you. We try our best to respond within 1 business day."
+          onClose={() => {
+            setShowThanks(false);
+            onCloseAfterSubmit?.();
+          }}
+        />
+      )}
     </main>
   );
 }
@@ -614,3 +897,4 @@ function IconAlarm() {
     </svg>
   );
 }
+
