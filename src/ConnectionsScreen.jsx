@@ -123,7 +123,7 @@ export default function ConnectionsScreen({
             <button
               type="button" // ensure not submit
               key={c.id}
-              className="connection-row card glass"
+            className="connection-row card glass gradient-vertical"
               onClick={(e) => {
                 // prevent any default nav
                 e.preventDefault();
