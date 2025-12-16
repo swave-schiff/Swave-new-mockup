@@ -1,6 +1,7 @@
 // src/MessagesScreen.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import "./styles.css";
+import GlassRowCard from "./components/GlassRowCard";
 
 /* Your Message icon (same as bottom nav) */
 function IconMessage() {
@@ -129,29 +130,15 @@ export default function MessagesScreen({ onOpenThread = () => {} }) {
         {threads.map((t) => {
           const { date, time } = splitWhen(t.lastTimestamp);
           return (
-            <button
+            <GlassRowCard
               key={t.id}
-              className="connection-row card glass"
+              initial={initials(t.name)}
+              name={t.name}
+              subtitle={truncate(t.lastMessage, 80)}
+              time={{ date, time }}
               onClick={() => onOpenThread(t)}
-              aria-label={`Open thread with ${t.name}`}
-            >
-              <div className="connection-avatar" aria-hidden="true">
-                {initials(t.name)}
-              </div>
-
-              <div className="connection-meta">
-                <div className="connection-top">
-                  <div className="connection-name">{t.name}</div>
-                  <div className="connection-time">
-                    <div className="date">{date}</div>
-                    <div className="time">{time}</div>
-                  </div>
-                </div>
-                <div className="connection-sub">
-                  {truncate(t.lastMessage, 80)}
-                </div>
-              </div>
-            </button>
+              ariaLabel={`Open thread with ${t.name}`}
+            />
           );
         })}
       </div>

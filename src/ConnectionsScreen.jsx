@@ -2,6 +2,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import "./styles.css";
 import { Users } from "lucide-react";
+import GlassRowCard from "./components/GlassRowCard";
 
 const SEED_CONNECTIONS = [
   {
@@ -120,41 +121,15 @@ export default function ConnectionsScreen({
         {items.map((c) => {
           const { date, time } = splitWhen(c.lastTimestamp);
           return (
-            <button
-              type="button" // ensure not submit
+            <GlassRowCard
               key={c.id}
-            className="connection-row card glass gradient-vertical"
-              onClick={(e) => {
-                // prevent any default nav
-                e.preventDefault();
-                e.stopPropagation();
-                open && open(c);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  open && open(c);
-                }
-              }}
-              aria-label={`Open connection for ${c.name}`}
-            >
-              <div className="connection-avatar" aria-hidden="true">
-                {initials(c.name)}
-              </div>
-
-              <div className="connection-meta">
-                <div className="connection-top">
-                  <div className="connection-name">{c.name}</div>
-                  <div className="connection-time">
-                    <div className="date">{date}</div>
-                    <div className="time">{time}</div>
-                  </div>
-                </div>
-                <div className="connection-sub">
-                  {truncate(c.lastMessage, 80)}
-                </div>
-              </div>
-            </button>
+              initial={initials(c.name)}
+              name={c.name}
+              subtitle={truncate(c.lastMessage, 80)}
+              time={{ date, time }}
+              onClick={() => open && open(c)}
+              ariaLabel={`Open connection for ${c.name}`}
+            />
           );
         })}
       </div>
