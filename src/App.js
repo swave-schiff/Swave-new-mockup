@@ -13,6 +13,7 @@ import AccountPreferencesScreen from "./AccountPreferencesScreen";
 import FeedbackHome from "./FeedbackHome";
 import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
+import HomeScreen from "./HomeScreen";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
@@ -270,33 +271,6 @@ function tabTitle(tab) {
 }
 
 /* ------------------- Screens ------------------- */
-function HomeScreen({ onEnterCode }) {
-  return (
-    <main className="home-main">
-      <div className="swave-circle glow">
-        <h2>Tap to Swave</h2>
-        <p className="subtext">
-          Generate a 4-digit
-          <br />
-          code to flash
-        </p>
-      </div>
-
-      <div className="input-block">
-        <p className="subtext">Did someone flash a swave code at you?</p>
-
-        {/* iOS-26 glass tile button with feathered rim */}
-        <button
-          className="glass-btn tile glass-btn--hollow edge-feather btn-one-line"
-          onClick={onEnterCode}
-        >
-          Enter Swave Code or Username
-        </button>
-      </div>
-    </main>
-  );
-}
-
 function Placeholder({ label }) {
   return (
     <main className="main">

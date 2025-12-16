@@ -56,25 +56,33 @@ export default function FeedbackForm({
           </div>
 
           <div className="auth-form">
-            <label className="auth-field">
-              <span className="auth-field-label">Your feedback</span>
-              <div className="phone-input-wrap">
-                <textarea
-                  className="phone-input"
-                  rows={6}
-                  maxLength={maxChars}
-                  placeholder="Tell us what you like and what we can improve..."
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                />
+            <div className="auth-field feedback-field">
+              <div className="feedback-stack">
+                <div className="phone-input-wrap">
+                  <textarea
+                    className="phone-input feedback-textarea"
+                    rows={6}
+                    maxLength={maxChars}
+                    placeholder="Tell us what you like and what we can improve..."
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                  />
+                </div>
+                <div className="feedback-remaining">
+                  {remaining} characters remaining
+                </div>
               </div>
-              <div className="auth-legal">
-                {remaining} characters remaining
-              </div>
-            </label>
+            </div>
 
-            <label className="auth-field">
-              <span className="auth-field-label">Email (optional)</span>
+            <label className="auth-field feedback-field">
+              <div className="label-stack">
+                <span className="auth-field-label feedback-label">
+                  Email (optional)
+                </span>
+                <div className="feedback-helper">
+                  Enter email if it is okay for us to write you back.
+                </div>
+              </div>
               <div className="phone-input-wrap">
                 <input
                   className="phone-input"
@@ -84,23 +92,22 @@ export default function FeedbackForm({
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="auth-legal">
-                Enter email if it is okay for us to write you back.
-              </div>
             </label>
 
-            <button
-              className="glass-btn glass-btn--tint auth-continue"
-              disabled={!canSubmit}
-              aria-disabled={!canSubmit}
-              onClick={() => {
-                if (!canSubmit) return;
-                onSubmit({ text, email: email.trim() || null });
-                setShowThanks(true);
-              }}
-            >
-              Submit
-            </button>
+            <div className="support-submit">
+              <button
+                className="glass-btn glass-btn--tint auth-continue"
+                disabled={!canSubmit}
+                aria-disabled={!canSubmit}
+                onClick={() => {
+                  if (!canSubmit) return;
+                  onSubmit({ text, email: email.trim() || null });
+                  setShowThanks(true);
+                }}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </section>
 

@@ -492,91 +492,6 @@ main {
   font-size: 14px;
   line-height: 1.0;
 }
-.support-field {
-  gap: 14px;
-}
-.support-textarea {
-  min-height: 5.5em;
-  line-height: 1.5;
-}
-.support-remaining {
-  color: var(--swave-soft);
-  font-size: 13px;
-  font-weight: 600;
-  text-align: right;
-  justify-self: end;
-  padding-right: 10px;
-  margin-top: -6px;
-}
-.upload-stack {
-  display: grid;
-  gap: 8px;
-  align-items: start;
-}
-.file-input-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-.attach-btn {
-  width: fit-content;
-  background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.12),
-        rgba(255, 255, 255, 0.06)
-      )
-      border-box,
-    linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.32))
-      padding-box;
-  border-color: var(--glass-border-strong);
-  color: var(--swave-soft);
-}
-.glass-checkbox {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 10px;
-}
-.glass-checkbox input[type="checkbox"] {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  background: var(--glass-surface);
-  box-shadow: var(--shadow-1);
-  position: relative;
-}
-.glass-checkbox input[type="checkbox"]:checked {
-  background: linear-gradient(
-    180deg,
-    rgba(108, 160, 255, 0.35),
-    rgba(60, 120, 255, 0.18)
-  );
-  border-color: rgba(108, 160, 255, 0.65);
-}
-.glass-checkbox input[type="checkbox"]:checked::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 4px;
-  background: rgba(230, 237, 247, 0.9);
-}
-.support-submit {
-  display: flex;
-  justify-content: center;
-}
-.support-submit .glass-btn {
-  width: 38%;
-  min-width: 150px;
-  max-width: 220px;
-}
 .phone-input-wrap {
   display: flex;
   align-items: center;
@@ -921,9 +836,13 @@ main {
   left: 0;
   right: 0;
   padding-bottom: max(12px, var(--sbw));
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 15, 24, 0),
+    rgba(11, 15, 24, 0.95)
+  );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .search-clip {
   width: min(640px, 100%);
