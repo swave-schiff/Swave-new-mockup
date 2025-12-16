@@ -16,19 +16,10 @@ function Avatar({ name, size = 56, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="card glass"
+      className="connection-avatar"
       style={{
         width: size,
         height: size,
-        borderRadius: "50%",
-        display: "grid",
-        placeItems: "center",
-        fontWeight: 700,
-        color: "#e9eef9",
-        background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(255,255,255,0.10)",
-        boxShadow:
-          "inset 0 1px 0 rgba(255,255,255,0.20), 0 6px 16px rgba(0,0,0,0.45)",
       }}
       aria-label={`${name || "User"} profile`}
     >
@@ -116,7 +107,7 @@ function ConfirmSheet({
         padding: 16,
       }}
     >
-      <div className="card glass confirm-sheet">
+      <div className="card glass gradient-vertical confirm-sheet">
         <div style={{ fontWeight: 700, fontSize: "1.05rem" }}>{title}</div>
         <div style={{ color: "#cfd6e6", lineHeight: 1.4 }}>
           {lines.map((l, i) => (
@@ -371,7 +362,7 @@ export default function ConversationScreen({
 
       {/* Fixed composer */}
       <div className="composer-fixed">
-        <div className="composer-card card glass">
+        <div className="composer-card card glass gradient-vertical">
           <input
             className="composer-input"
             placeholder="Type your message"
