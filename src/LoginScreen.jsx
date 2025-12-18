@@ -62,7 +62,7 @@ export default function LoginScreen({
             <h1 className="screen-title">Login or Register</h1>
             <div className="auth-subtext">
               <ul className="auth-bullets">
-                <li>Enter your phone number to continue.</li>
+                <li>We need to verify your phone number.</li>
                 <li>If no account exists yet, we'll create one for you automatically.</li>
               </ul>
               <p className="auth-privacy">
