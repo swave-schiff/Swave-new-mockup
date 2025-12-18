@@ -66,9 +66,9 @@ export default function UsernameEntryScreen({
       <section className="auth-shell">
         <div className="auth-card card glass">
           <div className="auth-copy">
-            <h1 className="screen-title">Choose a Username</h1>
+            <h1 className="screen-title">Choose a username</h1>
             <div className="auth-subtext">
-              <p>This is what will be your display name</p>
+              <p>Pick a handle so friends can find you by name.</p>
             </div>
           </div>
 
