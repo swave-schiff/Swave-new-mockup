@@ -129,9 +129,11 @@ export default function UsernameEntryScreen({
               <label className="auth-field">
                 <div className="label-stack">
                   <span className="auth-field-label feedback-label">Username</span>
-                  <div className="microtext">
-                    Usernames must be 6-12 characters and contain only letters or
-                    numbers
+                  <div className="auth-subtext">
+                    <p>
+                      Usernames must be 6-12 characters and contain only letters
+                      or numbers
+                    </p>
                   </div>
                 </div>
                 <div className="phone-input-wrap">
