@@ -44,7 +44,7 @@ export default function UsernameEntryScreen({
 
     if (!normalized || !alnumOnly || !withinLength) {
       setError(
-        "Usernames must be 6–12 characters and contain only letters or numbers"
+        "Usernames must be 6-12 characters and contain only letters or numbers"
       );
       return;
     }
@@ -121,7 +121,7 @@ export default function UsernameEntryScreen({
                 className="glass-btn tile glass-btn--hollow edge-feather btn-sm"
                 onClick={toggleEditor}
               >
-                ✏️ Change Username
+                {"\u270f\ufe0f"} Change Username
               </button>
             </div>
           ) : (
@@ -130,7 +130,7 @@ export default function UsernameEntryScreen({
                 <div className="label-stack">
                   <div className="auth-field-label">Username</div>
                   <div className="microtext">
-                    Usernames must be 6–12 characters and contain only letters or
+                    Usernames must be 6-12 characters and contain only letters or
                     numbers
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export default function UsernameEntryScreen({
                   <input
                     type="text"
                     className="phone-input"
-                    placeholder="6–12 characters"
+                    placeholder="6-12 characters"
                     value={username}
                     onChange={(e) => {
                       setUsername(e.target.value);
