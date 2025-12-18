@@ -26,6 +26,7 @@ export default function App() {
   const [currentConnection, setCurrentConnection] = useState(null);
   const [currentThreadId, setCurrentThreadId] = useState(null);
   const [selectedConnection, setSelectedConnection] = useState(null);
+  const [pendingPhone, setPendingPhone] = useState("");
   const [lastAuthedTab, setLastAuthedTab] = useState("home");
 
   React.useEffect(() => {
@@ -69,6 +70,7 @@ export default function App() {
       {activeTab === "login" && (
         <LoginScreen
           onStartVerification={({ phone }) => {
+            setPendingPhone(normalizePhoneDigits(phone));
             console.log("Start verification for", phone);
             setActiveTab("validate");
           }}
@@ -89,9 +91,20 @@ export default function App() {
       {activeTab === "validate" && (
         <ValidatePhoneScreen
           onBack={() => setActiveTab("login")}
-          onSuccess={() => setActiveTab("home")}
+          onSuccess={() => setActiveTab("username")}
           onValidate={async (code) => true}
           onResend={() => console.log("Resend code")}
+        />
+      )}
+
+      {activeTab === "username" && (
+        <UsernameEntryScreen
+          phone={pendingPhone}
+          onBack={() => setActiveTab("validate")}
+          onComplete={(chosenUsername) => {
+            setCurrentThreadName(chosenUsername);
+            setActiveTab("home");
+          }}
         />
       )}
 
@@ -268,6 +281,13 @@ function tabTitle(tab) {
     default:
       return "";
   }
+}
+
+function normalizePhoneDigits(val) {
+  if (!val) return "";
+  const digits = String(val).replace(/\D/g, "");
+  if (digits.length === 11 && digits.startsWith("1")) return digits.slice(1);
+  return digits.slice(-10);
 }
 
 /* ------------------- Screens ------------------- */

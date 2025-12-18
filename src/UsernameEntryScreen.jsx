@@ -1,13 +1,49 @@
 // src/UsernameEntryScreen.jsx
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./styles.css";
 
-export default function UsernameEntryScreen({ onBack }) {
+const RESERVED_PHONE = "5551234567";
+const RESERVED_USERNAME = "Test1234";
+
+export default function UsernameEntryScreen({
+  phone,
+  onBack = () => {},
+  onComplete = () => {},
+}) {
   const [username, setUsername] = useState("");
 
+  const normalizedPhone = useMemo(() => normalizePhoneDigits(phone), [phone]);
+  const reservedPhone = normalizedPhone === RESERVED_PHONE;
+
+  const normalized = username.trim();
+  const alnum = normalized ? /^[A-Za-z0-9]+$/.test(normalized) : false;
+  const longEnough = normalized.length >= 8;
+  const taken =
+    normalized && normalized.toLowerCase() === RESERVED_USERNAME.toLowerCase();
+
+  const error = taken
+    ? "Already taken. Please try something else"
+    : normalized && !alnum
+    ? "Letters and numbers only"
+    : normalized && !longEnough
+    ? "Use at least 8 characters"
+    : "";
+
+  const canSubmit = alnum && longEnough && !taken;
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!canSubmit) return;
+    onComplete(normalized);
+  };
+
+  const continueReserved = () => {
+    setUsername(RESERVED_USERNAME);
+    onComplete(RESERVED_USERNAME);
+  };
+
   return (
-    <div className="username-screen">
-      {/* Top-left chevron back */}
+    <main className="auth-page">
       <div className="top-actions">
         <button className="chevron-btn" onClick={onBack} aria-label="Back">
           <svg
@@ -27,29 +63,65 @@ export default function UsernameEntryScreen({ onBack }) {
         </button>
       </div>
 
-      <p className="username-instructions">
-        In order to link to someone by entering their username, the other party
-        must have “Linking by Username” enabled which is turned off by default.
-      </p>
+      <section className="auth-shell">
+        <div className="auth-card card glass">
+          <div className="auth-copy">
+            <h1 className="screen-title">Choose a username</h1>
+            <div className="auth-subtext">
+              <p>Pick a handle so friends can find you by name.</p>
+            </div>
+          </div>
 
-      <input
-        className="username-input"
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+          <form className="auth-form" onSubmit={submit} noValidate>
+            <label className="auth-field">
+              <div className="label-stack">
+                <div className="auth-field-label">Username</div>
+                <div className="microtext">Use 8+ letters or numbers.</div>
+              </div>
+              <div className="phone-input-wrap">
+                <input
+                  type="text"
+                  className="phone-input"
+                  placeholder="8+ characters"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  aria-label="Username"
+                  autoCapitalize="none"
+                  autoComplete="username"
+                />
+              </div>
+            </label>
 
-      {/* Updated glass button — iOS-26 look with feathered rim */}
-      <button
-        className="glass-btn tile glass-btn--tint edge-feather btn-link-size"
-        disabled={!username.trim()}
-        onClick={() => console.log("Linking username:", username)}
-      >
-        Link
-      </button>
+            {error && <div className="microtext">{error}</div>}
 
-      {/* Old bottom Back button removed */}
-    </div>
+            <button
+              type="submit"
+              className="glass-btn glass-btn--tint auth-continue"
+              disabled={!canSubmit}
+              aria-disabled={!canSubmit}
+            >
+              Continue
+            </button>
+
+            {reservedPhone && (
+              <button
+                type="button"
+                className="glass-btn tile glass-btn--hollow auth-continue"
+                onClick={continueReserved}
+              >
+                Continue as {RESERVED_USERNAME}?
+              </button>
+            )}
+          </form>
+        </div>
+      </section>
+    </main>
   );
+}
+
+function normalizePhoneDigits(val) {
+  if (!val) return "";
+  const digits = String(val).replace(/\D/g, "");
+  if (digits.length === 11 && digits.startsWith("1")) return digits.slice(1);
+  return digits.slice(-10);
 }
