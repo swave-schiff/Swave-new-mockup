@@ -1,5 +1,5 @@
 // src/UsernameEntryScreen.jsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./styles.css";
 
 const RESERVED_PHONE = "5551234567";
@@ -11,11 +11,24 @@ export default function UsernameEntryScreen({
   onBack = () => {},
   onComplete = () => {},
 }) {
-  const [username, setUsername] = useState("");
-  const [error, setError] = useState("");
-
   const normalizedPhone = useMemo(() => normalizePhoneDigits(phone), [phone]);
   const reservedPhone = normalizedPhone === RESERVED_PHONE;
+
+  const [username, setUsername] = useState(
+    reservedPhone ? RESERVED_USERNAME_DISPLAY : ""
+  );
+  const [error, setError] = useState("");
+  const [showEditor, setShowEditor] = useState(!reservedPhone);
+
+  useEffect(() => {
+    if (reservedPhone) {
+      setShowEditor(false);
+      setUsername((prev) => prev || RESERVED_USERNAME_DISPLAY);
+    } else {
+      setShowEditor(true);
+    }
+    setError("");
+  }, [reservedPhone]);
 
   const normalized = username.trim();
   const alnumOnly = normalized ? /^[A-Za-z0-9]+$/.test(normalized) : false;
@@ -51,6 +64,17 @@ export default function UsernameEntryScreen({
     onComplete(RESERVED_USERNAME_DISPLAY);
   };
 
+  const toggleEditor = () => {
+    setShowEditor((prev) => {
+      const next = !prev;
+      if (next && reservedPhone && !username) {
+        setUsername(RESERVED_USERNAME_DISPLAY);
+      }
+      return next;
+    });
+    setError("");
+  };
+
   return (
     <main className="auth-page">
       <div className="top-actions">
@@ -81,53 +105,64 @@ export default function UsernameEntryScreen({
             </div>
           </div>
 
-          <form className="auth-form" onSubmit={submit} noValidate>
-            <label className="auth-field">
-              <div className="label-stack">
-                <div className="auth-field-label">Username</div>
-                <div className="microtext">
-                  Usernames must be 6–12 characters and contain only letters or
-                  numbers
-                </div>
-              </div>
-              <div className="phone-input-wrap">
-                <input
-                  type="text"
-                  className="phone-input"
-                  placeholder="6–12 characters"
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    if (error) setError("");
-                  }}
-                  aria-label="Username"
-                  autoCapitalize="none"
-                  autoComplete="username"
-                />
-              </div>
-            </label>
-
-            {error && <div className="microtext">{error}</div>}
-
-            <button
-              type="submit"
-              className="glass-btn glass-btn--tint auth-continue"
-              disabled={!canAttempt}
-              aria-disabled={!canAttempt}
-            >
-              Continue
-            </button>
-
-            {reservedPhone && (
+          {reservedPhone && !showEditor ? (
+            <div className="auth-form">
               <button
                 type="button"
-                className="glass-btn tile glass-btn--hollow auth-continue"
+                className="glass-btn glass-btn--tint auth-continue"
                 onClick={continueReserved}
+                aria-label={`Continue as ${RESERVED_USERNAME_DISPLAY}`}
               >
-                Continue as {RESERVED_USERNAME_DISPLAY}?
+                <div>Continue as</div>
+                <div>{RESERVED_USERNAME_DISPLAY}</div>
               </button>
-            )}
-          </form>
+              <button
+                type="button"
+                className="glass-btn tile glass-btn--hollow edge-feather btn-sm"
+                onClick={toggleEditor}
+              >
+                ✏️ Change Username
+              </button>
+            </div>
+          ) : (
+            <form className="auth-form" onSubmit={submit} noValidate>
+              <label className="auth-field">
+                <div className="label-stack">
+                  <div className="auth-field-label">Username</div>
+                  <div className="microtext">
+                    Usernames must be 6–12 characters and contain only letters or
+                    numbers
+                  </div>
+                </div>
+                <div className="phone-input-wrap">
+                  <input
+                    type="text"
+                    className="phone-input"
+                    placeholder="6–12 characters"
+                    value={username}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                      if (error) setError("");
+                    }}
+                    aria-label="Username"
+                    autoCapitalize="none"
+                    autoComplete="username"
+                  />
+                </div>
+              </label>
+
+              {error && <div className="microtext">{error}</div>}
+
+              <button
+                type="submit"
+                className="glass-btn glass-btn--tint auth-continue"
+                disabled={!canAttempt}
+                aria-disabled={!canAttempt}
+              >
+                Continue
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </main>
