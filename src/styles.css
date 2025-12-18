@@ -38,6 +38,7 @@
   --radius-18: 18px;
   --radius-22: 22px;
   --sbw: 0px; /* set via JS for fixed search */
+  --swave-error: #ff6b6b;
 }
 
 /* =========================================================
@@ -439,6 +440,9 @@ main {
 }
 .auth-subtext p {
   margin: 0;
+}
+.auth-subtext.error {
+  color: var(--swave-error);
 }
 .auth-bullets {
   padding-left: 20px;

@@ -44,7 +44,7 @@ export default function UsernameEntryScreen({
 
     if (!normalized || !alnumOnly || !withinLength) {
       setError(
-        "Usernames must be 6-12 characters and contain only letters or numbers"
+        "Usernames must be 6–12 characters and contain only letters or numbers"
       );
       return;
     }
@@ -131,7 +131,7 @@ export default function UsernameEntryScreen({
                   <span className="auth-field-label feedback-label">Username</span>
                   <div className="auth-subtext">
                     <p>
-                      Usernames must be 6-12 characters and contain only letters
+                      Usernames must be 6–12 characters and contain only letters
                       or numbers
                     </p>
                   </div>
@@ -153,7 +153,11 @@ export default function UsernameEntryScreen({
                 </div>
               </label>
 
-              {error && <div className="microtext">{error}</div>}
+              {error && (
+                <div className="auth-subtext error">
+                  <p>{error}</p>
+                </div>
+              )}
 
               <button
                 type="submit"
