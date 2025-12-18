@@ -101,7 +101,7 @@ export default function UsernameEntryScreen({
           <div className="auth-copy">
             <h1 className="screen-title">Choose a Username</h1>
             <div className="auth-subtext">
-              <p>This is your display name others will see</p>
+              <p>This is r display name</p>
             </div>
           </div>
 
