@@ -3,7 +3,8 @@ import React, { useMemo, useState } from "react";
 import "./styles.css";
 
 const RESERVED_PHONE = "5551234567";
-const RESERVED_USERNAME = "Test1234";
+const RESERVED_USERNAME = "test1234"; // temporary local reserved account
+const RESERVED_USERNAME_DISPLAY = "Test1234";
 
 export default function UsernameEntryScreen({
   phone,
@@ -11,35 +12,43 @@ export default function UsernameEntryScreen({
   onComplete = () => {},
 }) {
   const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
 
   const normalizedPhone = useMemo(() => normalizePhoneDigits(phone), [phone]);
   const reservedPhone = normalizedPhone === RESERVED_PHONE;
 
   const normalized = username.trim();
-  const alnum = normalized ? /^[A-Za-z0-9]+$/.test(normalized) : false;
-  const longEnough = normalized.length >= 8;
-  const taken =
-    normalized && normalized.toLowerCase() === RESERVED_USERNAME.toLowerCase();
+  const alnumOnly = normalized ? /^[A-Za-z0-9]+$/.test(normalized) : false;
+  const withinLength = normalized.length >= 6 && normalized.length <= 12;
+  const isReservedUser =
+    normalized && normalized.toLowerCase() === RESERVED_USERNAME;
 
-  const error = taken
-    ? "Already taken. Please try something else"
-    : normalized && !alnum
-    ? "Letters and numbers only"
-    : normalized && !longEnough
-    ? "Use at least 8 characters"
-    : "";
-
-  const canSubmit = alnum && longEnough && !taken;
+  const canAttempt = normalized.length > 0;
 
   const submit = (e) => {
     e.preventDefault();
-    if (!canSubmit) return;
+    setError("");
+
+    if (!normalized || !alnumOnly || !withinLength) {
+      setError(
+        "Usernames must be 6–12 characters and contain only letters or numbers"
+      );
+      return;
+    }
+
+    // Temporary reserved account logic: treat test1234 as taken for other phones.
+    if (isReservedUser) {
+      setError("Already taken. Please try something else");
+      return;
+    }
+
     onComplete(normalized);
   };
 
   const continueReserved = () => {
-    setUsername(RESERVED_USERNAME);
-    onComplete(RESERVED_USERNAME);
+    setUsername(RESERVED_USERNAME_DISPLAY);
+    setError("");
+    onComplete(RESERVED_USERNAME_DISPLAY);
   };
 
   return (
@@ -76,15 +85,21 @@ export default function UsernameEntryScreen({
             <label className="auth-field">
               <div className="label-stack">
                 <div className="auth-field-label">Username</div>
-                <div className="microtext">Use 8+ letters or numbers.</div>
+                <div className="microtext">
+                  Usernames must be 6–12 characters and contain only letters or
+                  numbers
+                </div>
               </div>
               <div className="phone-input-wrap">
                 <input
                   type="text"
                   className="phone-input"
-                  placeholder="8+ characters"
+                  placeholder="6–12 characters"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    if (error) setError("");
+                  }}
                   aria-label="Username"
                   autoCapitalize="none"
                   autoComplete="username"
@@ -97,8 +112,8 @@ export default function UsernameEntryScreen({
             <button
               type="submit"
               className="glass-btn glass-btn--tint auth-continue"
-              disabled={!canSubmit}
-              aria-disabled={!canSubmit}
+              disabled={!canAttempt}
+              aria-disabled={!canAttempt}
             >
               Continue
             </button>
@@ -109,7 +124,7 @@ export default function UsernameEntryScreen({
                 className="glass-btn tile glass-btn--hollow auth-continue"
                 onClick={continueReserved}
               >
-                Continue as {RESERVED_USERNAME}?
+                Continue as {RESERVED_USERNAME_DISPLAY}?
               </button>
             )}
           </form>
