@@ -128,7 +128,7 @@ export default function UsernameEntryScreen({
             <form className="auth-form" onSubmit={submit} noValidate>
               <label className="auth-field">
                 <div className="label-stack">
-                  <div className="auth-field-label">Username</div>
+                  <span className="auth-field-label feedback-label">Username</span>
                   <div className="microtext">
                     Usernames must be 6-12 characters and contain only letters or
                     numbers
