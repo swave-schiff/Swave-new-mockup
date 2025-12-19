@@ -14,6 +14,7 @@ import FeedbackHome from "./FeedbackHome";
 import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
 import HomeScreen from "./HomeScreen";
+import ConnectionConfirmedScreen from "./screens/ConnectionConfirmedScreen";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
@@ -91,10 +92,14 @@ export default function App() {
       {activeTab === "validate" && (
         <ValidatePhoneScreen
           onBack={() => setActiveTab("login")}
-          onSuccess={() => setActiveTab("username")}
+          onSuccess={() => setActiveTab("connection-confirmed")}
           onValidate={async (code) => true}
           onResend={() => console.log("Resend code")}
         />
+      )}
+
+      {activeTab === "connection-confirmed" && (
+        <ConnectionConfirmedScreen />
       )}
 
       {activeTab === "username" && (
