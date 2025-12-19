@@ -635,7 +635,7 @@ main {
 }
 .connection-confirm-page {
   min-height: 100vh;
-  justify-content: center;
+  padding-top: 28px;
 }
 .connection-confirm-shell {
   width: min(520px, 100%);
@@ -643,13 +643,13 @@ main {
 }
 .connection-confirm-card {
   display: grid;
-  gap: 20px;
+  gap: 22px;
   align-items: center;
   text-align: center;
 }
 .connection-confirm-copy {
   display: grid;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
   justify-items: center;
 }
@@ -673,7 +673,7 @@ main {
   object-fit: cover;
 }
 .connection-confirm-name {
-  margin: 4px 0 0;
+  margin: 2px 0 0;
   font-size: 26px;
   font-weight: 800;
 }
@@ -681,6 +681,7 @@ main {
   display: grid;
   gap: 10px;
   justify-items: center;
+  margin-top: 6px;
 }
 .resend-btn {
   display: inline-flex;
