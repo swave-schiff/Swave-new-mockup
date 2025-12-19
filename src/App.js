@@ -92,7 +92,7 @@ export default function App() {
       {activeTab === "validate" && (
         <ValidatePhoneScreen
           onBack={() => setActiveTab("login")}
-          onSuccess={() => setActiveTab("connection-confirmed")}
+          onSuccess={() => setActiveTab("username")}
           onValidate={async (code) => true}
           onResend={() => console.log("Resend code")}
         />
@@ -169,6 +169,7 @@ export default function App() {
       {activeTab === "code" && !showUsername && (
         <CodeEntryScreen
           onSwitchToUsername={() => setShowUsername(true)}
+          onComplete={() => setActiveTab("connection-confirmed")}
           onBack={() => setActiveTab(lastTabBeforeCode)}
         />
       )}
