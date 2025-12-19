@@ -1,14 +1,17 @@
 import React from "react";
 import "../styles.css";
 
-export default function ConnectionConfirmedScreen() {
+export default function ConnectionConfirmedScreen({
+  onChatNow = () => {},
+  onSaveLater = () => {},
+}) {
   // Temporary placeholder data until wiring to real profile details
   const username = "TeaseMeTwice";
 
   return (
     <main className="auth-page connection-confirm-page">
       <section className="auth-shell connection-confirm-shell">
-        <div className="auth-card card glass connection-confirm-card">
+        <div className="connection-confirm-card">
           <div className="auth-copy connection-confirm-copy">
             <p className="connection-confirm-label">You are now connected to:</p>
             <div className="connection-confirm-avatar">
@@ -21,10 +24,13 @@ export default function ConnectionConfirmedScreen() {
           </div>
 
           <div className="connection-confirm-actions">
-            <button className="glass-btn glass-btn--tint auth-continue">
+            <button
+              className="glass-btn glass-btn--tint auth-continue"
+              onClick={onChatNow}
+            >
               Save &amp; Chat Now
             </button>
-            <button type="button" className="resend-btn">
+            <button type="button" className="resend-btn" onClick={onSaveLater}>
               Save &amp; Chat Later
             </button>
           </div>

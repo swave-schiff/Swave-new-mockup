@@ -99,7 +99,10 @@ export default function App() {
       )}
 
       {activeTab === "connection-confirmed" && (
-        <ConnectionConfirmedScreen />
+        <ConnectionConfirmedScreen
+          onChatNow={() => setActiveTab("conversation")}
+          onSaveLater={() => setActiveTab("home")}
+        />
       )}
 
       {activeTab === "username" && (
