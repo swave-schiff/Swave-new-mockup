@@ -673,7 +673,7 @@ main {
   object-fit: cover;
 }
 .connection-confirm-name {
-  margin: 1px 0 0;
+  margin: 2px 0 0;
   font-size: 26px;
   font-weight: 600;
 }
@@ -682,9 +682,6 @@ main {
   gap: 10px;
   justify-items: center;
   margin-top: 6px;
-}
-.connection-confirm-copy {
-  gap:5px; /* or 4px — tune to taste */
 }
 .resend-btn {
   display: inline-flex;

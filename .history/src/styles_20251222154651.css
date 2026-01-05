@@ -683,9 +683,6 @@ main {
   justify-items: center;
   margin-top: 6px;
 }
-.connection-confirm-copy {
-  gap:5px; /* or 4px — tune to taste */
-}
 .resend-btn {
   display: inline-flex;
   align-items: center;
