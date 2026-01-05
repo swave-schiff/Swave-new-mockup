@@ -477,10 +477,14 @@ main {
   letter-spacing: 0.2px;
 }
 .auth-field--tight {
-  gap: 8px;
+  gap: 1px;
 }
 .feedback-field {
   gap: 14px;
+}
+.auth-field--tight .phone-input-wrap {
+  padding-top: 1px;
+  padding-bottom: px;
 }
 .feedback-stack {
   display: grid;
@@ -601,7 +605,7 @@ main {
   align-items: center;
   gap: 10px;
   width: 100%;
-  padding: 10px 14px;
+  padding: 14px 14px;
   border-radius: var(--radius-18);
   background: var(--glass-surface);
   border: 1px solid var(--glass-border-strong);

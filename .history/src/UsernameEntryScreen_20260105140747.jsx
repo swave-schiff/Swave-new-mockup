@@ -126,7 +126,7 @@ export default function UsernameEntryScreen({
             </div>
           ) : (
             <form className="auth-form" onSubmit={submit} noValidate>
-              <label className="auth-field auth-field--tight">
+              <label className="auth-field">
                 <div className="label-stack">
                   <span className="auth-field-label feedback-label">Username</span>
                 </div>
