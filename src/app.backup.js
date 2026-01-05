@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./styles.css";
 
 import LoginScreen from "./LoginScreen";
-import AccountPreferencesScreen from "./AccountPreferencesScreen";
+import SettingsScreen from "./SettingsScreen";
 import ConnectionsScreen from "./ConnectionsScreen";
 import MessagesScreen from "./MessagesScreen";
 import ConversationScreen from "./ConversationScreen";
@@ -70,7 +70,7 @@ export default function App() {
       )}
 
       {activeTab === "account" && (
-        <AccountPreferencesScreen
+        <SettingsScreen
           onOpenHelp={() => setActiveTab("feedbackHub")}
           onOpenLinking={() => setActiveTab("linking")}
         />

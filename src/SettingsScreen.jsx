@@ -1,8 +1,8 @@
-// src/AccountPreferencesScreen.jsx
+// src/SettingsScreen.jsx
 import React from "react";
 import "./styles.css";
 
-export default function AccountPreferencesScreen({
+export default function SettingsScreen({
   onBack = () => {},
   onOpenHelp = () => {},
   onOpenLinking = () => {},

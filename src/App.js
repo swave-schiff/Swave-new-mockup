@@ -9,7 +9,7 @@ import MessagesScreen from "./MessagesScreen";
 import ConversationScreen from "./ConversationScreen";
 import ConnectionDetailScreen from "./ConnectionDetailScreen";
 import ValidatePhoneScreen from "./ValidatePhoneScreen";
-import AccountPreferencesScreen from "./AccountPreferencesScreen";
+import SettingsScreen from "./SettingsScreen";
 import FeedbackHome from "./FeedbackHome";
 import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
@@ -127,7 +127,7 @@ export default function App() {
       )}
 
       {activeTab === "account" && (
-        <AccountPreferencesScreen
+        <SettingsScreen
           onBack={() => setActiveTab(lastAuthedTab)}
           onOpenHelp={() => setActiveTab("FeedbackHome")}
           onOpenLinking={() => setActiveTab("linking")}
