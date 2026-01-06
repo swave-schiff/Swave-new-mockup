@@ -1,8 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles.css";
 
 export default function UsernameLinkingScreen({ onBack = () => {} }) {
   const [alwaysAllow, setAlwaysAllow] = useState(false);
+  const [isTempEnabled, setIsTempEnabled] = useState(false);
+  const [remainingSeconds, setRemainingSeconds] = useState(300);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (!isTempEnabled) {
+      return;
+    }
+
+    timerRef.current = setInterval(() => {
+      setRemainingSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [isTempEnabled]);
+
+  const startTimed = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    setRemainingSeconds(300);
+    setIsTempEnabled(true);
+  };
+
+  const cancelTimed = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    setIsTempEnabled(false);
+    setRemainingSeconds(300);
+  };
+
+  const mm = String(Math.floor(remainingSeconds / 60)).padStart(2, "0");
+  const ss = String(remainingSeconds % 60).padStart(2, "0");
 
   return (
     <main className="main">
@@ -36,19 +84,33 @@ export default function UsernameLinkingScreen({ onBack = () => {} }) {
         </div>
 
         <div className="linking-actions">
-          <button className="glass-btn glass-btn--tint big">
-            <span className="btn-ico">
-              <IconAlarm />
-            </span>
-            <>Only Enable Username Linking for 5 min.</>
-          </button>
+          {!isTempEnabled ? (
+            <button
+              className="glass-btn glass-btn--tint big"
+              onClick={startTimed}
+            >
+              <span className="btn-ico">
+                <IconAlarm />
+              </span>
+              <>Only Enable Username Linking for 5 min.</>
+            </button>
+          ) : (
+            <div className="linking-timer">
+              <div className="linking-countdown">
+                {mm}:{ss}
+              </div>
+              <button
+                type="button"
+                className="glass-btn glass-btn--danger big"
+                onClick={cancelTimed}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
         </div>
 
-        <div className="or-wrap">
-          <span className="or-line" />
-          <span className="or-text">or</span>
-          <span className="or-line" />
-        </div>
+        <div className="linking-separator">- or -</div>
 
         <div className="toggle-row">
           <span className="toggle-label">Always allow username linking</span>

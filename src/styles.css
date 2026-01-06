@@ -596,6 +596,21 @@ main {
   gap: 6px;
   justify-items: flex-start;
 }
+.linking-timer {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+.linking-countdown {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--swave-text);
+}
+.linking-separator {
+  text-align: center;
+  color: var(--swave-soft);
+  font-weight: 600;
+}
 .toggle-row {
   display: flex;
   align-items: center;
