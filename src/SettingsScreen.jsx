@@ -6,9 +6,15 @@ export default function SettingsScreen({
   onBack = () => {},
   onOpenHelp = () => {},
   onOpenLinking = () => {},
+  onOpenProfile = () => {},
 }) {
   const rows = [
-    { key: "profile", label: "My Account & Profile", icon: <IconUser /> },
+    {
+      key: "profile",
+      label: "My Account & Profile",
+      icon: <IconUser />,
+      onClick: onOpenProfile,
+    },
     {
       key: "linking",
       label: "Enable Username Linking",

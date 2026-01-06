@@ -15,6 +15,7 @@ import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
 import HomeScreen from "./HomeScreen";
 import ConnectionConfirmedScreen from "./screens/ConnectionConfirmedScreen";
+import AccountProfileScreen from "./screens/AccountProfileScreen";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
@@ -39,7 +40,11 @@ export default function App() {
       "code",
       "username",
     ]);
-    if (!onboardingTabs.has(activeTab) && activeTab !== "account") {
+    if (
+      !onboardingTabs.has(activeTab) &&
+      activeTab !== "account" &&
+      activeTab !== "account-profile"
+    ) {
       setLastAuthedTab(activeTab);
     }
   }, [activeTab]);
@@ -54,6 +59,7 @@ export default function App() {
       activeTab === "signin" ||
       activeTab === "register" ||
       activeTab === "account" ||
+      activeTab === "account-profile" ||
       activeTab === "FeedbackHome" ||
       activeTab === "feedbackForm" ||
       activeTab === "supportForm" ||
@@ -131,7 +137,12 @@ export default function App() {
           onBack={() => setActiveTab(lastAuthedTab)}
           onOpenHelp={() => setActiveTab("FeedbackHome")}
           onOpenLinking={() => setActiveTab("linking")}
+          onOpenProfile={() => setActiveTab("account-profile")}
         />
+      )}
+
+      {activeTab === "account-profile" && (
+        <AccountProfileScreen onBack={() => setActiveTab("account")} />
       )}
 
       {activeTab === "connections" && (

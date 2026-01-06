@@ -675,6 +675,24 @@ main {
   height: 100%;
   object-fit: cover;
 }
+.profile-avatar {
+  position: relative;
+}
+.profile-edit-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border-strong);
+  background: var(--glass-surface);
+  color: var(--swave-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-1);
+}
 .connection-confirm-name {
   margin: 1px 0 0;
   font-size: 26px;
