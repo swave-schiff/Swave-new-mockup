@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles.css";
 
 export default function UsernameLinkingScreen({ onBack = () => {} }) {
+  const [alwaysAllow, setAlwaysAllow] = useState(false);
+
   return (
     <main className="main">
       <div className="top-actions">
@@ -33,12 +35,14 @@ export default function UsernameLinkingScreen({ onBack = () => {} }) {
           </p>
         </div>
 
-        <button className="btn-hollow big">
-          <span className="btn-ico">
-            <IconAlarm />
-          </span>
-          <>Only Enable Username Linking for 5 min.</>
-        </button>
+        <div className="linking-actions">
+          <button className="glass-btn glass-btn--tint big">
+            <span className="btn-ico">
+              <IconAlarm />
+            </span>
+            <>Only Enable Username Linking for 5 min.</>
+          </button>
+        </div>
 
         <div className="or-wrap">
           <span className="or-line" />
@@ -48,9 +52,16 @@ export default function UsernameLinkingScreen({ onBack = () => {} }) {
 
         <div className="toggle-row">
           <span className="toggle-label">Always allow username linking</span>
-          <label className="switch">
-            <input type="checkbox" disabled />
-            <span className="slider" />
+          <label
+            className={`toggle-switch ${alwaysAllow ? "toggle-switch--on" : ""}`}
+          >
+            <input
+              type="checkbox"
+              checked={alwaysAllow}
+              onChange={(e) => setAlwaysAllow(e.target.checked)}
+              aria-checked={alwaysAllow}
+            />
+            <span className="toggle-slider" />
           </label>
         </div>
       </div>

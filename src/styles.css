@@ -587,6 +587,60 @@ main {
   border-radius: 4px;
   background: rgba(230, 237, 247, 0.9);
 }
+.linking-card {
+  display: grid;
+  gap: 18px;
+}
+.linking-actions {
+  display: grid;
+  gap: 6px;
+  justify-items: flex-start;
+}
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.toggle-label {
+  color: var(--swave-text);
+  font-weight: 600;
+}
+.toggle-switch {
+  position: relative;
+  width: 54px;
+  height: 30px;
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border-strong);
+  border-radius: 999px;
+  box-shadow: var(--shadow-1);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.toggle-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--swave-soft);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.toggle-switch--on {
+  background: rgba(108, 160, 255, 0.25);
+  border-color: rgba(108, 160, 255, 0.65);
+}
+.toggle-switch--on .toggle-slider {
+  transform: translateX(22px);
+  background: #fff;
+}
 .support-submit {
   display: flex;
   justify-content: center;
