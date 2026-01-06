@@ -1,4 +1,4 @@
-import "./styles.css";
+﻿import "./styles.css";
 import React, { useState } from "react";
 import CodeEntryScreen from "./CodeEntryScreen";
 import UsernameEntryScreen from "./UsernameEntryScreen";
@@ -15,14 +15,13 @@ import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
 import HomeScreen from "./HomeScreen";
 import ConnectionConfirmedScreen from "./screens/ConnectionConfirmedScreen";
+import UsernameLinkingScreen from "./screens/UsernameLinkingScreen";
 import AccountProfileScreen from "./screens/AccountProfileScreen";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
   const [showUsername, setShowUsername] = useState(false);
   const [lastTabBeforeCode, setLastTabBeforeCode] = useState("home");
-  const [linkingAlways, setLinkingAlways] = useState(false);
-  const [linkingUntil, setLinkingUntil] = useState(null); // ms epoch or null
   const [currentThread, setCurrentThread] = useState(null); // { id, name } when a card is tapped
   const [currentThreadName, setCurrentThreadName] = useState(null);
   const [currentConnection, setCurrentConnection] = useState(null);
@@ -43,7 +42,8 @@ export default function App() {
     if (
       !onboardingTabs.has(activeTab) &&
       activeTab !== "account" &&
-      activeTab !== "account-profile"
+      activeTab !== "account-profile" &&
+      activeTab !== "username-linking"
     ) {
       setLastAuthedTab(activeTab);
     }
@@ -63,9 +63,9 @@ export default function App() {
       activeTab === "FeedbackHome" ||
       activeTab === "feedbackForm" ||
       activeTab === "supportForm" ||
-      activeTab === "linking" ||
+      activeTab === "username-linking" ||
       activeTab === "connectionDetail" ||
-      activeTab === "messages" || // 👈 add this
+      activeTab === "messages" || // ðŸ‘ˆ add this
       activeTab === "connections" ? null : activeTab ===
         "conversation" ? null : (
         <header className="header">
@@ -89,7 +89,7 @@ export default function App() {
           onBack={() => setActiveTab("login")}
           onComplete={(payload) => {
             // TODO: replace alert with real API
-            alert(`Registered @${payload.username} • ${payload.phone}`);
+            alert(`Registered @${payload.username} â€¢ ${payload.phone}`);
             setActiveTab("home");
           }}
         />
@@ -136,7 +136,7 @@ export default function App() {
         <SettingsScreen
           onBack={() => setActiveTab(lastAuthedTab)}
           onOpenHelp={() => setActiveTab("FeedbackHome")}
-          onOpenLinking={() => setActiveTab("linking")}
+          onOpenLinking={() => setActiveTab("username-linking")}
           onOpenProfile={() => setActiveTab("account-profile")}
         />
       )}
@@ -171,7 +171,7 @@ export default function App() {
       {activeTab === "conversation" && (
         <ConversationScreen
           threadTitle={currentThreadName || "LivinLife"}
-          threadUser={{ id: currentThreadId, name: currentThreadName }} // 👈 pass the user
+          threadUser={{ id: currentThreadId, name: currentThreadName }} // ðŸ‘ˆ pass the user
           onBack={() => setActiveTab("messages")}
           onOpenConnection={(c) => {
             setSelectedConnection(c); // store which user was clicked
@@ -191,21 +191,8 @@ export default function App() {
         <UsernameEntryScreen onBack={() => setShowUsername(false)} />
       )}
 
-      {activeTab === "linking" && (
-        <UsernameLinkingScreen
-          onBack={() => setActiveTab("account")}
-          always={linkingAlways}
-          until={linkingUntil}
-          onEnableTimed={(minutes = 5) => {
-            setLinkingUntil(Date.now() + minutes * 60_000);
-            setLinkingAlways(false);
-          }}
-          onDisableTimed={() => setLinkingUntil(null)}
-          onToggleAlways={(val) => {
-            setLinkingAlways(val);
-            if (val) setLinkingUntil(null);
-          }}
-        />
+      {activeTab === "username-linking" && (
+        <UsernameLinkingScreen onBack={() => setActiveTab("account")} />
       )}
 
       {activeTab === "FeedbackHome" && (
@@ -245,7 +232,7 @@ export default function App() {
       {activeTab === "conversation" && (
         <ConversationScreen
           threadTitle={currentThreadName || "LivinLife"}
-          threadUser={{ id: currentThreadId, name: currentThreadName }} // 👈 pass the user
+          threadUser={{ id: currentThreadId, name: currentThreadName }} // ðŸ‘ˆ pass the user
           onBack={() => setActiveTab("messages")}
           onOpenConnection={(c) => {
             setSelectedConnection(c); // store which user was clicked
@@ -316,112 +303,7 @@ function Placeholder({ label }) {
     <main className="main">
       <div className="card">
         <div className="row">
-          <span className="row-label">{label} screen coming soon…</span>
-        </div>
-      </div>
-    </main>
-  );
-}
-
-/* ------------------- Username Linking Screen ------------------- */
-function UsernameLinkingScreen({
-  onBack,
-  always,
-  until,
-  onEnableTimed,
-  onDisableTimed,
-  onToggleAlways,
-}) {
-  const [now, setNow] = React.useState(Date.now());
-
-  // Tick every second to update countdown and auto-stop when expired
-  React.useEffect(() => {
-    if (!until) return;
-    const t = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(t);
-  }, [until]);
-
-  const remainingMs = until ? Math.max(0, until - now) : 0;
-  const timedActive = until && remainingMs > 0;
-
-  // auto-clear when it expires
-  React.useEffect(() => {
-    if (until && remainingMs <= 0) onDisableTimed();
-  }, [remainingMs, until, onDisableTimed]);
-
-  const mm = Math.floor(remainingMs / 60000);
-  const ss = Math.floor((remainingMs % 60000) / 1000)
-    .toString()
-    .padStart(2, "0");
-
-  return (
-    <main className="main">
-      <div className="top-actions">
-        <button className="chevron-btn" onClick={onBack} aria-label="Back">
-          <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M15 6L9 12L15 18"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-      </div>
-
-      <div className="card linking-card">
-        <h2 className="linking-title">
-          Allow people to link with your username
-        </h2>
-
-        <div className="intro">
-          <p>
-            One of the main benefits of Swave is that, unlike other social
-            messaging apps, you are in complete control of who can be connected
-            to you. Enabling 'Username Linking' will allow anyone who knows your
-            username to link to you.
-          </p>
-          <p className="muted">
-            Tip: Only enable temporarily unless you expect many requests.
-          </p>
-        </div>
-
-        {/* Timed enable */}
-        <button
-          className={`btn-hollow big ${timedActive ? "btn-on" : ""}`}
-          onClick={() => (timedActive ? onDisableTimed() : onEnableTimed(5))}
-        >
-          <span className="btn-ico">
-            <IconAlarm />
-          </span>
-          {timedActive ? (
-            <>
-              Enabled • {mm}:{ss}
-            </>
-          ) : (
-            <>Only Enable Username Linking for 5 min.</>
-          )}
-        </button>
-
-        {/* OR divider */}
-        <div className="or-wrap">
-          <span className="or-line" />
-          <span className="or-text">or</span>
-          <span className="or-line" />
-        </div>
-
-        {/* Always allow */}
-        <div className="toggle-row">
-          <span className="toggle-label">Always allow username linking</span>
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={!!always}
-              onChange={(e) => onToggleAlways(e.target.checked)}
-            />
-            <span className="slider" />
-          </label>
+          <span className="row-label">{label} screen coming soonâ€¦</span>
         </div>
       </div>
     </main>
@@ -595,34 +477,6 @@ function IconMenu() {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-function IconAlarm() {
-  return (
-    <svg viewBox="0 0 24 24" className="ico">
-      <circle
-        cx="12"
-        cy="13"
-        r="6.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M12 13V9M12 13l3 2"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M6 4l-3 3M21 7l-3-3"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
         strokeLinecap="round"
       />
     </svg>

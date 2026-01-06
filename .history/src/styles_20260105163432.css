@@ -682,7 +682,7 @@ main {
 .profile-edit-btn {
   position: absolute;
   bottom: -1px;
-  right: -1px;
+  right: -10px;
   background: none;
   border: 0;
   color: var(--swave-accent-2);
