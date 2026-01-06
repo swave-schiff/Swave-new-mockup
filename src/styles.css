@@ -677,21 +677,20 @@ main {
 }
 .profile-avatar {
   position: relative;
+  display: inline-block;
 }
 .profile-edit-btn {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--glass-border-strong);
-  background: var(--glass-surface);
-  color: var(--swave-text);
+  bottom: -10px;
+  right: -10px;
+  background: none;
+  border: 0;
+  color: var(--swave-accent-2);
+  padding: 6px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-1);
+  cursor: pointer;
 }
 .connection-confirm-name {
   margin: 1px 0 0;

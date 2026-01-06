@@ -31,11 +31,13 @@ export default function AccountProfileScreen({
       <section className="auth-shell connection-confirm-shell">
         <div className="connection-confirm-card">
           <div className="auth-copy connection-confirm-copy">
-            <div className="connection-confirm-avatar profile-avatar">
-              <img
-                src="https://placehold.co/240x240"
-                alt={`${username} avatar`}
-              />
+            <div className="profile-avatar">
+              <div className="connection-confirm-avatar">
+                <img
+                  src="https://placehold.co/240x240"
+                  alt={`${username} avatar`}
+                />
+              </div>
               <button
                 type="button"
                 className="profile-edit-btn"
