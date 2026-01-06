@@ -96,16 +96,18 @@ export default function UsernameLinkingScreen({ onBack = () => {} }) {
             </button>
           ) : (
             <div className="linking-timer">
-              <div className="linking-countdown">
-                {mm}:{ss}
+              <div className="linking-timer-row">
+                <div className="linking-countdown">
+                  {mm}:{ss}
+                </div>
+                <button
+                  type="button"
+                  className="glass-btn glass-btn--danger big"
+                  onClick={cancelTimed}
+                >
+                  Cancel
+                </button>
               </div>
-              <button
-                type="button"
-                className="glass-btn glass-btn--danger big"
-                onClick={cancelTimed}
-              >
-                Cancel
-              </button>
             </div>
           )}
         </div>

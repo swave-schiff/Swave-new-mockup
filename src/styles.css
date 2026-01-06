@@ -601,6 +601,11 @@ main {
   gap: 12px;
   justify-items: center;
 }
+.linking-timer-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 .linking-countdown {
   font-size: 22px;
   font-weight: 700;
