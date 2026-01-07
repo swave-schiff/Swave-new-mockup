@@ -604,7 +604,8 @@ main {
 .linking-timer-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 28px;
 }
 .linking-countdown {
   font-size: 22px;
