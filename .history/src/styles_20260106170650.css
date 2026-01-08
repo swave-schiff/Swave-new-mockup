@@ -596,9 +596,6 @@ main {
   gap: 6px;
   justify-items: flex-start;
 }
-.linking-actions .linking-timer {
-  justify-self: center;
-}
 .linking-timer {
   display: grid;
   gap: 12px;
@@ -609,10 +606,8 @@ main {
   align-items: center;
   justify-content: center;
   gap: 28px;
-
-  align-self: center; /* ← THIS is the missing piece */
+  margin:
 }
-
 .linking-countdown {
   font-size: 22px;
   font-weight: 700;
@@ -633,9 +628,6 @@ main {
   color: var(--swave-text);
   font-weight: 600;
 }
-.toggle-label--disabled {
-  color: var(--swave-muted);
-}
 .toggle-switch {
   position: relative;
   width: 54px;
@@ -645,10 +637,6 @@ main {
   border-radius: 999px;
   box-shadow: var(--shadow-1);
   transition: background 0.15s ease, border-color 0.15s ease;
-}
-.toggle-switch--disabled {
-  opacity: 0.45;
-  pointer-events: none;
 }
 .toggle-switch input {
   position: absolute;

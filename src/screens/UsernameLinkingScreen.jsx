@@ -17,7 +17,8 @@ export default function UsernameLinkingScreen({ onBack = () => {} }) {
         if (prev <= 1) {
           clearInterval(timerRef.current);
           timerRef.current = null;
-          return 0;
+          setIsTempEnabled(false);
+          return 300;
         }
         return prev - 1;
       });
@@ -115,15 +116,24 @@ export default function UsernameLinkingScreen({ onBack = () => {} }) {
         <div className="linking-separator">- or -</div>
 
         <div className="toggle-row">
-          <span className="toggle-label">Always allow username linking</span>
+          <span
+            className={`toggle-label ${
+              isTempEnabled ? "toggle-label--disabled" : ""
+            }`}
+          >
+            Always allow username linking
+          </span>
           <label
-            className={`toggle-switch ${alwaysAllow ? "toggle-switch--on" : ""}`}
+            className={`toggle-switch ${alwaysAllow ? "toggle-switch--on" : ""} ${
+              isTempEnabled ? "toggle-switch--disabled" : ""
+            }`.trim()}
           >
             <input
               type="checkbox"
               checked={alwaysAllow}
               onChange={(e) => setAlwaysAllow(e.target.checked)}
               aria-checked={alwaysAllow}
+              disabled={isTempEnabled}
             />
             <span className="toggle-slider" />
           </label>
