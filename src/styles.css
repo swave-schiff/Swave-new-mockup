@@ -1132,6 +1132,11 @@ main {
   --conv-header-h: 120px;
   --conv-composer-h: 86px;
   --tabbar-h: 76px;
+  --composer-gradient: linear-gradient(
+    180deg,
+    rgba(118, 168, 255, 0.78),
+    rgba(60, 116, 255, 0.92)
+  );
 }
 
 .conversation-header {
@@ -1246,6 +1251,49 @@ main {
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   margin: 0;
+}
+.conversation-composer-inner {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  padding: 8px 12px;
+}
+.composer-input {
+  flex: 1;
+  min-height: 46px;
+  max-height: none;
+  border: 0;
+  outline: none;
+  resize: none;
+  color: #ffffff;
+  background: var(--composer-gradient);
+  border-radius: 16px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow-1);
+  overflow-y: hidden;
+}
+.composer-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.composer-send {
+  background: var(--composer-gradient);
+  color: #ffffff;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-1);
+  transition: transform 0.1s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.composer-send:hover {
+  box-shadow: var(--shadow-2);
+}
+.composer-send:active {
+  transform: translateY(1px);
 }
 
 .convo {

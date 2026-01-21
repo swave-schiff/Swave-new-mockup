@@ -246,6 +246,8 @@ export default function ConversationScreen({
   const [text, setText] = useState("");
   const [confirm, setConfirm] = useState(null); // {type:'thread'|'message', id?}
   const scrollerRef = useRef(null);
+  const composerInputRef = useRef(null);
+  const MAX_INPUT_HEIGHT = 120;
 
   useEffect(() => {
     const applyScrollbarWidthVar = () => {
@@ -279,6 +281,7 @@ export default function ConversationScreen({
       },
     ]);
     setText("");
+    resetComposerHeight();
   };
 
   const doDeleteThread = (scope) => {
@@ -292,6 +295,26 @@ export default function ConversationScreen({
       onDeleteMessage(confirm.id, scope);
     }
     setConfirm(null);
+  };
+
+  const resetComposerHeight = () => {
+    const el = composerInputRef.current;
+    if (el) {
+      el.style.height = "auto";
+      el.style.overflowY = "hidden";
+    }
+  };
+
+  const handleComposerChange = (e) => {
+    const val = e.target.value;
+    setText(val);
+    const el = composerInputRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    const nextHeight = Math.min(el.scrollHeight, MAX_INPUT_HEIGHT);
+    el.style.height = `${nextHeight}px`;
+    el.style.overflowY =
+      el.scrollHeight > MAX_INPUT_HEIGHT ? "auto" : "hidden";
   };
 
   return (
@@ -371,19 +394,16 @@ export default function ConversationScreen({
 
       {/* Fixed composer */}
       <footer className="conversation-composer">
-        <div className="composer-card card glass gradient-vertical">
-          <input
+        <div className="composer-card card glass gradient-vertical conversation-composer-inner">
+          <textarea
+            ref={composerInputRef}
             className="composer-input"
             placeholder="Type your message"
             value={text}
-            onChange={(e) => setText(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && send()}
+            onChange={handleComposerChange}
+            rows={1}
           />
-          <button
-            className="glass-btn tile glass-btn--tint edge-feather btn-sm"
-            onClick={send}
-            aria-label="Send"
-          >
+          <button className="composer-send" onClick={send} aria-label="Send">
             <PlaneIcon />
           </button>
         </div>
