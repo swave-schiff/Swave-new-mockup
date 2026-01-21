@@ -1134,9 +1134,9 @@ main {
   --tabbar-h: 76px;
   --composer-gradient: linear-gradient(
     180deg,
-    rgba(48, 68, 120, 0.95) 0%,
-    rgba(16, 24, 44, 0.98) 60%,
-    rgba(20, 38, 84, 0.98) 100%
+    rgba(42, 62, 110, 0.95) 0%,
+    rgba(14, 20, 36, 0.98) 60%,
+    rgba(28, 50, 104, 0.98) 100%
   );
 }
 
