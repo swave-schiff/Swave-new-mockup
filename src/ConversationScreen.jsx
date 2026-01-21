@@ -247,7 +247,6 @@ export default function ConversationScreen({
   const [confirm, setConfirm] = useState(null); // {type:'thread'|'message', id?}
   const scrollerRef = useRef(null);
 
-  // Set --sbw CSS var (scrollbar width) so our fixed composer avoids it
   useEffect(() => {
     const applyScrollbarWidthVar = () => {
       const sbw = window.innerWidth - document.documentElement.clientWidth;
@@ -298,62 +297,64 @@ export default function ConversationScreen({
   return (
     <main className="conversation-screen main-with-tabbar">
       {/* Top bar */}
-      <div className="conversation-header">
-        <div className="conversation-header-left">
-          <button className="chevron-btn" aria-label="Back" onClick={onBack}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="chevron-svg"
-            >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-        </div>
+      <header className="conversation-header">
+        <div className="conversation-header-grid">
+          <div className="conversation-header-left">
+            <button className="chevron-btn" aria-label="Back" onClick={onBack}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="chevron-svg"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+          </div>
 
-        <div
-          className="conversation-header-center"
-          onClick={() =>
-            onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
-          }
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) =>
-            e.key === "Enter" &&
-            onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
-          }
-        >
-          <Avatar
-            name={threadUser?.name || threadTitle}
-            size={56}
-            className="conversation-header-avatar"
-          />
-          <div className="conversation-header-name">
-            {threadUser?.name || threadTitle}
+          <div
+            className="conversation-header-center"
+            onClick={() =>
+              onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
+            }
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) =>
+              e.key === "Enter" &&
+              onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
+            }
+          >
+            <Avatar
+              name={threadUser?.name || threadTitle}
+              size={56}
+              className="conversation-header-avatar"
+            />
+            <div className="conversation-header-name">
+              {threadUser?.name || threadTitle}
+            </div>
+          </div>
+
+          <div className="conversation-header-actions">
+            <button
+              onClick={() => setConfirm({ type: "thread" })}
+              className="conversation-header-action"
+              aria-label="Delete thread"
+              title="Delete thread"
+            >
+              <TrashIcon />
+            </button>
           </div>
         </div>
-
-        <div className="conversation-header-actions">
-          <button
-            onClick={() => setConfirm({ type: "thread" })}
-            className="conversation-header-action"
-            aria-label="Delete thread"
-            title="Delete thread"
-          >
-            <TrashIcon />
-          </button>
-        </div>
-      </div>
+      </header>
 
       {/* Scrollable list */}
-      <div ref={scrollerRef} className="conv-scroll">
+      <section ref={scrollerRef} className="conversation-scroll">
         <div style={{ height: 8 }} />
         {messages.map((m) => (
           <Bubble
@@ -366,10 +367,10 @@ export default function ConversationScreen({
           </Bubble>
         ))}
         <div style={{ height: 16 }} />
-      </div>
+      </section>
 
       {/* Fixed composer */}
-      <div className="composer-fixed">
+      <footer className="conversation-composer">
         <div className="composer-card card glass gradient-vertical">
           <input
             className="composer-input"
@@ -386,7 +387,7 @@ export default function ConversationScreen({
             <PlaneIcon />
           </button>
         </div>
-      </div>
+      </footer>
 
       {/* Confirm modals (no fragment needed) */}
       <ConfirmSheet
