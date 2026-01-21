@@ -1121,8 +1121,77 @@ main {
 }
 
 /* =========================================================
-     7) CONVERSATION VIEW BASICS (placeholder styles)
+     7) CONVERSATION VIEW
      ========================================================= */
+.conversation-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation-header {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  align-items: center;
+  padding: 14px 4px 8px;
+  margin-bottom: 6px;
+}
+.conversation-header-left {
+  display: flex;
+  align-items: center;
+}
+.conversation-header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  text-align: center;
+  cursor: pointer;
+  color: var(--swave-text);
+  max-width: calc(100% - 140px);
+  padding: 4px 10px;
+}
+.conversation-header-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--glass-border-strong);
+  background: var(--glass-surface);
+  box-shadow: var(--shadow-1);
+}
+.conversation-header-name {
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.2px;
+}
+.conversation-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+.conversation-header-action {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--swave-soft);
+  transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease;
+}
+.conversation-header-action:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--swave-text);
+}
+.conversation-header-action:active {
+  transform: translateY(1px);
+}
+
 .convo {
   display: grid;
   gap: 10px;

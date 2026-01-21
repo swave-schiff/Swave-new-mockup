@@ -11,12 +11,12 @@ function initials(name) {
   return ((p[0]?.[0] || "") + (p[1]?.[0] || "")).toUpperCase() || "U";
 }
 
-function Avatar({ name, size = 56, onClick }) {
+function Avatar({ name, size = 56, onClick, className = "" }) {
   const inits = useMemo(() => initials(name), [name]);
   return (
     <button
       onClick={onClick}
-      className="connection-avatar"
+      className={`connection-avatar ${className}`.trim()}
       style={{
         width: size,
         height: size,
@@ -235,8 +235,8 @@ function Bubble({ who = "me", at, children, onLongPress }) {
 
 /* ---------- Screen ---------- */
 export default function ConversationScreen({
-  threadTitle = "LivinLife",
-  threadUser = { id: "u1", name: "LivinLife" },
+  threadTitle = "TeaseMeTwice",
+  threadUser = { id: "u1", name: "TeaseMeTwice" },
   onBack = () => {},
   onOpenConnection = () => {},
   onDeleteThread = (scope) => alert(`Delete thread: ${scope}`),
@@ -298,8 +298,8 @@ export default function ConversationScreen({
   return (
     <main className="conversation-screen main-with-tabbar">
       {/* Top bar */}
-      <div className="conv-topbar">
-        <div className="top-actions" style={{ position: "static" }}>
+      <div className="conversation-header">
+        <div className="conversation-header-left">
           <button className="chevron-btn" aria-label="Back" onClick={onBack}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -319,23 +319,31 @@ export default function ConversationScreen({
         </div>
 
         <div
-          className="conv-header-center"
+          className="conversation-header-center"
           onClick={() =>
             onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
           }
           role="button"
           tabIndex={0}
+          onKeyDown={(e) =>
+            e.key === "Enter" &&
+            onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
+          }
         >
-          <Avatar name={threadUser?.name || threadTitle} size={56} />
-          <button className="conv-title-btn">
+          <Avatar
+            name={threadUser?.name || threadTitle}
+            size={56}
+            className="conversation-header-avatar"
+          />
+          <div className="conversation-header-name">
             {threadUser?.name || threadTitle}
-          </button>
+          </div>
         </div>
 
-        <div className="conv-header-actions">
+        <div className="conversation-header-actions">
           <button
             onClick={() => setConfirm({ type: "thread" })}
-            className="icon-btn"
+            className="conversation-header-action"
             aria-label="Delete thread"
             title="Delete thread"
           >
