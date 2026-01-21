@@ -168,7 +168,7 @@ export default function App() {
         />
       )}
 
-      {activeTab === "conversation" && (
+      {false && activeTab === "conversation" && (
         <ConversationScreen
           threadTitle={currentThreadName || "LivinLife"}
           threadUser={{ id: currentThreadId, name: currentThreadName }} // ðŸ‘ˆ pass the user
