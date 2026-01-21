@@ -1132,6 +1132,7 @@ main {
   --conv-header-h: 120px;
   --conv-composer-h: 86px;
   --tabbar-h: 76px;
+  --conv-composer-panel-h: 136px;
   --composer-gradient: linear-gradient(
     180deg,
     rgba(42, 62, 110, 0.95) 0%,
@@ -1230,7 +1231,7 @@ main {
     var(--conv-header-h) + var(--conv-header-top) + 10px
   );
   padding-bottom: calc(
-    var(--conv-composer-h) + var(--tabbar-h) + 18px
+    var(--tabbar-h) + var(--conv-composer-panel-h)
   );
   padding-left: 4px;
   padding-right: 4px;
@@ -1241,16 +1242,17 @@ main {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(var(--tabbar-h) + 4px);
-  z-index: 50;
-  padding: 10px 0 14px;
+  bottom: var(--tabbar-h);
+  z-index: 60;
+  padding: 12px 14px 14px;
   background: linear-gradient(
     180deg,
-    rgba(11, 15, 24, 0.3),
-    rgba(11, 15, 24, 0.75)
+    rgba(11, 15, 24, 0.65),
+    rgba(11, 15, 24, 0.92)
   );
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-top: 1px solid var(--glass-border);
   margin: 0;
 }
 .conversation-composer-inner {
