@@ -248,7 +248,7 @@ export default function ConversationScreen({
   const scrollerRef = useRef(null);
   const composerInputRef = useRef(null);
   const MAX_INPUT_HEIGHT = 120;
-  const hasText = text.trim().length > 0;
+  const canSend = text.trim().length > 0;
 
   useEffect(() => {
     const applyScrollbarWidthVar = () => {
@@ -404,11 +404,15 @@ export default function ConversationScreen({
             onChange={handleComposerChange}
             rows={1}
           />
-          {hasText && (
-            <button className="composer-send" onClick={send} aria-label="Send">
-              <PlaneIcon />
-            </button>
-          )}
+          <button
+            className={`composer-send ${canSend ? "" : "composer-send--disabled"}`}
+            onClick={send}
+            aria-label="Send"
+            disabled={!canSend}
+            aria-disabled={!canSend}
+          >
+            <PlaneIcon />
+          </button>
         </div>
       </footer>
 

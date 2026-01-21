@@ -1241,9 +1241,9 @@ main {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(var(--tabbar-h) + 10px);
+  bottom: calc(var(--tabbar-h) + 4px);
   z-index: 50;
-  padding: 6px 0 12px;
+  padding: 10px 0 14px;
   background: linear-gradient(
     180deg,
     rgba(11, 15, 24, 0.3),
@@ -1302,6 +1302,19 @@ main {
 }
 .composer-send:active {
   transform: translateY(1px);
+}
+.composer-send--disabled {
+  cursor: default;
+}
+.composer-send--disabled svg path,
+.composer-send--disabled svg line,
+.composer-send--disabled svg polyline {
+  stroke: rgba(255, 255, 255, 0.45);
+}
+.composer-send:not(.composer-send--disabled) svg path,
+.composer-send:not(.composer-send--disabled) svg line,
+.composer-send:not(.composer-send--disabled) svg polyline {
+  stroke: #ffffff;
 }
 
 .convo {
