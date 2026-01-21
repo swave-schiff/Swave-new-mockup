@@ -1263,7 +1263,7 @@ main {
   flex: 1;
   min-height: 46px;
   max-height: none;
-  border: 0;
+  border: 1px solid transparent;
   outline: none;
   resize: none;
   color: #ffffff;
@@ -1275,6 +1275,13 @@ main {
 }
 .composer-input::placeholder {
   color: rgba(255, 255, 255, 0.7);
+}
+.composer-input:focus,
+.composer-input:focus-visible {
+  border-color: rgba(108, 160, 255, 0.7);
+  box-shadow: var(--shadow-1), 0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 0 6px rgba(108, 160, 255, 0.18);
+  outline: none;
 }
 .composer-send {
   background: var(--composer-gradient);
