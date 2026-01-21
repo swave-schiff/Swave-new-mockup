@@ -1128,7 +1128,7 @@ main {
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  --conv-header-top: 14px;
+  --conv-header-top: 0px;
   --conv-header-h: 120px;
   --conv-composer-h: 86px;
   --tabbar-h: 76px;
