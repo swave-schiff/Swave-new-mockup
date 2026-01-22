@@ -188,6 +188,8 @@ function Bubble({ who = "me", at, children, onLongPress }) {
   const bubbleClass = `card bubble ${
     isMe ? "bubble-out swave-surface-gradient-vertical" : "bubble-in"
   }`.trim();
+  const labelLeft = isMe ? at : "LivinLife";
+  const labelRight = isMe ? "Me" : at;
 
   return (
     <div
@@ -200,6 +202,16 @@ function Bubble({ who = "me", at, children, onLongPress }) {
       }}
     >
       {!isMe && <div />}
+      <div
+        className="message-meta-row"
+        style={{
+          gridColumn: isMe ? "2/3" : "1/2",
+          justifySelf: isMe ? "end" : "start",
+        }}
+      >
+        <div className="message-meta-left">{labelLeft}</div>
+        <div className="message-meta-right">{labelRight}</div>
+      </div>
       <div
         {...lp}
         className={bubbleClass}
@@ -218,24 +230,14 @@ function Bubble({ who = "me", at, children, onLongPress }) {
         {children}
       </div>
       {isMe && <div />}
-      <div
-        style={{
-          gridColumn: isMe ? "2/3" : "1/2",
-          color: "#aeb7c9",
-          fontSize: 12,
-          padding: isMe ? "0 6px 0 0" : "0 0 0 6px",
-        }}
-      >
-        {at}
-      </div>
     </div>
   );
 }
 
 /* ---------- Screen ---------- */
 export default function ConversationScreen({
-  threadTitle = "TeaseMeTwice",
-  threadUser = { id: "u1", name: "TeaseMeTwice" },
+  threadTitle = "LivinLife",
+  threadUser = { id: "u1", name: "LivinLife" },
   onBack = () => {},
   onOpenConnection = () => {},
   onDeleteThread = (scope) => alert(`Delete thread: ${scope}`),

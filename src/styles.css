@@ -1294,6 +1294,8 @@ main {
   padding: 12px 14px;
   box-shadow: none;
   overflow-y: hidden;
+  font-size: 0.98rem;
+  line-height: 1.35;
 }
 .composer-input::placeholder {
   color: rgba(255, 255, 255, 0.7);
@@ -1344,6 +1346,24 @@ main {
 }
 .bubble-out.swave-surface-gradient-vertical {
   color: #eaf2ff;
+}
+
+.message-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 78vw;
+  gap: 10px;
+  color: var(--swave-muted);
+  font-size: 12px;
+  padding: 0 6px 2px;
+}
+.message-meta-left {
+  text-align: left;
+}
+.message-meta-right {
+  text-align: right;
 }
 
 .convo {
