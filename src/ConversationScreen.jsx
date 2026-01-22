@@ -185,7 +185,9 @@ const SEED = [
 function Bubble({ who = "me", at, children, onLongPress }) {
   const isMe = who === "me";
   const lp = useLongPress(onLongPress, { ms: 500 });
-  const bubbleClass = `card bubble ${isMe ? "bubble-out" : "bubble-in"}`.trim();
+  const bubbleClass = `card bubble ${
+    isMe ? "bubble-out swave-surface-gradient-vertical" : "bubble-in"
+  }`.trim();
 
   return (
     <div
@@ -402,7 +404,9 @@ export default function ConversationScreen({
             rows={1}
           />
           <button
-            className={`composer-send ${canSend ? "" : "composer-send--disabled"}`}
+            className={`composer-send swave-surface-gradient-vertical ${
+              canSend ? "" : "composer-send--disabled"
+            }`}
             onClick={send}
             aria-label="Send"
             disabled={!canSend}
