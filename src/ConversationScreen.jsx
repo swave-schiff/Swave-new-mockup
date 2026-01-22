@@ -185,6 +185,7 @@ const SEED = [
 function Bubble({ who = "me", at, children, onLongPress }) {
   const isMe = who === "me";
   const lp = useLongPress(onLongPress, { ms: 500 });
+  const bubbleClass = `card bubble ${isMe ? "bubble-out" : "bubble-in"}`.trim();
 
   return (
     <div
@@ -199,7 +200,7 @@ function Bubble({ who = "me", at, children, onLongPress }) {
       {!isMe && <div />}
       <div
         {...lp}
-        className="card"
+        className={bubbleClass}
         style={{
           maxWidth: "78vw",
           fontSize: "0.98rem",
@@ -207,13 +208,9 @@ function Bubble({ who = "me", at, children, onLongPress }) {
           padding: "12px 14px",
           borderRadius: 16,
           wordBreak: "break-word",
-          color: isMe ? "#eaf2ff" : "#0f1320",
-          background: isMe
-            ? "linear-gradient(180deg, rgba(72,130,255,0.95), rgba(38,98,255,0.95))"
-            : "rgba(255,255,255,0.85)",
-          boxShadow: isMe
-            ? "0 6px 14px rgba(0,0,0,0.45)"
-            : "0 4px 10px rgba(0,0,0,0.35)",
+          color: isMe ? undefined : "#0f1320",
+          background: isMe ? undefined : "rgba(255,255,255,0.85)",
+          boxShadow: isMe ? undefined : "0 4px 10px rgba(0,0,0,0.35)",
         }}
       >
         {children}

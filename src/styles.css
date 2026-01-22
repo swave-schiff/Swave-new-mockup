@@ -1133,12 +1133,6 @@ main {
   --conv-composer-h: 86px;
   --tabbar-h: 76px;
   --conv-composer-panel-h: 136px;
-  --composer-gradient: linear-gradient(
-    180deg,
-    rgba(42, 62, 110, 0.95) 0%,
-    rgba(14, 20, 36, 0.98) 60%,
-    rgba(28, 50, 104, 0.98) 100%
-  );
 }
 
 .conversation-header {
@@ -1268,11 +1262,12 @@ main {
   border: 1px solid transparent;
   outline: none;
   resize: none;
-  color: #ffffff;
-  background: var(--composer-gradient);
+  color: var(--swave-text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 12px 14px;
-  box-shadow: var(--shadow-1);
+  box-shadow: none;
   overflow-y: hidden;
 }
 .composer-input::placeholder {
@@ -1286,9 +1281,9 @@ main {
   outline: none;
 }
 .composer-send {
-  background: var(--composer-gradient);
+  background: var(--glass-surface);
   color: #ffffff;
-  border: 0;
+  border: 1px solid var(--glass-border);
   border-radius: 14px;
   padding: 10px;
   min-width: 44px;
@@ -1317,6 +1312,13 @@ main {
 .composer-send:not(.composer-send--disabled) svg line,
 .composer-send:not(.composer-send--disabled) svg polyline {
   stroke: #ffffff;
+}
+
+.bubble-out {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-1);
+  color: var(--swave-text);
 }
 
 .convo {
