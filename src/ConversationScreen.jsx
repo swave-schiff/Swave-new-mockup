@@ -192,44 +192,16 @@ function Bubble({ who = "me", at, children, onLongPress }) {
   const labelRight = isMe ? "Me" : at;
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: isMe ? "1fr auto" : "auto 1fr",
-        alignItems: "end",
-        gap: 8,
-        margin: "6px 10px",
-      }}
-    >
-      {!isMe && <div />}
-      <div
-        className="message-meta-row"
-        style={{
-          gridColumn: isMe ? "2/3" : "1/2",
-          justifySelf: isMe ? "end" : "start",
-        }}
-      >
-        <div className="message-meta-left">{labelLeft}</div>
-        <div className="message-meta-right">{labelRight}</div>
+    <div className={`msg ${isMe ? "msg--out" : "msg--in"}`}>
+      <div className="msg-wrap">
+        <div className="message-meta-row">
+          <div className="message-meta-left">{labelLeft}</div>
+          <div className="message-meta-right">{labelRight}</div>
+        </div>
+        <div {...lp} className={bubbleClass}>
+          {children}
+        </div>
       </div>
-      <div
-        {...lp}
-        className={bubbleClass}
-        style={{
-          maxWidth: "78vw",
-          fontSize: "0.98rem",
-          lineHeight: 1.35,
-          padding: "12px 14px",
-          borderRadius: 16,
-          wordBreak: "break-word",
-          color: isMe ? undefined : "#0f1320",
-          background: isMe ? undefined : "rgba(255,255,255,0.85)",
-          boxShadow: isMe ? undefined : "0 4px 10px rgba(0,0,0,0.35)",
-        }}
-      >
-        {children}
-      </div>
-      {isMe && <div />}
     </div>
   );
 }
@@ -452,3 +424,4 @@ export default function ConversationScreen({
     </main>
   );
 }
+
