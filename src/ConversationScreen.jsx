@@ -182,13 +182,19 @@ const SEED = [
 ];
 
 /* ---------- Bubble ---------- */
-function Bubble({ who = "me", at, children, onLongPress }) {
+function Bubble({
+  who = "me",
+  at,
+  children,
+  onLongPress,
+  contactName = "LivinLife",
+}) {
   const isMe = who === "me";
   const lp = useLongPress(onLongPress, { ms: 500 });
   const bubbleClass = `card bubble ${
     isMe ? "bubble-out swave-surface-gradient-vertical" : "bubble-in"
   }`.trim();
-  const labelLeft = isMe ? at : "LivinLife";
+  const labelLeft = isMe ? at : contactName;
   const labelRight = isMe ? "Me" : at;
 
   return (
@@ -222,6 +228,7 @@ export default function ConversationScreen({
   const composerInputRef = useRef(null);
   const MAX_INPUT_HEIGHT = 120;
   const canSend = text.trim().length > 0;
+  const displayName = "LivinLife";
 
   useEffect(() => {
     const applyScrollbarWidthVar = () => {
@@ -318,22 +325,22 @@ export default function ConversationScreen({
           <div
             className="conversation-header-center"
             onClick={() =>
-              onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
+              onOpenConnection({ id: threadUser?.id, name: displayName })
             }
             role="button"
             tabIndex={0}
             onKeyDown={(e) =>
               e.key === "Enter" &&
-              onOpenConnection({ id: threadUser?.id, name: threadUser?.name })
+              onOpenConnection({ id: threadUser?.id, name: displayName })
             }
           >
             <Avatar
-              name={threadUser?.name || threadTitle}
+              name={displayName}
               size={56}
               className="conversation-header-avatar"
             />
             <div className="conversation-header-name">
-              {threadUser?.name || threadTitle}
+              {displayName}
             </div>
           </div>
 
@@ -358,6 +365,7 @@ export default function ConversationScreen({
             key={m.id}
             who={m.who}
             at={m.at}
+            contactName={displayName}
             onLongPress={() => setConfirm({ type: "message", id: m.id })}
           >
             {m.text}
