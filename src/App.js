@@ -29,12 +29,15 @@ export default function App() {
   const [selectedConnection, setSelectedConnection] = useState(null);
   const [pendingPhone, setPendingPhone] = useState("");
   const [lastAuthedTab, setLastAuthedTab] = useState("home");
+  const [activeChatContact, setActiveChatContact] = useState(null);
   const openConversation = (contact = {}) => {
-    const name =
-      contact.name || contact.username || contact.handle || "LivinLife";
+    const username =
+      contact.username || contact.name || contact.handle || "LivinLife";
+    const normalized = { ...contact, username, name: contact.name || username };
     const id = contact.id ?? contact.threadId ?? null;
-    setCurrentThread(contact);
-    setCurrentThreadName(name);
+    setActiveChatContact(normalized);
+    setCurrentThread(normalized);
+    setCurrentThreadName(username);
     setCurrentThreadId(id);
     setActiveTab("conversation");
   };
@@ -226,8 +229,20 @@ export default function App() {
 
       {activeTab === "conversation" && (
         <ConversationScreen
-          threadTitle={currentThreadName || "LivinLife"}
-          threadUser={{ id: currentThreadId, name: currentThreadName || "LivinLife" }} // pass the user
+          threadTitle={
+            activeChatContact?.username ||
+            activeChatContact?.name ||
+            currentThreadName ||
+            "LivinLife"
+          }
+          threadUser={{
+            id: activeChatContact?.id ?? currentThreadId,
+            name:
+              activeChatContact?.username ||
+              activeChatContact?.name ||
+              currentThreadName ||
+              "LivinLife",
+          }}
           onBack={() => setActiveTab("messages")}
           onOpenConnection={(c) => {
             setSelectedConnection(c); // store which user was clicked
