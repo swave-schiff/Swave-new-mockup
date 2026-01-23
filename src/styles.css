@@ -1246,6 +1246,7 @@ main {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: visible;
   padding-top: calc(
     var(--conv-header-h) + var(--conv-header-top) + 10px
   );
@@ -1351,6 +1352,7 @@ main {
 .msg {
   display: flex;
   margin: 16px 10px;
+  overflow: visible;
 }
 .msg--in {
   justify-content: flex-start;
@@ -1365,6 +1367,7 @@ main {
   max-width: 78vw;
   width: fit-content;
   gap: 6px;
+  overflow: visible;
 }
 .message-meta-row {
   display: flex;
@@ -1386,6 +1389,7 @@ main {
 .convo {
   display: grid;
   gap: 10px;
+  overflow: visible;
 }
 .bubble {
   width: 100%;
