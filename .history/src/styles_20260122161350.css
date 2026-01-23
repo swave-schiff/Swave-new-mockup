@@ -1395,7 +1395,6 @@ main {
   line-height: 1.35;
   word-break: break-word;
   position: relative;
-  overflow: visible;
 }
 .bubble-in {
   background: linear-gradient(
