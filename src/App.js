@@ -1,4 +1,4 @@
-﻿import "./styles.css";
+import "./styles.css";
 import React, { useState } from "react";
 import CodeEntryScreen from "./CodeEntryScreen";
 import UsernameEntryScreen from "./UsernameEntryScreen";
@@ -29,6 +29,15 @@ export default function App() {
   const [selectedConnection, setSelectedConnection] = useState(null);
   const [pendingPhone, setPendingPhone] = useState("");
   const [lastAuthedTab, setLastAuthedTab] = useState("home");
+  const openConversation = (contact = {}) => {
+    const name =
+      contact.name || contact.username || contact.handle || "LivinLife";
+    const id = contact.id ?? contact.threadId ?? null;
+    setCurrentThread(contact);
+    setCurrentThreadName(name);
+    setCurrentThreadId(id);
+    setActiveTab("conversation");
+  };
 
   React.useEffect(() => {
     const onboardingTabs = new Set([
@@ -106,7 +115,7 @@ export default function App() {
 
       {activeTab === "connection-confirmed" && (
         <ConnectionConfirmedScreen
-          onChatNow={() => setActiveTab("conversation")}
+          onChatNow={() => openConversation({ name: "LivinLife" })}
           onSaveLater={() => setActiveTab("home")}
         />
       )}
@@ -153,8 +162,7 @@ export default function App() {
           }}
           // (optional fallback)
           onOpenConversation={(c) => {
-            setCurrentThread({ id: c.id, name: c.name });
-            setActiveTab("conversation");
+            openConversation(c);
           }}
         />
       )}
@@ -162,20 +170,7 @@ export default function App() {
       {activeTab === "messages" && (
         <MessagesScreen
           onOpenThread={(t) => {
-            setCurrentThread({ id: t.id, name: t.name });
-            setActiveTab("conversation");
-          }}
-        />
-      )}
-
-      {false && activeTab === "conversation" && (
-        <ConversationScreen
-          threadTitle={currentThreadName || "LivinLife"}
-          threadUser={{ id: currentThreadId, name: currentThreadName }} // ðŸ‘ˆ pass the user
-          onBack={() => setActiveTab("messages")}
-          onOpenConnection={(c) => {
-            setSelectedConnection(c); // store which user was clicked
-            setActiveTab("connectionDetail");
+            openConversation(t);
           }}
         />
       )}
@@ -232,7 +227,7 @@ export default function App() {
       {activeTab === "conversation" && (
         <ConversationScreen
           threadTitle={currentThreadName || "LivinLife"}
-          threadUser={{ id: currentThreadId, name: currentThreadName }} // ðŸ‘ˆ pass the user
+          threadUser={{ id: currentThreadId, name: currentThreadName || "LivinLife" }} // pass the user
           onBack={() => setActiveTab("messages")}
           onOpenConnection={(c) => {
             setSelectedConnection(c); // store which user was clicked

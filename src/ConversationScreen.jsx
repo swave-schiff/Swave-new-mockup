@@ -228,7 +228,7 @@ export default function ConversationScreen({
   const composerInputRef = useRef(null);
   const MAX_INPUT_HEIGHT = 120;
   const canSend = text.trim().length > 0;
-  const displayName = "LivinLife";
+  const displayName = threadUser?.name || threadTitle || "LivinLife";
 
   useEffect(() => {
     const applyScrollbarWidthVar = () => {
