@@ -1369,20 +1369,30 @@ main {
   gap: 6px;
   overflow: visible;
 }
-.message-meta-row {
+.message-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 10px;
   width: 100%;
-  gap: 12px;
+}
+.message-row--in {
+  justify-content: flex-start;
+}
+.message-row--out {
+  justify-content: flex-end;
+}
+.message-time {
+  font-size: 12px;
+  color: var(--swave-muted);
+  white-space: nowrap;
+  line-height: 1;
+}
+.message-username {
   color: var(--swave-muted);
   font-size: 12px;
   padding: 0 4px;
 }
-.message-meta-left {
-  text-align: left;
-}
-.message-meta-right {
+.message-username--me {
   text-align: right;
 }
 

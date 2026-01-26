@@ -194,18 +194,35 @@ function Bubble({
   const bubbleClass = `card bubble ${
     isMe ? "bubble-out swave-surface-gradient-vertical" : "bubble-in"
   }`.trim();
-  const labelLeft = isMe ? at : contactName;
-  const labelRight = isMe ? "Me" : at;
+  const nameLabel = isMe ? "Me" : contactName;
+  const rowClass = `message-row ${isMe ? "message-row--out" : "message-row--in"}`;
 
   return (
     <div className={`msg ${isMe ? "msg--out" : "msg--in"}`}>
       <div className="msg-wrap">
-        <div className="message-meta-row">
-          <div className="message-meta-left">{labelLeft}</div>
-          <div className="message-meta-right">{labelRight}</div>
+        <div
+          className={`message-username ${
+            isMe ? "message-username--me" : ""
+          }`.trim()}
+        >
+          {nameLabel}
         </div>
-        <div {...lp} className={bubbleClass}>
-          {children}
+        <div className={rowClass}>
+          {isMe ? (
+            <>
+              <div className="message-time">{at}</div>
+              <div {...lp} className={bubbleClass}>
+                {children}
+              </div>
+            </>
+          ) : (
+            <>
+              <div {...lp} className={bubbleClass}>
+                {children}
+              </div>
+              <div className="message-time">{at}</div>
+            </>
+          )}
         </div>
       </div>
     </div>
