@@ -159,11 +159,6 @@ export default function App() {
 
       {activeTab === "connections" && (
         <ConnectionsScreen
-          onOpenConnection={(c) => {
-            setCurrentConnection(c);
-            setActiveTab("connectionDetail");
-          }}
-          // (optional fallback)
           onOpenConversation={(c) => {
             openConversation(c);
           }}

@@ -42,10 +42,7 @@ const SEED_CONNECTIONS = [
   },
 ];
 
-export default function ConnectionsScreen({
-  onOpenConversation = () => {},
-  onOpenConnection, // optional, preferred
-}) {
+export default function ConnectionsScreen({ onOpenConversation = () => {} }) {
   const [q, setQ] = useState("");
   const [sortBy, setSortBy] = useState("name"); // default A–Z
 
@@ -77,9 +74,6 @@ export default function ConnectionsScreen({
           );
     return list;
   }, [q, sortBy]);
-
-  // choose which handler to use
-  const open = onOpenConnection ?? onOpenConversation;
 
   return (
     <main className="connections-main main-with-tabbar">
@@ -127,7 +121,7 @@ export default function ConnectionsScreen({
               name={c.name}
               subtitle={truncate(c.lastMessage, 80)}
               time={{ date, time }}
-              onClick={() => open && open(c)}
+              onClick={() => onOpenConversation && onOpenConversation(c)}
               ariaLabel={`Open connection for ${c.name}`}
             />
           );
