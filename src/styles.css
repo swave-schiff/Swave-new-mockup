@@ -1381,7 +1381,12 @@ main {
   margin-top: 18px;
 }
 .confirm-choice-btn {
-  width: min(160px, 50%);
+  white-space: nowrap;
+  min-width: 200px;
+  max-width: 260px;
+  padding-left: 18px;
+  padding-right: 18px;
+  text-align: center;
 }
 .cancel-btn {
   width: auto;
