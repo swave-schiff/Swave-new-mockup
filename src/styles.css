@@ -1354,16 +1354,14 @@ main {
   padding: 18px 18px 20px;
   background: linear-gradient(
       180deg,
-      rgba(12, 20, 40, 0.78),
-      rgba(0, 0, 0, 0.62)
+      rgba(10, 18, 40, 0.88),
+      rgba(0, 0, 0, 0.75)
     ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.04)
-    );
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: var(--shadow-2);
+    var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
 }
 .confirm-title {
   font-weight: 700;
@@ -1382,17 +1380,17 @@ main {
 .confirm-actions-vertical {
   display: grid;
   justify-items: center;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 18px;
 }
 .confirm-choice-btn {
   width: min(320px, 100%);
 }
 .cancel-btn {
   width: auto;
-  min-width: 140px;
+  min-width: 120px;
   padding: 8px 14px;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .conversation-scroll {

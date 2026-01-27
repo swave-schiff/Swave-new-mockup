@@ -106,13 +106,13 @@ function ConfirmSheet({
         </div>
         <div className="confirm-actions-vertical">
           <button
-            className="glass-btn tile glass-btn--hollow edge-feather btn-sm confirm-choice-btn"
+            className="glass-btn tile glass-btn--tint edge-feather btn-sm confirm-choice-btn"
             onClick={onSecondary}
           >
             {secondary}
           </button>
           <button
-            className="glass-btn tile glass-btn--hollow edge-feather btn-sm confirm-choice-btn"
+            className="glass-btn tile glass-btn--tint edge-feather btn-sm confirm-choice-btn"
             onClick={onPrimary}
           >
             {primary}
