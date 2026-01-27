@@ -1,5 +1,5 @@
 // src/ConnectionDetailScreen.jsx
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import "./styles.css";
 
 /** Circular avatar (initials for now; swap to <img> later if you have photos) */
@@ -28,6 +28,16 @@ export default function ConnectionDetailScreen({
 }) {
   const [notes, setNotes] = useState("");
   const [savedNotes, setSavedNotes] = useState("");
+  const [showDangerConfirm, setShowDangerConfirm] = useState(false);
+
+  useEffect(() => {
+    if (!showDangerConfirm) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setShowDangerConfirm(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showDangerConfirm]);
 
   const saveNotes = () => {
     setSavedNotes(notes);
@@ -118,11 +128,52 @@ export default function ConnectionDetailScreen({
         {/* Red glass Delete / Block button */}
         <button
           className="glass-btn tile glass-btn--danger edge-feather conn-danger-btn"
-          onClick={() => onDeleteOrBlock(connection)}
+          onClick={() => setShowDangerConfirm(true)}
         >
           Delete / Block User
         </button>
       </div>
+
+      {showDangerConfirm && (
+        <div
+          className="confirm-backdrop"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setShowDangerConfirm(false)}
+          tabIndex={-1}
+        >
+          <div
+            className="card confirm-sheet confirm-sheet--opaque"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="confirm-title">Delete / Block User</div>
+            <div className="confirm-body">
+              <p>
+                Once you break the link with this person, you will not be able
+                to contact each other through swave anymore without creating a
+                new swave link
+              </p>
+            </div>
+            <div className="confirm-actions-vertical">
+              <button
+                className="glass-btn tile glass-btn--tint edge-feather btn-sm confirm-choice-btn"
+                onClick={() => {
+                  setShowDangerConfirm(false);
+                  onDeleteOrBlock(connection);
+                }}
+              >
+                Confirm
+              </button>
+              <button
+                className="glass-btn tile glass-btn--hollow edge-feather btn-sm cancel-btn"
+                onClick={() => setShowDangerConfirm(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
