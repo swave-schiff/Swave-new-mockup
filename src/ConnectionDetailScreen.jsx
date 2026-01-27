@@ -11,20 +11,8 @@ function Avatar({ name, size = 96 }) {
 
   return (
     <div
-      className="card glass"
-      style={{
-        width: size,
-        height: size,
-        borderRadius: "50%",
-        display: "grid",
-        placeItems: "center",
-        fontWeight: 700,
-        color: "#e9eef9",
-        background: "rgba(255,255,255,0.08)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        boxShadow:
-          "inset 0 1px 0 rgba(255,255,255,0.25), 0 10px 28px rgba(0,0,0,0.45)",
-      }}
+      className="card glass conn-avatar"
+      style={{ "--avatar-size": `${size}px` }}
       aria-label={`${name} profile`}
     >
       {initials || "U"}
@@ -75,7 +63,7 @@ export default function ConnectionDetailScreen({
         </div>
 
         {/* right spacer mirrors the left chevron to keep center perfectly centered */}
-        <div className="top-actions" style={{ visibility: "hidden" }}>
+        <div className="top-actions conn-topbar-spacer">
           <button className="chevron-btn" aria-hidden="true" tabIndex={-1}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -115,10 +103,7 @@ export default function ConnectionDetailScreen({
             onChange={(e) => setNotes(e.target.value)}
             rows={5}
           />
-          <div
-            className="conn-actions"
-            style={{ display: "flex", justifyContent: "flex-end" }}
-          >
+          <div className="conn-actions">
             <button
               className="glass-btn tile glass-btn--hollow edge-feather btn-sm"
               onClick={saveNotes}

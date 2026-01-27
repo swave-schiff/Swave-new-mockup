@@ -1146,6 +1146,102 @@ main {
 }
 
 /* =========================================================
+     6.5) CONNECTION DETAIL SCREEN
+     ========================================================= */
+.connection-detail {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 12px 16px 80px;
+}
+.conn-topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 8px 0 0;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.conn-topbar-spacer {
+  visibility: hidden;
+}
+.conn-header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.conn-username {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+.conn-avatar {
+  --avatar-size: 96px;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #e9eef9;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 10px 28px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+}
+.conn-body {
+  display: grid;
+  gap: 18px;
+  padding: 0 4px;
+}
+.conn-msg-btn {
+  width: min(480px, 80%);
+  margin: 0 auto;
+}
+.conn-section {
+  display: grid;
+  gap: 10px;
+  padding: 14px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-1);
+}
+.conn-label {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.conn-notes {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--swave-text);
+  padding: 12px 14px;
+  font-size: 0.96rem;
+  min-height: 120px;
+  resize: vertical;
+}
+.conn-notes::placeholder {
+  color: var(--swave-muted);
+}
+.conn-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.conn-danger-btn {
+  width: min(520px, 100%);
+  margin: 0 auto 8px;
+}
+
+/* =========================================================
      7) CONVERSATION VIEW
      ========================================================= */
 .conversation-screen {

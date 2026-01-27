@@ -42,7 +42,9 @@ const SEED_CONNECTIONS = [
   },
 ];
 
-export default function ConnectionsScreen({ onOpenConversation = () => {} }) {
+export default function ConnectionsScreen({
+  onOpenConnectionDetail = () => {},
+}) {
   const [q, setQ] = useState("");
   const [sortBy, setSortBy] = useState("name"); // default A–Z
 
@@ -121,7 +123,9 @@ export default function ConnectionsScreen({ onOpenConversation = () => {} }) {
               name={c.name}
               subtitle={truncate(c.lastMessage, 80)}
               time={{ date, time }}
-              onClick={() => onOpenConversation && onOpenConversation(c)}
+              onClick={() =>
+                onOpenConnectionDetail && onOpenConnectionDetail(c)
+              }
               ariaLabel={`Open connection for ${c.name}`}
             />
           );

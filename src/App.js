@@ -24,12 +24,11 @@ export default function App() {
   const [lastTabBeforeCode, setLastTabBeforeCode] = useState("home");
   const [currentThread, setCurrentThread] = useState(null); // { id, name } when a card is tapped
   const [currentThreadName, setCurrentThreadName] = useState(null);
-  const [currentConnection, setCurrentConnection] = useState(null);
   const [currentThreadId, setCurrentThreadId] = useState(null);
-  const [selectedConnection, setSelectedConnection] = useState(null);
   const [pendingPhone, setPendingPhone] = useState("");
   const [lastAuthedTab, setLastAuthedTab] = useState("home");
   const [activeChatContact, setActiveChatContact] = useState(null);
+  const [activeConnectionDetail, setActiveConnectionDetail] = useState(null);
   const openConversation = (contact = {}) => {
     const username =
       contact.username || contact.name || contact.handle || "LivinLife";
@@ -40,6 +39,11 @@ export default function App() {
     setCurrentThreadName(username);
     setCurrentThreadId(id);
     setActiveTab("conversation");
+  };
+  const openConnectionDetail = (connection) => {
+    const username = connection?.username || connection?.name || "LivinLife";
+    setActiveConnectionDetail({ ...connection, name: username, username });
+    setActiveTab("connectionDetail");
   };
 
   React.useEffect(() => {
@@ -159,9 +163,23 @@ export default function App() {
 
       {activeTab === "connections" && (
         <ConnectionsScreen
-          onOpenConversation={(c) => {
-            openConversation(c);
+          onOpenConnectionDetail={(c) => {
+            openConnectionDetail(c);
           }}
+        />
+      )}
+      {activeTab === "connectionDetail" && (
+        <ConnectionDetailScreen
+          connection={
+            activeConnectionDetail || {
+              id: "",
+              name: "LivinLife",
+              username: "LivinLife",
+            }
+          }
+          onBack={() => setActiveTab("connections")}
+          onOpenMessages={(c) => openConversation(c)}
+          onDeleteOrBlock={() => alert("Delete/Block (placeholder)")}
         />
       )}
 
@@ -240,8 +258,7 @@ export default function App() {
           }}
           onBack={() => setActiveTab("messages")}
           onOpenConnection={(c) => {
-            setSelectedConnection(c); // store which user was clicked
-            setActiveTab("connectionDetail");
+            openConnectionDetail(c);
           }}
         />
       )}
