@@ -1338,6 +1338,63 @@ main {
   transform: translateY(1px);
 }
 
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.confirm-sheet {
+  width: min(520px, calc(100% - 32px));
+  max-width: 520px;
+  margin: 18px auto;
+  padding: 18px 18px 20px;
+  background: linear-gradient(
+      180deg,
+      rgba(12, 20, 40, 0.78),
+      rgba(0, 0, 0, 0.62)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.04)
+    );
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: var(--shadow-2);
+}
+.confirm-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.confirm-body {
+  color: var(--swave-soft);
+  line-height: 1.4;
+  margin-top: 10px;
+  display: grid;
+  gap: 6px;
+}
+.confirm-line {
+  margin: 0;
+}
+.confirm-actions-vertical {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.confirm-choice-btn {
+  width: min(320px, 100%);
+}
+.cancel-btn {
+  width: auto;
+  min-width: 140px;
+  padding: 8px 14px;
+  margin-top: 4px;
+}
+
 .conversation-scroll {
   flex: 1;
   min-height: 0;

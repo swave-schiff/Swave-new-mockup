@@ -94,37 +94,25 @@ function ConfirmSheet({
 }) {
   if (!open) return null;
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 80,
-        background: "rgba(0,0,0,0.45)",
-        display: "grid",
-        placeItems: "center",
-        padding: 16,
-      }}
-    >
+    <div role="dialog" aria-modal="true" className="confirm-overlay">
       <div className="card glass gradient-vertical confirm-sheet">
-        <div style={{ fontWeight: 700, fontSize: "1.05rem" }}>{title}</div>
-        <div style={{ color: "#cfd6e6", lineHeight: 1.4 }}>
+        <div className="confirm-title">{title}</div>
+        <div className="confirm-body">
           {lines.map((l, i) => (
-            <div key={i} style={{ marginBottom: 6 }}>
+            <div key={i} className="confirm-line">
               {l}
             </div>
           ))}
         </div>
         <div className="confirm-actions-vertical">
           <button
-            className="glass-btn tile glass-btn--hollow edge-feather btn-sm"
+            className="glass-btn tile glass-btn--hollow edge-feather btn-sm confirm-choice-btn"
             onClick={onSecondary}
           >
             {secondary}
           </button>
           <button
-            className="glass-btn tile glass-btn--tint edge-feather btn-sm"
+            className="glass-btn tile glass-btn--hollow edge-feather btn-sm confirm-choice-btn"
             onClick={onPrimary}
           >
             {primary}
