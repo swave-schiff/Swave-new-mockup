@@ -1277,11 +1277,11 @@ main {
 .code-digits {
   display: grid;
   grid-auto-flow: column;
-  gap: 16px;
+  gap: 28px;
 }
 .code-digit {
-  width: 92px;
-  height: 130px;
+  width: 200px;
+  height: 300px;
   display: grid;
   place-items: center;
   border-radius: 18px;
@@ -1290,7 +1290,7 @@ main {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 .code-digit span {
-  font-size: 92px;
+  font-size: 220px;
   font-weight: 800;
   letter-spacing: 1px;
   line-height: 1;
