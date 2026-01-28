@@ -1321,6 +1321,18 @@ main {
     --code-rotator-inset-bottom: 22px;
   }
 }
+
+/* DEBUG: identify code screen layout selectors (temporary) */
+.code-main {
+  outline: 4px solid lime !important;
+}
+.code-rotator {
+  outline: 4px solid red !important;
+  background: rgba(255, 0, 0, 0.08) !important;
+}
+.code-stage {
+  outline: 4px solid cyan !important;
+}
 .code-digit {
   width: 200px;
   height: 300px;
