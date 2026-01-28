@@ -1944,3 +1944,10 @@ button[aria-pressed="true"] {
   transform-origin: center !important;
 }
 
+
+/* --- CodeScreen: force centered transform and vertical breathing room --- */
+.code-rotator {
+  transform-origin: center !important;
+  transform: translateY(22px) rotate(-90deg) scale(0.82) !important;
+}
+
