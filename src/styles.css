@@ -1264,6 +1264,7 @@ main {
   padding: 16px 16px 28px;
   display: grid;
   grid-template-rows: auto 1fr;
+  --code-scale: 1;
 }
 .code-center {
   height: 100%;
@@ -1285,7 +1286,7 @@ main {
   inset: 0;
   display: grid;
   place-items: center;
-  transform: rotate(-90deg);
+  transform: rotate(-90deg) scale(var(--code-scale, 1));
   transform-origin: center;
   pointer-events: none;
 }
@@ -1293,6 +1294,12 @@ main {
   display: grid;
   grid-auto-flow: column;
   gap: 28px;
+}
+
+@media (max-width: 520px) {
+  .code-main {
+    --code-scale: 0.82;
+  }
 }
 .code-digit {
   width: 200px;
