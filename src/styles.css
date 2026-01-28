@@ -1276,6 +1276,9 @@ main {
   display: grid;
   place-items: center;
   overflow: visible;
+  padding-top: 48px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
 }
 .code-stage {
   position: relative;
@@ -1322,17 +1325,6 @@ main {
   }
 }
 
-/* DEBUG: identify code screen layout selectors (temporary) */
-.code-main {
-  outline: 4px solid lime !important;
-}
-.code-rotator {
-  outline: 4px solid red !important;
-  background: rgba(255, 0, 0, 0.08) !important;
-}
-.code-stage {
-  outline: 4px solid cyan !important;
-}
 .code-digit {
   width: 200px;
   height: 300px;
