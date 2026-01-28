@@ -921,6 +921,12 @@ main {
   display: inline-block;
   cursor: pointer;
 }
+.swave-circle-btn--home {
+  transform: translateY(-24px);
+}
+.swave-circle--home {
+  transform: translateY(0);
+}
 .input-block {
   display: flex;
   flex-direction: column;

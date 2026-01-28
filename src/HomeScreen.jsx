@@ -8,11 +8,11 @@ export default function HomeScreen({
     <main className="home-main">
       <button
         type="button"
-        className="swave-circle-btn"
+        className="swave-circle-btn swave-circle-btn--home"
         onClick={onOpenSwaveCode}
         aria-label="Tap to Swave"
       >
-        <div className="swave-circle glow">
+        <div className="swave-circle glow swave-circle--home">
           <h2>Tap to Swave</h2>
           <p className="subtext">
             Generate a 4-digit
