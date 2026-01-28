@@ -14,7 +14,7 @@ import FeedbackHome from "./FeedbackHome";
 import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
 import HomeScreen from "./HomeScreen";
-import SwaveCodeScreen from "./SwaveCodeScreen";
+import CodeScreen from "./CodeScreen";
 import ConnectionConfirmedScreen from "./screens/ConnectionConfirmedScreen";
 import UsernameLinkingScreen from "./screens/UsernameLinkingScreen";
 import AccountProfileScreen from "./screens/AccountProfileScreen";
@@ -172,7 +172,7 @@ export default function App() {
         <AccountProfileScreen onBack={() => setActiveTab("account")} />
       )}
       {activeTab === "swavecode" && (
-        <SwaveCodeScreen
+        <CodeScreen
           code={swaveCode || "0000"}
           onBack={() => setActiveTab("home")}
         />

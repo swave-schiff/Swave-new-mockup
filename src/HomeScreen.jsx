@@ -8,16 +8,18 @@ export default function HomeScreen({
     <main className="home-main">
       <button
         type="button"
-        className="swave-circle glow swave-circle-btn"
+        className="swave-circle-btn"
         onClick={onOpenSwaveCode}
         aria-label="Tap to Swave"
       >
-        <h2>Tap to Swave</h2>
-        <p className="subtext">
-          Generate a 4-digit
-          <br />
-          code to flash
-        </p>
+        <div className="swave-circle glow">
+          <h2>Tap to Swave</h2>
+          <p className="subtext">
+            Generate a 4-digit
+            <br />
+            code to flash
+          </p>
+        </div>
       </button>
 
       <div className="input-block">
