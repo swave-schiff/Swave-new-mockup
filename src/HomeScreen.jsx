@@ -1,16 +1,24 @@
 import React from "react";
 
-export default function HomeScreen({ onEnterCode }) {
+export default function HomeScreen({
+  onEnterCode = () => {},
+  onOpenSwaveCode = () => {},
+}) {
   return (
     <main className="home-main">
-      <div className="swave-circle glow">
+      <button
+        type="button"
+        className="swave-circle glow swave-circle-btn"
+        onClick={onOpenSwaveCode}
+        aria-label="Tap to Swave"
+      >
         <h2>Tap to Swave</h2>
         <p className="subtext">
           Generate a 4-digit
           <br />
           code to flash
         </p>
-      </div>
+      </button>
 
       <div className="input-block">
         <p className="subtext">Did someone flash a swave code at you?</p>

@@ -914,6 +914,14 @@ main {
   width: 100%;
   margin: 0 auto;
 }
+.swave-circle-btn {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  color: inherit;
+}
 .input-block {
   display: flex;
   flex-direction: column;
@@ -1239,6 +1247,59 @@ main {
 .conn-danger-btn {
   width: min(520px, 100%);
   margin: 0 auto 8px;
+}
+
+/* =========================================================
+     6.7) SWAVE CODE SCREEN
+     ========================================================= */
+.swavecode-main {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  padding: 16px 16px 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.swavecode-stage {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+.swavecode-rotator {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+.swavecode-digits {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 16px;
+}
+.swavecode-digit {
+  width: 92px;
+  height: 130px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+.swavecode-digit span {
+  font-size: 92px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.95);
+}
+.swavecode-wait {
+  color: var(--swave-soft);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 320px;
 }
 
 /* =========================================================

@@ -14,6 +14,7 @@ import FeedbackHome from "./FeedbackHome";
 import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
 import HomeScreen from "./HomeScreen";
+import SwaveCodeScreen from "./SwaveCodeScreen";
 import ConnectionConfirmedScreen from "./screens/ConnectionConfirmedScreen";
 import UsernameLinkingScreen from "./screens/UsernameLinkingScreen";
 import AccountProfileScreen from "./screens/AccountProfileScreen";
@@ -28,6 +29,7 @@ export default function App() {
   const [pendingPhone, setPendingPhone] = useState("");
   const [lastAuthedTab, setLastAuthedTab] = useState("home");
   const [activeChatContact, setActiveChatContact] = useState(null);
+  const [swaveCode, setSwaveCode] = useState(null);
   const [activeConnectionDetail, setActiveConnectionDetail] = useState(null);
   const openConversation = (contact = {}) => {
     const username =
@@ -145,6 +147,7 @@ export default function App() {
             setShowUsername(false);
             setActiveTab("code");
           }}
+          onOpenSwaveCode={openSwaveCodeScreen}
         />
       )}
 
@@ -159,6 +162,12 @@ export default function App() {
 
       {activeTab === "account-profile" && (
         <AccountProfileScreen onBack={() => setActiveTab("account")} />
+      )}
+      {activeTab === "swavecode" && (
+        <SwaveCodeScreen
+          code={swaveCode || "0000"}
+          onBack={() => setActiveTab("home")}
+        />
       )}
 
       {activeTab === "connections" && (
@@ -504,3 +513,11 @@ function IconMenu() {
     </svg>
   );
 }
+  const generateSwaveCode = () => {
+    const n = Math.floor(Math.random() * 10000);
+    return String(n).padStart(4, "0");
+  };
+  const openSwaveCodeScreen = () => {
+    setSwaveCode(generateSwaveCode());
+    setActiveTab("swavecode");
+  };
