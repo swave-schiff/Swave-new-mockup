@@ -1265,7 +1265,7 @@ main {
   display: grid;
   grid-template-rows: auto 1fr;
   --code-scale: 1;
-  --code-shift-y: 0px;
+  --code-shift-x: 0px;
 }
 .code-center {
   height: 100%;
@@ -1289,7 +1289,7 @@ main {
   inset: 0;
   display: grid;
   place-items: center;
-  transform: rotate(-90deg) translateY(var(--code-shift-y, 0px))
+  transform: rotate(-90deg) translateX(var(--code-shift-x, 0px))
     scale(var(--code-scale, 1));
   transform-origin: center;
   pointer-events: none;
@@ -1303,14 +1303,14 @@ main {
 @media (max-width: 520px) {
   .code-main {
     --code-scale: 0.82;
-    --code-shift-y: 10px;
+    --code-shift-x: -14px;
   }
 }
 
 @media (max-aspect-ratio: 3/4) {
   .code-main {
     --code-scale: 0.82;
-    --code-shift-y: 12px;
+    --code-shift-x: -14px;
   }
 }
 .code-digit {
