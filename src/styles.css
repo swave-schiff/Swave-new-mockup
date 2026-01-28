@@ -1266,17 +1266,19 @@ main {
   grid-template-rows: auto 1fr;
 }
 .code-center {
+  height: 100%;
+  width: 100%;
   display: grid;
   place-items: center;
-  width: 100%;
+  overflow: visible;
 }
 .code-stage {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 60vh;
   display: grid;
   place-items: center;
+  overflow: visible;
 }
 .code-rotator {
   position: absolute;
