@@ -1265,6 +1265,7 @@ main {
   display: grid;
   grid-template-rows: auto 1fr;
   --code-scale: 1;
+  --code-shift-y: 0px;
 }
 .code-center {
   height: 100%;
@@ -1280,13 +1281,16 @@ main {
   display: grid;
   place-items: center;
   overflow: visible;
+  padding: 18px 12px;
+  box-sizing: border-box;
 }
 .code-rotator {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  transform: rotate(-90deg) scale(var(--code-scale, 1));
+  transform: rotate(-90deg) translateY(var(--code-shift-y, 0px))
+    scale(var(--code-scale, 1));
   transform-origin: center;
   pointer-events: none;
 }
@@ -1299,6 +1303,7 @@ main {
 @media (max-width: 520px) {
   .code-main {
     --code-scale: 0.82;
+    --code-shift-y: 10px;
   }
 }
 .code-digit {
