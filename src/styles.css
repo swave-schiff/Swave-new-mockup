@@ -1921,3 +1921,11 @@ button[aria-pressed="true"] {
     padding-right: 24px;
   }
 }
+
+/* --- CodeScreen hard override to prevent top-edge touch --- */
+.code-stage { position: relative !important; }
+
+.code-stage .code-rotator {
+  inset: 70px 12px 22px 12px !important; /* top right bottom left */
+}
+
