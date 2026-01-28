@@ -1266,6 +1266,9 @@ main {
   grid-template-rows: auto 1fr;
   --code-scale: 1;
   --code-shift-x: 0px;
+  --code-rotator-inset-top: 26px;
+  --code-rotator-inset-bottom: 18px;
+  --code-rotator-inset-side: 12px;
 }
 .code-center {
   height: 100%;
@@ -1286,7 +1289,8 @@ main {
 }
 .code-rotator {
   position: absolute;
-  inset: 0;
+  inset: var(--code-rotator-inset-top) var(--code-rotator-inset-side)
+    var(--code-rotator-inset-bottom) var(--code-rotator-inset-side);
   display: grid;
   place-items: center;
   transform: rotate(-90deg) translateX(var(--code-shift-x, 0px))
@@ -1304,6 +1308,8 @@ main {
   .code-main {
     --code-scale: 0.82;
     --code-shift-x: -14px;
+    --code-rotator-inset-top: 44px;
+    --code-rotator-inset-bottom: 22px;
   }
 }
 
@@ -1311,6 +1317,8 @@ main {
   .code-main {
     --code-scale: 0.82;
     --code-shift-x: -14px;
+    --code-rotator-inset-top: 44px;
+    --code-rotator-inset-bottom: 22px;
   }
 }
 .code-digit {
