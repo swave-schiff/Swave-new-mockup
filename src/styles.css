@@ -1929,3 +1929,18 @@ button[aria-pressed="true"] {
   inset: 70px 12px 22px 12px !important; /* top right bottom left */
 }
 
+
+/* --- CodeScreen: force positioned rotator so inset works --- */
+.code-stage {
+  position: relative !important;
+}
+
+.code-rotator {
+  position: absolute !important;
+  inset: 70px 12px 22px 12px !important; /* top right bottom left */
+  display: grid !important;
+  place-items: center !important;
+  transform: rotate(-90deg) translateX(var(--code-shift-x, 0px)) scale(var(--code-scale, 1)) !important;
+  transform-origin: center !important;
+}
+
