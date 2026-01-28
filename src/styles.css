@@ -1306,6 +1306,13 @@ main {
     --code-shift-y: 10px;
   }
 }
+
+@media (max-aspect-ratio: 3/4) {
+  .code-main {
+    --code-scale: 0.82;
+    --code-shift-y: 12px;
+  }
+}
 .code-digit {
   width: 200px;
   height: 300px;
