@@ -27,13 +27,15 @@ export default function CodeScreen({ code = "0000", onBack = () => {} }) {
       </div>
 
       <div className="code-center">
-        <div className="code-rotator">
-          <div className="code-digits" aria-label={`Swave code ${code}`}>
-            {digits.map((d, i) => (
-              <div key={`${d}-${i}`} className="code-digit">
-                <span>{d}</span>
-              </div>
-            ))}
+        <div className="code-stage">
+          <div className="code-rotator">
+            <div className="code-digits" aria-label={`Swave code ${code}`}>
+              {digits.map((d, i) => (
+                <div key={`${d}-${i}`} className="code-digit">
+                  <span>{d}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
