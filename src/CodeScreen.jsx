@@ -36,10 +36,6 @@ export default function CodeScreen({ code = "0000", onBack = () => {} }) {
             ))}
           </div>
         </div>
-
-        <div className="code-wait">
-          Waiting for them to enter this swave code. Please wait.
-        </div>
       </div>
     </main>
   );
