@@ -29,7 +29,7 @@ export default function App() {
   const [pendingPhone, setPendingPhone] = useState("");
   const [lastAuthedTab, setLastAuthedTab] = useState("home");
   const [activeChatContact, setActiveChatContact] = useState(null);
-  const [swaveCode, setSwaveCode] = useState(null);
+  const [swaveCode, setSwaveCode] = useState("0000");
   const [activeConnectionDetail, setActiveConnectionDetail] = useState(null);
   const openConversation = (contact = {}) => {
     const username =
@@ -46,6 +46,14 @@ export default function App() {
     const username = connection?.username || connection?.name || "LivinLife";
     setActiveConnectionDetail({ ...connection, name: username, username });
     setActiveTab("connectionDetail");
+  };
+  const generateSwaveCode = () => {
+    const n = Math.floor(Math.random() * 10000);
+    return String(n).padStart(4, "0");
+  };
+  const openSwaveCodeScreen = () => {
+    setSwaveCode(generateSwaveCode());
+    setActiveTab("swavecode");
   };
 
   React.useEffect(() => {
@@ -513,11 +521,3 @@ function IconMenu() {
     </svg>
   );
 }
-  const generateSwaveCode = () => {
-    const n = Math.floor(Math.random() * 10000);
-    return String(n).padStart(4, "0");
-  };
-  const openSwaveCodeScreen = () => {
-    setSwaveCode(generateSwaveCode());
-    setActiveTab("swavecode");
-  };
