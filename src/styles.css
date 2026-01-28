@@ -1259,19 +1259,16 @@ main {
      ========================================================= */
 .code-main {
   width: 100%;
-  min-height: calc(100vh - 100px);
-  padding: 16px 16px 28px;
+  height: 100vh;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.code-stage {
-  width: 100%;
+  padding: 16px 16px 28px;
   display: grid;
-  justify-items: center;
-  gap: 18px;
-  margin-top: 18px;
+  grid-template-rows: auto 1fr;
+}
+.code-center {
+  display: grid;
+  place-items: center;
+  width: 100%;
 }
 .code-rotator {
   transform: rotate(-90deg);

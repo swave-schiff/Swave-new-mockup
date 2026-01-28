@@ -26,7 +26,7 @@ export default function CodeScreen({ code = "0000", onBack = () => {} }) {
         </button>
       </div>
 
-      <div className="code-stage">
+      <div className="code-center">
         <div className="code-rotator">
           <div className="code-digits" aria-label={`Swave code ${code}`}>
             {digits.map((d, i) => (
