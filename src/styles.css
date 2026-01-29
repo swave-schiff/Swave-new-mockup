@@ -1974,3 +1974,19 @@ button[aria-pressed="true"] {
   transform: translate(-50%, -50%) translateY(28px) rotate(-90deg) scale(0.82) !important;
 }
 
+
+/* --- CodeScreen: force digits to shrink-wrap (prevents 884px stretch) --- */
+.code-digits {
+  width: fit-content !important;
+  max-width: fit-content !important;
+  min-width: 0 !important;
+  display: inline-flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 auto !important;
+}
+.code-digit {
+  flex: 0 0 auto !important;
+}
+
