@@ -1964,6 +1964,10 @@ button[aria-pressed="true"] {
   right: auto !important;
   bottom: auto !important;
   inset: auto !important;
+  width: fit-content !important;
+  height: fit-content !important;
+  max-width: none !important;
+  max-height: none !important;
   display: grid !important;
   place-items: center !important;
   transform-origin: center !important;
