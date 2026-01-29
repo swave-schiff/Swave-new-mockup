@@ -1951,3 +1951,22 @@ button[aria-pressed="true"] {
   transform: translateY(22px) rotate(-90deg) scale(0.82) !important;
 }
 
+
+/* --- CodeScreen: true center via 50% translate --- */
+.code-stage {
+  position: relative !important;
+}
+
+.code-rotator {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+  display: grid !important;
+  place-items: center !important;
+  transform-origin: center !important;
+  transform: translate(-50%, -50%) translateY(28px) rotate(-90deg) scale(0.82) !important;
+}
+
