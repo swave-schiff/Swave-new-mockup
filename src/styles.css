@@ -1258,29 +1258,42 @@ main {
      6.7) CODE SCREEN
      ========================================================= */
 .code-main {
-  width: 100%;
+  position: relative;
+  width: 100vw;
   height: 100vh;
+  overflow: hidden;
   box-sizing: border-box;
   padding: 16px 16px 28px;
   display: grid;
   grid-template-rows: auto 1fr;
 }
+.code-main .top-actions {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  width: auto;
+}
 .code-center {
   height: 100%;
   display: grid;
+  width: 100%;
 }
 .code-stage {
+  width: 100%;
   height: 100%;
   display: grid;
   place-items: center;
-  padding: 24px 12px 12px;
+  padding: 0;
   box-sizing: border-box;
 }
 .code-rotator {
   position: static;
   display: grid;
   place-items: center;
-  margin-top: 28px;
+  justify-self: center;
+  align-self: center;
+  margin-top: 0;
 }
 .code-rotated {
   transform-origin: center;
