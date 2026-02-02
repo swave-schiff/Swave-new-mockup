@@ -1740,14 +1740,12 @@ main {
   overflow: visible;
 }
 
+
 .bubble.me {
   margin-left: auto;
   background: transparent;
   color: #ffffff;
-  border: 1.5px solid rgba(108, 160, 255, 0.95);
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(108, 160, 255, 0.28);
+  border: 1.5px solid rgba(108, 160, 255, 0.9);
 }
 .bubble.them {
   background: transparent;

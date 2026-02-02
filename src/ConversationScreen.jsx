@@ -179,9 +179,7 @@ function Bubble({
 }) {
   const isMe = who === "me";
   const lp = useLongPress(onLongPress, { ms: 500 });
-  const bubbleClass = `card bubble ${
-    isMe ? "bubble-out swave-surface-gradient-vertical" : "bubble-in"
-  }`.trim();
+  const bubbleClass = `card bubble ${isMe ? "me" : "them"}`.trim();
   const nameLabel = isMe ? "Me" : contactName;
   const rowClass = `message-row ${isMe ? "message-row--out" : "message-row--in"}`;
 
