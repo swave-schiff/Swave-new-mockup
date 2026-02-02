@@ -411,7 +411,7 @@ export default function ConversationScreen({
         lines={[
           "Choose where to delete:",
           "• “Your side only” will remove the entire conversation from your devices only.",
-          "• “Both sides” silently removes it from their devices too, without even prompting them.",
+          "• “Both sides” sremoves it from their devices too, without even prompting them.",
         ]}
         primary="Both sides"
         secondary="Your side only"
@@ -428,7 +428,7 @@ export default function ConversationScreen({
           "• “Your side only” removes from just your devices.",
           "• “Both sides” silently removes it from their devices too, without even prompting them.",
         ]}
-        primary="Both sides"
+        primary="both sides"
         secondary="Your side only"
         onPrimary={() => doDeleteMessage("both")}
         onSecondary={() => doDeleteMessage("local")}

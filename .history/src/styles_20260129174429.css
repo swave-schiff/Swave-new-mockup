@@ -1664,13 +1664,7 @@ main {
   color: var(--swave-text);
 }
 .bubble-out.swave-surface-gradient-vertical {
-  background: transparent;
-  background-image: none;
-  border: 1.5px solid rgba(108, 160, 255, 0.95);
-  color: #ffffff;
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(108, 160, 255, 0.28);
+  color: #eaf2ff;
 }
 
 .msg {
@@ -1718,8 +1712,6 @@ main {
 }
 .message-username--me {
   text-align: right;
-  color: rgba(108, 160, 255, 0.95);
-  font-weight: 600;
 }
 
 .convo {
@@ -1753,12 +1745,9 @@ main {
 }
 .bubble.them {
   background: transparent;
-  background-image: none;
   color: #ffffff;
   border: 1.5px solid rgba(255, 255, 255, 0.35);
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(255, 255, 255, 0.14);
+  box-shadow: none;
 }
 .bubble.them::after {
   content: "";
@@ -1967,4 +1956,11 @@ button[aria-pressed="true"] {
     padding-left: 24px;
     padding-right: 24px;
   }
+}
+/* TEMP: outline-only outgoing bubbles (easy revert) */
+.bubble.me {
+  background: transparent !important;
+  color: #ffffff;
+  border: 1.5px solid rgba(108, 160, 255, 0.95);
+  box-shadow: none;
 }

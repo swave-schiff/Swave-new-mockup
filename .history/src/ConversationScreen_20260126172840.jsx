@@ -410,11 +410,11 @@ export default function ConversationScreen({
         title="Permanently delete this entire message thread?"
         lines={[
           "Choose where to delete:",
-          "• “Your side only” will remove the entire conversation from your devices only.",
-          "• “Both sides” silently removes it from their devices too, without even prompting them.",
+          "• “Your side only” will remove the entier conversation on your devices only.",
+          "• “Both sides” removes it from their devices too, without even prompting them.",
         ]}
-        primary="Both sides"
-        secondary="Your side only"
+        primary="Both s"
+        secondary="Your phone only"
         onPrimary={() => doDeleteThread("both")}
         onSecondary={() => doDeleteThread("local")}
         onClose={() => setConfirm(null)}
@@ -425,10 +425,10 @@ export default function ConversationScreen({
         title="Delete this message?"
         lines={[
           "Choose where to delete:",
-          "• “Your side only” removes from just your devices.",
-          "• “Both sides” silently removes it from their devices too, without even prompting them.",
+          "• “Your phone only” removes only on this device.",
+          "• “Both phones” removes on the other device too.",
         ]}
-        primary="Both sides"
+        primary="both sides"
         secondary="Your side only"
         onPrimary={() => doDeleteMessage("both")}
         onSecondary={() => doDeleteMessage("local")}
