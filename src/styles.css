@@ -1679,10 +1679,10 @@ main {
   margin: 16px 10px;
   overflow: visible;
 }
-.msg--in {
+.msg--incoming {
   justify-content: flex-start;
 }
-.msg--out {
+.msg--outgoing {
   justify-content: flex-end;
 }
 .msg-wrap {
@@ -1700,10 +1700,10 @@ main {
   gap: 10px;
   width: 100%;
 }
-.message-row--in {
+.message-row--incoming {
   justify-content: flex-start;
 }
-.message-row--out {
+.message-row--outgoing {
   justify-content: flex-end;
 }
 .message-time {

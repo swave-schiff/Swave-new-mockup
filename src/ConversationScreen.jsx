@@ -181,10 +181,10 @@ function Bubble({
   const lp = useLongPress(onLongPress, { ms: 500 });
   const bubbleClass = `card bubble ${isMe ? "me" : "them"}`.trim();
   const nameLabel = isMe ? "Me" : contactName;
-  const rowClass = `message-row ${isMe ? "message-row--out" : "message-row--in"}`;
+  const rowClass = `message-row ${isMe ? "message-row--outgoing" : "message-row--incoming"}`;
 
   return (
-    <div className={`msg ${isMe ? "msg--out" : "msg--in"}`}>
+    <div className={`msg ${isMe ? "msg--outgoing" : "msg--incoming"}`}>
       <div className="msg-wrap">
         <div
           className={`message-username ${
