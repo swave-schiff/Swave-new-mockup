@@ -191,7 +191,7 @@ export default function AccountProfileScreen({
             <div className="confirm-actions-vertical profile-photo-confirm-actions">
               <button
                 type="button"
-                className="btn primary confirm-choice-btn profile-photo-choice-btn"
+                className="confirm-choice-btn profile-photo-choice-btn"
                 onClick={handleUploadClick}
               >
                 Upload from your device
@@ -199,7 +199,7 @@ export default function AccountProfileScreen({
 
               <button
                 type="button"
-                className="btn secondary confirm-choice-btn profile-photo-choice-btn"
+                className="confirm-choice-btn profile-photo-choice-btn"
                 onClick={handleSelectAvatarLibrary}
               >
                 Select from the Swave avatar library
@@ -207,7 +207,7 @@ export default function AccountProfileScreen({
 
               <button
                 type="button"
-                className="btn ghost cancel-btn profile-photo-cancel-btn"
+                className="cancel-btn profile-photo-cancel-btn"
                 onClick={closeSheet}
               >
                 Cancel
