@@ -5,7 +5,7 @@ export default function AccountProfileScreen({
   onBack = () => {},
   onEditPhoto = () => {},
 }) {
-  const username = "LivinLife";
+  const username = "Livinife";
 
   return (
     <main className="auth-page connection-confirm-page">
