@@ -1668,11 +1668,10 @@ main {
   background-image: none;
   border: 1.5px solid rgba(108, 160, 255, 0.95);
   color: #ffffff;
-
   box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.35),          /* depth */
-    0 0 12px rgba(108, 160, 255, 0.30),      /* inner glow */
-    0 0 28px rgba(108, 160, 255, 0.50);      /* outer halo */
+    0 8px 18px rgba(0, 0, 0, 0.35),
+    0 0 14px rgba(108, 160, 255, 0.32),
+    0 0 26px rgba(108, 160, 255, 0.14);
 }
 
 .msg {
@@ -1747,7 +1746,8 @@ main {
   border: 1.5px solid rgba(108, 160, 255, 0.95);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(108, 160, 255, 0.28);
+    0 0 14px rgba(108, 160, 255, 0.32),
+    0 0 26px rgba(108, 160, 255, 0.14);
 }
 .bubble.them {
   background: transparent;
@@ -1756,35 +1756,8 @@ main {
   border: 1.5px solid rgba(255, 255, 255, 0.35);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(255, 255, 255, 0.14);
-}
-.bubble.them::after {
-  content: "";
-  position: absolute;
-  left: -6px;
-  bottom: 8px;
-  width: 12px;
-  height: 12px;
-  background: transparent;
-  transform: rotate(45deg);
-  border-left: 1.5px solid rgba(255, 255, 255, 0.35);
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.35);
-  border-radius: 3px;
-  pointer-events: none;
-}
-.bubble.me::after {
-  content: "";
-  position: absolute;
-  right: -6px;
-  bottom: 8px;
-  width: 12px;
-  height: 12px;
-  background: transparent;
-  transform: rotate(45deg);
-  border-right: 1.5px solid rgba(108, 160, 255, 0.9);
-  border-bottom: 1.5px solid rgba(108, 160, 255, 0.9);
-  border-radius: 3px;
-  pointer-events: none;
+    0 0 12px rgba(255, 255, 255, 0.16),
+    0 0 22px rgba(255, 255, 255, 0.08);
 }
 
 /* =========================================================
