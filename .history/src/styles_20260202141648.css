@@ -1712,9 +1712,6 @@ main {
   white-space: nowrap;
   line-height: 1;
 }
-.message-row--outgoing .message-time {
-  color: rgba(108, 160, 255, 0.95);
-}
 .message-username {
   color: var(--swave-muted);
   font-size: 12px;
@@ -1722,7 +1719,7 @@ main {
 }
 .message-username--me {
   text-align: right;
-  color: rgba(108, 160, 255, 0.95);
+  color: rgba(08, 160, 255, 0.95);
   font-weight: 600;
 }
 

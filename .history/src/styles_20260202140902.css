@@ -1712,9 +1712,6 @@ main {
   white-space: nowrap;
   line-height: 1;
 }
-.message-row--outgoing .message-time {
-  color: rgba(108, 160, 255, 0.95);
-}
 .message-username {
   color: var(--swave-muted);
   font-size: 12px;
@@ -1749,7 +1746,7 @@ main {
   border: 1.5px solid rgba(108, 160, 255, 0.95);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 14px rgba(108, 160, 255, 0.60),
+    0 0 14px rgba(108, 160, 255, 0.62),
     0 0 26px rgba(108, 160, 255, 0.14);
 }
 .bubble.them {
@@ -1759,8 +1756,8 @@ main {
   border: 1.5px solid rgba(255, 255, 255, 0.35);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(255, 255, 255, 0.20),
-    0 0 22px rgba(255, 255, 255, 0.14);
+    0 0 12px rgba(255, 255, 255, 0.16),
+    0 0 22px rgba(255, 255, 255, 0.08);
 }
 
 /* =========================================================
