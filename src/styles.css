@@ -1696,6 +1696,35 @@ main {
   margin-top: 6px;
 }
 
+/* ===== AccountProfileScreen: confirm-style photo menu overrides ===== */
+
+.profile-photo-confirm-actions {
+  /* keep the same centered vertical stack as confirm-actions-vertical,
+     but allow buttons to size to content */
+  justify-items: center;
+}
+
+.profile-photo-choice-btn {
+  /* override confirm-choice-btn fixed sizing */
+  min-width: unset;
+  max-width: unset;
+  width: auto;
+
+  /* keep one-line labels */
+  white-space: nowrap;
+
+  /* give a little breathing room without forcing big widths */
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.profile-photo-cancel-btn {
+  /* cancel should also be content-sized */
+  width: auto;
+  min-width: unset;
+  white-space: nowrap;
+}
+
 .conversation-scroll {
   flex: 1;
   min-height: 0;

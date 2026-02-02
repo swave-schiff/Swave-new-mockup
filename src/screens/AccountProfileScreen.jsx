@@ -178,43 +178,41 @@ export default function AccountProfileScreen({
 
       {/* Action sheet */}
       {isSheetOpen && (
-        <div
-          className="sheet-backdrop"
-          role="presentation"
-          onClick={closeSheet}
-        >
+        <div className="confirm-backdrop" role="presentation" onClick={closeSheet}>
           <div
-            className="sheet"
+            className="confirm-sheet card glass gradient-vertical confirm-sheet--opaque profile-photo-confirm"
             role="dialog"
             aria-modal="true"
             aria-label="Change Profile Picture"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sheet-title">Change Profile Picture</div>
+            <div className="confirm-title">Change Profile Picture</div>
 
-            <button
-              type="button"
-              className="sheet-btn"
-              onClick={handleUploadClick}
-            >
-              Upload from your device
-            </button>
+            <div className="confirm-actions-vertical profile-photo-confirm-actions">
+              <button
+                type="button"
+                className="btn primary confirm-choice-btn profile-photo-choice-btn"
+                onClick={handleUploadClick}
+              >
+                Upload from your device
+              </button>
 
-            <button
-              type="button"
-              className="sheet-btn"
-              onClick={handleSelectAvatarLibrary}
-            >
-              Select from the Swave avatar library
-            </button>
+              <button
+                type="button"
+                className="btn secondary confirm-choice-btn profile-photo-choice-btn"
+                onClick={handleSelectAvatarLibrary}
+              >
+                Select from the Swave avatar library
+              </button>
 
-            <button
-              type="button"
-              className="sheet-btn sheet-btn--cancel"
-              onClick={closeSheet}
-            >
-              Cancel
-            </button>
+              <button
+                type="button"
+                className="btn ghost cancel-btn profile-photo-cancel-btn"
+                onClick={closeSheet}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
