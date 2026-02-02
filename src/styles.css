@@ -1699,9 +1699,10 @@ main {
 /* ===== AccountProfileScreen: confirm-style photo menu overrides ===== */
 
 .profile-photo-confirm-actions {
-  /* keep the same centered vertical stack as confirm-actions-vertical,
-     but allow buttons to size to content */
+  display: grid;
   justify-items: center;
+  gap: 12px;
+  margin-top: 18px;
 }
 
 .profile-photo-choice-btn {
