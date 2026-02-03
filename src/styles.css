@@ -1733,6 +1733,40 @@ main {
   padding-right: 16px;
 }
 
+/* ===== AccountProfileScreen: account actions ===== */
+
+.account-actions {
+  margin-top: 32px; /* ~0.5 inches below username */
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.account-action-btn {
+  white-space: nowrap;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.account-delete-link {
+  color: rgba(255, 95, 95, 0.9);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.account-delete-link:hover {
+  text-decoration: underline;
+}
+
+.account-delete-link:active {
+  opacity: 0.75;
+}
+
+.account-delete-link:focus-visible {
+  outline: 2px solid rgba(255, 95, 95, 0.5);
+  outline-offset: 2px;
+}
+
 .conversation-scroll {
   flex: 1;
   min-height: 0;

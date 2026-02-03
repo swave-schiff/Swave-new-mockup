@@ -172,6 +172,25 @@ export default function AccountProfileScreen({
             </div>
 
             <h2 className="connection-confirm-name">{username}</h2>
+
+            <div className="account-actions">
+              <button
+                type="button"
+                className="glass-btn glass-btn--tint account-action-btn"
+                onClick={() => {}}
+              >
+                Add or Change Password
+              </button>
+
+              <span
+                className="account-delete-link"
+                role="button"
+                tabIndex={0}
+                onClick={() => {}}
+              >
+                Delete Account
+              </span>
+            </div>
           </div>
         </div>
       </section>
