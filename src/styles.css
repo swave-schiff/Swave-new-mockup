@@ -1701,29 +1701,28 @@ main {
 .profile-photo-confirm-actions {
   display: grid;
   justify-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-top: 18px;
 }
 
-.profile-photo-choice-btn {
-  /* override confirm-choice-btn fixed sizing */
-  min-width: unset;
-  max-width: unset;
-  width: auto;
+/* Inline grid makes all children adopt the width of the widest item */
+.profile-photo-primary-actions {
+  display: inline-grid;
+  gap: 12px;
+}
 
-  /* keep one-line labels */
+.profile-photo-primary-actions .profile-photo-choice-btn {
+  width: 100%;
   white-space: nowrap;
-
-  /* give a little breathing room without forcing big widths */
   padding-left: 18px;
   padding-right: 18px;
 }
 
 .profile-photo-cancel-btn {
-  /* cancel should also be content-sized */
   width: auto;
-  min-width: unset;
   white-space: nowrap;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .conversation-scroll {

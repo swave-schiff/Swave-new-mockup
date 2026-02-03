@@ -188,26 +188,28 @@ export default function AccountProfileScreen({
           >
             <div className="confirm-title">Change Profile Picture</div>
 
-            <div className="confirm-actions-vertical profile-photo-confirm-actions">
-              <button
-                type="button"
-                className="glass-btn glass-btn--tint profile-photo-choice-btn"
-                onClick={handleUploadClick}
-              >
-                Upload from your device
-              </button>
+            <div className="profile-photo-confirm-actions">
+              <div className="profile-photo-primary-actions">
+                <button
+                  type="button"
+                  className="glass-btn glass-btn--tint profile-photo-choice-btn"
+                  onClick={handleUploadClick}
+                >
+                  Upload from your device
+                </button>
+
+                <button
+                  type="button"
+                  className="glass-btn glass-btn--tint profile-photo-choice-btn"
+                  onClick={handleSelectAvatarLibrary}
+                >
+                  Select from the Swave avatar library
+                </button>
+              </div>
 
               <button
                 type="button"
-                className="glass-btn glass-btn--tint profile-photo-choice-btn"
-                onClick={handleSelectAvatarLibrary}
-              >
-                Select from the Swave avatar library
-              </button>
-
-              <button
-                type="button"
-                className="glass-btn glass-btn--danger profile-photo-choice-btn"
+                className="glass-btn glass-btn--hollow profile-photo-cancel-btn"
                 onClick={closeSheet}
               >
                 Cancel
