@@ -1941,6 +1941,19 @@ main {
   cursor: not-allowed;
 }
 
+/* ===== AccountProfileScreen: verification code sizing ===== */
+
+.pw-input--code {
+  width: 160px; /* fits "5-digit code" placeholder comfortably */
+  text-align: center;
+}
+
+/* ===== AccountProfileScreen: password field spacing ===== */
+
+.pw-field-confirm {
+  margin-top: 12px;
+}
+
 .conversation-scroll {
   flex: 1;
   min-height: 0;
