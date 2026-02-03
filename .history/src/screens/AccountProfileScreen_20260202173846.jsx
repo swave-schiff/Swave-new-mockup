@@ -203,7 +203,7 @@ export default function AccountProfileScreen({
               <h2 className="password-title">Add or Change Password</h2>
 
               <div className="field">
-                <span className="field-label">Enter the verification code we just sent </span>
+                <span className="field-label">Enter verification code</span>
                 <input
                   className="pw-input"
                   type="text"
@@ -215,7 +215,7 @@ export default function AccountProfileScreen({
                     const next = (e.target.value || "").replace(/\D/g, "").slice(0, 5);
                     setPwCode(next);
                   }}
-                  aria-label="Enter verification code"
+                  aria-label="Enter 50verification code"
                 />
                 <div className="pw-hint">Enter the 5-digit code we sent to your phone.</div>
               </div>

@@ -203,7 +203,7 @@ export default function AccountProfileScreen({
               <h2 className="password-title">Add or Change Password</h2>
 
               <div className="field">
-                <span className="field-label">Enter the verification code we just sent </span>
+                <span className="field-label">Enter  verification code</span>
                 <input
                   className="pw-input"
                   type="text"

@@ -203,7 +203,7 @@ export default function AccountProfileScreen({
               <h2 className="password-title">Add or Change Password</h2>
 
               <div className="field">
-                <span className="field-label">Enter the verification code we just sent </span>
+                <span className="field-label">Enter 5-digit verification code</span>
                 <input
                   className="pw-input"
                   type="text"
@@ -217,7 +217,7 @@ export default function AccountProfileScreen({
                   }}
                   aria-label="Enter verification code"
                 />
-                <div className="pw-hint">Enter the 5-digit code we sent to your phone.</div>
+                
               </div>
 
               <div className={`pw-fields ${codeValid ? "" : "pw-fields--disabled"}`}>
