@@ -4,11 +4,12 @@ import "../styles.css";
 export default function AccountProfileScreen({
   onBack = () => {},
   onEditPhoto = () => {},
+  onSetPassword = () => {},
 }) {
   const username = "LivinLife";
 
   // local view toggle (no routing changes)
-  const [view, setView] = useState("profile"); // "profile" | "avatarLibrary"
+  const [view, setView] = useState("profile"); // "profile" | "avatarLibrary" | "password"
 
   // avatar state (preview)
   const [avatarSrc, setAvatarSrc] = useState("https://placehold.co/240x240");
@@ -18,6 +19,44 @@ export default function AccountProfileScreen({
 
   // hidden file input for "Upload from your device"
   const fileInputRef = useRef(null);
+
+  /* ---------- Passwords ---------- */
+  const [pw, setPw] = useState("");
+  const [pw2, setPw2] = useState("");
+  const pwChecks = useMemo(
+    () => ({
+      len: pw.length >= 8,
+      upper: /[A-Z]/.test(pw),
+      lower: /[a-z]/.test(pw),
+      num: /[0-9]/.test(pw),
+      sym: /[^A-Za-z0-9]/.test(pw),
+    }),
+    [pw]
+  );
+  const strength = useMemo(() => {
+    let s = 0;
+    if (pwChecks.len) s++;
+    if (pwChecks.upper) s++;
+    if (pwChecks.lower && pwChecks.num) s++;
+    if (pwChecks.sym) s++;
+    return s;
+  }, [pwChecks]);
+  const pwValid = strength >= 2;
+  const pwMatch = pw.length > 0 && pw2.length > 0 && pw === pw2;
+  const formValid = pwValid && pwMatch;
+
+  function savePassword() {
+    if (!formValid) return;
+    onSetPassword({ password: pw });
+    // reset fields after save
+    setPw("");
+    setPw2("");
+    setView("profile");
+  }
+
+  function goToPassword() {
+    setView("password");
+  }
 
   const avatarChoices = useMemo(() => {
     // 18 placeholder avatar URLs (simple numbered placeholders for now)
@@ -120,6 +159,118 @@ export default function AccountProfileScreen({
     );
   }
 
+  if (view === "password") {
+    return (
+      <main className="auth-page connection-confirm-page">
+        <div className="top-actions">
+          <button
+            className="chevron-btn"
+            onClick={() => setView("profile")}
+            aria-label="Back"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="chevron-svg"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+        </div>
+
+        <section className="auth-shell connection-confirm-shell password-shell">
+          <div className="connection-confirm-card">
+            <div className="auth-copy connection-confirm-copy">
+              <h2 className="password-title">Add or Change Password</h2>
+
+              <div className="field">
+                <span className="field-label">Password</span>
+                <input
+                  className="input"
+                  type="password"
+                  value={pw}
+                  onChange={(e) => setPw(e.target.value)}
+                  autoComplete="new-password"
+                  placeholder="Enter a password"
+                />
+              </div>
+
+              <div className="field">
+                <span className="field-label">Confirm password</span>
+                <input
+                  className="input"
+                  type="password"
+                  value={pw2}
+                  onChange={(e) => setPw2(e.target.value)}
+                  autoComplete="new-password"
+                  placeholder="Re-enter password"
+                />
+              </div>
+
+              <div className="pw-rules">
+                <div className="pw-rules-title">Password strength</div>
+                <ul className="pw-rules-list">
+                  <li className={pwChecks.len ? "ok" : ""}>At least 8 characters</li>
+                  <li className={pwChecks.upper ? "ok" : ""}>One uppercase letter</li>
+                  <li className={pwChecks.lower ? "ok" : ""}>One lowercase letter</li>
+                  <li className={pwChecks.num ? "ok" : ""}>One number</li>
+                  <li className={pwChecks.sym ? "ok" : ""}>One symbol</li>
+                </ul>
+
+                {pw.length > 0 && (
+                  <div className="pw-status">
+                    {pwValid ? (
+                      <span className="pw-ok">● Looks good</span>
+                    ) : (
+                      <span className="pw-muted">Add a bit more strength</span>
+                    )}
+                  </div>
+                )}
+
+                {pw2.length > 0 && (
+                  <div className="pw-status">
+                    {pwMatch ? (
+                      <span className="pw-ok">● Passwords match</span>
+                    ) : (
+                      <span className="pw-warn">Passwords do not match</span>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div className="password-actions">
+                <button
+                  type="button"
+                  className="glass-btn glass-btn--tint password-save-btn"
+                  onClick={savePassword}
+                  disabled={!formValid}
+                  aria-disabled={!formValid}
+                >
+                  Save Password
+                </button>
+
+                <button
+                  type="button"
+                  className="glass-btn glass-btn--hollow password-cancel-btn"
+                  onClick={() => setView("profile")}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   // Profile view
   return (
     <main className="auth-page connection-confirm-page profile-photo-page">
@@ -177,7 +328,7 @@ export default function AccountProfileScreen({
               <button
                 type="button"
                 className="glass-btn glass-btn--tint account-action-btn"
-                onClick={() => {}}
+                onClick={goToPassword}
               >
                 Add or Change Password
               </button>

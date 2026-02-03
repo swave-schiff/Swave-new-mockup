@@ -1767,6 +1767,80 @@ main {
   outline-offset: 2px;
 }
 
+/* ===== AccountProfileScreen: password page ===== */
+.password-shell .connection-confirm-card {
+  width: min(520px, 100%);
+}
+
+.password-title {
+  margin: 4px 0 14px 0;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.pw-rules {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.pw-rules-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.86);
+  margin-bottom: 8px;
+}
+
+.pw-rules-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+
+.pw-rules-list li.ok {
+  color: rgba(234, 241, 255, 0.92);
+}
+
+.pw-status {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.pw-ok {
+  color: rgba(118, 160, 255, 0.95);
+}
+
+.pw-muted {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.pw-warn {
+  color: rgba(255, 120, 120, 0.92);
+}
+
+.password-actions {
+  margin-top: 18px;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.password-save-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.password-cancel-btn {
+  width: auto;
+  white-space: nowrap;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 .conversation-scroll {
   flex: 1;
   min-height: 0;
