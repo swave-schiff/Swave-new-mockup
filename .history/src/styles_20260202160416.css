@@ -207,14 +207,14 @@ button {
 }
 .glass-btn--tint {
   color: #eaf1ff;
-  border-color: rgba(118, 160, 255, 0.55);
+  border-color: rgba(11, 74, 219, 0.55);
   background: linear-gradient(
         180deg,
         rgba(140, 180, 255, 0.22),
         rgba(60, 120, 255, 0.1)
       )
       border-box,
-    linear-gradient(180deg, rgba(3, 9, 22, 0.18), rgba(0, 0, 0, 0.22))
+    linear-gradient(180deg, rgba(80, 130, 255, 0.18), rgba(0, 0, 0, 0.22))
       padding-box;
 }
 .glass-btn--danger {
