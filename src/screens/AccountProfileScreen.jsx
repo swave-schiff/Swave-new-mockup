@@ -20,43 +20,37 @@ export default function AccountProfileScreen({
   // hidden file input for "Upload from your device"
   const fileInputRef = useRef(null);
 
+  /* ---------- Password Verification ---------- */
+  const [pwCode, setPwCode] = useState("");
+  const codeValid = /^\d{5}$/.test(pwCode);
+
   /* ---------- Passwords ---------- */
   const [pw, setPw] = useState("");
   const [pw2, setPw2] = useState("");
   const pwChecks = useMemo(
     () => ({
-      len: pw.length >= 8,
+      len: pw.length >= 8 && pw.length <= 20,
       upper: /[A-Z]/.test(pw),
       lower: /[a-z]/.test(pw),
       num: /[0-9]/.test(pw),
-      sym: /[^A-Za-z0-9]/.test(pw),
+      noSpaces: !/\s/.test(pw),
+      match: pw.length > 0 && pw2.length > 0 && pw === pw2,
     }),
-    [pw]
+    [pw, pw2]
   );
-  const strength = useMemo(() => {
-    let s = 0;
-    if (pwChecks.len) s++;
-    if (pwChecks.upper) s++;
-    if (pwChecks.lower && pwChecks.num) s++;
-    if (pwChecks.sym) s++;
-    return s;
+
+  const allCriteriaMet = useMemo(() => {
+    return (
+      pwChecks.len &&
+      pwChecks.upper &&
+      pwChecks.lower &&
+      pwChecks.num &&
+      pwChecks.noSpaces &&
+      pwChecks.match
+    );
   }, [pwChecks]);
-  const pwValid = strength >= 2;
-  const pwMatch = pw.length > 0 && pw2.length > 0 && pw === pw2;
-  const formValid = pwValid && pwMatch;
 
-  function savePassword() {
-    if (!formValid) return;
-    onSetPassword({ password: pw });
-    // reset fields after save
-    setPw("");
-    setPw2("");
-    setView("profile");
-  }
-
-  function goToPassword() {
-    setView("password");
-  }
+  const formValid = codeValid && allCriteriaMet;
 
   const avatarChoices = useMemo(() => {
     // 18 placeholder avatar URLs (simple numbered placeholders for now)
@@ -102,6 +96,19 @@ export default function AccountProfileScreen({
     setView("profile");
     // If you later want to persist avatar choice, you can call onEditPhoto({ type: "avatar", src })
   };
+
+  function savePassword() {
+    if (!formValid) return;
+    onSetPassword({ password: pw, code: pwCode });
+    setPw("");
+    setPw2("");
+    setPwCode("");
+    setView("profile");
+  }
+
+  function goToPassword() {
+    setView("password");
+  }
 
   // Avatar Library "page"
   if (view === "avatarLibrary") {
@@ -165,7 +172,12 @@ export default function AccountProfileScreen({
         <div className="top-actions">
           <button
             className="chevron-btn"
-            onClick={() => setView("profile")}
+            onClick={() => {
+              setPw("");
+              setPw2("");
+              setPwCode("");
+              setView("profile");
+            }}
             aria-label="Back"
           >
             <svg
@@ -191,58 +203,99 @@ export default function AccountProfileScreen({
               <h2 className="password-title">Add or Change Password</h2>
 
               <div className="field">
-                <span className="field-label">Password</span>
+                <span className="field-label">Enter verification code</span>
                 <input
-                  className="input"
-                  type="password"
-                  value={pw}
-                  onChange={(e) => setPw(e.target.value)}
-                  autoComplete="new-password"
-                  placeholder="Enter a password"
+                  className="pw-input"
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  placeholder="5-digit code"
+                  value={pwCode}
+                  onChange={(e) => {
+                    const next = (e.target.value || "").replace(/\D/g, "").slice(0, 5);
+                    setPwCode(next);
+                  }}
+                  aria-label="Enter verification code"
                 />
+                <div className="pw-hint">Enter the 5-digit code we sent to your phone.</div>
               </div>
 
-              <div className="field">
-                <span className="field-label">Confirm password</span>
-                <input
-                  className="input"
-                  type="password"
-                  value={pw2}
-                  onChange={(e) => setPw2(e.target.value)}
-                  autoComplete="new-password"
-                  placeholder="Re-enter password"
-                />
-              </div>
+              <div className={`pw-fields ${codeValid ? "" : "pw-fields--disabled"}`}>
+                <div className="field">
+                  <span className="field-label">Password</span>
+                  <input
+                    className="pw-input"
+                    type="password"
+                    value={pw}
+                    onChange={(e) => setPw(e.target.value)}
+                    autoComplete="new-password"
+                    placeholder="Create a password"
+                    disabled={!codeValid}
+                    aria-disabled={!codeValid}
+                  />
+                </div>
 
-              <div className="pw-rules">
-                <div className="pw-rules-title">Password strength</div>
-                <ul className="pw-rules-list">
-                  <li className={pwChecks.len ? "ok" : ""}>At least 8 characters</li>
-                  <li className={pwChecks.upper ? "ok" : ""}>One uppercase letter</li>
-                  <li className={pwChecks.lower ? "ok" : ""}>One lowercase letter</li>
-                  <li className={pwChecks.num ? "ok" : ""}>One number</li>
-                  <li className={pwChecks.sym ? "ok" : ""}>One symbol</li>
-                </ul>
+                <div className="field">
+                  <span className="field-label">Confirm Password</span>
+                  <input
+                    className="pw-input"
+                    type="password"
+                    value={pw2}
+                    onChange={(e) => setPw2(e.target.value)}
+                    autoComplete="new-password"
+                    placeholder="Re-enter password"
+                    disabled={!codeValid}
+                    aria-disabled={!codeValid}
+                  />
+                </div>
 
-                {pw.length > 0 && (
-                  <div className="pw-status">
-                    {pwValid ? (
-                      <span className="pw-ok">● Looks good</span>
-                    ) : (
-                      <span className="pw-muted">Add a bit more strength</span>
-                    )}
-                  </div>
-                )}
+                <div className="pw-rules">
+                  <div className="pw-rules-title">Password Criteria</div>
 
-                {pw2.length > 0 && (
-                  <div className="pw-status">
-                    {pwMatch ? (
-                      <span className="pw-ok">● Passwords match</span>
-                    ) : (
-                      <span className="pw-warn">Passwords do not match</span>
-                    )}
-                  </div>
-                )}
+                  <ul className="pw-criteria" aria-label="Password criteria">
+                    <li className="pw-criteria-item">
+                      <span className={`pw-criteria-icon ${pwChecks.len ? "ok" : ""}`}>
+                        <IconCheck />
+                      </span>
+                      <span className="pw-criteria-text">8-20 characters</span>
+                    </li>
+
+                    <li className="pw-criteria-item">
+                      <span className={`pw-criteria-icon ${pwChecks.upper ? "ok" : ""}`}>
+                        <IconCheck />
+                      </span>
+                      <span className="pw-criteria-text">At least one capital letter</span>
+                    </li>
+
+                    <li className="pw-criteria-item">
+                      <span className={`pw-criteria-icon ${pwChecks.lower ? "ok" : ""}`}>
+                        <IconCheck />
+                      </span>
+                      <span className="pw-criteria-text">At least one lower case letter</span>
+                    </li>
+
+                    <li className="pw-criteria-item">
+                      <span className={`pw-criteria-icon ${pwChecks.num ? "ok" : ""}`}>
+                        <IconCheck />
+                      </span>
+                      <span className="pw-criteria-text">At least one number</span>
+                    </li>
+
+                    <li className="pw-criteria-item">
+                      <span className={`pw-criteria-icon ${pwChecks.noSpaces ? "ok" : ""}`}>
+                        <IconCheck />
+                      </span>
+                      <span className="pw-criteria-text">No spaces</span>
+                    </li>
+
+                    <li className="pw-criteria-item">
+                      <span className={`pw-criteria-icon ${pwChecks.match ? "ok" : ""}`}>
+                        <IconCheck />
+                      </span>
+                      <span className="pw-criteria-text">Both password entries match</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
               <div className="password-actions">
@@ -259,7 +312,12 @@ export default function AccountProfileScreen({
                 <button
                   type="button"
                   className="glass-btn glass-btn--hollow password-cancel-btn"
-                  onClick={() => setView("profile")}
+                  onClick={() => {
+                    setPw("");
+                    setPw2("");
+                    setPwCode("");
+                    setView("profile");
+                  }}
                 >
                   Cancel
                 </button>
@@ -406,6 +464,21 @@ function IconPencil() {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
+function IconCheck() {
+  return (
+    <svg viewBox="0 0 24 24" className="ico-check" aria-hidden="true">
+      <path
+        d="M20 6L9 17l-5-5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

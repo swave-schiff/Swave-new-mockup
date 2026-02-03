@@ -1841,6 +1841,106 @@ main {
   padding-right: 16px;
 }
 
+/* ===== AccountProfileScreen: password inputs + criteria ===== */
+
+.pw-input {
+  width: 100%;
+  height: 44px;
+  border-radius: 14px;
+  padding: 0 14px;
+
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+
+.pw-input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.pw-input:focus {
+  border-color: rgba(118, 160, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 2px rgba(118, 160, 255, 0.18);
+}
+
+.pw-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.pw-fields--disabled {
+  opacity: 0.42;
+  filter: saturate(0.9);
+}
+
+.pw-fields--disabled .pw-input {
+  cursor: not-allowed;
+}
+
+/* Criteria block: centered column, left-aligned text */
+.pw-criteria {
+  margin: 10px auto 0;
+  padding: 0;
+  list-style: none;
+
+  display: grid;
+  gap: 10px;
+
+  width: fit-content;
+}
+
+.pw-criteria-item {
+  display: grid;
+  grid-template-columns: 22px auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.pw-criteria-text {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+
+/* Green check circle that appears when criterion is met */
+.pw-criteria-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: transparent; /* hide check when not ok */
+}
+
+.pw-criteria-icon .ico-check {
+  width: 14px;
+  height: 14px;
+}
+
+.pw-criteria-icon.ok {
+  border-color: rgba(120, 255, 170, 0.65);
+  background: rgba(80, 210, 130, 0.22);
+  color: rgba(210, 255, 230, 0.95); /* show check */
+}
+
+.pw-criteria-icon.ok + .pw-criteria-text {
+  color: rgba(234, 255, 244, 0.90);
+}
+
+.password-save-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .conversation-scroll {
   flex: 1;
   min-height: 0;
