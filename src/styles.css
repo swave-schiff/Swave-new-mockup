@@ -891,9 +891,17 @@ main {
 
 .avatar-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, auto);
   gap: 14px;
-  width: 100%;
+
+  /* center the grid itself */
+  justify-content: center;
+
+  /* allow grid to size to content */
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
   padding: 6px 0 2px 0;
 }
 
