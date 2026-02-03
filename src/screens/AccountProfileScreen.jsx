@@ -202,10 +202,10 @@ export default function AccountProfileScreen({
             <div className="auth-copy connection-confirm-copy">
               <h2 className="password-title">Add or Change Password</h2>
 
-              <div className="field">
-                <span className="field-label">Enter verification code</span>
+              <div className="field pw-code-field">
+                <span className="field-label pw-code-label">Enter verification code</span>
                 <input
-                  className="pw-input pw-input--code"
+                  className="pw-input pw-input--code pw-code-input"
                   type="text"
                   inputMode="numeric"
                   autoComplete="one-time-code"
@@ -220,7 +220,7 @@ export default function AccountProfileScreen({
               </div>
 
               <div className={`pw-fields ${codeValid ? "" : "pw-fields--disabled"}`}>
-                <div className="field">
+                <div className="field pw-field-left">
                   <span className="field-label">Password</span>
                   <input
                     className="pw-input"
@@ -234,7 +234,7 @@ export default function AccountProfileScreen({
                   />
                 </div>
 
-                <div className="field pw-field-confirm">
+                <div className="field pw-field-left pw-field-confirm">
                   <span className="field-label">Confirm Password</span>
                   <input
                     className="pw-input"

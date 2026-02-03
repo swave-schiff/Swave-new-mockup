@@ -1954,6 +1954,32 @@ main {
   margin-top: 12px;
 }
 
+/* ===== AccountProfileScreen: verification code centering ===== */
+
+.pw-code-field {
+  display: grid;
+  justify-items: center;
+}
+
+.pw-code-label {
+  text-align: center;
+}
+
+.pw-code-input {
+  margin-top: 8px;
+}
+
+/* ===== AccountProfileScreen: left-aligned password labels ===== */
+
+.pw-field-left {
+  display: grid;
+  justify-items: start;
+}
+
+.pw-field-left .field-label {
+  align-self: flex-start;
+}
+
 .conversation-scroll {
   flex: 1;
   min-height: 0;
