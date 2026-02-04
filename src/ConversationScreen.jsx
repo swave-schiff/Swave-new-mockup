@@ -378,7 +378,7 @@ export default function ConversationScreen({
       </section>
 
       {/* Fixed composer */}
-      <footer className="conversation-composer">
+      <footer className="conversation-composer convo-composer-wrap">
         <div className="composer-card card glass gradient-vertical conversation-composer-inner">
           <textarea
             ref={composerInputRef}

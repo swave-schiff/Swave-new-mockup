@@ -2022,11 +2022,18 @@ main {
   background: #0b1020;
   opacity: 0.92;
 
-  z-index: 25;
+  z-index: 20;          /* below nav/composer */
   pointer-events: none;
 }
 
-/* Ensure the floating nav and composer sit above the scrim */
+/* Force composer + nav above scrim */
+.convo-composer-wrap,
+.convo-bottom-nav-wrap {
+  position: relative;
+  z-index: 30;
+}
+
+/* Fallback: elevate known nav/composer classes when present inside the screen */
 .conversation-screen .bottom-nav,
 .conversation-screen .floating-nav,
 .conversation-screen .nav-float,
@@ -2369,6 +2376,7 @@ main {
   left: 0;
   right: 0;
   padding: 10px 12px;
+  z-index: 30;
 }
 .bottom-nav .bottom-nav-link {
   display: inline-flex;
