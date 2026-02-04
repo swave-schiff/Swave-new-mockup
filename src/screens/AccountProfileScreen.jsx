@@ -27,6 +27,7 @@ export default function AccountProfileScreen({
   /* ---------- Passwords ---------- */
   const [pw, setPw] = useState("");
   const [pw2, setPw2] = useState("");
+  const [pwSavedToast, setPwSavedToast] = useState(false);
   const pwChecks = useMemo(
     () => ({
       len: pw.length >= 8 && pw.length <= 20,
@@ -100,10 +101,17 @@ export default function AccountProfileScreen({
   function savePassword() {
     if (!formValid) return;
     onSetPassword({ password: pw, code: pwCode });
-    setPw("");
-    setPw2("");
-    setPwCode("");
-    setView("profile");
+
+    // show success message for 2 seconds, then return
+    setPwSavedToast(true);
+
+    setTimeout(() => {
+      setPwSavedToast(false);
+      setPw("");
+      setPw2("");
+      setPwCode("");
+      setView("profile");
+    }, 2000);
   }
 
   function goToPassword() {
@@ -173,6 +181,7 @@ export default function AccountProfileScreen({
           <button
             className="chevron-btn"
             onClick={() => {
+              setPwSavedToast(false);
               setPw("");
               setPw2("");
               setPwCode("");
@@ -218,6 +227,8 @@ export default function AccountProfileScreen({
                   aria-label="Enter verification code"
                 />
               </div>
+
+              <div className="pw-divider" aria-hidden="true" />
 
               <div className={`pw-fields ${codeValid ? "" : "pw-fields--disabled"}`}>
                 <div className="field pw-field-left">
@@ -302,8 +313,8 @@ export default function AccountProfileScreen({
                   type="button"
                   className="glass-btn glass-btn--tint password-save-btn"
                   onClick={savePassword}
-                  disabled={!formValid}
-                  aria-disabled={!formValid}
+                  disabled={!formValid || pwSavedToast}
+                  aria-disabled={!formValid || pwSavedToast}
                 >
                   Save Password
                 </button>
@@ -312,6 +323,7 @@ export default function AccountProfileScreen({
                   type="button"
                   className="glass-btn glass-btn--hollow password-cancel-btn"
                   onClick={() => {
+                    setPwSavedToast(false);
                     setPw("");
                     setPw2("");
                     setPwCode("");
@@ -321,6 +333,12 @@ export default function AccountProfileScreen({
                   Cancel
                 </button>
               </div>
+
+              {pwSavedToast && (
+                <div className="pw-saved-toast" role="status" aria-live="polite">
+                  New Password Saved
+                </div>
+              )}
             </div>
           </div>
         </section>
