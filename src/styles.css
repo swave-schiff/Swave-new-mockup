@@ -2003,6 +2003,26 @@ main {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+/* ===== AccountProfileScreen: delete account confirms ===== */
+
+.delete-account-actions {
+  margin-top: 18px;
+}
+
+.delete-account-confirm-btn,
+.delete-account-cancel-btn {
+  width: auto;
+  white-space: nowrap;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.delete-account-pw-field {
+  margin-top: 12px;
+  display: grid;
+  justify-items: center;
+}
+
 /* ===== ConversationScreen: bottom safe-area scrim (covers gaps + below nav) ===== */
 
 .conversation-screen {

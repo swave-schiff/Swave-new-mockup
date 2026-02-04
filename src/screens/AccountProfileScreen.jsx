@@ -5,6 +5,8 @@ export default function AccountProfileScreen({
   onBack = () => {},
   onEditPhoto = () => {},
   onSetPassword = () => {},
+  onDeleteAccount = () => {},
+  hasPassword = false,
 }) {
   const username = "LivinLife";
 
@@ -28,6 +30,9 @@ export default function AccountProfileScreen({
   const [pw, setPw] = useState("");
   const [pw2, setPw2] = useState("");
   const [pwSavedToast, setPwSavedToast] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showDeletePw, setShowDeletePw] = useState(false);
+  const [deletePw, setDeletePw] = useState("");
   const pwChecks = useMemo(
     () => ({
       len: pw.length >= 8 && pw.length <= 20,
@@ -118,6 +123,34 @@ export default function AccountProfileScreen({
     setView("password");
   }
 
+  function openDeleteAccount() {
+    setShowDeleteConfirm(true);
+  }
+
+  function closeDeleteAccount() {
+    setShowDeleteConfirm(false);
+    setShowDeletePw(false);
+    setDeletePw("");
+  }
+
+  function confirmDeleteAccount() {
+    setShowDeleteConfirm(false);
+
+    if (hasPassword) {
+      setShowDeletePw(true);
+      return;
+    }
+
+    onDeleteAccount({});
+    closeDeleteAccount();
+  }
+
+  function confirmDeleteWithPassword() {
+    if (!deletePw.trim()) return;
+    onDeleteAccount({ password: deletePw });
+    closeDeleteAccount();
+  }
+
   // Avatar Library "page"
   if (view === "avatarLibrary") {
     return (
@@ -185,6 +218,9 @@ export default function AccountProfileScreen({
               setPw("");
               setPw2("");
               setPwCode("");
+              setShowDeleteConfirm(false);
+              setShowDeletePw(false);
+              setDeletePw("");
               setView("profile");
             }}
             aria-label="Back"
@@ -327,6 +363,9 @@ export default function AccountProfileScreen({
                     setPw("");
                     setPw2("");
                     setPwCode("");
+                    setShowDeleteConfirm(false);
+                    setShowDeletePw(false);
+                    setDeletePw("");
                     setView("profile");
                   }}
                 >
@@ -412,7 +451,10 @@ export default function AccountProfileScreen({
                 className="account-delete-link"
                 role="button"
                 tabIndex={0}
-                onClick={() => {}}
+                onClick={openDeleteAccount}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") openDeleteAccount();
+                }}
               >
                 Delete Account
               </span>
@@ -456,6 +498,99 @@ export default function AccountProfileScreen({
                 type="button"
                 className="glass-btn glass-btn--hollow profile-photo-cancel-btn"
                 onClick={closeSheet}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete account confirm */}
+      {showDeleteConfirm && (
+        <div className="confirm-backdrop" role="presentation" onClick={closeDeleteAccount}>
+          <div
+            className="confirm-sheet card glass gradient-vertical confirm-sheet--opaque delete-account-confirm"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Delete account confirmation"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="confirm-title">Are you sure?</div>
+
+            <div className="confirm-body">
+              <p className="confirm-line">
+                Deleting your account will also erase all of your Connections and Conversations from our servers.
+                This cannot be undone.
+              </p>
+            </div>
+
+            <div className="confirm-actions-vertical delete-account-actions">
+              <button
+                type="button"
+                className="glass-btn glass-btn--tint delete-account-confirm-btn"
+                onClick={confirmDeleteAccount}
+              >
+                Confirm
+              </button>
+
+              <button
+                type="button"
+                className="glass-btn glass-btn--hollow delete-account-cancel-btn"
+                onClick={closeDeleteAccount}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete account password prompt */}
+      {showDeletePw && (
+        <div className="confirm-backdrop" role="presentation" onClick={closeDeleteAccount}>
+          <div
+            className="confirm-sheet card glass gradient-vertical confirm-sheet--opaque delete-account-pw"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Enter password to delete account"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="confirm-title">Enter password</div>
+
+            <div className="confirm-body">
+              <p className="confirm-line">
+                Please enter your password to confirm account deletion.
+              </p>
+            </div>
+
+            <div className="delete-account-pw-field">
+              <input
+                className="pw-input"
+                type="password"
+                value={deletePw}
+                onChange={(e) => setDeletePw(e.target.value)}
+                autoComplete="current-password"
+                placeholder="Password"
+                aria-label="Password"
+              />
+            </div>
+
+            <div className="confirm-actions-vertical delete-account-actions">
+              <button
+                type="button"
+                className="glass-btn glass-btn--tint delete-account-confirm-btn"
+                onClick={confirmDeleteWithPassword}
+                disabled={!deletePw.trim()}
+                aria-disabled={!deletePw.trim()}
+              >
+                Confirm Delete
+              </button>
+
+              <button
+                type="button"
+                className="glass-btn glass-btn--hollow delete-account-cancel-btn"
+                onClick={closeDeleteAccount}
               >
                 Cancel
               </button>
