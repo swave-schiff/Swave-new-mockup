@@ -2473,6 +2473,13 @@ main {
   filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
 }
 
+/* ===== Tabbar: FaceID lock disables items ===== */
+.tabbar-item--disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: saturate(0.85);
+}
+
 /* Legacy .bottom-nav support (simple pill) */
 .bottom-nav {
   position: sticky;

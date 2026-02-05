@@ -7,9 +7,10 @@ export default function SettingsScreen({
   onOpenHelp = () => {},
   onOpenLinking = () => {},
   onOpenProfile = () => {},
+  faceIdLockEnabled = false,
+  onChangeFaceIdLock = () => {},
 }) {
   const [view, setView] = useState("main"); // "main" | "faceid"
-  const [faceIdLockEnabled, setFaceIdLockEnabled] = useState(false);
 
   if (view === "faceid") {
     return (
@@ -48,7 +49,7 @@ export default function SettingsScreen({
 
                 <Toggle
                   checked={faceIdLockEnabled}
-                  onChange={setFaceIdLockEnabled}
+                  onChange={onChangeFaceIdLock}
                   ariaLabel="Enable Face ID lock"
                 />
               </div>

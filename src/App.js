@@ -31,6 +31,7 @@ export default function App() {
   const [activeChatContact, setActiveChatContact] = useState(null);
   const [swaveCode, setSwaveCode] = useState("0000");
   const [activeConnectionDetail, setActiveConnectionDetail] = useState(null);
+  const [faceIdLockEnabled, setFaceIdLockEnabled] = useState(false);
   const openConversation = (contact = {}) => {
     const username =
       contact.username || contact.name || contact.handle || "LivinLife";
@@ -165,6 +166,8 @@ export default function App() {
           onOpenHelp={() => setActiveTab("FeedbackHome")}
           onOpenLinking={() => setActiveTab("username-linking")}
           onOpenProfile={() => setActiveTab("account-profile")}
+          faceIdLockEnabled={faceIdLockEnabled}
+          onChangeFaceIdLock={setFaceIdLockEnabled}
         />
       )}
 
@@ -299,11 +302,13 @@ export default function App() {
                 icon={<IconUsers />}
                 active={activeTab === "connections"}
                 onClick={() => setActiveTab("connections")}
+                disabled={faceIdLockEnabled}
               />
               <Tab
                 icon={<IconMessage />}
                 active={activeTab === "messages"}
                 onClick={() => setActiveTab("messages")}
+                disabled={faceIdLockEnabled}
               />
               <Tab
                 icon={<IconMenu />}
@@ -351,9 +356,18 @@ function Placeholder({ label }) {
 }
 
 /* ------------------- Shared UI ------------------- */
-function Tab({ icon, active, onClick }) {
+function Tab({ icon, active, onClick, disabled = false }) {
+  const handleClick = () => {
+    if (disabled) return;
+    onClick();
+  };
   return (
-    <button className={`tab ${active ? "tab-active" : ""}`} onClick={onClick}>
+    <button
+      className={`tab ${active ? "tab-active" : ""} ${disabled ? "tabbar-item--disabled" : ""}`.trim()}
+      onClick={handleClick}
+      aria-disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
+    >
       {icon}
     </button>
   );
