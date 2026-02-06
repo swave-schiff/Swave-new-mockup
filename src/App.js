@@ -404,7 +404,7 @@ export default function App() {
           </div>
 
           <section className="auth-shell settings-shell">
-            <div className="card glass gradient-vertical settings-card faceid-gate-card">
+            <div className="faceid-gate-card faceid-gate-card--plain">
               <div className="faceid-gate-icon">
                 <IconFaceID />
               </div>
