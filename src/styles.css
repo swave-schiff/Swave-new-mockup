@@ -1373,35 +1373,67 @@ main {
 
 /* ===== FaceID gate: no extra background layers ===== */
 
+/* ===== FaceID gate: full-screen, top-aligned, intentional card ===== */
+
+.app-shell--hidden {
+  visibility: hidden;
+}
+
 .faceid-gate-screen {
-  background: transparent !important;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
-.faceid-gate-screen.auth-page,
-.faceid-gate-screen .auth-page,
-.faceid-gate-screen .settings-page,
-.faceid-gate-screen .auth-shell,
-.faceid-gate-screen .settings-shell {
-  background: transparent !important;
+.faceid-gate-screen .top-actions {
+  padding: 12px 12px 0;
 }
 
-.faceid-gate-screen .faceid-gate-card {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  padding: 0 !important;
+.faceid-gate-screen .auth-shell {
+  width: 100%;
+  padding: 12px 16px 18px;
 }
 
-.faceid-gate-screen .faceid-gate-inner {
+.faceid-gate-card {
   width: min(520px, 100%);
-  margin-top: 6px;
   padding: 22px 18px 20px;
-  border-radius: var(--radius-22);
-  background: #0b1020;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
+  margin: 8px auto 0;
+
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.faceid-gate-icon .ico {
+  width: 64px;
+  height: 64px;
+  opacity: 0.95;
+}
+
+.faceid-gate-title {
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.faceid-gate-unlock,
+.faceid-gate-cancel {
+  width: auto;
+  white-space: nowrap;
+}
+
+.faceid-gate-unlock {
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.faceid-gate-cancel {
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 

@@ -405,33 +405,31 @@ export default function App() {
 
           <section className="auth-shell settings-shell">
             <div className="card glass gradient-vertical settings-card faceid-gate-card">
-              <div className="faceid-gate-inner">
-                <div className="faceid-gate-icon">
-                  <IconFaceID />
-                </div>
-                <div className="faceid-gate-title">FACE ID</div>
-
-                <button
-                  type="button"
-                  className="glass-btn glass-btn--tint faceid-gate-unlock"
-                  onClick={() => {
-                    setFaceIdUnlocked(true);
-                    const t = pendingGateTarget;
-                    setPendingGateTarget(null);
-                    goToTarget(t);
-                  }}
-                >
-                  Unlock
-                </button>
-
-                <button
-                  type="button"
-                  className="glass-btn glass-btn--hollow faceid-gate-cancel"
-                  onClick={() => setPendingGateTarget(null)}
-                >
-                  Cancel
-                </button>
+              <div className="faceid-gate-icon">
+                <IconFaceID />
               </div>
+              <div className="faceid-gate-title">FACE ID</div>
+
+              <button
+                type="button"
+                className="glass-btn glass-btn--tint faceid-gate-unlock"
+                onClick={() => {
+                  setFaceIdUnlocked(true);
+                  const t = pendingGateTarget;
+                  setPendingGateTarget(null);
+                  goToTarget(t);
+                }}
+              >
+                Unlock
+              </button>
+
+              <button
+                type="button"
+                className="glass-btn glass-btn--hollow faceid-gate-cancel"
+                onClick={() => setPendingGateTarget(null)}
+              >
+                Cancel
+              </button>
             </div>
           </section>
         </main>
