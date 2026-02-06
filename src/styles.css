@@ -1302,6 +1302,18 @@ main {
   }
 }
 
+/* ===== Settings: FaceID screen container (plain, no card visuals) ===== */
+.faceid-card--plain {
+  width: min(560px, 100%);
+  padding: 18px;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 /* ===== FaceID gate screen ===== */
 
 .faceid-gate-card {

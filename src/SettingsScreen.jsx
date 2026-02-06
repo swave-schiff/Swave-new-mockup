@@ -42,7 +42,7 @@ export default function SettingsScreen({
         </div>
 
         <section className="auth-shell settings-shell">
-          <div className="card glass gradient-vertical settings-card faceid-card">
+          <div className="faceid-card faceid-card--plain">
             <div className="faceid-hero">
               <div className="faceid-icon">
                 <IconFaceID />
