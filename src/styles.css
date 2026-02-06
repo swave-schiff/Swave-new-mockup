@@ -1371,6 +1371,39 @@ main {
   margin-top: 6px;
 }
 
+/* ===== FaceID gate: no extra background layers ===== */
+
+.faceid-gate-screen {
+  background: transparent !important;
+}
+
+.faceid-gate-screen.auth-page,
+.faceid-gate-screen .auth-page,
+.faceid-gate-screen .settings-page,
+.faceid-gate-screen .auth-shell,
+.faceid-gate-screen .settings-shell {
+  background: transparent !important;
+}
+
+.faceid-gate-screen .faceid-gate-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 0 !important;
+}
+
+.faceid-gate-screen .faceid-gate-inner {
+  width: min(520px, 100%);
+  margin-top: 6px;
+  padding: 22px 18px 20px;
+  border-radius: var(--radius-22);
+  background: #0b1020;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
+}
+
 
 .connection-row {
   display: grid;
