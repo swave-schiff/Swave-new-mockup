@@ -60,7 +60,6 @@ export default function App() {
     }
     setPendingGateTarget(target);
   }
-  const [faceIdLockEnabled, setFaceIdLockEnabled] = useState(false);
   const openConversation = (contact = {}) => {
     const username =
       contact.username || contact.name || contact.handle || "LivinLife";
