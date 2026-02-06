@@ -22,6 +22,9 @@ export default function FeedbackForm({
   onCloseAfterSubmit,
   activeTab,
   setActiveTab,
+  faceIdLockEnabled = false,
+  faceIdUnlocked = true,
+  requestFaceIdGate = () => {},
 }) {
   const [text, setText] = useState("");
   const [email, setEmail] = useState("");
@@ -122,7 +125,13 @@ export default function FeedbackForm({
         )}
       </main>
 
-      <Tabbar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tabbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        faceIdLockEnabled={faceIdLockEnabled}
+        faceIdUnlocked={faceIdUnlocked}
+        requestFaceIdGate={requestFaceIdGate}
+      />
     </div>
   );
 }

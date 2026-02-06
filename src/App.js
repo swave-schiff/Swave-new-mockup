@@ -32,6 +32,35 @@ export default function App() {
   const [swaveCode, setSwaveCode] = useState("0000");
   const [activeConnectionDetail, setActiveConnectionDetail] = useState(null);
   const [faceIdLockEnabled, setFaceIdLockEnabled] = useState(false);
+  const [faceIdUnlocked, setFaceIdUnlocked] = useState(false);
+  const [pendingGateTarget, setPendingGateTarget] = useState(null); // "connections" | "conversations" | "faceidSettings" | null
+  const [settingsInitialView, setSettingsInitialView] = useState("main");
+
+  function setFaceIdLock(next) {
+    setFaceIdLockEnabled(next);
+    if (next) setFaceIdUnlocked(false);
+    if (!next) {
+      setPendingGateTarget(null);
+    }
+  }
+
+  function goToTarget(target) {
+    if (target === "connections") setActiveTab("connections");
+    if (target === "conversations") setActiveTab("messages");
+    if (target === "faceidSettings") {
+      setSettingsInitialView("faceid");
+      setActiveTab("account");
+    }
+  }
+
+  function requestFaceIdGate(target) {
+    if (!faceIdLockEnabled || faceIdUnlocked) {
+      goToTarget(target);
+      return;
+    }
+    setPendingGateTarget(target);
+  }
+  const [faceIdLockEnabled, setFaceIdLockEnabled] = useState(false);
   const openConversation = (contact = {}) => {
     const username =
       contact.username || contact.name || contact.handle || "LivinLife";
@@ -166,8 +195,11 @@ export default function App() {
           onOpenHelp={() => setActiveTab("FeedbackHome")}
           onOpenLinking={() => setActiveTab("username-linking")}
           onOpenProfile={() => setActiveTab("account-profile")}
+          initialView={settingsInitialView}
           faceIdLockEnabled={faceIdLockEnabled}
-          onChangeFaceIdLock={setFaceIdLockEnabled}
+          faceIdUnlocked={faceIdUnlocked}
+          onChangeFaceIdLock={setFaceIdLock}
+          onRequestFaceIdSettings={() => requestFaceIdGate("faceidSettings")}
         />
       )}
 
@@ -245,6 +277,9 @@ export default function App() {
             // TODO: send feedback payload
           }}
           onCloseAfterSubmit={() => setActiveTab("account")}
+          faceIdLockEnabled={faceIdLockEnabled}
+          faceIdUnlocked={faceIdUnlocked}
+          requestFaceIdGate={requestFaceIdGate}
         />
       )}
 
@@ -257,6 +292,9 @@ export default function App() {
             // TODO: send support ticket payload
           }}
           onCloseAfterSubmit={() => setActiveTab("account")}
+          faceIdLockEnabled={faceIdLockEnabled}
+          faceIdUnlocked={faceIdUnlocked}
+          requestFaceIdGate={requestFaceIdGate}
         />
       )}
 
@@ -301,23 +339,98 @@ export default function App() {
               <Tab
                 icon={<IconUsers />}
                 active={activeTab === "connections"}
-                onClick={() => setActiveTab("connections")}
-                disabled={faceIdLockEnabled}
+                onClick={() => {
+                  const faceLocked = faceIdLockEnabled && !faceIdUnlocked;
+                  if (faceLocked) {
+                    requestFaceIdGate("connections");
+                  } else {
+                    setActiveTab("connections");
+                  }
+                }}
+                locked={faceIdLockEnabled && !faceIdUnlocked}
               />
               <Tab
                 icon={<IconMessage />}
                 active={activeTab === "messages"}
-                onClick={() => setActiveTab("messages")}
-                disabled={faceIdLockEnabled}
+                onClick={() => {
+                  const faceLocked = faceIdLockEnabled && !faceIdUnlocked;
+                  if (faceLocked) {
+                    requestFaceIdGate("conversations");
+                  } else {
+                    setActiveTab("messages");
+                  }
+                }}
+                locked={faceIdLockEnabled && !faceIdUnlocked}
               />
               <Tab
                 icon={<IconMenu />}
                 active={activeTab === "account"}
-                onClick={() => setActiveTab("account")}
+                onClick={() => {
+                  setSettingsInitialView("main");
+                  setActiveTab("account");
+                }}
               />
             </div>
           </nav>
         )}
+
+      {/* FaceID gate overlay */}
+      {pendingGateTarget && (
+        <main className="auth-page faceid-gate-page">
+          <div className="top-actions">
+            <button
+              className="chevron-btn"
+              onClick={() => setPendingGateTarget(null)}
+              aria-label="Back"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="chevron-svg"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+          </div>
+
+          <section className="auth-shell settings-shell">
+            <div className="card glass gradient-vertical settings-card faceid-gate-card">
+              <div className="faceid-gate-icon">
+                <IconFaceID />
+              </div>
+              <div className="faceid-gate-title">FACE ID</div>
+
+              <button
+                type="button"
+                className="glass-btn glass-btn--tint faceid-gate-unlock"
+                onClick={() => {
+                  setFaceIdUnlocked(true);
+                  const t = pendingGateTarget;
+                  setPendingGateTarget(null);
+                  goToTarget(t);
+                }}
+              >
+                Unlock
+              </button>
+
+              <button
+                type="button"
+                className="glass-btn glass-btn--hollow faceid-gate-cancel"
+                onClick={() => setPendingGateTarget(null)}
+              >
+                Cancel
+              </button>
+            </div>
+          </section>
+        </main>
+      )}
     </div>
   );
 }
@@ -356,17 +469,11 @@ function Placeholder({ label }) {
 }
 
 /* ------------------- Shared UI ------------------- */
-function Tab({ icon, active, onClick, disabled = false }) {
-  const handleClick = () => {
-    if (disabled) return;
-    onClick();
-  };
+function Tab({ icon, active, onClick, locked = false }) {
   return (
     <button
-      className={`tab ${active ? "tab-active" : ""} ${disabled ? "tabbar-item--disabled" : ""}`.trim()}
-      onClick={handleClick}
-      aria-disabled={disabled}
-      tabIndex={disabled ? -1 : 0}
+      className={`tab ${active ? "tab-active" : ""} ${locked ? "tabbar-item--locked" : ""}`.trim()}
+      onClick={onClick}
     >
       {icon}
     </button>
@@ -531,6 +638,42 @@ function IconMenu() {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function IconFaceID() {
+  return (
+    <svg viewBox="0 0 24 24" className="ico" aria-hidden="true">
+      <path
+        d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 10v.2M15 10v.2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 10.5v3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9.5 16c.8.9 1.6 1.3 2.5 1.3s1.7-.4 2.5-1.3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
         strokeLinecap="round"
       />
     </svg>

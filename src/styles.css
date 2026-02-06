@@ -1302,6 +1302,43 @@ main {
   }
 }
 
+/* ===== FaceID gate screen ===== */
+
+.faceid-gate-card {
+  width: min(520px, 100%);
+  padding: 22px 18px 20px;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.faceid-gate-icon .ico {
+  width: 64px;
+  height: 64px;
+  opacity: 0.95;
+}
+
+.faceid-gate-title {
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.faceid-gate-unlock {
+  margin-top: 6px;
+  white-space: nowrap;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.faceid-gate-cancel {
+  width: auto;
+  white-space: nowrap;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 
 .connection-row {
   display: grid;
@@ -2478,6 +2515,17 @@ main {
   opacity: 0.35;
   cursor: not-allowed;
   filter: saturate(0.85);
+}
+
+/* ===== Tabbar: FaceID lock (red state) ===== */
+.tabbar-item--locked {
+  color: rgba(255, 95, 95, 0.92);
+}
+
+.tabbar-item--locked .ico,
+.tabbar-item--locked svg {
+  color: rgba(255, 95, 95, 0.92);
+  stroke: currentColor;
 }
 
 /* Legacy .bottom-nav support (simple pill) */

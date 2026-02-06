@@ -22,6 +22,9 @@ export default function SupportForm({
   onCloseAfterSubmit,
   activeTab,
   setActiveTab,
+  faceIdLockEnabled = false,
+  faceIdUnlocked = true,
+  requestFaceIdGate = () => {},
 }) {
   const ISSUE_MAX = 1000;
   const [email, setEmail] = useState("");
@@ -165,7 +168,13 @@ export default function SupportForm({
         )}
       </main>
 
-      <Tabbar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Tabbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        faceIdLockEnabled={faceIdLockEnabled}
+        faceIdUnlocked={faceIdUnlocked}
+        requestFaceIdGate={requestFaceIdGate}
+      />
     </div>
   );
 }

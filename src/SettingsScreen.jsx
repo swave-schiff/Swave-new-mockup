@@ -1,5 +1,5 @@
 // src/SettingsScreen.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 
 export default function SettingsScreen({
@@ -7,10 +7,17 @@ export default function SettingsScreen({
   onOpenHelp = () => {},
   onOpenLinking = () => {},
   onOpenProfile = () => {},
+  initialView = "main",
   faceIdLockEnabled = false,
+  faceIdUnlocked = false,
   onChangeFaceIdLock = () => {},
+  onRequestFaceIdSettings = () => {},
 }) {
-  const [view, setView] = useState("main"); // "main" | "faceid"
+  const [view, setView] = useState(initialView || "main"); // "main" | "faceid"
+
+  useEffect(() => {
+    setView(initialView || "main");
+  }, [initialView]);
 
   if (view === "faceid") {
     return (
@@ -75,9 +82,15 @@ export default function SettingsScreen({
     },
     {
       key: "faceid",
-      label: "Setup Face ID to Hide Connections",
+      label: "Setup FaceID to hide Connections",
       icon: <IconFaceID />,
-      onClick: () => setView("faceid"),
+      onClick: () => {
+        if (faceIdLockEnabled && !faceIdUnlocked) {
+          onRequestFaceIdSettings();
+          return;
+        }
+        setView("faceid");
+      },
     },
     {
       key: "feedback",

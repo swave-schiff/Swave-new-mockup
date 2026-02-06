@@ -1,6 +1,13 @@
 import React from "react";
 
-export function Tabbar({ activeTab, setActiveTab }) {
+export function Tabbar({
+  activeTab,
+  setActiveTab,
+  faceIdLockEnabled = false,
+  faceIdUnlocked = true,
+  requestFaceIdGate = () => {},
+}) {
+  const faceLocked = faceIdLockEnabled && !faceIdUnlocked;
   return (
     <nav className="tabbar">
       <div className="tabwrap">
@@ -12,12 +19,26 @@ export function Tabbar({ activeTab, setActiveTab }) {
         <Tab
           icon={<IconUsers />}
           active={activeTab === "connections"}
-          onClick={() => setActiveTab("connections")}
+          onClick={() => {
+            if (faceLocked) {
+              requestFaceIdGate("connections");
+            } else {
+              setActiveTab("connections");
+            }
+          }}
+          locked={faceLocked}
         />
         <Tab
           icon={<IconMessage />}
           active={activeTab === "messages"}
-          onClick={() => setActiveTab("messages")}
+          onClick={() => {
+            if (faceLocked) {
+              requestFaceIdGate("conversations");
+            } else {
+              setActiveTab("messages");
+            }
+          }}
+          locked={faceLocked}
         />
         <Tab
           icon={<IconMenu />}
@@ -29,9 +50,12 @@ export function Tabbar({ activeTab, setActiveTab }) {
   );
 }
 
-export function Tab({ icon, active, onClick }) {
+export function Tab({ icon, active, onClick, locked = false }) {
   return (
-    <button className={`tab ${active ? "tab-active" : ""}`} onClick={onClick}>
+    <button
+      className={`tab ${active ? "tab-active" : ""} ${locked ? "tabbar-item--locked" : ""}`.trim()}
+      onClick={onClick}
+    >
       {icon}
     </button>
   );
