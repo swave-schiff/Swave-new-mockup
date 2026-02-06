@@ -75,7 +75,7 @@ export default function SettingsScreen({
     },
     {
       key: "faceid",
-      label: "Setup Face ID to Hide Connections",
+      label: "Setup FaceID to Hide Connections",
       icon: <IconFaceID />,
       onClick: () => setView("faceid"),
     },
