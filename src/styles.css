@@ -1339,6 +1339,31 @@ main {
   padding-right: 16px;
 }
 
+/* ===== FaceID gate: true full-screen cover ===== */
+
+.app-shell--hidden {
+  visibility: hidden;
+}
+
+.faceid-gate-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.70);
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.faceid-gate-screen .top-actions {
+  padding: 12px 12px 0;
+}
+
+.faceid-gate-screen .auth-shell {
+  align-self: center;
+  width: 100%;
+  padding: 0 16px 18px;
+}
+
 
 .connection-row {
   display: grid;

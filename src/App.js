@@ -105,7 +105,9 @@ export default function App() {
   }, [activeTab]);
 
   return (
-    <div className="screen">
+    <>
+      <div className={`app-shell ${pendingGateTarget ? "app-shell--hidden" : ""}`}>
+        <div className="screen">
       <div className="safe" />
 
       {/* Header (hidden on these tabs) */}
@@ -372,10 +374,12 @@ export default function App() {
             </div>
           </nav>
         )}
+        </div>
+      </div>
 
       {/* FaceID gate overlay */}
       {pendingGateTarget && (
-        <main className="auth-page faceid-gate-page">
+        <main className="faceid-gate-screen">
           <div className="top-actions">
             <button
               className="chevron-btn"
@@ -430,7 +434,7 @@ export default function App() {
           </section>
         </main>
       )}
-    </div>
+    </>
   );
 }
 
