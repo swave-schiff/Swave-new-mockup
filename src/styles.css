@@ -1345,13 +1345,17 @@ main {
   visibility: hidden;
 }
 
+/* ===== FaceID gate: full-screen, top-aligned, no backdrop ===== */
+
 .faceid-gate-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.70);
-  display: grid;
-  grid-template-rows: auto 1fr;
+
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .faceid-gate-screen .top-actions {
@@ -1359,9 +1363,12 @@ main {
 }
 
 .faceid-gate-screen .auth-shell {
-  align-self: center;
   width: 100%;
-  padding: 0 16px 18px;
+  padding: 12px 16px 18px;
+}
+
+.faceid-gate-card {
+  margin-top: 6px;
 }
 
 
