@@ -2673,7 +2673,7 @@ main {
   pointer-events: none;                /* <--- prevents blocking clicks */
 
   background:
-    radial-gradient(70% 55% at -2% 5%,   /* <--- size and position of white shine (upper-left edge) */
+    radial-gradient(70% 55% at 2% 5%,   /* <--- size and position of white shine (upper-left edge) */
       rgba(255,255,255,0.55),           /* <--- peak brightness of the specular highlight */
       rgba(255,255,255,0.10) 42%,       /* <--- falloff from bright highlight into body */
       rgba(255,255,255,0.00) 30%);      /* <--- fade to transparent (no shine beyond this) */
@@ -2682,39 +2682,17 @@ main {
 
 /* ---------- Inner rim glow / glass thickness ---------- */
 .glass-btn--iosglass::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
+  content: "";                         /* <--- required for pseudo-element rendering */
+  position: absolute;                 /* <--- overlays rim glow on top of button */
+  inset: 0;                           /* <--- aligns rim exactly with button edges */
+  border-radius: inherit;             /* <--- keeps rim glow following rounding */
+  pointer-events: none;               /* <--- ensures button remains clickable */
 
-  /* Directional rim that fades toward bottom-right */
-  background:
-    linear-gradient(135deg,
-      rgba(255,255,255,0.28) 0%,
-      rgba(255,255,255,0.14) 30%,
-      rgba(255,255,255,0.00) 60%);
-
-  /* Subtle glass thickness (kept very light) */
   box-shadow:
-    inset 0 0 14px rgba(255,255,255,0.06);
-
-  /* Turn gradient into a rim instead of a fill */
--webkit-mask:
-  linear-gradient(#000 0 0) content-box,
-  linear-gradient(#000 0 0);
-mask:
-  linear-gradient(#000 0 0) content-box,
-  linear-gradient(#000 0 0);
-
--webkit-mask-composite: xor;
-mask-composite: exclude;
-
-
-  padding: 1px;   /* rim thickness */
-  opacity: 0.95;
+    inset 0 0 0 1px rgba(255,255,255,0.10), /* <--- crisp inner glass edge outline */
+    inset 0 0 18px rgba(255,255,255,0.08);  /* <--- soft inner glow (glass thickness / frost) */
+  opacity: .9;                        /* <--- strength of rim glow effect */
 }
-
 
 .glass-btn--iosglass:hover {
   border-color: rgba(255,255,255,0.28);

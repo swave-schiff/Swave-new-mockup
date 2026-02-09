@@ -2690,7 +2690,7 @@ main {
 
   /* Directional rim that fades toward bottom-right */
   background:
-    linear-gradient(135deg,
+    linear-gradient(175deg,
       rgba(255,255,255,0.28) 0%,
       rgba(255,255,255,0.14) 30%,
       rgba(255,255,255,0.00) 60%);

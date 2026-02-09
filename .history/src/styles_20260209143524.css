@@ -2673,7 +2673,7 @@ main {
   pointer-events: none;                /* <--- prevents blocking clicks */
 
   background:
-    radial-gradient(70% 55% at -2% 5%,   /* <--- size and position of white shine (upper-left edge) */
+    radial-gradient(70% 55% at -12% 5%,   /* <--- size and position of white shine (upper-left edge) */
       rgba(255,255,255,0.55),           /* <--- peak brightness of the specular highlight */
       rgba(255,255,255,0.10) 42%,       /* <--- falloff from bright highlight into body */
       rgba(255,255,255,0.00) 30%);      /* <--- fade to transparent (no shine beyond this) */

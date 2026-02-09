@@ -2700,16 +2700,11 @@ main {
     inset 0 0 14px rgba(255,255,255,0.06);
 
   /* Turn gradient into a rim instead of a fill */
--webkit-mask:
-  linear-gradient(#000 0 0) content-box,
-  linear-gradient(#000 0 0);
-mask:
-  linear-gradient(#000 0 0) content-box,
-  linear-gradient(#000 0 0);
-
--webkit-mask-composite: xor;
-mask-composite: exclude;
-
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 
   padding: 1px;   /* rim thickness */
   opacity: 0.95;
