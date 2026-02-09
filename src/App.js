@@ -331,48 +331,46 @@ export default function App() {
         activeTab !== "username" &&
         activeTab !== "swavecode" && (
           <nav className="tabbar">
-            <div className="tabbar-surface iosglass-panel iosglass-panel--tabbar">
-              <div className="tabwrap">
-                <Tab
-                  icon={<IconHome />}
-                  active={activeTab === "home"}
-                  onClick={() => setActiveTab("home")}
-                />
-                <Tab
-                  icon={<IconUsers />}
-                  active={activeTab === "connections"}
-                  onClick={() => {
-                    const faceLocked = faceIdLockEnabled && !faceIdUnlocked;
-                    if (faceLocked) {
-                      requestFaceIdGate("connections");
-                    } else {
-                      setActiveTab("connections");
-                    }
-                  }}
-                  locked={faceIdLockEnabled && !faceIdUnlocked}
-                />
-                <Tab
-                  icon={<IconMessage />}
-                  active={activeTab === "messages"}
-                  onClick={() => {
-                    const faceLocked = faceIdLockEnabled && !faceIdUnlocked;
-                    if (faceLocked) {
-                      requestFaceIdGate("conversations");
-                    } else {
-                      setActiveTab("messages");
-                    }
-                  }}
-                  locked={faceIdLockEnabled && !faceIdUnlocked}
-                />
-                <Tab
-                  icon={<IconMenu />}
-                  active={activeTab === "account"}
-                  onClick={() => {
-                    setSettingsInitialView("main");
-                    setActiveTab("account");
-                  }}
-                />
-              </div>
+            <div className="tabwrap">
+              <Tab
+                icon={<IconHome />}
+                active={activeTab === "home"}
+                onClick={() => setActiveTab("home")}
+              />
+              <Tab
+                icon={<IconUsers />}
+                active={activeTab === "connections"}
+                onClick={() => {
+                  const faceLocked = faceIdLockEnabled && !faceIdUnlocked;
+                  if (faceLocked) {
+                    requestFaceIdGate("connections");
+                  } else {
+                    setActiveTab("connections");
+                  }
+                }}
+                locked={faceIdLockEnabled && !faceIdUnlocked}
+              />
+              <Tab
+                icon={<IconMessage />}
+                active={activeTab === "messages"}
+                onClick={() => {
+                  const faceLocked = faceIdLockEnabled && !faceIdUnlocked;
+                  if (faceLocked) {
+                    requestFaceIdGate("conversations");
+                  } else {
+                    setActiveTab("messages");
+                  }
+                }}
+                locked={faceIdLockEnabled && !faceIdUnlocked}
+              />
+              <Tab
+                icon={<IconMenu />}
+                active={activeTab === "account"}
+                onClick={() => {
+                  setSettingsInitialView("main");
+                  setActiveTab("account");
+                }}
+              />
             </div>
           </nav>
         )}

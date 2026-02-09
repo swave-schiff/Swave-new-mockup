@@ -2601,6 +2601,70 @@ main {
   width: 100%;
   padding-bottom: env(safe-area-inset-bottom);
   z-index: 20;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* ===== Tabbar iOS-glass paint layer (zero geometry impact) ===== */
+.tabbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(0% 0% at 0% 0%,
+      rgba(255,255,255,0.18),
+      rgba(255,255,255,0.06) 42%,
+      rgba(12,20,42,0.22) 8%,
+      rgba(0,0,0,0.26) 100%),
+    linear-gradient(180deg,
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.04) 40%,
+      rgba(0,0,0,0.18));
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.16),
+    inset 0 -1px 0 rgba(0,0,0,0.35),
+    0 10px 26px rgba(0,0,0,0.55);
+}
+
+.tabbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,0.28) 0%,
+      rgba(255,255,255,0.14) 30%,
+      rgba(255,255,255,0.00) 60%);
+
+  box-shadow:
+    inset 0 0 14px rgba(255,255,255,0.06);
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  padding: 1px;
+  opacity: 0.95;
+}
+
+.tabbar > * {
+  position: relative;
+  z-index: 2;
 }
 .tabwrap {
   display: grid;
@@ -2813,15 +2877,7 @@ mask-composite: exclude;
 }
 
 /* ===== Tabbar glass surface wrapper (preserve geometry) ===== */
-.tabbar-surface {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-}
-
-.tabbar-surface.iosglass-panel {
-  box-sizing: border-box;
-}
+/* Removed wrapper usage for geometry accuracy */
 
 /* ===== Tabbar: FaceID lock disables items ===== */
 .tabbar-item--disabled {
