@@ -2643,7 +2643,7 @@ main {
 .glass-btn--iosglass {
   position: relative;
   overflow: hidden;
-  border-radius: inherit;
+  border-radius: 16px; /* explicit iOS-style rounding */
 
   background:
     radial-gradient(120% 90% at 20% 10%,
