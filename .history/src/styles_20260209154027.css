@@ -2603,6 +2603,8 @@ main {
   z-index: 20;
 }
 
+  position: relative;
+
 .tabwrap {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
