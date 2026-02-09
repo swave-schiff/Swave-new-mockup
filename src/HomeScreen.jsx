@@ -27,7 +27,7 @@ export default function HomeScreen({
 
         {/* iOS-26 glass tile button with feathered rim */}
         <button
-          className="glass-btn tile glass-btn--hollow edge-feather btn-one-line"
+          className="glass-btn tile glass-btn--hollow edge-feather btn-one-line glass-btn--iosglass"
           onClick={onEnterCode}
         >
           Enter Swave Code or Username
