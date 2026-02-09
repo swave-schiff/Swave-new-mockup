@@ -2651,6 +2651,12 @@ main {
   z-index: 1;
 
   background:
+    radial-gradient(
+      55% 45% at 6% 10%,
+      rgba(255,255,255,0.32) 0%,
+      rgba(255,255,255,0.14) 22%,
+      rgba(255,255,255,0.00) 48%
+    ),
     linear-gradient(135deg,
       rgba(255,255,255,0.28) 0%,
       rgba(255,255,255,0.14) 30%,
