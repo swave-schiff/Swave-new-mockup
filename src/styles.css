@@ -2812,8 +2812,15 @@ mask-composite: exclude;
     0 8px 18px rgba(0,0,0,0.48);
 }
 
-.tabbar.iosglass-panel {
-  background: transparent;
+/* ===== Tabbar glass surface wrapper (preserve geometry) ===== */
+.tabbar-surface {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.tabbar-surface.iosglass-panel {
+  box-sizing: border-box;
 }
 
 /* ===== Tabbar: FaceID lock disables items ===== */
