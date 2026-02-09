@@ -330,7 +330,7 @@ export default function App() {
         activeTab !== "code" &&
         activeTab !== "username" &&
         activeTab !== "swavecode" && (
-          <nav className="tabbar">
+          <nav className="tabbar iosglass-panel iosglass-panel--tabbar">
             <div className="tabwrap">
               <Tab
                 icon={<IconHome />}
