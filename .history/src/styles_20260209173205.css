@@ -39,9 +39,6 @@
   --radius-22: 22px;
   --sbw: 0px; /* set via JS for fixed search */
   --swave-error: #ff6b6b;
-
-    /* Button rounding (global) */
-  --btn-radius: 25px; 
 }
 
 /* =========================================================
@@ -2649,7 +2646,7 @@ main {
 .code-slots .slot {
   width: 52px;
   height: 52px;
-  border-radius: 18px;
+  border-radius: 2px;
   background: var(--glass-surface);
   border: 1px solid var(--glass-border);
   display: flex;
@@ -2756,7 +2753,6 @@ main {
   width: 280px;
   margin-top: 24px;
   align-self: center;
-  border-radius: var(--btn-radius);
   position: relative;
   overflow: hidden;
   background: transparent;

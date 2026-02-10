@@ -41,7 +41,7 @@
   --swave-error: #ff6b6b;
 
     /* Button rounding (global) */
-  --btn-radius: 25px; 
+  --btn-radius: 25px; /* try 22–26px for iOS-style buttons */
 }
 
 /* =========================================================
