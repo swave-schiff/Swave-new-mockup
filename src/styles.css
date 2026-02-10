@@ -1598,6 +1598,7 @@ main {
   left: 0;
   right: 0;
   padding-bottom: max(12px, var(--sbw));
+  margin-bottom: calc(18px + env(safe-area-inset-bottom));
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
