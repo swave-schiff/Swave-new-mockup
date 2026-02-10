@@ -2677,144 +2677,20 @@ main {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: transparent;
-  border: 1px solid transparent;
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px) saturate(160%);
   color: var(--swave-text);
   font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
-  position: relative;
-  overflow: hidden;
-}
-.key-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    radial-gradient(0% 0% at 0% 0%,
-      rgba(255,255,255,0.18),
-      rgba(255,255,255,0.06) 42%,
-      rgba(12,20,42,0.22) 8%,
-      rgba(0,0,0,0.26) 100%),
-    linear-gradient(180deg,
-      rgba(255,255,255,0.10),
-      rgba(255,255,255,0.04) 40%,
-      rgba(0,0,0,0.18));
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.16),
-    inset 0 -1px 0 rgba(0,0,0,0.35),
-    0 10px 26px rgba(0,0,0,0.35);
-}
-.key-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 1;
-
-  background:
-    linear-gradient(135deg,
-      rgba(255,255,255,0.28) 0%,
-      rgba(255,255,255,0.14) 30%,
-      rgba(255,255,255,0.00) 60%);
-
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.18),
-    inset 0 0 10px rgba(255,255,255,0.05);
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  padding: 1px;
-  opacity: 0.88;
-}
-.key-btn > * {
-  position: relative;
-  z-index: 2;
-}
-.key-btn:active {
-  transform: translateY(1px);
+  box-shadow: var(--shadow-1);
 }
 .alt-entry-btn {
   width: 280px;
   margin-top: 24px;
   align-self: center;
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-  border: 1px solid transparent;
-}
-.alt-entry-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    radial-gradient(0% 0% at 0% 0%,
-      rgba(255,255,255,0.18),
-      rgba(255,255,255,0.06) 42%,
-      rgba(12,20,42,0.22) 8%,
-      rgba(0,0,0,0.26) 100%),
-    linear-gradient(180deg,
-      rgba(255,255,255,0.10),
-      rgba(255,255,255,0.04) 40%,
-      rgba(0,0,0,0.18));
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.16),
-    inset 0 -1px 0 rgba(0,0,0,0.35),
-    0 10px 26px rgba(0,0,0,0.35);
-}
-.alt-entry-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 1;
-
-  background:
-    linear-gradient(135deg,
-      rgba(255,255,255,0.28) 0%,
-      rgba(255,255,255,0.14) 30%,
-      rgba(255,255,255,0.00) 60%);
-
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.18),
-    inset 0 0 10px rgba(255,255,255,0.05);
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  padding: 1px;
-  opacity: 0.88;
-}
-.alt-entry-btn > * {
-  position: relative;
-  z-index: 2;
 }
 
 /* =========================================================
@@ -3012,7 +2888,7 @@ main {
 .glass-btn--iosglass {
   position: relative;                 /* <--- allows pseudo-elements (::before/::after) to position relative to button */
   overflow: hidden;                   /* <--- clips shine and rim glow to rounded corners */
-  border-radius: 25px;                /* <--- overall corner rounding of the button */
+  border-radius: 36px;                /* <--- overall corner rounding of the button */
 
   background:
     radial-gradient(0% 0% at 0% 0%,    /* <--- inner glass depth highlight (currently collapsed / effectively off) */
@@ -3099,74 +2975,6 @@ mask-composite: exclude;
     inset 0 1px 0 rgba(255,255,255,0.14),
     inset 0 -1px 0 rgba(0,0,0,0.42),
     0 8px 20px rgba(0,0,0,0.55);
-}
-
-/* ===== iOS glass paint (reusable) ===== */
-.iosglass-paint {
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-}
-
-.iosglass-paint::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    radial-gradient(0% 0% at 0% 0%,
-      rgba(255,255,255,0.18),
-      rgba(255,255,255,0.06) 42%,
-      rgba(12,20,42,0.22) 8%,
-      rgba(0,0,0,0.26) 100%),
-    linear-gradient(180deg,
-      rgba(255,255,255,0.10),
-      rgba(255,255,255,0.04) 40%,
-      rgba(0,0,0,0.18));
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.16),
-    inset 0 -1px 0 rgba(0,0,0,0.35),
-    0 10px 26px rgba(0,0,0,0.35);
-}
-
-.iosglass-paint::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 1;
-
-  background:
-    linear-gradient(135deg,
-      rgba(255,255,255,0.28) 0%,
-      rgba(255,255,255,0.14) 30%,
-      rgba(255,255,255,0.00) 60%);
-
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.18),
-    inset 0 0 10px rgba(255,255,255,0.05);
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  padding: 1px;
-  opacity: 0.88;
-}
-
-.iosglass-paint > * {
-  position: relative;
-  z-index: 2;
 }
 
 /* ===== iOS glass surface (panel) ===== */
