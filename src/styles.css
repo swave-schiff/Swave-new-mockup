@@ -1146,7 +1146,7 @@ main {
   gap: 10px;
 }
 .connections-list.with-bottom-search {
-  padding-bottom: calc(64px + var(--sbw));
+  padding-bottom: calc(170px + env(safe-area-inset-bottom, 0px));
 }
 
 .list-row {
@@ -1593,15 +1593,17 @@ main {
 
 /* Fixed bottom search for lists */
 .connections-search-fixed {
-  position: sticky;
-  bottom: 0;
+  position: fixed;
   left: 0;
   right: 0;
-  padding-bottom: max(12px, var(--sbw));
-  margin-bottom: calc(18px + env(safe-area-inset-bottom));
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  z-index: 45;
+
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+
+  display: grid;
+  place-items: center;
+
+  pointer-events: none;
 }
 .search-clip {
   width: min(640px, 100%);
@@ -1642,6 +1644,15 @@ main {
     inset 0 1px 0 rgba(255,255,255,0.14),
     inset 0 -1px 0 rgba(0,0,0,0.35),
     0 12px 26px rgba(0,0,0,0.45);
+}
+
+.connections-search-fixed .search-clip {
+  pointer-events: auto;
+  width: min(560px, calc(100% - 32px));
+}
+
+.connections-search-fixed .connections-input-plain {
+  width: 100%;
 }
 
 /* =========================================================
