@@ -1256,8 +1256,8 @@ main {
   z-index: 0;
 
   background:
-    radial-gradient(70% 55% at -2% 8%, /* shine position (KNOB: move it here) */
-      rgba(255,255,255,0.80),         /* shine brightness (KNOB) */
+    radial-gradient(70% 55% at -2% 5%, /* shine position (KNOB: move it here) */
+      rgba(255,255,255,0.40),         /* shine brightness (KNOB) */
       rgba(255,255,255,0.10) 42%,     /* shine falloff (KNOB) */
       rgba(255,255,255,0.00) 30%);    /* where shine disappears (KNOB) */
   opacity: 1;                          /* overall shine intensity (KNOB) */

@@ -1332,7 +1332,7 @@ main {
 
   background:
     radial-gradient(70% 55% at -2% 5%,  /* shine position (KNOB) */
-      rgba(255,255,255,0.38),          /* shine brightness (KNOB) */
+      rgba(255,255,255,0.8),          /* shine brightness (KNOB) */
       rgba(255,255,255,0.10) 42%,
       rgba(255,255,255,0.00) 30%);
   opacity: 1;
