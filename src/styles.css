@@ -1230,13 +1230,71 @@ main {
   gap: 8px;
   margin-left: auto;
 }
+/* =========================================================
+   Sort Toggle (Connections + Conversations) — iOS glass
+   ========================================================= */
 .sort-toggle {
   display: inline-flex;
-  border-radius: var(--radius-18);
-  overflow: hidden;
+  align-items: center;
+  position: relative;                 /* allows pseudo-elements to layer correctly */
+  overflow: hidden;                   /* clips shine/rim inside rounding */
+  isolation: isolate;                 /* keeps pseudo-elements behind text */
+  border-radius: 999px;               /* pill shape for the group */
+  border: 1px solid rgba(255,255,255,0.16);  /* OUTER rim strength (KNOB) */
+  background: transparent;            /* base stays transparent; glass is via layers */
 }
 .sort-toggle.card.glass {
   padding: 4px;
+}
+/* Specular highlight (top-left shine) */
+.sort-toggle::before {
+  content: "";
+  position: absolute;
+  inset: -18px;                       /* shine spread (KNOB: larger = broader shine) */
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(70% 55% at -2% 5%, /* shine position (KNOB: move it here) */
+      rgba(255,255,255,0.40),         /* shine brightness (KNOB) */
+      rgba(255,255,255,0.10) 42%,     /* shine falloff (KNOB) */
+      rgba(255,255,255,0.00) 30%);    /* where shine disappears (KNOB) */
+  opacity: 1;                          /* overall shine intensity (KNOB) */
+}
+/* Directional rim that fades toward bottom-right */
+.sort-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    linear-gradient(170deg,            /* rim angle (KNOB: rotates bright edge) */
+      rgba(255,255,255,0.26) 0%,       /* rim bright start (KNOB) */
+      rgba(255,255,255,0.14) 32%,      /* fade start (KNOB: extends top edge) */
+      rgba(255,255,255,0.06) 62%,      /* refraction tail (KNOB) */
+      rgba(255,255,255,0.00) 78%);     /* rim end (KNOB: longer/shorter rim) */
+
+  /* turn gradient into a rim stroke instead of a fill */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  padding: 1.25px;                     /* rim thickness (KNOB) */
+  opacity: 0.92;                       /* rim intensity (KNOB) */
+}
+/* Ensure toggle content sits above pseudo-elements */
+.sort-toggle > * {
+  position: relative;
+  z-index: 1;
 }
 .toggle-option {
   border: 0;
@@ -1247,12 +1305,42 @@ main {
 }
 .toggle-option.active,
 .toggle-option[aria-selected="true"] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
   color: var(--swave-text);
-  background: radial-gradient(
-    120px 50px at center,
-    rgba(48, 210, 255, 0.15),
-    transparent 60%
-  );
+  background:
+    linear-gradient(180deg,             /* selected fill tint (KNOB) */
+      rgba(140,180,255,0.10),
+      rgba(0,0,0,0.16));
+  border: 1px solid rgba(255,255,255,0.18);  /* selected edge (KNOB) */
+
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.30),        /* depth shadow (KNOB) */
+    0 0 10px rgba(108,160,255,0.18);    /* soft glow (KNOB: keep subtle) */
+}
+/* Selected option shine */
+.toggle-option.active::before,
+.toggle-option[aria-selected="true"]::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(70% 55% at -2% 5%,  /* shine position (KNOB) */
+      rgba(255,255,255,0.38),          /* shine brightness (KNOB) */
+      rgba(255,255,255,0.10) 42%,
+      rgba(255,255,255,0.00) 30%);
+  opacity: 1;
+}
+.toggle-option.active > *,
+.toggle-option[aria-selected="true"] > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Lists */
