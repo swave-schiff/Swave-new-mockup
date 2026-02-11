@@ -218,7 +218,7 @@ function SupportFormScreen({
 }
 
 /* ------------------- Username Linking Screen ------------------- */
-function UsernameLinkingScreen({
+function EnableUsernameLinkingScreen({
   onBack,
   always,
   until,

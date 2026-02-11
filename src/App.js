@@ -17,7 +17,7 @@ import SupportForm from "./SupportForm";
 import HomeScreen from "./HomeScreen";
 import CodeScreen from "./CodeScreen";
 import ConnectionConfirmedScreen from "./screens/ConnectionConfirmedScreen";
-import UsernameLinkingScreen from "./screens/UsernameLinkingScreen";
+import EnableUsernameLinkingScreen from "./screens/EnableUsernameLinkingScreen";
 import AccountProfileScreen from "./screens/AccountProfileScreen";
 
 export default function App() {
@@ -276,7 +276,7 @@ export default function App() {
       )}
 
       {activeTab === "username-linking" && (
-        <UsernameLinkingScreen onBack={() => setActiveTab("account")} />
+        <EnableUsernameLinkingScreen onBack={() => setActiveTab("account")} />
       )}
 
       {activeTab === "FeedbackHome" && (

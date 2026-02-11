@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles.css";
 
-export default function UsernameLinkingScreen({ onBack = () => {} }) {
+export default function EnableUsernameLinkingScreen({ onBack = () => {} }) {
   const [alwaysAllow, setAlwaysAllow] = useState(false);
   const [isTempEnabled, setIsTempEnabled] = useState(false);
   const [remainingSeconds, setRemainingSeconds] = useState(300);
