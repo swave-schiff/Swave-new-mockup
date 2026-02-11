@@ -522,28 +522,6 @@ main {
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
 }
-.linkby-shell {
-  width: min(520px, calc(100% - 32px));
-}
-.linkby-card {
-  padding: 18px 18px 20px;
-  border-radius: var(--radius-22);
-}
-.linkby-title {
-  font-weight: 800;
-  font-size: 1.25rem;
-  margin: 0;
-}
-.linkby-copy {
-  margin: 10px 0 14px;
-  color: var(--swave-soft);
-  line-height: 1.4;
-}
-.linkby-actions {
-  display: grid;
-  justify-items: center;
-  margin-top: 16px;
-}
 .auth-copy {
   display: grid;
   gap: 10px;
@@ -814,6 +792,50 @@ main {
   box-shadow: var(--shadow-1);
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+.linkby-content {
+  width: min(520px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 18px 0 24px;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.linkby-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.linkby-copy {
+  margin: 0;
+  color: var(--swave-soft);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.linkby-input-wrap {
+  width: min(360px, 100%);
+  margin-top: 6px;
+}
+
+.linkby-actions {
+  display: grid;
+  justify-items: center;
+  margin-top: 8px;
+}
+
+.linkby-link-btn {
+  min-width: 160px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.linkby-error {
+  width: min(520px, 100%);
+  text-align: center;
 }
 .phone-prefix {
   color: var(--swave-soft);

@@ -6,12 +6,17 @@ export default function LinkByUsernameScreen({
   onLink = () => {},
 }) {
   const [username, setUsername] = useState("");
+  const [touched, setTouched] = useState(false);
 
-  const canLink = username.trim().length > 0;
+  const raw = username;
+  const trimmed = raw.trim();
+  const hasInvalidChars = /[^A-Za-z0-9]/.test(trimmed);
+  const canLink = trimmed.length > 0 && !hasInvalidChars;
+  const showError = touched && trimmed.length > 0 && hasInvalidChars;
 
   function submit() {
     if (!canLink) return;
-    onLink(username.trim());
+    onLink(trimmed);
   }
 
   return (
@@ -35,42 +40,49 @@ export default function LinkByUsernameScreen({
         </button>
       </div>
 
-      <section className="auth-shell linkby-shell">
-        <div className="card glass gradient-vertical linkby-card">
-          <h2 className="linkby-title">Link with Username</h2>
+      <section className="linkby-content">
+        <h1 className="linkby-title">Link with Username</h1>
 
-          <p className="linkby-copy">
-            To link to someone using their username, they must enable Allow Username
-            Linking. This feature is turned off by default
-          </p>
+        <p className="linkby-copy">
+          To link to someone using their username, they must enable Allow Username Linking.
+          This feature is turned off by default
+        </p>
 
-          <div className="field linkby-field">
-            <span className="field-label">Username</span>
-            <div className="input glass">
-              <input
-                type="text"
-                autoCapitalize="none"
-                autoCorrect="off"
-                spellCheck={false}
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                aria-label="Username"
-              />
-            </div>
+        <div className="phone-input-wrap linkby-input-wrap">
+          <input
+            className="phone-input"
+            type="text"
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              setTouched(true);
+            }}
+            aria-label="Enter username"
+          />
+        </div>
+
+        {showError && (
+          <div className="auth-subtext error linkby-error">
+            <p>
+              Usernames are only allowed to contain letters and numbers without any spaces or special characters
+            </p>
           </div>
+        )}
 
-          <div className="linkby-actions">
-            <button
-              type="button"
-              className="glass-btn glass-btn--tint btn-one-line"
-              onClick={submit}
-              disabled={!canLink}
-              aria-disabled={!canLink}
-            >
-              Link
-            </button>
-          </div>
+        <div className="linkby-actions">
+          <button
+            type="button"
+            className="glass-btn glass-btn--tint btn-one-line linkby-link-btn"
+            onClick={submit}
+            disabled={!canLink}
+            aria-disabled={!canLink}
+          >
+            Link
+          </button>
         </div>
       </section>
     </main>
