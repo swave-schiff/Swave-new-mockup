@@ -1381,6 +1381,70 @@ main {
   margin-top: 24px;
   overflow: hidden;
 }
+.card.glass.account-card.settings-card {
+  position: relative;                 /* enables layered glass */
+  overflow: hidden;                   /* clips shine/rim to rounded corners */
+  isolation: isolate;                 /* keeps pseudo-elements behind content */
+
+  background: transparent;            /* glass is painted via ::before/::after */
+  border: 1px solid rgba(255,255,255,0.16);  /* OUTER rim strength (KNOB) */
+}
+
+/* =========================================================
+   Settings block container (5 rows) — iOS glass (single card)
+   ========================================================= */
+/* ---------- Specular highlight (upper-left shine) ---------- */
+.card.glass.account-card.settings-card::before {
+  content: "";
+  position: absolute;
+  inset: -24px;                       /* shine spread (KNOB: bigger = broader shine) */
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(70% 55% at -2% 6%, /* shine position (KNOB: move it here) */
+      rgba(255,255,255,0.32),         /* shine brightness (KNOB) */
+      rgba(255,255,255,0.10) 42%,     /* shine falloff (KNOB) */
+      rgba(255,255,255,0.00) 34%);    /* where shine disappears (KNOB) */
+  opacity: 1;                         /* overall shine intensity (KNOB) */
+}
+
+/* ---------- Directional rim stroke (fades to bottom-right) ---------- */
+.card.glass.account-card.settings-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    linear-gradient(170deg,            /* rim angle (KNOB: rotates bright edge) */
+      rgba(255,255,255,0.22) 0%,
+      rgba(255,255,255,0.12) 26%,     /* fade start (KNOB: extends top edge) */
+      rgba(255,255,255,0.06) 58%,     /* refraction tail (KNOB) */
+      rgba(255,255,255,0.00) 74%);    /* rim end (KNOB: longer/shorter rim) */
+
+  /* Turn gradient into a rim (stroke), not a fill */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  padding: 1.25px;                    /* rim thickness (KNOB) */
+  opacity: 0.92;                      /* rim intensity (KNOB) */
+}
+
+/* ---------- Ensure rows/content are above glass layers ---------- */
+.card.glass.account-card.settings-card > * {
+  position: relative;
+  z-index: 1;
+}
 
 .settings-row {
   display: flex;
