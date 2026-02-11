@@ -1,6 +1,7 @@
 import "./styles.css";
 import React, { useState } from "react";
 import CodeEntryScreen from "./CodeEntryScreen";
+import LinkByUsernameScreen from "./LinkByUsernameScreen";
 import UsernameEntryScreen from "./UsernameEntryScreen";
 import LoginScreen from "./LoginScreen";
 import RegistrationScreen from "./RegistrationScreen";
@@ -21,7 +22,7 @@ import AccountProfileScreen from "./screens/AccountProfileScreen";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("login");
-  const [showUsername, setShowUsername] = useState(false);
+  const [pendingLinkUsername, setPendingLinkUsername] = useState("");
   const [lastTabBeforeCode, setLastTabBeforeCode] = useState("home");
   const [currentThread, setCurrentThread] = useState(null); // { id, name } when a card is tapped
   const [currentThreadName, setCurrentThreadName] = useState(null);
@@ -163,8 +164,18 @@ export default function App() {
 
       {activeTab === "connection-confirmed" && (
         <ConnectionConfirmedScreen
-          onChatNow={() => openConversation({ name: "LivinLife" })}
-          onSaveLater={() => setActiveTab("home")}
+          username={pendingLinkUsername || "TeaseMeTwice"}
+          onChatNow={() => {
+            openConversation({
+              name: pendingLinkUsername || "LivinLife",
+              username: pendingLinkUsername || "LivinLife",
+            });
+            setPendingLinkUsername("");
+          }}
+          onSaveLater={() => {
+            setPendingLinkUsername("");
+            setActiveTab("home");
+          }}
         />
       )}
 
@@ -183,7 +194,6 @@ export default function App() {
         <HomeScreen
           onEnterCode={() => {
             setLastTabBeforeCode(activeTab);
-            setShowUsername(false);
             setActiveTab("code");
           }}
           onOpenSwaveCode={openSwaveCodeScreen}
@@ -244,15 +254,25 @@ export default function App() {
         />
       )}
 
-      {activeTab === "code" && !showUsername && (
+      {activeTab === "code" && (
         <CodeEntryScreen
-          onSwitchToUsername={() => setShowUsername(true)}
-          onComplete={() => setActiveTab("connection-confirmed")}
+          onSwitchToUsername={() => setActiveTab("linkByUsername")}
+          onComplete={() => {
+            setPendingLinkUsername("");
+            setActiveTab("connection-confirmed");
+          }}
           onBack={() => setActiveTab(lastTabBeforeCode)}
         />
       )}
-      {activeTab === "code" && showUsername && (
-        <UsernameEntryScreen onBack={() => setShowUsername(false)} />
+
+      {activeTab === "linkByUsername" && (
+        <LinkByUsernameScreen
+          onBack={() => setActiveTab("code")}
+          onLink={(uname) => {
+            setPendingLinkUsername(uname);
+            setActiveTab("connection-confirmed");
+          }}
+        />
       )}
 
       {activeTab === "username-linking" && (

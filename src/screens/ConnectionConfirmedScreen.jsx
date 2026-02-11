@@ -4,9 +4,9 @@ import "../styles.css";
 export default function ConnectionConfirmedScreen({
   onChatNow = () => {},
   onSaveLater = () => {},
+  username = "TeaseMeTwice",
 }) {
-  // Temporary placeholder data until wiring to real profile details
-  const username = "TeaseMeTwice";
+  const displayUsername = username || "TeaseMeTwice";
 
   return (
     <main className="auth-page connection-confirm-page">
@@ -17,10 +17,10 @@ export default function ConnectionConfirmedScreen({
             <div className="connection-confirm-avatar">
               <img
                 src="https://placehold.co/240x240"
-                alt={`${username} avatar`}
+                alt={`${displayUsername} avatar`}
               />
             </div>
-            <h2 className="connection-confirm-name">{username}</h2>
+            <h2 className="connection-confirm-name">{displayUsername}</h2>
           </div>
 
           <div className="connection-confirm-actions">
