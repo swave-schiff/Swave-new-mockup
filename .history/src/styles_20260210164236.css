@@ -2761,7 +2761,7 @@ button.glass-btn.conn-danger-btn {
       rgba(108,160,255,0.08) 58%,
       rgba(108,160,255,0.00) 72%); /* Controls where the bright edge ends */
   box-shadow: none;
-  opacity: 0.88;  /* Controls overall rim intensity */
+  opacity: 0.98;
 }
 .bubble.them {
   background:
@@ -2782,11 +2782,11 @@ button.glass-btn.conn-danger-btn {
   background:
     linear-gradient(170deg, /* Controls the position of the bright edge */
       rgba(255,255,255,0.42) 0%,
-      rgba(255,255,255,0.18) 32%, /* Controls where the bright edge starts to fade */
+      rgba(255,255,255,0.18) 42%, /* Controls where the bright edge starts to fade */
       rgba(255,255,255,0.07) 58%,
       rgba(255,255,255,0.00) 72%); /* Controls where the bright edge ends */
   box-shadow: none;
-  opacity: 0.65; /* Controls overall rim intensity */
+  opacity: 0.92; /* Controls overall rim intensity */
 }
 
 /* =========================================================

@@ -279,7 +279,7 @@ button {
   background:
     linear-gradient(135deg,
       rgba(255, 140, 140, 0.95) 0%,   /* bright red-white edge (top-left) */
-      rgba(255, 90, 90, 0.100) 78%,    /* mid rim */
+      rgba(255, 90, 90, 0.98) 28%,    /* mid rim */
       rgba(120, 20, 20, 0.10) 55%,    /* fading out */
       rgba(0, 0, 0, 0.00) 70%);       /* no rim bottom-right */
 
@@ -1782,19 +1782,10 @@ main {
   gap: 18px;
   padding: 0 4px;
 }
-button.glass-btn.conn-msg-btn {
-  width: fit-content;                 /* size to text + padding */
-  min-width: 220px;                   /* <-- floor so it doesn't get too narrow */
-  max-width: calc(100% - 32px);       /* safe on small screens */
-
-  padding-left: 24px;                 /* balanced pill feel */
-  padding-right: 24px;
-
+.conn-msg-btn {
+  width: min(480px, 80%);
   margin: 0 auto;
-  justify-content: center;
-  white-space: nowrap;
 }
-
 .conn-section {
   display: grid;
   gap: 10px;
@@ -1826,19 +1817,10 @@ button.glass-btn.conn-msg-btn {
   display: flex;
   justify-content: flex-end;
 }
-button.glass-btn.conn-danger-btn {
-  width: fit-content;                 /* size to text + padding */
-  min-width: 220px;                   /* <-- prevents too-narrow pill */
-  max-width: calc(100% - 32px);       /* safe on small screens */
-
-  padding-left: 24px;                 /* slightly roomier for danger action */
-  padding-right: 24px;
-
+.conn-danger-btn {
+  width: min(520px, 100%);
   margin: 0 auto 8px;
-  justify-content: center;
-  white-space: nowrap;
 }
-
 
 /* =========================================================
      6.7) CODE SCREEN
@@ -2687,106 +2669,28 @@ button.glass-btn.conn-danger-btn {
   line-height: 1.35;
   word-break: break-word;
   position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.bubble::before {
-  content: "";
-  position: absolute;
-  inset: -18px;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: -1;
-
-  background:
-    radial-gradient(70% 55% at -2% 5%,
-      rgba(255,255,255,0.40),
-      rgba(255,255,255,0.10) 42%,
-      rgba(255,255,255,0.00) 30%);
-  opacity: 1;
-}
-
-.bubble::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: -1;
-
-  background:
-    linear-gradient(135deg,
-      rgba(255,255,255,0.22) 0%,
-      rgba(255,255,255,0.10) 30%,
-      rgba(255,255,255,0.00) 60%);
-
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.16),   /* crisp top-left catch */
-    inset -1px -1px 0 rgba(255,255,255,0.00), /* no bottom-right catch */
-    inset 0 0 0 rgba(255,255,255,0.00);       /* kill uniform thickness glow */
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  padding: 1.5px;
-  opacity: 0.88;
-  box-shadow: none;
+  overflow: visible;
 }
 
 .bubble.me {
   margin-left: auto;
-  background:
-    linear-gradient(180deg,
-      rgba(140,180,255,0.08),
-      rgba(0,0,0,0.16));
+  background: transparent;
   color: #ffffff;
-  border: 1.5px solid transparent;
+  border: 1.5px solid rgba(108, 160, 255, 0.95);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 14px rgba(108, 160, 255, 0.10),  /* Controls the glow */
-    0 0 26px rgba(108, 160, 255, 0.14);  /* Also Controls the glow */
-}
-.bubble.me::after {
-  background:
-    linear-gradient(170deg, /* Controls the position of the bright edge */
-      rgba(108,160,255,0.60) 0%,
-      rgba(108,160,255,0.26) 22%, /* Controls where the bright edge starts to fade */
-      rgba(108,160,255,0.08) 58%,
-      rgba(108,160,255,0.00) 72%); /* Controls where the bright edge ends */
-  box-shadow: none;
-  opacity: 0.88;  /* Controls overall rim intensity */
+    0 0 14px rgba(108, 160, 255, 0.60),
+    0 0 26px rgba(108, 160, 255, 0.14);
 }
 .bubble.them {
-  background:
-    linear-gradient(180deg,
-      rgba(255,255,255,0.06),
-      rgba(0,0,0,0.14));
+  background: transparent;
   background-image: none;
   color: #ffffff;
-  border: 1.5px solid transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(255, 255, 255, 0.12),  /* Controls the glow */
-    0 0 22px rgba(255, 255, 255, 0.08);  /* Also controls the glow */
-}
-
-/* Neutral glass rim controls (incoming) */
-.bubble.them::after {
-  background:
-    linear-gradient(170deg, /* Controls the position of the bright edge */
-      rgba(255,255,255,0.42) 0%,
-      rgba(255,255,255,0.18) 32%, /* Controls where the bright edge starts to fade */
-      rgba(255,255,255,0.07) 58%,
-      rgba(255,255,255,0.00) 72%); /* Controls where the bright edge ends */
-  box-shadow: none;
-  opacity: 0.65; /* Controls overall rim intensity */
+    0 0 12px rgba(255, 255, 255, 0.20),
+    0 0 22px rgba(255, 255, 255, 0.14);
 }
 
 /* =========================================================

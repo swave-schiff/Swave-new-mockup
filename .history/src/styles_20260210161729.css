@@ -2750,18 +2750,18 @@ button.glass-btn.conn-danger-btn {
   border: 1.5px solid transparent;
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 14px rgba(108, 160, 255, 0.10),  /* Controls the glow */
-    0 0 26px rgba(108, 160, 255, 0.14);  /* Also Controls the glow */
+    0 0 14px rgba(108, 160, 255, 0.60),
+    0 0 26px rgba(108, 160, 255, 0.14);
 }
 .bubble.me::after {
   background:
-    linear-gradient(170deg, /* Controls the position of the bright edge */
+    linear-gradient(170deg, /* Controls the position of the top edge */
       rgba(108,160,255,0.60) 0%,
-      rgba(108,160,255,0.26) 22%, /* Controls where the bright edge starts to fade */
-      rgba(108,160,255,0.08) 58%,
-      rgba(108,160,255,0.00) 72%); /* Controls where the bright edge ends */
+      rgba(108,160,255,0.26) 48%, /* Controls where the bright edge the position of the top edge */
+      rgba(108,160,255,0.08) 48%,
+      rgba(108,160,255,0.00) 62%);
   box-shadow: none;
-  opacity: 0.88;  /* Controls overall rim intensity */
+  opacity: 0.98;
 }
 .bubble.them {
   background:
@@ -2773,20 +2773,8 @@ button.glass-btn.conn-danger-btn {
   border: 1.5px solid transparent;
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(255, 255, 255, 0.12),  /* Controls the glow */
-    0 0 22px rgba(255, 255, 255, 0.08);  /* Also controls the glow */
-}
-
-/* Neutral glass rim controls (incoming) */
-.bubble.them::after {
-  background:
-    linear-gradient(170deg, /* Controls the position of the bright edge */
-      rgba(255,255,255,0.42) 0%,
-      rgba(255,255,255,0.18) 32%, /* Controls where the bright edge starts to fade */
-      rgba(255,255,255,0.07) 58%,
-      rgba(255,255,255,0.00) 72%); /* Controls where the bright edge ends */
-  box-shadow: none;
-  opacity: 0.65; /* Controls overall rim intensity */
+    0 0 12px rgba(255, 255, 255, 0.20),
+    0 0 22px rgba(255, 255, 255, 0.14);
 }
 
 /* =========================================================

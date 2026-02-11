@@ -2761,7 +2761,7 @@ button.glass-btn.conn-danger-btn {
       rgba(108,160,255,0.08) 58%,
       rgba(108,160,255,0.00) 72%); /* Controls where the bright edge ends */
   box-shadow: none;
-  opacity: 0.88;  /* Controls overall rim intensity */
+  opacity: 0.78;  /* Controls overall rim intensity */
 }
 .bubble.them {
   background:

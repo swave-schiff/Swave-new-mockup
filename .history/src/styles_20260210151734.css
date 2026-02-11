@@ -2735,9 +2735,8 @@ button.glass-btn.conn-danger-btn {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 
-  padding: 1.5px;
-  opacity: 0.88;
-  box-shadow: none;
+  padding: 1px;
+  opacity: 0.92;
 }
 
 .bubble.me {
@@ -2747,21 +2746,21 @@ button.glass-btn.conn-danger-btn {
       rgba(140,180,255,0.08),
       rgba(0,0,0,0.16));
   color: #ffffff;
-  border: 1.5px solid transparent;
+  border: 1.5px solid rgba(108, 160, 255, 0.95);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 14px rgba(108, 160, 255, 0.10),  /* Controls the glow */
-    0 0 26px rgba(108, 160, 255, 0.14);  /* Also Controls the glow */
+    0 0 14px rgba(108, 160, 255, 0.60),
+    0 0 26px rgba(108, 160, 255, 0.14);
 }
 .bubble.me::after {
   background:
-    linear-gradient(170deg, /* Controls the position of the bright edge */
-      rgba(108,160,255,0.60) 0%,
-      rgba(108,160,255,0.26) 22%, /* Controls where the bright edge starts to fade */
-      rgba(108,160,255,0.08) 58%,
-      rgba(108,160,255,0.00) 72%); /* Controls where the bright edge ends */
-  box-shadow: none;
-  opacity: 0.88;  /* Controls overall rim intensity */
+    linear-gradient(135deg,
+      rgba(108,160,255,0.30) 0%,
+      rgba(108,160,255,0.14) 30%,
+      rgba(108,160,255,0.00) 60%);
+  box-shadow:
+    inset 0 0 12px rgba(108,160,255,0.06);
+  opacity: 0.95;
 }
 .bubble.them {
   background:
@@ -2770,23 +2769,11 @@ button.glass-btn.conn-danger-btn {
       rgba(0,0,0,0.14));
   background-image: none;
   color: #ffffff;
-  border: 1.5px solid transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   box-shadow:
     0 8px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(255, 255, 255, 0.12),  /* Controls the glow */
-    0 0 22px rgba(255, 255, 255, 0.08);  /* Also controls the glow */
-}
-
-/* Neutral glass rim controls (incoming) */
-.bubble.them::after {
-  background:
-    linear-gradient(170deg, /* Controls the position of the bright edge */
-      rgba(255,255,255,0.42) 0%,
-      rgba(255,255,255,0.18) 32%, /* Controls where the bright edge starts to fade */
-      rgba(255,255,255,0.07) 58%,
-      rgba(255,255,255,0.00) 72%); /* Controls where the bright edge ends */
-  box-shadow: none;
-  opacity: 0.65; /* Controls overall rim intensity */
+    0 0 12px rgba(255, 255, 255, 0.20),
+    0 0 22px rgba(255, 255, 255, 0.14);
 }
 
 /* =========================================================
