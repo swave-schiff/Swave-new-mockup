@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "src/index.tsx",
   "dependencies": {
     "ajv": "^7.2.4",
     "lucide-react": "0.546.0",
