@@ -350,7 +350,12 @@ export default function App() {
         activeTab !== "code" &&
         activeTab !== "username" &&
         activeTab !== "swavecode" &&
-        activeTab !== "account" && (
+        activeTab !== "account" &&
+        activeTab !== "account-profile" &&
+        activeTab !== "username-linking" &&
+        activeTab !== "FeedbackHome" &&
+        activeTab !== "feedbackForm" &&
+        activeTab !== "supportForm" && (
           <nav className="tabbar">
             <div className="tabwrap">
               <Tab
