@@ -306,6 +306,8 @@ button {
   background: transparent;
   border: none;
   color: var(--swave-text);
+  position: relative;
+  z-index: 5001;
   padding: 0;
   box-shadow: none;
   width: 40px;
@@ -328,6 +330,8 @@ button {
 .chevron-btn svg,
 .chevron-btn .chevron-svg,
 .chevron-btn .ico {
+  position: relative;
+  z-index: 5002;
   display: block;
 }
 
@@ -1993,6 +1997,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  position: relative;
+  z-index: 5000;
   color: var(--swave-text);
 }
 .settings-page .top-actions {
