@@ -1,7 +1,6 @@
 // src/FeedbackForm.jsx
 import React, { useState } from "react";
 import "./styles.css";
-import { Tabbar } from "./components/Tabbar";
 
 function ThankYouModal({ message, onClose }) {
   return (
@@ -38,7 +37,7 @@ export default function FeedbackForm({
     <div className="screen">
       <div className="safe" />
 
-      <main className="auth-page main-with-tabbar">
+      <main className="auth-page main-with-tabbar settings-subpage-no-tabbar">
         <div className="top-actions">
           <button className="chevron-btn" onClick={onBack} aria-label="Back">
             <svg className="chevron-svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -124,14 +123,6 @@ export default function FeedbackForm({
           />
         )}
       </main>
-
-      <Tabbar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        faceIdLockEnabled={faceIdLockEnabled}
-        faceIdUnlocked={faceIdUnlocked}
-        requestFaceIdGate={requestFaceIdGate}
-      />
     </div>
   );
 }

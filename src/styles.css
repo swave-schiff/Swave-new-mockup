@@ -771,6 +771,9 @@ main {
   transform: translateX(22px);
   background: #fff;
 }
+.settings-subpage-no-tabbar {
+  padding-bottom: 28px;
+}
 .support-submit {
   display: flex;
   justify-content: center;
