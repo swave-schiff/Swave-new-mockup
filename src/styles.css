@@ -315,6 +315,30 @@ button {
   justify-content: center;
 }
 
+/* Force iOS Safari to render chevron visibly (some screens end up with invisible SVG despite click target) */
+.chevron-btn,
+.chevron-btn svg,
+.chevron-btn .chevron-svg,
+.chevron-btn .ico {
+  color: var(--swave-text);
+  opacity: 1;
+  visibility: visible;
+}
+
+.chevron-btn svg,
+.chevron-btn .chevron-svg,
+.chevron-btn .ico {
+  display: block;
+}
+
+/* Prevent blend/filter/backdrop interactions making it appear invisible on iOS */
+.chevron-btn svg,
+.chevron-btn .chevron-svg,
+.chevron-btn .ico {
+  filter: none;
+  mix-blend-mode: normal;
+}
+
 .glass-btn.big {
   min-width: 180px;
   padding: 14px 26px;
@@ -3709,5 +3733,5 @@ button[aria-pressed="true"] {
 /* Force chevron visibility everywhere */
 .chevron-btn,
 .chevron-btn .ico {
-  color: #ffffff !important;
+  color: var(--swave-text) !important;
 }
