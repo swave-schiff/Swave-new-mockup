@@ -24,11 +24,11 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("login");
   const [pendingLinkUsername, setPendingLinkUsername] = useState("");
   const [lastTabBeforeCode, setLastTabBeforeCode] = useState("home");
-  const [currentThread, setCurrentThread] = useState(null); // { id, name } when a card is tapped
+  const [, setCurrentThread] = useState(null); // { id, name } when a card is tapped
   const [currentThreadName, setCurrentThreadName] = useState(null);
   const [currentThreadId, setCurrentThreadId] = useState(null);
   const [pendingPhone, setPendingPhone] = useState("");
-  const [lastAuthedTab, setLastAuthedTab] = useState("home");
+  const [, setLastAuthedTab] = useState("home");
   const [lastTabBeforeAccount, setLastTabBeforeAccount] = useState("home");
   const [activeChatContact, setActiveChatContact] = useState(null);
   const [swaveCode, setSwaveCode] = useState("0000");
@@ -487,18 +487,6 @@ function normalizePhoneDigits(val) {
 }
 
 /* ------------------- Screens ------------------- */
-function Placeholder({ label }) {
-  return (
-    <main className="main">
-      <div className="card">
-        <div className="row">
-          <span className="row-label">{label} screen coming soonâ€¦</span>
-        </div>
-      </div>
-    </main>
-  );
-}
-
 /* ------------------- Shared UI ------------------- */
 function Tab({ icon, active, onClick, locked = false }) {
   return (
@@ -512,97 +500,6 @@ function Tab({ icon, active, onClick, locked = false }) {
 }
 
 /* ---------- Inline SVG Icons (no external packages) ---------- */
-function IconUser() {
-  return (
-    <svg viewBox="0 0 24 24" className="ico">
-      <circle
-        cx="12"
-        cy="8"
-        r="4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M4 20a8 8 0 0116 0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-function IconLink() {
-  return (
-    <svg viewBox="0 0 24 24" className="ico">
-      <path
-        d="M10 13l-1.5 1.5a4 4 0 01-5.7 0 4 4 0 010-5.7L6.3 5.6a4 4 0 015.7 0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M14 11l1.5-1.5a4 4 0 015.7 0 4 4 0 010 5.7l-3.5 3.5a4 4 0 01-5.7 0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-function IconHelp() {
-  return (
-    <svg viewBox="0 0 24 24" className="ico">
-      <circle
-        cx="12"
-        cy="12"
-        r="9"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M9.5 9a2.5 2.5 0 014.6 1.1c0 1.8-2.1 2.1-2.1 3.4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <circle cx="12" cy="17" r="1.2" fill="currentColor" />
-    </svg>
-  );
-}
-function IconChevron() {
-  return (
-    <svg viewBox="0 0 24 24" className="ico">
-      <path
-        d="M9 6l6 6-6 6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-function IconLogout() {
-  return (
-    <svg viewBox="0 0 24 24" className="ico">
-      <path
-        d="M10 5H6a2 2 0 00-2 2v10a2 2 0 002 2h4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M14 16l4-4-4-4M18 12H9"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
 function IconHome() {
   return (
     <svg viewBox="0 0 24 24" className="ico">
@@ -710,3 +607,4 @@ function IconFaceID() {
     </svg>
   );
 }
+

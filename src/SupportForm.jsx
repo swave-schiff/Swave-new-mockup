@@ -27,7 +27,7 @@ export default function SupportForm({
 }) {
   const ISSUE_MAX = 1000;
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const [subject] = useState("");
   const [body, setBody] = useState("");
   const [file, setFile] = useState(null);
   const [consent, setConsent] = useState(false);

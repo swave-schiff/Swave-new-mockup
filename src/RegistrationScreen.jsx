@@ -6,8 +6,8 @@ export default function RegistrationScreen({ onBack, onComplete = () => {} }) {
 
   /* ---------- Username ---------- */
   const [username, setUsername] = useState("");
-  const reUser = /^[a-z0-9._-]{6,20}$/;
-  const usernameValid = useMemo(() => reUser.test(username), [username]);
+  const reUser = useMemo(() => /^[a-z0-9._-]{6,20}$/, []);
+  const usernameValid = useMemo(() => reUser.test(username), [username, reUser]);
   const [userTouched, setUserTouched] = useState(false);
 
   /* ---------- Phone + OTP (US only) ---------- */
