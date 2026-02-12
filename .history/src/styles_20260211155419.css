@@ -1421,7 +1421,7 @@ main {
 
   background:
     linear-gradient(170deg,            /* rim angle (KNOB: rotates bright edge) */
-      rgba(255,255,255,0.52) 0%,     /* rim brightness bright edge 0.## like 0.52) */
+      rgba(255,255,255,0.92) 0%,
       rgba(255,255,255,0.12) 26%,     /* fade start (KNOB: extends top edge) */
       rgba(255,255,255,0.06) 58%,     /* refraction tail (KNOB) */
       rgba(255,255,255,0.00) 74%);    /* rim end (KNOB: longer/shorter rim) */
