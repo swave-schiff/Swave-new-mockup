@@ -339,6 +339,29 @@ button {
   mix-blend-mode: normal;
 }
 
+/* iOS Safari: force chevron SVG stroke to render (avoid currentColor/compositing quirks) */
+.chevron-btn svg,
+.chevron-btn .chevron-svg,
+.chevron-btn .ico {
+  stroke: #ffffff !important;
+  fill: none !important;
+}
+
+.chevron-btn svg path,
+.chevron-btn svg polyline,
+.chevron-btn svg line,
+.chevron-btn .chevron-svg path,
+.chevron-btn .chevron-svg polyline,
+.chevron-btn .chevron-svg line,
+.chevron-btn .ico path,
+.chevron-btn .ico polyline,
+.chevron-btn .ico line {
+  stroke: #ffffff !important;
+  fill: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .glass-btn.big {
   min-width: 180px;
   padding: 14px 26px;
