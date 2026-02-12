@@ -3706,8 +3706,3 @@ button[aria-pressed="true"] {
     padding-right: 24px;
   }
 }
-/* Force chevron visibility everywhere */
-.chevron-btn,
-.chevron-btn .ico {
-  color: #ffffff !important;
-}
