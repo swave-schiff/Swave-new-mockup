@@ -305,6 +305,7 @@ button {
 .chevron-btn {
   background: transparent;
   border: none;
+  color: var(--swave-text);
   padding: 0;
   box-shadow: none;
   width: 40px;
@@ -1945,6 +1946,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  color: var(--swave-text);
+}
+.settings-page .top-actions {
+  color: var(--swave-text);
 }
 .conn-topbar-spacer {
   visibility: hidden;

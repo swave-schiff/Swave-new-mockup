@@ -86,6 +86,9 @@ export default function App() {
     setSwaveCode(generateSwaveCode());
     setActiveTab("swavecode");
   };
+  const goHomeFromSettings = () => {
+    setActiveTab("home");
+  };
 
   React.useEffect(() => {
     const onboardingTabs = new Set([
@@ -203,7 +206,7 @@ export default function App() {
 
       {activeTab === "account" && (
         <SettingsScreen
-          onBack={() => setActiveTab(lastTabBeforeAccount)}
+          onBack={goHomeFromSettings}
           onOpenHelp={() => setActiveTab("FeedbackHome")}
           onOpenLinking={() => setActiveTab("username-linking")}
           onOpenProfile={() => setActiveTab("account-profile")}
