@@ -349,7 +349,8 @@ export default function App() {
         activeTab !== "validate" &&
         activeTab !== "code" &&
         activeTab !== "username" &&
-        activeTab !== "swavecode" && (
+        activeTab !== "swavecode" &&
+        activeTab !== "account" && (
           <nav className="tabbar">
             <div className="tabwrap">
               <Tab
