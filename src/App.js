@@ -29,7 +29,7 @@ export default function App() {
   const [currentThreadId, setCurrentThreadId] = useState(null);
   const [pendingPhone, setPendingPhone] = useState("");
   const [, setLastAuthedTab] = useState("home");
-  const [lastTabBeforeAccount, setLastTabBeforeAccount] = useState("home");
+  const [, setLastTabBeforeAccount] = useState("home");
   const [activeChatContact, setActiveChatContact] = useState(null);
   const [swaveCode, setSwaveCode] = useState("0000");
   const [activeConnectionDetail, setActiveConnectionDetail] = useState(null);
