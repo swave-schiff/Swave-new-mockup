@@ -29,6 +29,7 @@ export default function App() {
   const [currentThreadId, setCurrentThreadId] = useState(null);
   const [pendingPhone, setPendingPhone] = useState("");
   const [lastAuthedTab, setLastAuthedTab] = useState("home");
+  const [lastTabBeforeAccount, setLastTabBeforeAccount] = useState("home");
   const [activeChatContact, setActiveChatContact] = useState(null);
   const [swaveCode, setSwaveCode] = useState("0000");
   const [activeConnectionDetail, setActiveConnectionDetail] = useState(null);
@@ -202,7 +203,7 @@ export default function App() {
 
       {activeTab === "account" && (
         <SettingsScreen
-          onBack={() => setActiveTab(lastAuthedTab)}
+          onBack={() => setActiveTab(lastTabBeforeAccount)}
           onOpenHelp={() => setActiveTab("FeedbackHome")}
           onOpenLinking={() => setActiveTab("username-linking")}
           onOpenProfile={() => setActiveTab("account-profile")}
@@ -393,6 +394,7 @@ export default function App() {
                 icon={<IconMenu />}
                 active={activeTab === "account"}
                 onClick={() => {
+                  setLastTabBeforeAccount(activeTab);
                   setSettingsInitialView("main");
                   setActiveTab("account");
                 }}

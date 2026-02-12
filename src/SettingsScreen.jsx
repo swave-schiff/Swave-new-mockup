@@ -19,11 +19,19 @@ export default function SettingsScreen({
     setView(initialView || "main");
   }, [initialView]);
 
+  const handleBack = () => {
+    if (view && view !== "main") {
+      setView("main");
+      return;
+    }
+    onBack?.();
+  };
+
   if (view === "faceid") {
     return (
       <main className="auth-page settings-page">
         <div className="top-actions">
-          <button className="chevron-btn" onClick={() => setView("main")} aria-label="Back">
+          <button className="chevron-btn" onClick={handleBack} aria-label="Back">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -106,7 +114,7 @@ export default function SettingsScreen({
       <div className="safe" />
       <main className="settings-main main-with-tabbar">
         <div className="top-actions">
-          <button className="chevron-btn" onClick={onBack} aria-label="Back">
+          <button className="chevron-btn" onClick={handleBack} aria-label="Back">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
