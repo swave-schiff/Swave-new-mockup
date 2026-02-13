@@ -1698,7 +1698,7 @@ main {
   visibility: hidden;
 }
 
-.has-faceid-gate .top-actions {
+.has-faceid-gate .chevron-btn {
   visibility: hidden;
   pointer-events: none;
 }
@@ -1714,7 +1714,7 @@ main {
   justify-items: center;
   align-content: start;
   padding: 16px;
-  padding-top: clamp(24px, 18vh, 180px);
+  padding-top: 16px;
 }
 
 .faceid-gate-screen .auth-shell {
@@ -1724,6 +1724,7 @@ main {
 
 .faceid-gate-card {
   margin: 0 auto;
+  margin-top: 160px;
 }
 
 /* ===== FaceID gate: no extra background layers ===== */
@@ -1743,7 +1744,7 @@ main {
   justify-items: center;
   align-content: start;
   padding: 16px;
-  padding-top: clamp(24px, 18vh, 180px);
+  padding-top: 16px;
 }
 
 .faceid-gate-screen .auth-shell {
@@ -1794,6 +1795,7 @@ main {
 .faceid-gate-card--plain {
   width: min(520px, 100%);
   margin: 0 auto;
+  margin-top: 160px;
   padding: 22px 18px 20px;
 
   display: grid;
