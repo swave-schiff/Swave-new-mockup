@@ -111,7 +111,7 @@ export default function App() {
 
   return (
     <>
-      <div className={`app-shell ${pendingGateTarget ? "app-shell--hidden" : ""}`}>
+      <div className={`app-shell ${pendingGateTarget ? "app-shell--hidden has-faceid-gate" : ""}`}>
         <div className="screen">
       <div className="safe" />
 

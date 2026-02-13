@@ -1698,6 +1698,11 @@ main {
   visibility: hidden;
 }
 
+.has-faceid-gate .top-actions {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* ===== FaceID gate: full-screen, top-aligned, no backdrop ===== */
 
 .faceid-gate-screen {
@@ -1709,7 +1714,7 @@ main {
   justify-items: center;
   align-content: start;
   padding: 16px;
-  padding-top: 16px;
+  padding-top: clamp(24px, 18vh, 180px);
 }
 
 .faceid-gate-screen .auth-shell {
@@ -1738,7 +1743,7 @@ main {
   justify-items: center;
   align-content: start;
   padding: 16px;
-  padding-top: 16px;
+  padding-top: clamp(24px, 18vh, 180px);
 }
 
 .faceid-gate-screen .auth-shell {
