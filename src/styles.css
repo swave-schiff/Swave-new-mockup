@@ -1698,9 +1698,9 @@ main {
   visibility: hidden;
 }
 
-.has-faceid-gate .chevron-btn {
-  visibility: hidden;
-  pointer-events: none;
+/* When FaceID gate is open, hide any underlying back chevrons globally (they're behind the gate and not clickable) */
+body.has-faceid-gate .chevron-btn {
+  display: none !important;
 }
 
 /* ===== FaceID gate: full-screen, top-aligned, no backdrop ===== */

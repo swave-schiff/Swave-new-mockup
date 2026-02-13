@@ -1,5 +1,5 @@
 import "./styles.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CodeEntryScreen from "./CodeEntryScreen";
 import LinkByUsernameScreen from "./LinkByUsernameScreen";
 import UsernameEntryScreen from "./UsernameEntryScreen";
@@ -37,6 +37,12 @@ export default function App() {
   const [faceIdUnlocked, setFaceIdUnlocked] = useState(false);
   const [pendingGateTarget, setPendingGateTarget] = useState(null); // "connections" | "conversations" | "faceidSettings" | null
   const [settingsInitialView, setSettingsInitialView] = useState("main");
+
+  useEffect(() => {
+    const on = !!pendingGateTarget;
+    document.body.classList.toggle("has-faceid-gate", on);
+    return () => document.body.classList.remove("has-faceid-gate");
+  }, [pendingGateTarget]);
 
   function setFaceIdLock(next) {
     setFaceIdLockEnabled(next);
