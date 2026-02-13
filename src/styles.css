@@ -384,6 +384,11 @@ button {
   visibility: visible !important;
 }
 
+/* Hide ghost/duplicate chevrons (these should never be visible) */
+.chevron-btn[aria-hidden="true"] {
+  display: none !important;
+}
+
 .glass-btn.big {
   min-width: 180px;
   padding: 14px 26px;
