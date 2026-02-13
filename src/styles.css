@@ -366,6 +366,24 @@ button {
   visibility: visible !important;
 }
 
+/* Normalize back chevron rendering across SVG variants (polyline vs path) */
+.chevron-btn .chevron-svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* iOS Safari: some chevrons have no stroke-width attribute; force it */
+.chevron-btn .chevron-svg,
+.chevron-btn .chevron-svg path,
+.chevron-btn .chevron-svg polyline,
+.chevron-btn .chevron-svg line {
+  stroke-width: 2 !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .glass-btn.big {
   min-width: 180px;
   padding: 14px 26px;
