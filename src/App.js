@@ -411,29 +411,6 @@ export default function App() {
       {/* FaceID gate overlay */}
       {pendingGateTarget && (
         <main className="faceid-gate-screen">
-          <div className="top-actions">
-            <button
-              className="chevron-btn"
-              onClick={() => setPendingGateTarget(null)}
-              aria-label="Back"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="chevron-svg"
-              >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-          </div>
-
           <section className="auth-shell settings-shell">
             <div className="faceid-gate-card faceid-gate-card--plain">
               <div className="faceid-gate-icon">
