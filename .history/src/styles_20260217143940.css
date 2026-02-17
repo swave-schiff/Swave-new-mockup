@@ -1,10 +1,10 @@
-﻿/* =========================================================
-   SWAVE â€” styles.css (fully cleaned & organized)
+/* =========================================================
+   SWAVE — styles.css (fully cleaned & organized)
    Drop-in replacement
    ---------------------------------------------------------
    Conventions
-   - Adjustable lines are marked with  âžœ ADJUST:
-   - Sections are ordered topâ†’down by cascade importance
+   - Adjustable lines are marked with  ➜ ADJUST:
+   - Sections are ordered top→down by cascade importance
    - No stray braces; validated syntax
    ========================================================= */
 
@@ -17,9 +17,9 @@
   --swave-text: #e6edf7;
   --swave-muted: #b7c2d1;
   --swave-soft: #cfd9ea;
-  --swave-accent: #3a64ff; /* âžœ ADJUST: primary accent */
-  --swave-accent-2: #6ca0ff; /* âžœ ADJUST: lighter accent */
-  --swave-danger: #ff5f6d; /* âžœ ADJUST: danger color */
+  --swave-accent: #3a64ff; /* ➜ ADJUST: primary accent */
+  --swave-accent-2: #6ca0ff; /* ➜ ADJUST: lighter accent */
+  --swave-danger: #ff5f6d; /* ➜ ADJUST: danger color */
 
   /* Glass + borders */
   --glass-fill-top: rgba(255, 255, 255, 0.2);
@@ -108,7 +108,7 @@ button {
 
 /* Ensure content never hides under bottom nav */
 .main-with-tabbar {
-  padding-bottom: 76px; /* âžœ ADJUST: tabbar reserve */
+  padding-bottom: 76px; /* ➜ ADJUST: tabbar reserve */
 }
 
 /* =========================================================
@@ -173,7 +173,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 22px; /* âžœ ADJUST: button padding */
+  padding: 14px 22px; /* ➜ ADJUST: button padding */
   border-radius: var(--btn-radius);
   font-weight: 600;
   color: var(--swave-text);
@@ -274,7 +274,7 @@ button {
   border-color: rgba(255, 95, 95, 0.25); /* very subtle, almost invisible */
   background: transparent;
 }
-/* Directional danger rim: bright top-left â†’ dark bottom-right */
+/* Directional danger rim: bright top-left → dark bottom-right */
 .glass-btn--danger::after {
   background:
     linear-gradient(135deg,
@@ -397,7 +397,7 @@ button {
   margin-top: 12px;
 }
 
-/* Optional â€œedge & glintâ€ decoration (kept lightweight) */
+/* Optional “edge & glint” decoration (kept lightweight) */
 .edge-top,
 .edge-left,
 .corner-glint {
@@ -598,7 +598,7 @@ main {
   -webkit-backdrop-filter: blur(16px) saturate(160%);
 }
 /* ---------------------------------------------------------
-   AUTH CARD â€” remove glass container look
+   AUTH CARD — remove glass container look
    (Registration, ValidatePhone, UsernameEntry)
    --------------------------------------------------------- */
 .auth-card.card.glass {
@@ -792,7 +792,7 @@ main {
   justify-content: center;
   gap: 28px;
 
-  align-self: center; /* â† THIS is the missing piece */
+  align-self: center; /* ← THIS is the missing piece */
 }
 
 .linking-countdown {
@@ -1165,7 +1165,7 @@ main {
   margin-top: 6px;
 }
 .connection-confirm-copy {
-  gap:5px; /* or 4px â€” tune to taste */
+  gap:5px; /* or 4px — tune to taste */
 }
 .resend-btn {
   display: inline-flex;
@@ -1320,7 +1320,7 @@ main {
   margin-left: auto;
 }
 /* =========================================================
-   Sort Toggle (Connections + Conversations) â€” iOS glass
+   Sort Toggle (Connections + Conversations) — iOS glass
    ========================================================= */
 .sort-toggle {
   display: inline-flex;
@@ -1480,7 +1480,7 @@ main {
 }
 
 /* =========================================================
-   Settings block container (5 rows) â€” iOS glass (single card)
+   Settings block container (5 rows) — iOS glass (single card)
    ========================================================= */
 /* ---------- Specular highlight (upper-left shine) ---------- */
 .card.glass.account-card.settings-card::before {
@@ -2098,7 +2098,7 @@ button.glass-btn.conn-msg-btn {
   border-radius: 16px;
   box-shadow: var(--shadow-1);
 }
-/* â€” ConnectionDetailScreen: flatten notes section (remove card look) â€” */
+/* — ConnectionDetailScreen: flatten notes section (remove card look) — */
 .conn-section {
   background: transparent !important;   /* remove glass surface */
   backdrop-filter: none !important;
@@ -3223,8 +3223,11 @@ button.glass-btn.conn-danger-btn {
   transform: translateY(1px);
 }
 .alt-entry-btn {
-  max-width: calc(100% - 32px); /* prevents overflow off-screen */
+    max-width: calc(100% - 32px); /* prevents overflow off-screen */
   white-space: nowrap;          /* forces single line */
+  overflow: hidden;             /* safety: if still too long, don’t wrap */
+  text-overflow: ellipsis;      /* optional: shows … instead of wrapping */
+
   width: 280px;
   margin-top: 24px;
   align-self: center;
@@ -3291,18 +3294,6 @@ button.glass-btn.conn-danger-btn {
 .alt-entry-btn > * {
   position: relative;
   z-index: 2;
-}
-/* CodeEntry: keep "Enter Username Instead of Code" on one line (shrink text on small phones) */
-@media (max-width: 390px) {
-  .alt-entry-btn {
-    font-size: 0.88rem;
-  }
-}
-
-@media (max-width: 360px) {
-  .alt-entry-btn {
-    font-size: 0.82rem;
-  }
 }
 
 /* =========================================================
