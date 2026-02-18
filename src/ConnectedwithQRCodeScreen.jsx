@@ -81,7 +81,7 @@ export default function ConnectedwithQRCodeScreen({
         <div className="connection-confirm-card">
           <div className="qr-connect-copy">
             <p className="connection-confirm-label qr-connect-label">
-              Before you can start chatting with:
+              Before you can start a private anonymous chat with:
             </p>
 
             <div className="auth-copy connection-confirm-copy">
@@ -94,8 +94,8 @@ export default function ConnectedwithQRCodeScreen({
             </div>
 
             <p className="qr-connect-helper">
-              Quick phone check (takes a moment). If you're new, we'll create
-              your account automatically.
+              We need to verify your phone number. If no account exists, we'll create
+              one for you automatically.
             </p>
           </div>
 
