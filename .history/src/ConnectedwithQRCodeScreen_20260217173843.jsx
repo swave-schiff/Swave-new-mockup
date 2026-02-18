@@ -84,6 +84,7 @@ export default function ConnectedwithQRCodeScreen({
           </p>
 
           <div className="auth-copy connection-confirm-copy">
+            <p className="connection-confirm-label">You are now connected to:</p>
             <div className="connection-confirm-avatar">
               <img src={avatarUrl} alt={`${displayUsername} avatar`} />
             </div>
@@ -91,10 +92,16 @@ export default function ConnectedwithQRCodeScreen({
           </div>
 
           <div className="auth-copy">
-            <p className="connection-confirm-label">
-              We need to verify the phone number associated with this device.
-              If no account exists yet, we'll create one for you automatically.
-            </p>
+            <h1 className="screen-title">Login or Register</h1>
+            <div className="auth-subtext">
+              <ul className="auth-bullets">
+                <li>We need to verify your phone number.</li>
+                <li>If no account exists yet, we'll create one for you automatically.</li>
+              </ul>
+              <p className="auth-privacy">
+                Your phone number will always remain private.
+              </p>
+            </div>
           </div>
 
           <form className="auth-form" onSubmit={handleContinue} noValidate>
@@ -116,9 +123,6 @@ export default function ConnectedwithQRCodeScreen({
                 />
               </div>
             </label>
-            <p className="auth-privacy">
-              Your phone number will always remain private.
-            </p>
 
             <button
               type="submit"
