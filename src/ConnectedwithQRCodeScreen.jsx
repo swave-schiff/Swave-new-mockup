@@ -57,7 +57,7 @@ export default function ConnectedwithQRCodeScreen({
   }
 
   return (
-    <main className="auth-page connection-confirm-page">
+    <main className="auth-page connection-confirm-page qr-connect-page">
       <div className="top-actions">
         <button type="button" className="chevron-btn" aria-label="Back" onClick={onBack}>
           <svg
@@ -79,25 +79,27 @@ export default function ConnectedwithQRCodeScreen({
 
       <section className="auth-shell connection-confirm-shell">
         <div className="connection-confirm-card">
-          <p className="connection-confirm-label">
-            Before you can start chatting anonymously with:
-          </p>
+          <div className="qr-connect-copy">
+            <p className="connection-confirm-label qr-connect-label">
+              Before you can start chatting with:
+            </p>
 
-          <div className="auth-copy connection-confirm-copy">
-            <div className="connection-confirm-avatar">
-              <img src={avatarUrl} alt={`${displayUsername} avatar`} />
+            <div className="auth-copy connection-confirm-copy">
+              <div className="connection-confirm-avatar qr-connect-avatar">
+                <img src={avatarUrl} alt={`${displayUsername} avatar`} />
+              </div>
+              <h2 className="connection-confirm-name qr-connect-name">
+                {displayUsername}
+              </h2>
             </div>
-            <h2 className="connection-confirm-name">{displayUsername}</h2>
-          </div>
 
-          <div className="auth-copy">
-            <p className="connection-confirm-label">
-              We need to verify the phone number associated with this device.
-              If no account exists yet, we'll create one for you automatically.
+            <p className="qr-connect-helper">
+              Quick phone check (takes a moment). If you're new, we'll create
+              your account automatically.
             </p>
           </div>
 
-          <form className="auth-form" onSubmit={handleContinue} noValidate>
+          <form className="auth-form qr-connect-form" onSubmit={handleContinue} noValidate>
             <label className="auth-field">
               <div className="phone-input-wrap">
                 <span className="phone-prefix" aria-hidden="true">
@@ -136,3 +138,4 @@ export default function ConnectedwithQRCodeScreen({
     </main>
   );
 }
+

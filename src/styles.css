@@ -1158,6 +1158,63 @@ main {
   font-size: 26px;
   font-weight: 600;
 }
+
+.qr-connect-page {
+  /* lets us tune spacing without affecting other auth screens */
+}
+
+.qr-connect-copy {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.qr-connect-label {
+  font-size: 0.95rem;
+  line-height: 1.25;
+  color: var(--swave-soft);
+  margin: 0;
+}
+
+.qr-connect-avatar {
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.qr-connect-name {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+}
+
+.qr-connect-helper {
+  max-width: 340px;
+  margin: 0;
+  color: var(--swave-soft);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
+.qr-connect-form {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.qr-connect-form .auth-privacy {
+  margin-top: -2px;
+  font-size: 0.88rem;
+  opacity: 0.9;
+}
+
+.qr-connect-form .auth-continue {
+  margin-top: 6px;
+}
+
 .connection-confirm-actions {
   display: grid;
   gap: 10px;
