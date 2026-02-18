@@ -2,7 +2,11 @@
 import React from "react";
 import "./styles.css";
 
-export default function CodeScreen({ code = "0000", onBack = () => {} }) {
+export default function CodeScreen({
+  code = "0000",
+  onBack = () => {},
+  onOpenQrConnect = () => {},
+}) {
   const digits = String(code).padStart(4, "0").slice(0, 4).split("");
   const inviteUrl = `https://swave.com/invite/${code}`;
 
@@ -48,11 +52,13 @@ export default function CodeScreen({ code = "0000", onBack = () => {} }) {
           Waiting for them to enter this code. Please wait.
         </div>
 
-        <div
-          className="code-qr"
+        <button
+          type="button"
+          className="code-qr code-qr-btn"
           data-testid="code-qr"
           aria-label={`Swave invite QR code for ${inviteUrl}`}
           data-invite={inviteUrl}
+          onClick={onOpenQrConnect}
         >
           <img
             className="code-qr-img"
@@ -62,7 +68,7 @@ export default function CodeScreen({ code = "0000", onBack = () => {} }) {
             alt=""
             aria-hidden="true"
           />
-        </div>
+        </button>
       </div>
     </main>
   );

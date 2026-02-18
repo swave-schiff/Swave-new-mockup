@@ -16,6 +16,7 @@ import FeedbackForm from "./FeedbackForm";
 import SupportForm from "./SupportForm";
 import HomeScreen from "./HomeScreen";
 import CodeScreen from "./CodeScreen";
+import ConnectedwithQRCodeScreen from "./ConnectedwithQRCodeScreen";
 import ConnectionConfirmedScreen from "./screens/ConnectionConfirmedScreen";
 import EnableUsernameLinkingScreen from "./screens/EnableUsernameLinkingScreen";
 import AccountProfileScreen from "./screens/AccountProfileScreen";
@@ -231,6 +232,19 @@ export default function App() {
         <CodeScreen
           code={swaveCode || "0000"}
           onBack={() => setActiveTab("home")}
+          onOpenQrConnect={() => setActiveTab("qrconnected")}
+        />
+      )}
+
+      {activeTab === "qrconnected" && (
+        <ConnectedwithQRCodeScreen
+          username="TeaseMeTwice"
+          avatarUrl="https://placehold.co/240x240"
+          onBack={() => setActiveTab("swavecode")}
+          onStartVerification={({ phone }) => {
+            setPendingPhone(normalizePhoneDigits(phone));
+            setActiveTab("validate");
+          }}
         />
       )}
 
@@ -360,6 +374,7 @@ export default function App() {
         activeTab !== "code" &&
         activeTab !== "username" &&
         activeTab !== "swavecode" &&
+        activeTab !== "qrconnected" &&
         activeTab !== "account" &&
         activeTab !== "account-profile" &&
         activeTab !== "username-linking" &&

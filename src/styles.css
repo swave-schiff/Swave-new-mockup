@@ -2231,6 +2231,16 @@ button.glass-btn.conn-danger-btn {
 
   pointer-events: none;
 }
+.code-qr-btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.code-qr-btn:focus {
+  outline: none;
+}
 
 .code-qr-img {
   width: 34px;
