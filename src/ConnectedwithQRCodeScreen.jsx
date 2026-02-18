@@ -57,7 +57,7 @@ export default function ConnectedwithQRCodeScreen({
   }
 
   return (
-    <main className="auth-page connection-confirm-page qr-connect-page">
+    <main className="auth-page connection-confirm-page qr-connect-page qr-connect-screen">
       <div className="top-actions">
         <button type="button" className="chevron-btn" aria-label="Back" onClick={onBack}>
           <svg
@@ -79,9 +79,9 @@ export default function ConnectedwithQRCodeScreen({
 
       <section className="auth-shell connection-confirm-shell">
         <div className="connection-confirm-card">
-          <div className="qr-connect-copy">
+          <div className="qr-connect-stack">
             <p className="connection-confirm-label qr-connect-label">
-              Before you can start a private anonymous chat with:
+              Before you can chat with:
             </p>
 
             <div className="auth-copy connection-confirm-copy">
@@ -93,9 +93,9 @@ export default function ConnectedwithQRCodeScreen({
               </h2>
             </div>
 
-            <p className="qr-connect-helper">
-              We need to verify your phone number. If no account exists, we'll create
-              one for you automatically.
+            <p className="qr-connect-helper qr-connect-copy">
+              We just need to verify your phone number on this device. If you
+              don't have an account yet, we'll create one automatically.
             </p>
           </div>
 
@@ -138,4 +138,3 @@ export default function ConnectedwithQRCodeScreen({
     </main>
   );
 }
-

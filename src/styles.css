@@ -1163,12 +1163,27 @@ main {
   /* lets us tune spacing without affecting other auth screens */
 }
 
-.qr-connect-copy {
+.qr-connect-stack {
   display: grid;
   justify-items: center;
   text-align: center;
   gap: 10px;
   margin-top: 8px;
+}
+
+.qr-connect-screen .connection-confirm-name {
+  margin-bottom: 14px;
+}
+
+.qr-connect-screen .connection-confirm-label {
+  max-width: 320px;
+  line-height: 1.25;
+}
+
+.qr-connect-screen .qr-connect-copy {
+  max-width: 320px;
+  line-height: 1.35;
+  margin-top: 2px;
 }
 
 .qr-connect-label {
