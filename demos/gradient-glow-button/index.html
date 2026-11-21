@@ -29,9 +29,10 @@ h1 {font-size:clamp(22px,4vw,30px);font-weight:700;text-align:center;letter-spac
   padding:var(--border-width);
   color:#f8f9ff;
   background:conic-gradient(from 0deg at 50% 50%,
-    #e2f0ff 0deg,#9ad0ff 38deg,#70b9ff 77deg,#86c8ff 115deg,
-    #7daffa 139deg,#937ddd 151deg,#7ab3ff 164deg,#85c7ff 220deg,#ffe8be 263deg,
-    #ffc16b 298deg,#fff5e7 331deg,#e2f0ff 360deg);
+    #deefff 0deg,#c5dfff 38deg,#abcaff 68deg,#a9baf2 86deg,
+    #acaff0 96deg,#bb81ed 105deg,#c25bf5 111deg,#a484ed 127deg,
+    #919feb 165deg,#8aa9ed 205deg,#86c1f5 240deg,#e6e7eb 270deg,
+    #ffd18b 285deg,#ffdca6 301deg,#f6f2ed 330deg,#deefff 360deg);
   cursor:pointer;
   transition:transform .14s ease,filter .14s ease;
   -webkit-tap-highlight-color:transparent;
@@ -40,16 +41,18 @@ h1 {font-size:clamp(22px,4vw,30px);font-weight:700;text-align:center;letter-spac
 .swave-button::before {
   content:"";pointer-events:none;position:absolute;inset:-2px;border-radius:inherit;z-index:-2;
   background:conic-gradient(from 0deg at 50% 50%,
-    #e4f2ff 0deg,#a2d9ff 38deg,#7ec7ff 78deg,#8cd4ff 115deg,
-    #80b6ff 139deg,#9a86df 151deg,#80bfff 164deg,#93d3ff 224deg,#ffe4ae 265deg,
-    #ffc16b 298deg,#fff1cb 331deg,#e4f2ff 360deg);
+    #dcefff 0deg,#c1e1ff 38deg,#add4ff 68deg,#a6baf8 86deg,
+    #b3b4f6 96deg,#ce95f6 105deg,#db74ff 111deg,#b4a0f7 127deg,
+    #a6b3fa 165deg,#90b5f6 205deg,#8fcaff 240deg,#fff0da 270deg,
+    #ffd38d 285deg,#ffe5b4 301deg,#ffffff 330deg,#dcefff 360deg);
   filter:blur(var(--glow-blur));opacity:var(--glow-opacity);
 }
 .swave-button::after {
   content:"";pointer-events:none;position:absolute;inset:-4px;border-radius:inherit;z-index:-1;
   background:
-    radial-gradient(ellipse at 12% 14%,rgba(255,184,84,.38),transparent 45%),
-    radial-gradient(ellipse at 93% 91%,rgba(82,173,255,.32),transparent 34%);
+    radial-gradient(ellipse at 13% 9%,rgba(255,186,85,.48),transparent 37%),
+    radial-gradient(ellipse at 56% 110%,rgba(125,158,247,.27),transparent 50%),
+    radial-gradient(ellipse at 97% 93%,rgba(188,72,246,.48),transparent 27%);
   filter:blur(12px);opacity:var(--glow-opacity);
 }
 .swave-button-inner {
@@ -103,7 +106,7 @@ code {color:#d2d9fa}
         <span class="button-text">Only Enable Username<br>Linking for 5 min.</span>
       </span>
     </button>
-    <span class="stage-note">Gold → ice blue → cool blue (subtle violet accent) • Native gradients, blur &amp; vector icon</span>
+    <span class="stage-note">Gold upper-left • Ice-blue top • Blue-lavender bottom • Violet lower-right • Native gradients, blur &amp; vector icon</span>
   </div>
   <section class="controls" aria-label="Style adjustments">
     <div class="control">
