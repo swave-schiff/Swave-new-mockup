@@ -97,6 +97,47 @@ code {color:#d2d9fa}
 .global-hint{font-size:12px;color:#94a3ba;margin:0}
 @media(min-width:590px){.color-cards{grid-template-columns:1fr 1fr}}
 
+
+/* Preview and sliders remain side by side on desktop. Scrolling a large
+   control list never sends the preview button out of view. */
+.page{max-width:1240px}
+.workspace{display:grid;grid-template-columns:1fr;gap:16px;align-items:start}
+.control-column{min-width:0}
+@media(min-width:900px){
+  .workspace{grid-template-columns:minmax(0,1fr) minmax(400px,500px);gap:22px}
+  .workspace .stage{
+    position:sticky;top:18px;
+    min-height:clamp(420px,calc(100dvh - 190px),680px);
+    padding:32px 24px;gap:28px;
+  }
+  .workspace .control-column{
+    height:clamp(420px,calc(100dvh - 190px),820px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    scrollbar-width:thin;
+    scrollbar-color:#526581 transparent;
+    padding:0 9px 14px 2px;
+  }
+  .workspace .color-tuner,.workspace .controls{max-width:none;margin:0 0 16px}
+  .workspace .color-cards{grid-template-columns:1fr}
+  .workspace .color-card{padding:12px 15px}
+  .workspace .color-sliders{gap:8px}
+  .workspace .color-slider{gap:3px 10px}
+  .workspace .tuner-desc{margin-bottom:13px}
+  .workspace .stage-note{max-width:410px;line-height:1.5}
+}
+@media(max-width:899px){
+  /* On narrow viewports a compact preview stays pinned above the sliders. */
+  .workspace .stage{
+    position:sticky;top:7px;z-index:5;
+    min-height:0;padding:18px 14px;gap:10px;
+    box-shadow:0 12px 28px rgba(0,0,0,.48);
+  }
+  .workspace .stage .blurb,.workspace .stage .stage-note{display:none}
+  .workspace .color-tuner,.workspace .controls{margin:0 auto 16px}
+}
+
 </style>
 </head>
 <body>
@@ -104,6 +145,7 @@ code {color:#d2d9fa}
   <div class="eyebrow">Swave / Design experiment</div>
   <h1>Gradient &amp; Glow Button</h1>
   <p class="lead">A functioning HTML/CSS recreation of the proposed Swave button. This button is drawn by code — <strong>not a picture</strong>. Tap it to see the press feedback.</p>
+  <div class="workspace">
   <div class="stage">
     <span class="stage-label">Live rendered button</span>
     <p class="blurb">Enabling 'Username Linking' will allow anyone who gets a hold of your username to send you a link request.</p>
@@ -118,6 +160,7 @@ code {color:#d2d9fa}
     </button>
     <span class="stage-note">Small gold upper-left • Ice-blue top • Blue-lavender bottom • Violet lower-right • Native gradients, blur &amp; vector icon</span>
   </div>
+  <aside class="control-column" aria-label="Live button customization controls">
   <section class="color-tuner" aria-label="Individual gradient color controls">
     <h2>Fine-tune all five colors</h2>
     <p class="tuner-desc">Each color has its own <strong>location, span, and intensity</strong>. Move a slider and the button updates instantly. Location follows the border clockwise: 0° is top, 90° right, 180° bottom, 270° left.</p>
@@ -148,6 +191,8 @@ code {color:#d2d9fa}
       <button class="reset" id="reset" type="button">Reset to reference</button>
     </div>
   </section>
+  </aside>
+  </div>
   <p class="note"><strong>For Xaivery:</strong> This is HTML/CSS, not SwiftUI, and is meant to show that the effect can be recreated with native drawing primitives. The final SwiftUI version will need tuning to match its rendering. This demo is visual only; tapping the button does not enable linking.</p>
 </main>
 <script>
