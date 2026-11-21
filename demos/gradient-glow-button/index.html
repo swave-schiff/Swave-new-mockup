@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101726">
+<title>Swave — Gradient Glow Button (Live HTML/CSS Demo)</title>
+<style>
+:root {
+  color-scheme:dark;
+  --base:#101726;
+  --glow-opacity:.66;
+  --glow-blur:13px;
+  --border-width:1.65px;
+}
+* {box-sizing:border-box}
+html,body {margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;color:#f8f9ff;background:#0a101b}
+body {padding:24px 18px 48px;background:radial-gradient(ellipse at 50% 0, #18223a 0%, #0a101b 57%);}
+.page {max-width:760px;margin:auto}
+.eyebrow {text-align:center;color:#99a7c0;font-size:12px;letter-spacing:.15em;font-weight:650;text-transform:uppercase}
+h1 {font-size:clamp(22px,4vw,30px);font-weight:700;text-align:center;letter-spacing:-.025em;margin:8px 0 10px}
+.lead {text-align:center;color:#a7b1c2;max-width:510px;margin:0 auto 26px;line-height:1.5;font-size:14px}
+.stage {background:linear-gradient(165deg,#151e31 0%,#101522 37%,#090d17 100%);border:1px solid #2b354c;border-radius:22px;min-height:350px;padding:37px 18px 38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:29px;overflow:visible;}
+.stage-label {font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#97a8c7;font-weight:700}
+.blurb {color:#c9cdd7;text-align:left;max-width:350px;line-height:1.37;font-size:16px;margin:0;padding:0 2px;}
+.swave-button {
+  position:relative; isolation:isolate; border:0; outline-offset:6px;
+  display:block; width:min(350px,100%); border-radius:999px;
+  padding:var(--border-width);
+  color:#f8f9ff;
+  background:conic-gradient(from 0deg at 50% 50%,
+    #d9e7ff 0deg,#81bbff 38deg,#a48dfa 77deg,#d955fc 132deg,
+    #846cff 172deg,#8dbbff 222deg,#ffe5b1 263deg,
+    #ffc16b 298deg,#fff5e7 331deg,#d9e7ff 360deg);
+  cursor:pointer;
+  transition:transform .14s ease,filter .14s ease;
+  -webkit-tap-highlight-color:transparent;
+  font:inherit;
+}
+.swave-button::before {
+  content:"";pointer-events:none;position:absolute;inset:-2px;border-radius:inherit;z-index:-2;
+  background:conic-gradient(from 0deg at 50% 50%,
+    #dcecff 0deg,#80b5ff 38deg,#9f8aff 78deg,#d955fc 132deg,
+    #8067ff 172deg,#83b6ff 224deg,#ffe2a1 265deg,
+    #ffc16b 298deg,#fff1cb 331deg,#dcecff 360deg);
+  filter:blur(var(--glow-blur));opacity:var(--glow-opacity);
+}
+.swave-button::after {
+  content:"";pointer-events:none;position:absolute;inset:-4px;border-radius:inherit;z-index:-1;
+  background:
+    radial-gradient(ellipse at 12% 14%,rgba(255,184,84,.38),transparent 45%),
+    radial-gradient(ellipse at 93% 91%,rgba(180,56,250,.46),transparent 34%);
+  filter:blur(12px);opacity:var(--glow-opacity);
+}
+.swave-button-inner {
+  background:
+    radial-gradient(ellipse at 100% 100%,rgba(61,24,106,.32) 0%,transparent 55%),
+    linear-gradient(160deg,#2b2930 0%,#111827 35%,#101a30 64%,#160f35 100%);
+  min-height:69px;width:100%;
+  border-radius:inherit;
+  display:flex;align-items:center;justify-content:flex-start;
+  gap:16px;padding:11px 25px 11px 27px;
+  box-shadow:inset 0 1px 11px rgba(255,255,255,.1),inset 0 -9px 18px rgba(3,7,19,.24);
+}
+.clock {width:27px;height:27px;flex-shrink:0;display:block;stroke:#f8f9ff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.button-text {color:#f8f9ff;text-align:left;font-size:20px;line-height:1.13;font-weight:650;letter-spacing:-.025em;text-shadow:0 1px 2px rgba(0,0,0,.28)}
+.swave-button:active,.swave-button.pressed {transform:scale(.987);filter:brightness(.88);}
+.swave-button:focus-visible {outline:2px solid #bcd9ff}
+.stage-note {font-size:12px;color:#8d9cb3;text-align:center}
+.controls {margin:20px auto 0;display:grid;gap:16px;background:#141b2b;border:1px solid #2b3446;padding:20px;border-radius:18px;max-width:540px}
+.control {display:grid;grid-template-columns:1fr auto;column-gap:12px;row-gap:9px;align-items:center}
+label {font-size:14px;color:#e0e5f0;font-weight:500}
+.readout {color:#a1afc8;font-size:13px;font-variant-numeric:tabular-nums}
+input[type="range"] {grid-column:1/-1;accent-color:#a994ff;width:100%}
+.buttons {display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:1px}
+.reset {color:#e2e8f7;background:#212b40;border:1px solid #46536d;border-radius:999px;padding:10px 17px;font-size:13px;font-weight:600;cursor:pointer}
+.note {font-size:13px;color:#9caac1;line-height:1.5;max-width:600px;margin:20px auto 0}
+code {color:#d2d9fa}
+@media(max-width:420px) {
+  body{padding:20px 13px 40px}
+  .stage{padding:34px 13px;min-height:320px;gap:27px}
+  .swave-button-inner{min-height:65px;padding:9px 19px 9px 22px;gap:12px}
+  .button-text{font-size:18.5px}
+  .clock{width:25px;height:25px}
+}
+@media(prefers-reduced-motion:reduce){.swave-button{transition:none}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="eyebrow">Swave / Design experiment</div>
+  <h1>Gradient &amp; Glow Button</h1>
+  <p class="lead">A functioning HTML/CSS recreation of the proposed Swave button. This button is drawn by code — <strong>not a picture</strong>. Tap it to see the press feedback.</p>
+  <div class="stage">
+    <span class="stage-label">Live rendered button</span>
+    <p class="blurb">Enabling 'Username Linking' will allow anyone who gets a hold of your username to send you a link request.</p>
+    <button class="swave-button" id="swave" aria-label="Only Enable Username Linking for 5 min. (visual demonstration only)" type="button">
+      <span class="swave-button-inner">
+        <svg class="clock" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="13" r="7.7"/>
+          <path d="M12 8.7v4.6l2.8 1.5M3.4 4.4 1.8 6M20.6 4.4 22.2 6M7.3 2.6c-1.6.1-2.7.7-3.8 1.9M16.7 2.6c1.6.1 2.7.7 3.8 1.9M6.2 20.5 4.7 22M17.8 20.5 19.3 22"/>
+        </svg>
+        <span class="button-text">Only Enable Username<br>Linking for 5 min.</span>
+      </span>
+    </button>
+    <span class="stage-note">Gold → soft blue → violet • Native gradients, blur &amp; vector icon</span>
+  </div>
+  <section class="controls" aria-label="Style adjustments">
+    <div class="control">
+      <label for="intensity">Glow intensity</label><output class="readout" id="intensityVal">66%</output>
+      <input type="range" id="intensity" min="0" max="100" value="66">
+    </div>
+    <div class="control">
+      <label for="blur">Glow softness</label><output class="readout" id="blurVal">13 px</output>
+      <input type="range" id="blur" min="0" max="26" value="13">
+    </div>
+    <div class="control">
+      <label for="border">Outline thickness</label><output class="readout" id="borderVal">1.65 px</output>
+      <input type="range" id="border" min="1" max="3.5" step=".05" value="1.65">
+    </div>
+    <div class="buttons">
+      <span class="readout">Adjust the effect live</span>
+      <button class="reset" id="reset" type="button">Reset to reference</button>
+    </div>
+  </section>
+  <p class="note"><strong>For Xaivery:</strong> This is HTML/CSS, not SwiftUI, and is meant to show that the effect can be recreated with native drawing primitives. The final SwiftUI version will need tuning to match its rendering. This demo is visual only; tapping the button does not enable linking.</p>
+</main>
+<script>
+const root=document.documentElement;
+const $=id=>document.getElementById(id);
+function sync(){
+ root.style.setProperty('--glow-opacity', (+$('intensity').value/100).toFixed(2));
+ root.style.setProperty('--glow-blur', $('blur').value+'px');
+ root.style.setProperty('--border-width', $('border').value+'px');
+ $('intensityVal').textContent=$('intensity').value+'%';
+ $('blurVal').textContent=$('blur').value+' px';
+ $('borderVal').textContent=$('border').value+' px';
+}
+['intensity','blur','border'].forEach(id=>$(id).addEventListener('input',sync));
+$('reset').addEventListener('click',()=>{$('intensity').value=66;$('blur').value=13;$('border').value=1.65;sync()});
+$('swave').addEventListener('click',e=>{
+ const b=e.currentTarget;b.classList.add('pressed');setTimeout(()=>b.classList.remove('pressed'),170);
+});
+sync();
+</script>
+</body>
+</html>
