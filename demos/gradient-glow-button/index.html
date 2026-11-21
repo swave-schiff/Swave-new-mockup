@@ -29,10 +29,10 @@ h1 {font-size:clamp(22px,4vw,30px);font-weight:700;text-align:center;letter-spac
   padding:var(--border-width);
   color:#f8f9ff;
   background:conic-gradient(from 0deg at 50% 50%,
-    #deefff 0deg,#c5dfff 38deg,#abcaff 68deg,#a9baf2 86deg,
-    #acaff0 96deg,#bb81ed 105deg,#c25bf5 111deg,#a484ed 127deg,
-    #919feb 165deg,#8aa9ed 205deg,#86c1f5 240deg,#e6e7eb 270deg,
-    #ffd18b 285deg,#ffdca6 301deg,#f6f2ed 330deg,#deefff 360deg);
+    #e3f1ff 0deg,#cce4ff 36deg,#b7d4ff 66deg,#adbff3 90deg,
+    #a5b8f6 110deg,#a69be7 123deg,#bb71ef 136deg,#a295eb 144deg,
+    #9fb0ef 163deg,#95b1ef 205deg,#8dc3f6 240deg,#edf1f5 270deg,
+    #ffd08a 286deg,#ffe3ba 300deg,#f7f3ee 329deg,#e3f1ff 360deg);
   cursor:pointer;
   transition:transform .14s ease,filter .14s ease;
   -webkit-tap-highlight-color:transparent;
@@ -41,18 +41,18 @@ h1 {font-size:clamp(22px,4vw,30px);font-weight:700;text-align:center;letter-spac
 .swave-button::before {
   content:"";pointer-events:none;position:absolute;inset:-2px;border-radius:inherit;z-index:-2;
   background:conic-gradient(from 0deg at 50% 50%,
-    #dcefff 0deg,#c1e1ff 38deg,#add4ff 68deg,#a6baf8 86deg,
-    #b3b4f6 96deg,#ce95f6 105deg,#db74ff 111deg,#b4a0f7 127deg,
-    #a6b3fa 165deg,#90b5f6 205deg,#8fcaff 240deg,#fff0da 270deg,
-    #ffd38d 285deg,#ffe5b4 301deg,#ffffff 330deg,#dcefff 360deg);
+    #dff1ff 0deg,#c9e6ff 36deg,#b6dbff 66deg,#aebff7 90deg,
+    #a9c2fc 110deg,#b7adf2 123deg,#ce8efa 136deg,#b7a8f5 144deg,
+    #afb9f5 163deg,#a6b2f7 205deg,#93c8ff 240deg,#fff2dc 270deg,
+    #ffd38e 286deg,#ffe8bf 300deg,#ffffff 329deg,#dff1ff 360deg);
   filter:blur(var(--glow-blur));opacity:var(--glow-opacity);
 }
 .swave-button::after {
   content:"";pointer-events:none;position:absolute;inset:-4px;border-radius:inherit;z-index:-1;
   background:
-    radial-gradient(ellipse at 13% 9%,rgba(255,186,85,.48),transparent 37%),
-    radial-gradient(ellipse at 56% 110%,rgba(125,158,247,.27),transparent 50%),
-    radial-gradient(ellipse at 97% 93%,rgba(188,72,246,.48),transparent 27%);
+    radial-gradient(ellipse at 13% 10%,rgba(255,186,86,.50),transparent 30%),
+    radial-gradient(ellipse at 55% 108%,rgba(126,154,241,.26),transparent 48%),
+    radial-gradient(ellipse at 97% 94%,rgba(198,84,250,.62),transparent 24%);
   filter:blur(12px);opacity:var(--glow-opacity);
 }
 .swave-button-inner {
@@ -106,7 +106,7 @@ code {color:#d2d9fa}
         <span class="button-text">Only Enable Username<br>Linking for 5 min.</span>
       </span>
     </button>
-    <span class="stage-note">Gold upper-left • Ice-blue top • Blue-lavender bottom • Violet lower-right • Native gradients, blur &amp; vector icon</span>
+    <span class="stage-note">Small gold upper-left • Ice-blue top • Blue-lavender bottom • Violet lower-right • Native gradients, blur &amp; vector icon</span>
   </div>
   <section class="controls" aria-label="Style adjustments">
     <div class="control">
