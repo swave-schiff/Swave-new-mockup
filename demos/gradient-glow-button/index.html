@@ -83,12 +83,25 @@ code {color:#d2d9fa}
 .color-cards{display:grid;grid-template-columns:1fr;gap:12px}
 .color-card{border:1px solid #34415a;background:#192338;border-radius:15px;padding:16px 17px 14px}
 .color-name{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:700;margin-bottom:12px}
+.color-code{font-size:11px;margin-left:auto;color:#c4d1ea;font-weight:500;font-variant-numeric:tabular-nums}
 .color-swatch{display:inline-block;flex:none;width:15px;height:15px;background:var(--chip);border:1px solid rgba(255,255,255,.5);border-radius:50%;box-shadow:0 0 12px var(--chip)}
 .color-sliders{display:grid;gap:11px}
 .color-slider{display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:center}
 .color-slider label{font-size:13px;color:#cdd8e9;font-weight:500}
 .color-slider output{font-size:12px;font-variant-numeric:tabular-nums;color:#9db8df;text-align:right;white-space:nowrap}
-.color-slider input[type=range]{grid-column:1/-1;accent-color:var(--chip);width:100%;cursor:pointer}
+.color-slider input[type=range]{
+  grid-column:1/-1;width:100%;cursor:pointer;appearance:none;-webkit-appearance:none;
+  height:6px;border-radius:100px;border:0;outline-offset:6px;
+  background:linear-gradient(to right,var(--chip) 0%,var(--chip) var(--slider-progress,50%),#35445d var(--slider-progress,50%),#35445d 100%);
+}
+.color-slider input[type=range]::-webkit-slider-thumb{
+  appearance:none;-webkit-appearance:none;width:16px;height:16px;border:2px solid #f6f8ff;
+  border-radius:50%;background:var(--chip);box-shadow:0 1px 4px rgba(0,0,0,.35)
+}
+.color-slider input[type=range]::-moz-range-thumb{
+  width:12px;height:12px;border:2px solid #f6f8ff;border-radius:50%;
+  background:var(--chip);box-shadow:0 1px 4px rgba(0,0,0,.35)
+}
 .tuner-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:19px}
 .tuner-actions button{cursor:pointer;border:1px solid #52647f;border-radius:999px;padding:12px 17px;background:#24344e;color:#f8f9ff;font-weight:650}
 .tuner-actions button.primary{background:#273658;border-color:#8c9dc5}
@@ -203,7 +216,7 @@ const defaults=[
  {key:"gold",name:"Warm gold",hex:"#F6C16E",position:301,span:34,intensity:83},
  {key:"ice",name:"Ice blue",hex:"#DCEFFF",position:1,span:79,intensity:94},
  {key:"cool",name:"Cool blue",hex:"#85C5FF",position:69,span:80,intensity:78},
- {key:"lavender",name:"Blue-lavender",hex:"#A8A8EE",position:202,span:102,intensity:82},
+ {key:"lavender",name:"Blue-lavender",hex:"#8987F6",position:202,span:102,intensity:82},
  {key:"violet",name:"Violet",hex:"#C454FA",position:121,span:37,intensity:79}
 ];
 const colors=defaults.map(c=>Object.assign({},c));
@@ -226,7 +239,7 @@ function buildControls(){
   card.style.setProperty("--chip",c.hex);
   const heading=document.createElement("div");
   heading.className="color-name";
-  heading.innerHTML='<span class="color-swatch"></span><span>'+c.name+'</span>';
+  heading.innerHTML='<span class="color-swatch"></span><span>'+c.name+'</span><span class="color-code">'+c.hex+'</span>';
   card.appendChild(heading);
   const sliders=document.createElement("div");
   sliders.className="color-sliders";
@@ -286,7 +299,9 @@ function accents(){
 }
 function render(){
  colors.forEach(c=>fields.forEach(k=>{
-  $(c.key+"-"+k).value=c[k];
+  const slider=$(c.key+"-"+k);
+  slider.value=c[k];
+  slider.style.setProperty("--slider-progress",((Number(slider.value)-Number(slider.min))/(Number(slider.max)-Number(slider.min))*100).toFixed(1)+"%");
   $(c.key+"-"+k+"-value").textContent=k==="position"?region(c.position)+" · "+c.position+"°":k==="span"?c.span+"° arc":c.intensity+"%";
  }));
  root.style.setProperty("--glow-opacity",(Number($("intensity").value)/100).toFixed(2));
