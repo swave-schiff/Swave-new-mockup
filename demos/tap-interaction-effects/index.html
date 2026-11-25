@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101726">
-<title>Swave — Seven Tap Animations</title>
+<title>Swave — Eight Tap Animations</title>
 <style>
 :root{
  color-scheme:dark;
  --duration:600ms;
  --glow-strength:.55;
  --dot-size:18px;
+ --wave-width:32px;
  --ring-gradient: conic-gradient(from 0deg,#dcefff 0deg,#cce7ff 18deg,#84c5ff 57deg,#95bfff 88deg,#b39ff0 100deg,#c454fa 115deg,#9a92ed 145deg,#8995f5 187deg,#8987f6 229deg,#9fa9fa 255deg,#bdc5f5 275deg,#f6c16e 308deg,#f7dfbb 326deg,#dcefff 359deg);
 }
 *{box-sizing:border-box}
@@ -141,6 +142,54 @@ input[type=range]{width:120px;accent-color:#91bafa}
 .demo[data-effect="pulse-energy"].playing .core-flash{
  animation:flashCenter var(--duration) ease both;
 }
+
+/* New inward wave: a broad, translucent, multicolor pressure-wave front.
+   Unlike the earlier line-shaped ripple, its whole luminous band sweeps
+   across the surface from the outside toward the center. */
+.inward-wave{
+ position:absolute;inset:-6px;border-radius:50%;
+ background:var(--ring-gradient);pointer-events:none;opacity:0;
+ transform-origin:center;z-index:5;will-change:transform,opacity;
+ -webkit-mask-image:radial-gradient(circle at center,
+   transparent calc(62% - var(--wave-width) - 13px),
+   rgba(0,0,0,.30) calc(62% - var(--wave-width) - 3px),
+   #000 calc(62% - var(--wave-width) + 10px),
+   rgba(0,0,0,.85) 62%,
+   transparent calc(62% + 13px));
+ mask-image:radial-gradient(circle at center,
+   transparent calc(62% - var(--wave-width) - 13px),
+   rgba(0,0,0,.30) calc(62% - var(--wave-width) - 3px),
+   #000 calc(62% - var(--wave-width) + 10px),
+   rgba(0,0,0,.85) 62%,
+   transparent calc(62% + 13px));
+ filter:blur(6px);
+ mix-blend-mode:screen;
+}
+.inward-wave.wash{
+ inset:-11px;z-index:4;filter:blur(18px);mix-blend-mode:screen;
+}
+@keyframes inwardSurfaceWave{
+ 0%{opacity:0;transform:scale(1.65)}
+ 12%{opacity:.36;transform:scale(1.42)}
+ 30%{opacity:.6;transform:scale(1.10)}
+ 57%{opacity:.72;transform:scale(.66)}
+ 83%{opacity:.79;transform:scale(.30)}
+ 100%{opacity:0;transform:scale(.025)}
+}
+@keyframes inwardSurfaceWash{
+ 0%{opacity:0;transform:scale(1.68)}
+ 17%{opacity:.14}
+ 48%{opacity:.28;transform:scale(.86)}
+ 80%{opacity:.22}
+ 100%{opacity:0;transform:scale(.06)}
+}
+.demo[data-effect="inward-wave"].playing .inward-wave.front{
+ animation:inwardSurfaceWave var(--duration) cubic-bezier(.24,.06,.69,1) both;
+}
+.demo[data-effect="inward-wave"].playing .inward-wave.wash{
+ animation:inwardSurfaceWash var(--duration) cubic-bezier(.24,.06,.69,1) both;
+}
+
 .demo-footer{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:auto;width:100%;text-align:center}
 .replay{appearance:none;cursor:pointer;border:1px solid #6b7ea2;background:linear-gradient(180deg,#273650,#1b2a41);
  color:#f5f8ff;font-family:inherit;font-size:12px;font-weight:675;border-radius:50px;padding:10px 17px}
@@ -161,15 +210,16 @@ input[type=range]{width:120px;accent-color:#91bafa}
 <main class="wrap">
  <header class="top">
   <div class="kicker">Swave / Interaction Design</div>
-  <h1>Seven ways to activate Swave</h1>
-  <p class="intro">Compare seven tap effects, including <strong>Pulse + Energy Convergence</strong> without ripple rings. Use the Energy Dot Size slider to make the merging colored dots larger or smaller. Each animation ends before the separate landscape code screen.</p>
+  <h1>Eight ways to activate Swave</h1>
+  <p class="intro">Compare eight tap effects, including a new <strong>Inward Wave</strong>—a wide, softly glowing wave that washes across the button surface toward its center rather than a thin shrinking ring. Each preview ends before the separate landscape code screen.</p>
  </header>
  <section class="tuner" aria-label="Animation settings">
   <div class="control"><label for="speed">Effect duration</label><input id="speed" type="range" min="300" max="1200" step="50" value="550"><output id="speedValue">0.55 s</output></div>
   <div class="control"><label for="strength">Halo strength</label><input id="strength" type="range" min="15" max="100" step="5" value="55"><output id="strengthValue">55%</output></div>
   <div class="control"><label for="dotSize">Energy dot size</label><input id="dotSize" type="range" min="8" max="36" step="2" value="18"><output id="dotSizeValue">18 px</output></div>
+  <div class="control"><label for="waveWidth">Inward wave width</label><input id="waveWidth" type="range" min="12" max="58" step="2" value="32"><output id="waveWidthValue">32 px</output></div>
   
-  <button class="action" id="replayAll" type="button">Replay all seven</button>
+  <button class="action" id="replayAll" type="button">Replay all eight</button>
  </section>
  <section class="grid" id="effects">
   <article class="demo" data-effect="ripple">
@@ -279,6 +329,26 @@ input[type=range]{width:120px;accent-color:#91bafa}
       <div class="note">Soft, mysterious activation without rings</div>
     </div>
   </article>
+  <article class="demo" data-effect="inward-wave">
+    <div class="demo-head">
+      <div class="effect-index">08 / Surface wave</div>
+      <h2>Inward Wave</h2>
+      <p class="desc">A broad, soft wave of colored light sweeps inward across the button—not a thin ring.</p>
+    </div>
+    <div class="button-zone">
+      <div class="halo-soft"></div><div class="halo"></div>
+      <button class="main-button" aria-label="Play inward surface wave">
+        <span class="main-label">Tap to Swave</span>
+        <span class="sub-label">Generate a 4-digit<br>code to flash</span>
+      </button>
+      <div class="inward-wave wash"></div>
+      <div class="inward-wave front"></div>
+    </div>
+    <div class="demo-footer">
+      <button class="replay" type="button">Replay effect</button>
+      <div class="note">Try adjusting “Inward wave width” above</div>
+    </div>
+  </article>
  </section>
  <section class="bottom-panel">
   <strong>For Xaivery:</strong> These live HTML/CSS demos show only the button tap animation. At the end of the selected effect, the real Swave app should navigate to its separate full-size landscape four-digit code screen. That navigation and the subsequent code scrambling are intentionally not included here and will need native SwiftUI implementation.
@@ -295,28 +365,33 @@ const root=document.documentElement;
 const speed=document.getElementById("speed");
 const strength=document.getElementById("strength");
 const dotSize=document.getElementById("dotSize");
+const waveWidth=document.getElementById("waveWidth");
 const cards=Array.from(document.querySelectorAll(".demo"));
 const timeoutMap=new WeakMap();
 function settings(){
  root.style.setProperty("--duration",speed.value+"ms");
  root.style.setProperty("--glow-strength",(Number(strength.value)/100).toFixed(2));
  root.style.setProperty("--dot-size",dotSize.value+"px");
+ root.style.setProperty("--wave-width",waveWidth.value+"px");
  document.getElementById("speedValue").textContent=(Number(speed.value)/1000).toFixed(2)+" s";
  document.getElementById("strengthValue").textContent=strength.value+"%";
  document.getElementById("dotSizeValue").textContent=dotSize.value+" px";
+ document.getElementById("waveWidthValue").textContent=waveWidth.value+" px";
  const params=new URLSearchParams();
  params.set("duration",speed.value);
  params.set("glow",strength.value);
  params.set("dots",dotSize.value);
+ params.set("wave",waveWidth.value);
  history.replaceState(null,"",location.pathname+location.search+"#"+params.toString());
  document.getElementById("shareLink").value=location.href;
 }
 function initialize(){
  const params=new URLSearchParams(location.hash.slice(1));
- const d=Number(params.get("duration")),g=Number(params.get("glow")),z=Number(params.get("dots"));
+ const d=Number(params.get("duration")),g=Number(params.get("glow")),z=Number(params.get("dots")),w=Number(params.get("wave"));
  if(params.has("duration")&&Number.isFinite(d))speed.value=Math.min(1200,Math.max(300,d));
  if(params.has("glow")&&Number.isFinite(g))strength.value=Math.min(100,Math.max(15,g));
  if(params.has("dots")&&Number.isFinite(z))dotSize.value=Math.min(36,Math.max(8,z));
+ if(params.has("wave")&&Number.isFinite(w))waveWidth.value=Math.min(58,Math.max(12,w));
  settings();
 }
 function play(card){
@@ -336,6 +411,7 @@ document.getElementById("replayAll").addEventListener("click",()=>cards.forEach(
 speed.addEventListener("input",settings);
 strength.addEventListener("input",settings);
 dotSize.addEventListener("input",settings);
+waveWidth.addEventListener("input",settings);
 document.getElementById("copyLink").addEventListener("click",async()=>{
  const field=document.getElementById("shareLink");
  try{await navigator.clipboard.writeText(field.value);document.getElementById("copyStatus").textContent="Copied";}
