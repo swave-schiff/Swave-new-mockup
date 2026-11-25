@@ -169,19 +169,22 @@ input[type=range]{width:120px;accent-color:#91bafa}
  inset:-11px;z-index:4;filter:blur(18px);mix-blend-mode:screen;
 }
 @keyframes inwardSurfaceWave{
- 0%{opacity:0;transform:scale(1.65)}
- 12%{opacity:.36;transform:scale(1.42)}
- 30%{opacity:.6;transform:scale(1.10)}
- 57%{opacity:.72;transform:scale(.66)}
- 83%{opacity:.79;transform:scale(.30)}
+ /* Begin flush with the button perimeter and move inward from the first frame.
+    Every successive scale is smaller; no outside-in expansion or initial pulse. */
+ 0%{opacity:.52;transform:scale(1)}
+ 12%{opacity:.69;transform:scale(.89)}
+ 30%{opacity:.75;transform:scale(.73)}
+ 57%{opacity:.78;transform:scale(.48)}
+ 83%{opacity:.70;transform:scale(.23)}
  100%{opacity:0;transform:scale(.025)}
 }
 @keyframes inwardSurfaceWash{
- 0%{opacity:0;transform:scale(1.68)}
- 17%{opacity:.14}
- 48%{opacity:.28;transform:scale(.86)}
- 80%{opacity:.22}
- 100%{opacity:0;transform:scale(.06)}
+ /* The soft trailing glow is drawn inward too, never scaled beyond the circle. */
+ 0%{opacity:.15;transform:scale(1)}
+ 17%{opacity:.22;transform:scale(.84)}
+ 48%{opacity:.28;transform:scale(.56)}
+ 80%{opacity:.18;transform:scale(.26)}
+ 100%{opacity:0;transform:scale(.03)}
 }
 .demo[data-effect="inward-wave"].playing .inward-wave.front{
  animation:inwardSurfaceWave var(--duration) cubic-bezier(.24,.06,.69,1) both;
