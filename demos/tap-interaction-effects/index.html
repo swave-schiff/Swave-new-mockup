@@ -30,7 +30,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
 .action{appearance:none;cursor:pointer;padding:10px 17px;border:1px solid #778aae;background:linear-gradient(180deg,#32435f,#202d45);color:#f7f9ff;font:650 13px/1.3 inherit;border-radius:100px;transition:filter .15s,transform .15s}
 .action:hover{filter:brightness(1.14)}
 .action:active{transform:scale(.98)}
-.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
 .demo{background:linear-gradient(160deg,#19243b 0%,#111a2a 55%,#0b1320 100%);border:1px solid #344360;border-radius:19px;padding:17px 11px 16px;min-width:0;display:flex;flex-direction:column;align-items:center;min-height:388px}
 .demo-head{text-align:center;min-height:72px}
 .effect-index{font-size:10px;letter-spacing:.14em;color:#8198bd;text-transform:uppercase;margin-bottom:5px}
@@ -80,6 +80,52 @@ input[type=range]{width:120px;accent-color:#91bafa}
 .demo[data-effect="pulse"].playing .halo{animation:haloPulse var(--duration) ease-in-out both}
 .demo[data-effect="converge"].playing .wisp{animation:converge var(--duration) cubic-bezier(.2,.21,.59,1) both}
 .demo[data-effect="converge"].playing .core-flash{animation:flashCenter var(--duration) ease both}
+
+/* Combined tap effect: quiet squeeze and halo lift, two nested inward waves,
+   and synchronized colored wisps converging into the center. */
+@keyframes comboPulse{
+  0%{transform:scale(1)}
+  16%{transform:scale(.955)}
+  42%{transform:scale(.982)}
+  76%,100%{transform:scale(1)}
+}
+@keyframes comboRingFirst{
+  0%,8%{opacity:0;transform:scale(1.10)}
+  21%{opacity:.93}
+  79%{opacity:.79}
+  100%{opacity:0;transform:scale(.03)}
+}
+@keyframes comboRingSecond{
+  0%,26%{opacity:0;transform:scale(1.10)}
+  38%{opacity:.8}
+  86%{opacity:.72}
+  100%{opacity:0;transform:scale(.03)}
+}
+@keyframes comboConverge{
+  0%,15%{opacity:0;left:var(--sx);top:var(--sy);transform:scale(.55)}
+  32%{opacity:.68}
+  72%{opacity:.9;transform:scale(.95)}
+  100%{left:50%;top:50%;opacity:0;transform:scale(.08)}
+}
+.demo[data-effect="combo"].playing .main-button{
+  animation:comboPulse var(--duration) ease-in-out both;
+}
+.demo[data-effect="combo"].playing .halo{
+  animation:haloPulse var(--duration) ease-in-out both;
+}
+.demo[data-effect="combo"].playing .ripple.one{
+  animation:comboRingFirst var(--duration) cubic-bezier(.37,.08,.68,1) both;
+}
+.demo[data-effect="combo"].playing .ripple.two{
+  animation:comboRingSecond var(--duration) cubic-bezier(.37,.08,.68,1) both;
+}
+.demo[data-effect="combo"].playing .wisp{
+  animation:comboConverge var(--duration) ease-in both;
+}
+.demo[data-effect="combo"].playing .core-flash{
+  animation:flashCenter var(--duration) ease both;
+}
+
 .demo-footer{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:auto;width:100%;text-align:center}
 .replay{appearance:none;cursor:pointer;border:1px solid #6b7ea2;background:linear-gradient(180deg,#273650,#1b2a41);
  color:#f5f8ff;font-family:inherit;font-size:12px;font-weight:675;border-radius:50px;padding:10px 17px}
@@ -100,14 +146,14 @@ input[type=range]{width:120px;accent-color:#91bafa}
 <main class="wrap">
  <header class="top">
   <div class="kicker">Swave / Interaction Design</div>
-  <h1>Five ways to activate Swave</h1>
-  <p class="intro">Compare five tap effects on the glowing Tap to Swave button. <strong>Tap any circle</strong> or replay all five. Each preview ends before navigation to the separate landscape code screen.</p>
+  <h1>Six ways to activate Swave</h1>
+  <p class="intro">Compare the original five effects with a new <strong>Pulse + Double Ripple + Energy Convergence</strong> combination. Tap any circle to see its effect. Each preview ends before navigation to the separate landscape code screen.</p>
  </header>
  <section class="tuner" aria-label="Animation settings">
   <div class="control"><label for="speed">Effect duration</label><input id="speed" type="range" min="300" max="1200" step="50" value="550"><output id="speedValue">0.55 s</output></div>
   <div class="control"><label for="strength">Halo strength</label><input id="strength" type="range" min="15" max="100" step="5" value="55"><output id="strengthValue">55%</output></div>
   
-  <button class="action" id="replayAll" type="button">Replay all five</button>
+  <button class="action" id="replayAll" type="button">Replay all six</button>
  </section>
  <section class="grid" id="effects">
   <article class="demo" data-effect="ripple">
@@ -165,6 +211,32 @@ input[type=range]{width:120px;accent-color:#91bafa}
      
     </div>
     <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Most expressive and futuristic</div></div>
+  </article>
+  <article class="demo" data-effect="combo">
+    <div class="demo-head">
+      <div class="effect-index">06 / Combination</div>
+      <h2>Pulse + Double Ripple + Energy</h2>
+      <p class="desc">A soft pulse begins, two rings sweep inward, and colored wisps meet at the center.</p>
+    </div>
+    <div class="button-zone">
+     <div class="halo-soft"></div><div class="halo"></div>
+     <button class="main-button" aria-label="Play combined pulse, double ripple and energy convergence">
+      <span class="main-label">Tap to Swave</span>
+      <span class="sub-label">Generate a 4-digit<br>code to flash</span>
+     </button>
+     <span class="ripple one"></span><span class="ripple two"></span>
+     <div class="energy">
+      <i class="wisp" style="--sx:20%;--sy:23%;--c:#F6C16E;--turn:30deg"></i>
+      <i class="wisp" style="--sx:76%;--sy:18%;--c:#96CCFF;--turn:150deg"></i>
+      <i class="wisp" style="--sx:24%;--sy:81%;--c:#8987F6;--turn:-30deg"></i>
+      <i class="wisp" style="--sx:82%;--sy:77%;--c:#C454FA;--turn:-150deg"></i>
+     </div>
+     <span class="core-flash"></span>
+    </div>
+    <div class="demo-footer">
+      <button class="replay" type="button">Replay effect</button>
+      <div class="note">A coordinated, cinematic activation</div>
+    </div>
   </article>
  </section>
  <section class="bottom-panel">
