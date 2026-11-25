@@ -62,17 +62,6 @@ input[type=range]{width:120px;accent-color:#91bafa}
  box-shadow:0 0 9px 3px var(--c),0 0 18px 6px rgba(153,174,255,.24)}
 .wisp::after{content:"";width:27px;height:3px;border-radius:8px;position:absolute;right:6px;top:3px;transform:rotate(var(--turn));
  background:linear-gradient(to left,var(--c),transparent);filter:blur(2px)}
-.code-screen{position:absolute;inset:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:8;
- opacity:0;visibility:hidden;transform:scale(.91);transition:opacity 170ms ease,transform 170ms ease,visibility 170ms;
- background:radial-gradient(circle at center,#131d33,#090f1b 80%);border-radius:50%;pointer-events:none}
-.code-label{font-size:10px;color:#9eacc5;letter-spacing:.05em;margin:0 0 11px}
-.digit-row{display:flex;gap:3px}
-.digit{width:31px;height:49px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#383c47,#191d29);
- border-radius:5px;color:#fff;font-size:34px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums}
-.code-hint{font-size:10px;margin-top:12px;color:#a5adc1}
-.demo.code-mode .code-screen{visibility:visible;opacity:1;transform:scale(1)}
-.demo.code-mode .main-button{opacity:0}
-.demo.code-mode .halo,.demo.code-mode .halo-soft{opacity:.1}
 @keyframes ringIn{0%{opacity:0;transform:scale(1.11)}12%{opacity:1}67%{opacity:.9}100%{transform:scale(.02);opacity:0}}
 @keyframes ringDouble{0%{opacity:0;transform:scale(1.09)}12%{opacity:.95}73%{opacity:.68}100%{transform:scale(.05);opacity:0}}
 @keyframes inwardHalo{0%{transform:scale(1);opacity:var(--glow-strength);filter:blur(22px)}30%{opacity:calc(var(--glow-strength) * 1.25)}78%{transform:scale(.69);opacity:calc(var(--glow-strength) * .9);filter:blur(13px)}100%{transform:scale(.25);opacity:0;filter:blur(3px)}}
@@ -112,12 +101,12 @@ input[type=range]{width:120px;accent-color:#91bafa}
  <header class="top">
   <div class="kicker">Swave / Interaction Design</div>
   <h1>Five ways to activate Swave</h1>
-  <p class="intro">Five working HTML/CSS animations based on the new glowing Tap to Swave button. <strong>Tap any circle</strong> to see its effect, or replay all five together. These are functional animation demos, not videos or images.</p>
+  <p class="intro">Compare five tap effects on the glowing Tap to Swave button. <strong>Tap any circle</strong> or replay all five. Each preview ends before navigation to the separate landscape code screen.</p>
  </header>
  <section class="tuner" aria-label="Animation settings">
   <div class="control"><label for="speed">Effect duration</label><input id="speed" type="range" min="300" max="1200" step="50" value="550"><output id="speedValue">0.55 s</output></div>
   <div class="control"><label for="strength">Halo strength</label><input id="strength" type="range" min="15" max="100" step="5" value="55"><output id="strengthValue">55%</output></div>
-  <label class="toggle"><input id="showCode" type="checkbox" checked>Show code reveal afterward</label>
+  
   <button class="action" id="replayAll" type="button">Replay all five</button>
  </section>
  <section class="grid" id="effects">
@@ -127,7 +116,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
      <div class="halo-soft"></div><div class="halo"></div>
      <button class="main-button" aria-label="Play inward ripple"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
      <span class="ripple one"></span><span class="ripple two"></span>
-     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+     
     </div>
     <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Clean, focused, elegant</div></div>
   </article>
@@ -137,7 +126,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
      <div class="halo-soft"></div><div class="halo"></div>
      <button class="main-button" aria-label="Play double inward ripple"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
      <span class="ripple one"></span><span class="ripple two"></span>
-     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+     
     </div>
     <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">A little more dynamic</div></div>
   </article>
@@ -147,7 +136,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
      <div class="halo-soft"></div><div class="halo"></div>
      <button class="main-button" aria-label="Play halo compression"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
      <span class="ripple one"></span><span class="ripple two"></span>
-     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+     
     </div>
     <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Subtle, mysterious, premium</div></div>
   </article>
@@ -157,7 +146,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
      <div class="halo-soft"></div><div class="halo"></div>
      <button class="main-button" aria-label="Play soft pulse"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
      <span class="ripple one"></span><span class="ripple two"></span>
-     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+     
     </div>
     <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Fastest and most understated</div></div>
   </article>
@@ -173,13 +162,13 @@ input[type=range]{width:120px;accent-color:#91bafa}
       <i class="wisp" style="--sx:82%;--sy:77%;--c:#C454FA;--turn:-150deg"></i>
      </div>
      <span class="core-flash"></span>
-     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+     
     </div>
     <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Most expressive and futuristic</div></div>
   </article>
  </section>
  <section class="bottom-panel">
-  <strong>For Xaivery:</strong> Each effect is drawn live in CSS, and the code reveal uses JavaScript to scramble four display digits briefly before settling on a sample code. The demo never generates or transmits a real Swave code. Animation and orientation transitions in SwiftUI will need native implementation.
+  <strong>For Xaivery:</strong> These live HTML/CSS demos show only the button tap animation. At the end of the selected effect, the real Swave app should navigate to its separate full-size landscape four-digit code screen. That navigation and the subsequent code scrambling are intentionally not included here and will need native SwiftUI implementation.
   <div class="share">
    <input id="shareLink" readonly aria-label="Share this demo with current settings">
    <button id="copyLink" type="button">Copy settings link</button>
@@ -189,17 +178,19 @@ input[type=range]{width:120px;accent-color:#91bafa}
 </main>
 <script>
 "use strict";
-const root=document.documentElement, speed=document.getElementById("speed"),strength=document.getElementById("strength"),showCode=document.getElementById("showCode");
+const root=document.documentElement;
+const speed=document.getElementById("speed");
+const strength=document.getElementById("strength");
 const cards=Array.from(document.querySelectorAll(".demo"));
-const timeoutMap=new WeakMap(),intervalMap=new WeakMap();
-const finalDigits=["5","3","6","1"];
+const timeoutMap=new WeakMap();
 function settings(){
  root.style.setProperty("--duration",speed.value+"ms");
  root.style.setProperty("--glow-strength",(Number(strength.value)/100).toFixed(2));
  document.getElementById("speedValue").textContent=(Number(speed.value)/1000).toFixed(2)+" s";
  document.getElementById("strengthValue").textContent=strength.value+"%";
  const params=new URLSearchParams();
- params.set("duration",speed.value);params.set("glow",strength.value);params.set("code",showCode.checked?"1":"0");
+ params.set("duration",speed.value);
+ params.set("glow",strength.value);
  history.replaceState(null,"",location.pathname+location.search+"#"+params.toString());
  document.getElementById("shareLink").value=location.href;
 }
@@ -208,50 +199,24 @@ function initialize(){
  const d=Number(params.get("duration")),g=Number(params.get("glow"));
  if(params.has("duration")&&Number.isFinite(d))speed.value=Math.min(1200,Math.max(300,d));
  if(params.has("glow")&&Number.isFinite(g))strength.value=Math.min(100,Math.max(15,g));
- if(params.has("code"))showCode.checked=params.get("code")!=="0";
  settings();
 }
-function clearCard(card){
- const handles=timeoutMap.get(card)||[];
- handles.forEach(clearTimeout);timeoutMap.set(card,[]);
- if(intervalMap.has(card))clearInterval(intervalMap.get(card));
- intervalMap.delete(card);
- card.classList.remove("playing","code-mode");
- card.querySelectorAll(".digit").forEach((d,i)=>d.textContent=finalDigits[i]);
- void card.offsetWidth;
-}
-function handleTimeout(card,fn,ms){
- const handles=timeoutMap.get(card)||[];
- handles.push(setTimeout(fn,ms));timeoutMap.set(card,handles);
-}
-function scramble(card){
- const digits=Array.from(card.querySelectorAll(".digit"));
- const end=performance.now()+650;
- const timer=setInterval(()=>{
-   if(performance.now()>=end){
-     clearInterval(timer);intervalMap.delete(card);
-     digits.forEach((d,i)=>d.textContent=finalDigits[i]);return;
-   }
-   digits.forEach(d=>d.textContent=String(Math.floor(Math.random()*10)));
- },40);
- intervalMap.set(card,timer);
-}
 function play(card){
- clearCard(card);
+ const old=timeoutMap.get(card);
+ if(old)clearTimeout(old);
+ card.classList.remove("playing");
+ void card.offsetWidth;
  card.classList.add("playing");
- const duration=Number(speed.value);
- if(showCode.checked){
-   handleTimeout(card,()=>{card.classList.remove("playing");card.classList.add("code-mode");scramble(card)},duration+65);
- }else{
-   handleTimeout(card,()=>card.classList.remove("playing"),duration+80);
- }
+ const finish=setTimeout(()=>{card.classList.remove("playing");timeoutMap.delete(card)},Number(speed.value)+80);
+ timeoutMap.set(card,finish);
 }
 cards.forEach(card=>{
  card.querySelector(".main-button").addEventListener("click",()=>play(card));
  card.querySelector(".replay").addEventListener("click",()=>play(card));
 });
 document.getElementById("replayAll").addEventListener("click",()=>cards.forEach(play));
-speed.addEventListener("input",settings);strength.addEventListener("input",settings);showCode.addEventListener("change",settings);
+speed.addEventListener("input",settings);
+strength.addEventListener("input",settings);
 document.getElementById("copyLink").addEventListener("click",async()=>{
  const field=document.getElementById("shareLink");
  try{await navigator.clipboard.writeText(field.value);document.getElementById("copyStatus").textContent="Copied";}
