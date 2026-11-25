@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101726">
-<title>Swave — Eight Tap Animations</title>
+<title>Swave — Nine Tap Animations</title>
 <style>
 :root{
  color-scheme:dark;
@@ -193,6 +193,22 @@ input[type=range]{width:120px;accent-color:#91bafa}
  animation:inwardSurfaceWash var(--duration) cubic-bezier(.24,.06,.69,1) both;
 }
 
+
+/* Ninth option: exactly the corrected #8 inward-surface wave, with the
+   already adjustable energy dots added. No outward pulse or thin rings. */
+.demo[data-effect="wave-energy"].playing .inward-wave.front{
+ animation:inwardSurfaceWave var(--duration) cubic-bezier(.24,.06,.69,1) both;
+}
+.demo[data-effect="wave-energy"].playing .inward-wave.wash{
+ animation:inwardSurfaceWash var(--duration) cubic-bezier(.24,.06,.69,1) both;
+}
+.demo[data-effect="wave-energy"].playing .wisp{
+ animation:comboConverge var(--duration) ease-in both;
+}
+.demo[data-effect="wave-energy"].playing .core-flash{
+ animation:flashCenter var(--duration) ease both;
+}
+
 .demo-footer{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:auto;width:100%;text-align:center}
 .replay{appearance:none;cursor:pointer;border:1px solid #6b7ea2;background:linear-gradient(180deg,#273650,#1b2a41);
  color:#f5f8ff;font-family:inherit;font-size:12px;font-weight:675;border-radius:50px;padding:10px 17px}
@@ -213,8 +229,8 @@ input[type=range]{width:120px;accent-color:#91bafa}
 <main class="wrap">
  <header class="top">
   <div class="kicker">Swave / Interaction Design</div>
-  <h1>Eight ways to activate Swave</h1>
-  <p class="intro">Compare eight tap effects, including a new <strong>Inward Wave</strong>—a wide, softly glowing wave that washes across the button surface toward its center rather than a thin shrinking ring. Each preview ends before the separate landscape code screen.</p>
+  <h1>Nine ways to activate Swave</h1>
+  <p class="intro">Compare nine tap effects, including <strong>Inward Wave + Energy Convergence</strong>. The broad wave starts at the circle's edge and travels inward while four colored dots converge on the center. Each preview ends before the separate landscape code screen.</p>
  </header>
  <section class="tuner" aria-label="Animation settings">
   <div class="control"><label for="speed">Effect duration</label><input id="speed" type="range" min="300" max="1200" step="50" value="550"><output id="speedValue">0.55 s</output></div>
@@ -222,7 +238,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
   <div class="control"><label for="dotSize">Energy dot size</label><input id="dotSize" type="range" min="8" max="36" step="2" value="18"><output id="dotSizeValue">18 px</output></div>
   <div class="control"><label for="waveWidth">Inward wave width</label><input id="waveWidth" type="range" min="12" max="58" step="2" value="32"><output id="waveWidthValue">32 px</output></div>
   
-  <button class="action" id="replayAll" type="button">Replay all eight</button>
+  <button class="action" id="replayAll" type="button">Replay all nine</button>
  </section>
  <section class="grid" id="effects">
   <article class="demo" data-effect="ripple">
@@ -350,6 +366,33 @@ input[type=range]{width:120px;accent-color:#91bafa}
     <div class="demo-footer">
       <button class="replay" type="button">Replay effect</button>
       <div class="note">Try adjusting “Inward wave width” above</div>
+    </div>
+  </article>
+  <article class="demo" data-effect="wave-energy">
+    <div class="demo-head">
+      <div class="effect-index">09 / Combination</div>
+      <h2>Inward Wave + Energy</h2>
+      <p class="desc">A broad wave sweeps from the circle's edge toward the center as four colored dots converge.</p>
+    </div>
+    <div class="button-zone">
+      <div class="halo-soft"></div><div class="halo"></div>
+      <button class="main-button" aria-label="Play inward wave plus energy convergence">
+        <span class="main-label">Tap to Swave</span>
+        <span class="sub-label">Generate a 4-digit<br>code to flash</span>
+      </button>
+      <div class="inward-wave wash"></div>
+      <div class="inward-wave front"></div>
+      <div class="energy">
+        <i class="wisp" style="--sx:20%;--sy:23%;--c:#F6C16E;--turn:30deg"></i>
+        <i class="wisp" style="--sx:76%;--sy:18%;--c:#96CCFF;--turn:150deg"></i>
+        <i class="wisp" style="--sx:24%;--sy:81%;--c:#8987F6;--turn:-30deg"></i>
+        <i class="wisp" style="--sx:82%;--sy:77%;--c:#C454FA;--turn:-150deg"></i>
+      </div>
+      <span class="core-flash"></span>
+    </div>
+    <div class="demo-footer">
+      <button class="replay" type="button">Replay effect</button>
+      <div class="note">Wave width and energy dot size are adjustable above</div>
     </div>
   </article>
  </section>
