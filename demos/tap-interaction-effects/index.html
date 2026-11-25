@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101726">
-<title>Swave — Five Tap Animations</title>
+<title>Swave — Seven Tap Animations</title>
 <style>
 :root{
  color-scheme:dark;
  --duration:600ms;
  --glow-strength:.55;
+ --dot-size:18px;
  --ring-gradient: conic-gradient(from 0deg,#dcefff 0deg,#cce7ff 18deg,#84c5ff 57deg,#95bfff 88deg,#b39ff0 100deg,#c454fa 115deg,#9a92ed 145deg,#8995f5 187deg,#8987f6 229deg,#9fa9fa 255deg,#bdc5f5 275deg,#f6c16e 308deg,#f7dfbb 326deg,#dcefff 359deg);
 }
 *{box-sizing:border-box}
@@ -58,9 +59,9 @@ input[type=range]{width:120px;accent-color:#91bafa}
 .core-flash{position:absolute;width:13px;height:13px;left:calc(50% - 6.5px);top:calc(50% - 6.5px);border-radius:50%;z-index:6;opacity:0;
  background:#bad9ff;box-shadow:0 0 16px 8px rgba(160,180,255,.45)}
 .energy{position:absolute;inset:0;z-index:5;pointer-events:none}
-.wisp{position:absolute;left:var(--sx);top:var(--sy);height:10px;width:10px;border-radius:50%;background:var(--c);opacity:0;
- box-shadow:0 0 9px 3px var(--c),0 0 18px 6px rgba(153,174,255,.24)}
-.wisp::after{content:"";width:27px;height:3px;border-radius:8px;position:absolute;right:6px;top:3px;transform:rotate(var(--turn));
+.wisp{position:absolute;left:var(--sx);top:var(--sy);height:var(--dot-size);width:var(--dot-size);border-radius:50%;background:radial-gradient(circle at 33% 28%,rgba(255,255,255,.52),var(--c) 39%,var(--c) 69%,rgba(15,24,46,.15) 100%);opacity:0;
+ box-shadow:0 0 10px 3px var(--c),0 0 21px 6px rgba(153,174,255,.24);}
+.wisp::after{content:"";width:calc(var(--dot-size) * 2.5);height:3px;border-radius:8px;position:absolute;right:calc(var(--dot-size) * .6);top:calc(var(--dot-size) * .5 - 1.5px);transform:rotate(var(--turn));
  background:linear-gradient(to left,var(--c),transparent);filter:blur(2px)}
 @keyframes ringIn{0%{opacity:0;transform:scale(1.11)}12%{opacity:1}67%{opacity:.9}100%{transform:scale(.02);opacity:0}}
 @keyframes ringDouble{0%{opacity:0;transform:scale(1.09)}12%{opacity:.95}73%{opacity:.68}100%{transform:scale(.05);opacity:0}}
@@ -69,7 +70,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
 @keyframes softPulse{0%{transform:scale(1)}21%{transform:scale(.957)}53%{transform:scale(.98)}100%{transform:scale(1)}}
 @keyframes haloPulse{0%{opacity:var(--glow-strength);transform:scale(1)}27%{opacity:calc(var(--glow-strength) * 1.45);transform:scale(1.09)}70%{transform:scale(.95)}100%{transform:scale(1);opacity:var(--glow-strength)}}
 @keyframes converge{0%{opacity:0;left:var(--sx);top:var(--sy);transform:scale(.6)}18%{opacity:.93}
- 77%{opacity:1;transform:scale(1.1)}100%{left:50%;top:50%;opacity:0;transform:scale(.1)}}
+ 77%{opacity:1;transform:scale(1.1)}100%{left:calc(50% - var(--dot-size) / 2);top:calc(50% - var(--dot-size) / 2);opacity:0;transform:scale(.1)}}
 @keyframes flashCenter{0%,63%{opacity:0;transform:scale(.3)}80%{opacity:.92;transform:scale(1.1)}100%{opacity:0;transform:scale(.05)}}
 .demo[data-effect="ripple"].playing .ripple.one{animation:ringIn var(--duration) cubic-bezier(.36,0,.69,1) both}
 .demo[data-effect="double"].playing .ripple.one{animation:ringDouble var(--duration) ease-in both}
@@ -105,7 +106,7 @@ input[type=range]{width:120px;accent-color:#91bafa}
   0%,15%{opacity:0;left:var(--sx);top:var(--sy);transform:scale(.55)}
   32%{opacity:.68}
   72%{opacity:.9;transform:scale(.95)}
-  100%{left:50%;top:50%;opacity:0;transform:scale(.08)}
+  100%{left:calc(50% - var(--dot-size) / 2);top:calc(50% - var(--dot-size) / 2);opacity:0;transform:scale(.08)}
 }
 .demo[data-effect="combo"].playing .main-button{
   animation:comboPulse var(--duration) ease-in-out both;
@@ -126,6 +127,20 @@ input[type=range]{width:120px;accent-color:#91bafa}
   animation:flashCenter var(--duration) ease both;
 }
 
+
+/* Pulse + Energy variation: no rings; energy wisps flow inward as the halo pulses. */
+.demo[data-effect="pulse-energy"].playing .main-button{
+ animation:comboPulse var(--duration) ease-in-out both;
+}
+.demo[data-effect="pulse-energy"].playing .halo{
+ animation:haloPulse var(--duration) ease-in-out both;
+}
+.demo[data-effect="pulse-energy"].playing .wisp{
+ animation:comboConverge var(--duration) ease-in both;
+}
+.demo[data-effect="pulse-energy"].playing .core-flash{
+ animation:flashCenter var(--duration) ease both;
+}
 .demo-footer{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:auto;width:100%;text-align:center}
 .replay{appearance:none;cursor:pointer;border:1px solid #6b7ea2;background:linear-gradient(180deg,#273650,#1b2a41);
  color:#f5f8ff;font-family:inherit;font-size:12px;font-weight:675;border-radius:50px;padding:10px 17px}
@@ -146,14 +161,15 @@ input[type=range]{width:120px;accent-color:#91bafa}
 <main class="wrap">
  <header class="top">
   <div class="kicker">Swave / Interaction Design</div>
-  <h1>Six ways to activate Swave</h1>
-  <p class="intro">Compare the original five effects with a new <strong>Pulse + Double Ripple + Energy Convergence</strong> combination. Tap any circle to see its effect. Each preview ends before navigation to the separate landscape code screen.</p>
+  <h1>Seven ways to activate Swave</h1>
+  <p class="intro">Compare seven tap effects, including <strong>Pulse + Energy Convergence</strong> without ripple rings. Use the Energy Dot Size slider to make the merging colored dots larger or smaller. Each animation ends before the separate landscape code screen.</p>
  </header>
  <section class="tuner" aria-label="Animation settings">
   <div class="control"><label for="speed">Effect duration</label><input id="speed" type="range" min="300" max="1200" step="50" value="550"><output id="speedValue">0.55 s</output></div>
   <div class="control"><label for="strength">Halo strength</label><input id="strength" type="range" min="15" max="100" step="5" value="55"><output id="strengthValue">55%</output></div>
+  <div class="control"><label for="dotSize">Energy dot size</label><input id="dotSize" type="range" min="8" max="36" step="2" value="18"><output id="dotSizeValue">18 px</output></div>
   
-  <button class="action" id="replayAll" type="button">Replay all six</button>
+  <button class="action" id="replayAll" type="button">Replay all seven</button>
  </section>
  <section class="grid" id="effects">
   <article class="demo" data-effect="ripple">
@@ -238,6 +254,31 @@ input[type=range]{width:120px;accent-color:#91bafa}
       <div class="note">A coordinated, cinematic activation</div>
     </div>
   </article>
+  <article class="demo" data-effect="pulse-energy">
+    <div class="demo-head">
+      <div class="effect-index">07 / Combination</div>
+      <h2>Soft Pulse + Energy</h2>
+      <p class="desc">A gentle button pulse pulls four colored energy dots together. No ripple rings.</p>
+    </div>
+    <div class="button-zone">
+     <div class="halo-soft"></div><div class="halo"></div>
+     <button class="main-button" aria-label="Play combined soft pulse and energy convergence">
+      <span class="main-label">Tap to Swave</span>
+      <span class="sub-label">Generate a 4-digit<br>code to flash</span>
+     </button>
+     <div class="energy">
+      <i class="wisp" style="--sx:20%;--sy:23%;--c:#F6C16E;--turn:30deg"></i>
+      <i class="wisp" style="--sx:76%;--sy:18%;--c:#96CCFF;--turn:150deg"></i>
+      <i class="wisp" style="--sx:24%;--sy:81%;--c:#8987F6;--turn:-30deg"></i>
+      <i class="wisp" style="--sx:82%;--sy:77%;--c:#C454FA;--turn:-150deg"></i>
+     </div>
+     <span class="core-flash"></span>
+    </div>
+    <div class="demo-footer">
+      <button class="replay" type="button">Replay effect</button>
+      <div class="note">Soft, mysterious activation without rings</div>
+    </div>
+  </article>
  </section>
  <section class="bottom-panel">
   <strong>For Xaivery:</strong> These live HTML/CSS demos show only the button tap animation. At the end of the selected effect, the real Swave app should navigate to its separate full-size landscape four-digit code screen. That navigation and the subsequent code scrambling are intentionally not included here and will need native SwiftUI implementation.
@@ -253,24 +294,29 @@ input[type=range]{width:120px;accent-color:#91bafa}
 const root=document.documentElement;
 const speed=document.getElementById("speed");
 const strength=document.getElementById("strength");
+const dotSize=document.getElementById("dotSize");
 const cards=Array.from(document.querySelectorAll(".demo"));
 const timeoutMap=new WeakMap();
 function settings(){
  root.style.setProperty("--duration",speed.value+"ms");
  root.style.setProperty("--glow-strength",(Number(strength.value)/100).toFixed(2));
+ root.style.setProperty("--dot-size",dotSize.value+"px");
  document.getElementById("speedValue").textContent=(Number(speed.value)/1000).toFixed(2)+" s";
  document.getElementById("strengthValue").textContent=strength.value+"%";
+ document.getElementById("dotSizeValue").textContent=dotSize.value+" px";
  const params=new URLSearchParams();
  params.set("duration",speed.value);
  params.set("glow",strength.value);
+ params.set("dots",dotSize.value);
  history.replaceState(null,"",location.pathname+location.search+"#"+params.toString());
  document.getElementById("shareLink").value=location.href;
 }
 function initialize(){
  const params=new URLSearchParams(location.hash.slice(1));
- const d=Number(params.get("duration")),g=Number(params.get("glow"));
+ const d=Number(params.get("duration")),g=Number(params.get("glow")),z=Number(params.get("dots"));
  if(params.has("duration")&&Number.isFinite(d))speed.value=Math.min(1200,Math.max(300,d));
  if(params.has("glow")&&Number.isFinite(g))strength.value=Math.min(100,Math.max(15,g));
+ if(params.has("dots")&&Number.isFinite(z))dotSize.value=Math.min(36,Math.max(8,z));
  settings();
 }
 function play(card){
@@ -289,6 +335,7 @@ cards.forEach(card=>{
 document.getElementById("replayAll").addEventListener("click",()=>cards.forEach(play));
 speed.addEventListener("input",settings);
 strength.addEventListener("input",settings);
+dotSize.addEventListener("input",settings);
 document.getElementById("copyLink").addEventListener("click",async()=>{
  const field=document.getElementById("shareLink");
  try{await navigator.clipboard.writeText(field.value);document.getElementById("copyStatus").textContent="Copied";}
