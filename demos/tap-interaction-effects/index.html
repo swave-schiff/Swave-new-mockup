@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101726">
+<title>Swave — Five Tap Animations</title>
+<style>
+:root{
+ color-scheme:dark;
+ --duration:600ms;
+ --glow-strength:.55;
+ --ring-gradient: conic-gradient(from 0deg,#dcefff 0deg,#cce7ff 18deg,#84c5ff 57deg,#95bfff 88deg,#b39ff0 100deg,#c454fa 115deg,#9a92ed 145deg,#8995f5 187deg,#8987f6 229deg,#9fa9fa 255deg,#bdc5f5 275deg,#f6c16e 308deg,#f7dfbb 326deg,#dcefff 359deg);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#0a0f19;color:#f7f9ff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif}
+body{background:radial-gradient(ellipse at 45% 0,#1b2745 0,#0c1424 48%,#090e18 87%);padding:26px 20px 50px}
+.wrap{max-width:1370px;margin:auto}
+.top{text-align:center}
+.kicker{font-size:11px;font-weight:750;letter-spacing:.16em;color:#9badc9;text-transform:uppercase}
+h1{font-size:clamp(25px,3vw,36px);letter-spacing:-.035em;font-weight:720;margin:8px 0 9px}
+.intro{max-width:760px;margin:0 auto;color:#aab8d0;font-size:14px;line-height:1.55}
+.tuner{margin:22px auto 21px;padding:15px 20px;max-width:1070px;background:#151e30;border:1px solid #33415b;border-radius:17px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:17px 26px}
+.control{display:grid;grid-template-columns:auto 120px auto;gap:10px;align-items:center}
+.control label,.toggle{font-size:13px;font-weight:600;color:#d5dff0}
+.control output{font-size:12px;color:#9db3d4;font-variant-numeric:tabular-nums;min-width:34px}
+input[type=range]{width:120px;accent-color:#91bafa}
+.toggle{display:flex;align-items:center;gap:9px;white-space:nowrap}
+.toggle input{accent-color:#8aaef6;width:17px;height:17px}
+.action{appearance:none;cursor:pointer;padding:10px 17px;border:1px solid #778aae;background:linear-gradient(180deg,#32435f,#202d45);color:#f7f9ff;font:650 13px/1.3 inherit;border-radius:100px;transition:filter .15s,transform .15s}
+.action:hover{filter:brightness(1.14)}
+.action:active{transform:scale(.98)}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
+.demo{background:linear-gradient(160deg,#19243b 0%,#111a2a 55%,#0b1320 100%);border:1px solid #344360;border-radius:19px;padding:17px 11px 16px;min-width:0;display:flex;flex-direction:column;align-items:center;min-height:388px}
+.demo-head{text-align:center;min-height:72px}
+.effect-index{font-size:10px;letter-spacing:.14em;color:#8198bd;text-transform:uppercase;margin-bottom:5px}
+.demo h2{font-size:16px;letter-spacing:-.02em;margin:0 0 5px;font-weight:700}
+.demo .desc{font-size:11.5px;color:#9cabca;line-height:1.32;max-width:200px;margin:auto}
+.button-zone{width:188px;height:188px;position:relative;margin:20px 0 16px;isolation:isolate;flex:none}
+.halo,.halo-soft{position:absolute;inset:-7px;border-radius:50%;pointer-events:none;background:var(--ring-gradient);transform-origin:center;z-index:-1;
+ -webkit-mask-image:radial-gradient(circle at center,transparent 0%,transparent 53%,#000 67%,#000 75%,transparent 94%);
+ mask-image:radial-gradient(circle at center,transparent 0%,transparent 53%,#000 67%,#000 75%,transparent 94%);
+}
+.halo{filter:blur(22px);opacity:var(--glow-strength)}
+.halo-soft{inset:-12px;filter:blur(29px);opacity:calc(var(--glow-strength) * .48)}
+.main-button{position:absolute;inset:5px;border:0;border-radius:50%;padding:24px 15px;background:radial-gradient(circle at 47% 39%,#0a1423,#070d17 78%);
+ box-shadow:inset 0 1px 2px rgba(190,209,249,.07),0 0 0 1px rgba(174,198,234,.06);
+ color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:27px;
+ cursor:pointer;z-index:2;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.main-button:focus-visible{outline:2px solid #a9d7ff;outline-offset:4px}
+.main-button .main-label{font-size:19px;font-weight:750;letter-spacing:-.035em;white-space:nowrap}
+.main-button .sub-label{font-size:11.5px;font-weight:650;line-height:1.32;color:#e8eaf3}
+.ripple{position:absolute;inset:7px;border-radius:50%;z-index:5;pointer-events:none;opacity:0;
+ background:var(--ring-gradient);padding:2px;filter:drop-shadow(0 0 5px rgba(156,184,255,.8));
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+ -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+.ripple.two{filter:drop-shadow(0 0 4px rgba(157,182,255,.7))}
+.core-flash{position:absolute;width:13px;height:13px;left:calc(50% - 6.5px);top:calc(50% - 6.5px);border-radius:50%;z-index:6;opacity:0;
+ background:#bad9ff;box-shadow:0 0 16px 8px rgba(160,180,255,.45)}
+.energy{position:absolute;inset:0;z-index:5;pointer-events:none}
+.wisp{position:absolute;left:var(--sx);top:var(--sy);height:10px;width:10px;border-radius:50%;background:var(--c);opacity:0;
+ box-shadow:0 0 9px 3px var(--c),0 0 18px 6px rgba(153,174,255,.24)}
+.wisp::after{content:"";width:27px;height:3px;border-radius:8px;position:absolute;right:6px;top:3px;transform:rotate(var(--turn));
+ background:linear-gradient(to left,var(--c),transparent);filter:blur(2px)}
+.code-screen{position:absolute;inset:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:8;
+ opacity:0;visibility:hidden;transform:scale(.91);transition:opacity 170ms ease,transform 170ms ease,visibility 170ms;
+ background:radial-gradient(circle at center,#131d33,#090f1b 80%);border-radius:50%;pointer-events:none}
+.code-label{font-size:10px;color:#9eacc5;letter-spacing:.05em;margin:0 0 11px}
+.digit-row{display:flex;gap:3px}
+.digit{width:31px;height:49px;display:flex;align-items:center;justify-content:center;background:linear-gradient(#383c47,#191d29);
+ border-radius:5px;color:#fff;font-size:34px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums}
+.code-hint{font-size:10px;margin-top:12px;color:#a5adc1}
+.demo.code-mode .code-screen{visibility:visible;opacity:1;transform:scale(1)}
+.demo.code-mode .main-button{opacity:0}
+.demo.code-mode .halo,.demo.code-mode .halo-soft{opacity:.1}
+@keyframes ringIn{0%{opacity:0;transform:scale(1.11)}12%{opacity:1}67%{opacity:.9}100%{transform:scale(.02);opacity:0}}
+@keyframes ringDouble{0%{opacity:0;transform:scale(1.09)}12%{opacity:.95}73%{opacity:.68}100%{transform:scale(.05);opacity:0}}
+@keyframes inwardHalo{0%{transform:scale(1);opacity:var(--glow-strength);filter:blur(22px)}30%{opacity:calc(var(--glow-strength) * 1.25)}78%{transform:scale(.69);opacity:calc(var(--glow-strength) * .9);filter:blur(13px)}100%{transform:scale(.25);opacity:0;filter:blur(3px)}}
+@keyframes inwardHaloSoft{0%{transform:scale(1);opacity:calc(var(--glow-strength) * .48)}70%{transform:scale(.65);opacity:.7}100%{transform:scale(.35);opacity:0}}
+@keyframes softPulse{0%{transform:scale(1)}21%{transform:scale(.957)}53%{transform:scale(.98)}100%{transform:scale(1)}}
+@keyframes haloPulse{0%{opacity:var(--glow-strength);transform:scale(1)}27%{opacity:calc(var(--glow-strength) * 1.45);transform:scale(1.09)}70%{transform:scale(.95)}100%{transform:scale(1);opacity:var(--glow-strength)}}
+@keyframes converge{0%{opacity:0;left:var(--sx);top:var(--sy);transform:scale(.6)}18%{opacity:.93}
+ 77%{opacity:1;transform:scale(1.1)}100%{left:50%;top:50%;opacity:0;transform:scale(.1)}}
+@keyframes flashCenter{0%,63%{opacity:0;transform:scale(.3)}80%{opacity:.92;transform:scale(1.1)}100%{opacity:0;transform:scale(.05)}}
+.demo[data-effect="ripple"].playing .ripple.one{animation:ringIn var(--duration) cubic-bezier(.36,0,.69,1) both}
+.demo[data-effect="double"].playing .ripple.one{animation:ringDouble var(--duration) ease-in both}
+.demo[data-effect="double"].playing .ripple.two{animation:ringDouble var(--duration) ease-in both;animation-delay:calc(var(--duration) * .17);animation-duration:calc(var(--duration) * .83)}
+.demo[data-effect="compression"].playing .halo{animation:inwardHalo var(--duration) ease-in-out both}
+.demo[data-effect="compression"].playing .halo-soft{animation:inwardHaloSoft var(--duration) ease-in-out both}
+.demo[data-effect="pulse"].playing .main-button{animation:softPulse var(--duration) cubic-bezier(.26,.04,.3,1) both}
+.demo[data-effect="pulse"].playing .halo{animation:haloPulse var(--duration) ease-in-out both}
+.demo[data-effect="converge"].playing .wisp{animation:converge var(--duration) cubic-bezier(.2,.21,.59,1) both}
+.demo[data-effect="converge"].playing .core-flash{animation:flashCenter var(--duration) ease both}
+.demo-footer{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:auto;width:100%;text-align:center}
+.replay{appearance:none;cursor:pointer;border:1px solid #6b7ea2;background:linear-gradient(180deg,#273650,#1b2a41);
+ color:#f5f8ff;font-family:inherit;font-size:12px;font-weight:675;border-radius:50px;padding:10px 17px}
+.replay:hover{filter:brightness(1.16)}
+.note{font-size:11px;line-height:1.35;color:#97a9c5;min-height:28px}
+.bottom-panel{max-width:900px;margin:20px auto 0;background:#121b2c;border:1px solid #30415b;border-radius:17px;padding:17px 20px;color:#adbad0;font-size:13px;line-height:1.52}
+.bottom-panel strong{color:#edf4ff}
+.bottom-panel .share{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:13px}
+.bottom-panel .share input{min-width:0;flex:1 1 370px;background:#0a1221;border:1px solid #384967;color:#c7d4ef;border-radius:8px;padding:9px;font-size:12px}
+.bottom-panel .share button{border:1px solid #4e6687;border-radius:8px;background:#263857;color:#edf4ff;cursor:pointer;padding:10px 12px;font-size:12px;font-weight:600}
+@media(max-width:1190px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}body{padding:22px 12px 40px}.demo{min-height:385px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.demo{min-height:345px}.tuner{gap:12px}.control{grid-template-columns:auto 120px auto}.button-zone{margin:10px 0}.demo-head{min-height:58px}}
+@media(prefers-reduced-motion:reduce){.main-button{transition:none}.demo .code-screen{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+ <header class="top">
+  <div class="kicker">Swave / Interaction Design</div>
+  <h1>Five ways to activate Swave</h1>
+  <p class="intro">Five working HTML/CSS animations based on the new glowing Tap to Swave button. <strong>Tap any circle</strong> to see its effect, or replay all five together. These are functional animation demos, not videos or images.</p>
+ </header>
+ <section class="tuner" aria-label="Animation settings">
+  <div class="control"><label for="speed">Effect duration</label><input id="speed" type="range" min="300" max="1200" step="50" value="550"><output id="speedValue">0.55 s</output></div>
+  <div class="control"><label for="strength">Halo strength</label><input id="strength" type="range" min="15" max="100" step="5" value="55"><output id="strengthValue">55%</output></div>
+  <label class="toggle"><input id="showCode" type="checkbox" checked>Show code reveal afterward</label>
+  <button class="action" id="replayAll" type="button">Replay all five</button>
+ </section>
+ <section class="grid" id="effects">
+  <article class="demo" data-effect="ripple">
+    <div class="demo-head"><div class="effect-index">01 / Wave</div><h2>Inward ripple</h2><p class="desc">One thin luminous ring contracts to the center.</p></div>
+    <div class="button-zone">
+     <div class="halo-soft"></div><div class="halo"></div>
+     <button class="main-button" aria-label="Play inward ripple"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
+     <span class="ripple one"></span><span class="ripple two"></span>
+     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+    </div>
+    <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Clean, focused, elegant</div></div>
+  </article>
+  <article class="demo" data-effect="double">
+    <div class="demo-head"><div class="effect-index">02 / Wave</div><h2>Double inward ripple</h2><p class="desc">Two closely spaced rings chase inward.</p></div>
+    <div class="button-zone">
+     <div class="halo-soft"></div><div class="halo"></div>
+     <button class="main-button" aria-label="Play double inward ripple"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
+     <span class="ripple one"></span><span class="ripple two"></span>
+     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+    </div>
+    <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">A little more dynamic</div></div>
+  </article>
+  <article class="demo" data-effect="compression">
+    <div class="demo-head"><div class="effect-index">03 / Halo</div><h2>Halo compression</h2><p class="desc">The existing colored glow is pulled inward.</p></div>
+    <div class="button-zone">
+     <div class="halo-soft"></div><div class="halo"></div>
+     <button class="main-button" aria-label="Play halo compression"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
+     <span class="ripple one"></span><span class="ripple two"></span>
+     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+    </div>
+    <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Subtle, mysterious, premium</div></div>
+  </article>
+  <article class="demo" data-effect="pulse">
+    <div class="demo-head"><div class="effect-index">04 / Pulse</div><h2>Soft pulse</h2><p class="desc">The button contracts slightly as its halo brightens.</p></div>
+    <div class="button-zone">
+     <div class="halo-soft"></div><div class="halo"></div>
+     <button class="main-button" aria-label="Play soft pulse"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
+     <span class="ripple one"></span><span class="ripple two"></span>
+     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+    </div>
+    <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Fastest and most understated</div></div>
+  </article>
+  <article class="demo" data-effect="converge">
+    <div class="demo-head"><div class="effect-index">05 / Energy</div><h2>Energy convergence</h2><p class="desc">Four colored wisps flow inward and meet.</p></div>
+    <div class="button-zone">
+     <div class="halo-soft"></div><div class="halo"></div>
+     <button class="main-button" aria-label="Play energy convergence"><span class="main-label">Tap to Swave</span><span class="sub-label">Generate a 4-digit<br>code to flash</span></button>
+     <div class="energy">
+      <i class="wisp" style="--sx:20%;--sy:23%;--c:#F6C16E;--turn:30deg"></i>
+      <i class="wisp" style="--sx:76%;--sy:18%;--c:#96CCFF;--turn:150deg"></i>
+      <i class="wisp" style="--sx:24%;--sy:81%;--c:#8987F6;--turn:-30deg"></i>
+      <i class="wisp" style="--sx:82%;--sy:77%;--c:#C454FA;--turn:-150deg"></i>
+     </div>
+     <span class="core-flash"></span>
+     <div class="code-screen"><div class="code-label">SWAVE CODE</div><div class="digit-row"><span class="digit">5</span><span class="digit">3</span><span class="digit">6</span><span class="digit">1</span></div><div class="code-hint">Ready to flash</div></div>
+    </div>
+    <div class="demo-footer"><button class="replay" type="button">Replay effect</button><div class="note">Most expressive and futuristic</div></div>
+  </article>
+ </section>
+ <section class="bottom-panel">
+  <strong>For Xaivery:</strong> Each effect is drawn live in CSS, and the code reveal uses JavaScript to scramble four display digits briefly before settling on a sample code. The demo never generates or transmits a real Swave code. Animation and orientation transitions in SwiftUI will need native implementation.
+  <div class="share">
+   <input id="shareLink" readonly aria-label="Share this demo with current settings">
+   <button id="copyLink" type="button">Copy settings link</button>
+   <span id="copyStatus" aria-live="polite"></span>
+  </div>
+ </section>
+</main>
+<script>
+"use strict";
+const root=document.documentElement, speed=document.getElementById("speed"),strength=document.getElementById("strength"),showCode=document.getElementById("showCode");
+const cards=Array.from(document.querySelectorAll(".demo"));
+const timeoutMap=new WeakMap(),intervalMap=new WeakMap();
+const finalDigits=["5","3","6","1"];
+function settings(){
+ root.style.setProperty("--duration",speed.value+"ms");
+ root.style.setProperty("--glow-strength",(Number(strength.value)/100).toFixed(2));
+ document.getElementById("speedValue").textContent=(Number(speed.value)/1000).toFixed(2)+" s";
+ document.getElementById("strengthValue").textContent=strength.value+"%";
+ const params=new URLSearchParams();
+ params.set("duration",speed.value);params.set("glow",strength.value);params.set("code",showCode.checked?"1":"0");
+ history.replaceState(null,"",location.pathname+location.search+"#"+params.toString());
+ document.getElementById("shareLink").value=location.href;
+}
+function initialize(){
+ const params=new URLSearchParams(location.hash.slice(1));
+ const d=Number(params.get("duration")),g=Number(params.get("glow"));
+ if(params.has("duration")&&Number.isFinite(d))speed.value=Math.min(1200,Math.max(300,d));
+ if(params.has("glow")&&Number.isFinite(g))strength.value=Math.min(100,Math.max(15,g));
+ if(params.has("code"))showCode.checked=params.get("code")!=="0";
+ settings();
+}
+function clearCard(card){
+ const handles=timeoutMap.get(card)||[];
+ handles.forEach(clearTimeout);timeoutMap.set(card,[]);
+ if(intervalMap.has(card))clearInterval(intervalMap.get(card));
+ intervalMap.delete(card);
+ card.classList.remove("playing","code-mode");
+ card.querySelectorAll(".digit").forEach((d,i)=>d.textContent=finalDigits[i]);
+ void card.offsetWidth;
+}
+function handleTimeout(card,fn,ms){
+ const handles=timeoutMap.get(card)||[];
+ handles.push(setTimeout(fn,ms));timeoutMap.set(card,handles);
+}
+function scramble(card){
+ const digits=Array.from(card.querySelectorAll(".digit"));
+ const end=performance.now()+650;
+ const timer=setInterval(()=>{
+   if(performance.now()>=end){
+     clearInterval(timer);intervalMap.delete(card);
+     digits.forEach((d,i)=>d.textContent=finalDigits[i]);return;
+   }
+   digits.forEach(d=>d.textContent=String(Math.floor(Math.random()*10)));
+ },40);
+ intervalMap.set(card,timer);
+}
+function play(card){
+ clearCard(card);
+ card.classList.add("playing");
+ const duration=Number(speed.value);
+ if(showCode.checked){
+   handleTimeout(card,()=>{card.classList.remove("playing");card.classList.add("code-mode");scramble(card)},duration+65);
+ }else{
+   handleTimeout(card,()=>card.classList.remove("playing"),duration+80);
+ }
+}
+cards.forEach(card=>{
+ card.querySelector(".main-button").addEventListener("click",()=>play(card));
+ card.querySelector(".replay").addEventListener("click",()=>play(card));
+});
+document.getElementById("replayAll").addEventListener("click",()=>cards.forEach(play));
+speed.addEventListener("input",settings);strength.addEventListener("input",settings);showCode.addEventListener("change",settings);
+document.getElementById("copyLink").addEventListener("click",async()=>{
+ const field=document.getElementById("shareLink");
+ try{await navigator.clipboard.writeText(field.value);document.getElementById("copyStatus").textContent="Copied";}
+ catch(e){field.focus();field.select();document.getElementById("copyStatus").textContent="Select and copy the link";}
+});
+initialize();
+</script>
+</body>
+</html>
